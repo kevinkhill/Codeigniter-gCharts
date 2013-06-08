@@ -5,18 +5,18 @@
  * An open source library to extend the power of google charts into CI
  * for PHP 5.3 or newer
  *
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * Licensed under the Apache License, Version 2.0
  * which is included in the LICENSE file
  *
- * 
+ *
  * @author Kevin Hill <kevinkhill@gmail.com>
  * @copyright (c) 2013, Kevin Hill
  * @link https://github.com/kevinkhill/Codeigniter-gCharts Github Page
  * @license http://http://www.apache.org/licenses/LICENSE-2.0.html Apache-V2
- * 
+ *
  */
 
 class Gcharts
@@ -31,7 +31,7 @@ class Gcharts
     public static $googleAPI = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>';
 
     /**
-     * Loads the required classes from the gcharts folder for the library to 
+     * Loads the required classes from the gcharts folder for the library to
      * work.
      */
     public function __construct()
@@ -42,23 +42,31 @@ class Gcharts
     }
 
     /**
-     * Creates a new LineChart object within the gcharts library.
+     * Creates a new LineChart object
      *
-     * @param array horizontal and line titles
-     * @return object gchart
+     * Pass an array with the first item as the label for the xAxis, the second
+     * item being the label for the first set of data, the third item for the
+     * second set of data, etc...
+     *
+     * @param array $options
+     * @return \gchart
      */
     public function LineChart($options = array())
     {
         $this->LineChart = new LineChart($options);
         return $this->LineChart;
     }
-    
+
     /**
-     * Creates a new AreaChart object within the gcharts library.
+     * Creates a new AreaChart object
      *
-     * @param array horizontal and line titles
-     * @return object gchart
-     */    
+     * Pass an array with the first item as the label for the xAxis, the second
+     * item being the label for the first set of data, the third item for the
+     * second set of data, etc...
+     *
+     * @param array $options
+     * @return \gchart
+     */
     public function AreaChart($options = array())
     {
         $this->AreaChart = new AreaChart($options);
@@ -101,10 +109,12 @@ class Gcharts
 //    }
 
     /**
-     * Builds the javascript block for the actual chart and passes it back to 
-     * output function of the calling chart object.
+     * Builds the javascript block
      *
-     * @param string type of chart to display
+     * This will build the script block for the actual chart and passes it
+     * back to output function of the calling chart object.
+     *
+     * @param string $className
      * @return string javascript code block
      */
     public function _build_script_block($className)
@@ -119,28 +129,30 @@ class Gcharts
         $this->output .= "chart.draw(data,options);".PHP_EOL."}".PHP_EOL;
         $this->output .= '</script>'.PHP_EOL;
 
-        return $this->output;        
+        return $this->output;
     }
-    
+
     /**
+     * Converts array to string
+     *
      * Takes an array of values and ouputs them as a string between
      * brackets and separated by a pipe.
-     * 
-     * @param array default values
-     * @return string contains array values
+     *
+     * @param array $defaultValues
+     * @return string contains array values in readable form
      */
-    public function _array_string($array)
+    public function _array_string($defaultValues)
     {
         $tmp = '[ ';
 
-        foreach($array as $k => $v)
+        foreach($defaultValues as $k => $v)
         {
             $tmp .= $v . ' | ';
         }
 
         return substr_replace($tmp, "", -1) . ' ]';
     }
-    
+
 }
 
 /* End of file Gcharts.php */
