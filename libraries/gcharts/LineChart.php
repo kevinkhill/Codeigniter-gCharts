@@ -246,6 +246,43 @@ class LineChart extends Gcharts
         }
     }
 
+    public function lineWidth($width = 2)
+    {
+        if(is_int($width))
+        {
+            $this->addOption(array('lineWidth' => $width));
+            return $this;
+        } else {
+            throw new Exception('Invalid lineWidth, must be (int)');
+        }
+    }
+
+    public function pointSize($size = 0)
+    {
+        if(is_int($size))
+        {
+            $this->addOption(array('pointSize' => $size));
+            return $this;
+        } else {
+            throw new Exception('Invalid pointSize, must be (int)');
+        }
+    }
+
+    public function reverseCatagories($param)
+    {
+
+    }
+
+    public function series($param)
+    {
+
+    }
+
+    public function theme($param)
+    {
+
+    }
+
     public function title($title = '')
     {
         $this->addOption(array('title' => (string) $title));
@@ -277,27 +314,6 @@ class LineChart extends Gcharts
         }
     }
 
-    public function lineWidth($width = 2)
-    {
-        if(is_int($width))
-        {
-            $this->addOption(array('lineWidth' => $width));
-            return $this;
-        } else {
-            throw new Exception('Invalid lineWidth, must be (int)');
-        }
-    }
-
-    public function pointSize($size = 0)
-    {
-        if(is_int($size))
-        {
-            $this->addOption(array('pointSize' => $size));
-            return $this;
-        } else {
-            throw new Exception('Invalid pointSize, must be (int)');
-        }
-    }
 
     public function width($width)
     {
