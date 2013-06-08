@@ -7,7 +7,7 @@
 	<title>Class Gcharts | Codeigniter-gCharts</title>
 
 	<script type="text/javascript" src="resources/combined.js?2248719689"></script>
-	<script type="text/javascript" src="elementlist.js?3055451764"></script>
+	<script type="text/javascript" src="elementlist.js?94777904"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -34,13 +34,13 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-animation.html">animation</a></li>
 				<li><a href="class-AreaChart.html">AreaChart</a></li>
 				<li><a href="class-backgroundColor.html">backgroundColor</a></li>
 				<li><a href="class-chartArea.html">chartArea</a></li>
 				<li><a href="class-configOptions.html">configOptions</a></li>
 				<li class="active"><a href="class-Gcharts.html">Gcharts</a></li>
 				<li><a href="class-hAxis.html">hAxis</a></li>
+				<li><a href="class-legend.html">legend</a></li>
 				<li><a href="class-LineChart.html">LineChart</a></li>
 				<li><a href="class-PieChart.html">PieChart</a></li>
 				<li><a href="class-textStyle.html">textStyle</a></li>
@@ -132,7 +132,7 @@ LICENSE file</p>
 href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<br />
 				<b>Link:</b>
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">Github Page</a><br />
-		<b>Located at</b> <a href="source-class-Gcharts.html#3-144" title="Go to source code">libraries/Gcharts.php</a><br />
+		<b>Located at</b> <a href="source-class-Gcharts.html#3-177" title="Go to source code">libraries/Gcharts.php</a><br />
 	</div>
 
 
@@ -178,36 +178,40 @@ work.</p>
 
 		<td class="attributes"><code>
 			 public 
-			object
+			<code><a href="class-Gcharts.html">Gcharts</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_LineChart">#</a>
-		<code><a href="source-class-Gcharts.html#44-54" title="Go to source code">LineChart</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Gcharts.html#44-58" title="Go to source code">LineChart</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Creates a new LineChart object within the gcharts library.</p>
+<p>Creates a new LineChart object</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Creates a new LineChart object within the gcharts library.</p>
+<p>Creates a new LineChart object</p>
+
+<p>Pass an array with the first item as the label for the xAxis, the second item
+being the label for the first set of data, the third item for the second set of
+data, etc...</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>horizontal and line titles</dd>
+					<dd><code>array</code><br>$options</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>object</code><br>gchart<br />
+					<code><code><a href="class-Gcharts.html">Gcharts</a></code></code><br />
 				</div>
 
 
@@ -220,36 +224,40 @@ work.</p>
 
 		<td class="attributes"><code>
 			 public 
-			object
+			<code><a href="class-Gcharts.html">Gcharts</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_AreaChart">#</a>
-		<code><a href="source-class-Gcharts.html#56-66" title="Go to source code">AreaChart</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Gcharts.html#60-74" title="Go to source code">AreaChart</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Creates a new AreaChart object within the gcharts library.</p>
+<p>Creates a new AreaChart object</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Creates a new AreaChart object within the gcharts library.</p>
+<p>Creates a new AreaChart object</p>
+
+<p>Pass an array with the first item as the label for the xAxis, the second item
+being the label for the first set of data, the third item for the second set of
+data, etc...</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>horizontal and line titles</dd>
+					<dd><code>array</code><br>$options</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>object</code><br>gchart<br />
+					<code><code><a href="class-Gcharts.html">Gcharts</a></code></code><br />
 				</div>
 
 
@@ -262,24 +270,40 @@ work.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Gcharts.html">Gcharts</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOptions">#</a>
-		<code><a href="source-class-Gcharts.html#68-73" title="Go to source code">setOptions</a>( <span>mixed <var>$options</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#76-90" title="Go to source code">setOptions</a>( <span>type <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Sets the options from an array</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Sets the options from an array</p>
+
+<p>You can set the options all at once instead of passing them individually or
+chaining the functions from the chart objects.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$options</var></dt>
+					<dd><code>type</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Gcharts.html">Gcharts</a></code></code><br />
+				</div>
 
 
 
@@ -291,24 +315,40 @@ work.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Gcharts.html">Gcharts</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addOption">#</a>
-		<code><a href="source-class-Gcharts.html#75-88" title="Go to source code">addOption</a>( <span>mixed <var>$option</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#92-114" title="Go to source code">addOption</a>( <span>mixed <var>$option</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Adds configuration option</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Adds configuration option</p>
+
+<p>Takes either an array with option =&gt; value, or an object created by one of
+the configOptions child objects.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$option</var></dt>
+					<dd><code>mixed</code><br>$option</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Gcharts.html">Gcharts</a></code></code><br />
+				</div>
 
 
 
@@ -320,24 +360,40 @@ work.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Gcharts.html">Gcharts</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addData">#</a>
-		<code><a href="source-class-Gcharts.html#90-95" title="Go to source code">addData</a>( <span>mixed <var>$data</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#116-130" title="Go to source code">addData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Add data to the charts</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Add data to the charts</p>
+
+<p>Takes an array of values and adds them to the charts as data points to plot
+once the chart is rendered.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$data</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Gcharts.html">Gcharts</a></code></code><br />
+				</div>
 
 
 
@@ -356,26 +412,27 @@ work.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__build_script_block">#</a>
-		<code><a href="source-class-Gcharts.html#103-123" title="Go to source code">_build_script_block</a>( <span>string <var>$className</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#132-154" title="Go to source code">_build_script_block</a>( <span>string <var>$className</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Builds the javascript block for the actual chart and passes it back to output
-function of the calling chart object.</p>
+<p>Builds the javascript block</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Builds the javascript block for the actual chart and passes it back to output
-function of the calling chart object.</p>
+<p>Builds the javascript block</p>
+
+<p>This will build the script block for the actual chart and passes it back to
+output function of the calling chart object.</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$className</var></dt>
-					<dd><code>string</code><br>type of chart to display</dd>
+					<dd><code>string</code><br>$className</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -400,17 +457,18 @@ function of the calling chart object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__array_string">#</a>
-		<code><a href="source-class-Gcharts.html#125-142" title="Go to source code">_array_string</a>( <span>array <var>$array</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#156-175" title="Go to source code">_array_string</a>( <span>array <var>$defaultValues</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Takes an array of values and ouputs them as a string between brackets and
-separated by a pipe.</p>
+<p>Converts array to string</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Converts array to string</p>
+
 <p>Takes an array of values and ouputs them as a string between brackets and
 separated by a pipe.</p>
 
@@ -418,13 +476,13 @@ separated by a pipe.</p>
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$array</var></dt>
-					<dd><code>array</code><br>default values</dd>
+					<dt><var>$defaultValues</var></dt>
+					<dd><code>array</code><br>$defaultValues</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br>contains array values<br />
+					<code>string</code><br>contains array values in readable form<br />
 				</div>
 
 

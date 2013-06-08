@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class animation | Codeigniter-gCharts</title>
+	<title>Class legend | Codeigniter-gCharts</title>
 
 	<script type="text/javascript" src="resources/combined.js?2248719689"></script>
-	<script type="text/javascript" src="elementlist.js?3055451764"></script>
+	<script type="text/javascript" src="elementlist.js?94777904"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -34,13 +34,13 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li class="active"><a href="class-animation.html">animation</a></li>
 				<li><a href="class-AreaChart.html">AreaChart</a></li>
 				<li><a href="class-backgroundColor.html">backgroundColor</a></li>
 				<li><a href="class-chartArea.html">chartArea</a></li>
 				<li><a href="class-configOptions.html">configOptions</a></li>
 				<li><a href="class-Gcharts.html">Gcharts</a></li>
 				<li><a href="class-hAxis.html">hAxis</a></li>
+				<li class="active"><a href="class-legend.html">legend</a></li>
 				<li><a href="class-LineChart.html">LineChart</a></li>
 				<li><a href="class-PieChart.html">PieChart</a></li>
 				<li><a href="class-textStyle.html">textStyle</a></li>
@@ -86,15 +86,15 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class animation</h1>
+	<h1>Class legend</h1>
 
 
 	<div class="description">
 	
-<p>CodeIgniter gCharts Library</p>
+<p>Legend Properties Object</p>
 
-<p>An open source library to extend the power of google charts into CI for PHP
-5.3 or newer</p>
+<p>An object containing all the values for the legend which can be passed into
+the chart's options</p>
 
 <p>NOTICE OF LICENSE</p>
 
@@ -112,7 +112,7 @@ LICENSE file</p>
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by" />
-<b><span>animation</span></b>			
+<b><span>legend</span></b>			
 			
 			
 		</dd>
@@ -140,7 +140,7 @@ LICENSE file</p>
 href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<br />
 				<b>Link:</b>
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">Github Page</a><br />
-		<b>Located at</b> <a href="source-class-animation.html#3-77" title="Go to source code">libraries/gcharts/animation.php</a><br />
+		<b>Located at</b> <a href="source-class-legend.html#3-128" title="Go to source code">libraries/gcharts/legend.php</a><br />
 	</div>
 
 
@@ -158,7 +158,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-animation.html#27-48" title="Go to source code">__construct</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-legend.html#28-44" title="Go to source code">__construct</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -176,28 +176,46 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="easing" id="_easing">
+	<tr data-order="position" id="_position">
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-legend.html">legend</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_easing">#</a>
-		<code><a href="source-class-animation.html#50-63" title="Go to source code">easing</a>( <span>mixed <var>$easing</var> = <span class="php-quote">'linear'</span></span> )</code>
+		<a class="anchor" href="#_position">#</a>
+		<code><a href="source-class-legend.html#46-72" title="Go to source code">position</a>( <span>type <var>$position</var> = <span class="php-quote">'right'</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Legend Position</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Legend Position</p>
+
+<p>Position of the legend. Can be one of the following: 'right' - To the right
+of the chart. Incompatible with the vAxes option. 'top' - Above the chart.
+'bottom' - Below the chart. 'in' - Inside the chart, by the top left corner.
+'none' - No legend is displayed.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$position</var></dt>
+					<dd><code>type</code><br>$position</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-legend.html">legend</a></code></code><br />
+				</div>
 
 
 
@@ -205,29 +223,103 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="duration" id="_duration">
+	<tr data-order="alignment" id="_alignment">
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-legend.html">legend</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_duration">#</a>
-		<code><a href="source-class-animation.html#65-75" title="Go to source code">duration</a>( <span>mixed <var>$duration</var></span> )</code>
+		<a class="anchor" href="#_alignment">#</a>
+		<code><a href="source-class-legend.html#74-105" title="Go to source code">alignment</a>( <span>type <var>$alignment</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Chart Alignment</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Chart Alignment</p>
+
+<p>Alignment of the legend. Can be one of the following: 'start' - Aligned to
+the start of the area allocated for the legend. 'center' - Centered in the area
+allocated for the legend. 'end' - Aligned to the end of the area allocated for
+the legend.</p>
+
+<p>Start, center, and end are relative to the style -- vertical or horizontal --
+of the legend. For example, in a 'right' legend, 'start' and 'end' are at the
+top and bottom, respectively; for a 'top' legend, 'start' and 'end' would be at
+the left and right of the area, respectively.</p>
+
+<p>The default value depends on the legend's position. For 'bottom' legends, the
+default is 'center'; other legends default to 'start'.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$alignment</var></dt>
+					<dd><code>type</code><br>$alignment</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-legend.html">legend</a></code></code><br />
+				</div>
 
 
 
 
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="textStyle" id="_textStyle">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-legend.html">legend</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_textStyle">#</a>
+		<code><a href="source-class-legend.html#107-126" title="Go to source code">textStyle</a>( <span><code><a href="class-textStyle.html">textStyle</a></code> <var>$textStyle</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Legend Text Style</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Legend Text Style</p>
+
+<p>An object that specifies the legend text style.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$textStyle</var></dt>
+					<dd><code><code><a href="class-textStyle.html">textStyle</a></code></code><br>$textStyle</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-legend.html">legend</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br>Invalid textStyle<br />
+				</div>
 
 
 
@@ -262,18 +354,18 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="easing" id="$easing">
+	<tr data-order="position" id="$position">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-animation.html#23" title="Go to source code"><var>$easing</var></a>
+				<a href="source-class-legend.html#24" title="Go to source code"><var>$position</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$easing" class="anchor">#</a>
+			<a href="#$position" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -285,18 +377,18 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="fontName" id="$fontName">
+	<tr data-order="alignment" id="$alignment">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-animation.html#24" title="Go to source code"><var>$fontName</var></a>
+				<a href="source-class-legend.html#25" title="Go to source code"><var>$alignment</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$fontName" class="anchor">#</a>
+			<a href="#$alignment" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -308,18 +400,18 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="duration" id="$duration">
+	<tr data-order="textStyle" id="$textStyle">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-animation.html#25" title="Go to source code"><var>$duration</var></a>
+				<a href="source-class-legend.html#26" title="Go to source code"><var>$textStyle</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$duration" class="anchor">#</a>
+			<a href="#$textStyle" class="anchor">#</a>
 
 			<div class="description short">
 				
