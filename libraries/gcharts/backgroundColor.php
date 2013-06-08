@@ -5,18 +5,18 @@
  * An object containing all the values for the backgroundColor which can be
  * passed into the chart's options
  *
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * Licensed under the Apache License, Version 2.0
  * which is included in the LICENSE file
  *
- * 
+ *
  * @author Kevin Hill <kevinkhill@gmail.com>
  * @copyright (c) 2013, Kevin Hill
  * @link https://github.com/kevinkhill/Codeigniter-gCharts Github Page
  * @license http://http://www.apache.org/licenses/LICENSE-2.0.html Apache-V2
- * 
+ *
  */
 
 class backgroundColor extends configOptions
@@ -27,10 +27,10 @@ class backgroundColor extends configOptions
 
     /**
      * Builds the options for the backgrounColor object
-     * 
+     *
      * Pass an associative array with values for the keys
      * [ stroke | strokeWidth | fill ]
-     * 
+     *
      * @param array $options
      * @return \backgroundColor
      */
@@ -58,10 +58,11 @@ class backgroundColor extends configOptions
     }
 
     /**
+     * Chart Border Color
+     *
      * The color of the chart border, as an HTML color string.
-     * 
      * Acceptable values [ 'red' | '#A2A2A2' ]
-     * 
+     *
      * @param string $stroke
      * @return \backgroundColor
      */
@@ -78,11 +79,11 @@ class backgroundColor extends configOptions
     }
 
     /**
-     * The border width, in pixels.
-     * 
-     * Accepts any integer or integer as a string
-     * 
-     * @param int,string width
+     * Chart Border Width
+     *
+     * The border width, in pixels. Accepts any integer or integer as a string
+     *
+     * @param mixed $strokeWidth
      * @return \backgroundColor
      */
     public function strokeWidth($strokeWidth)
@@ -98,10 +99,11 @@ class backgroundColor extends configOptions
     }
 
     /**
+     * Chart Color Fill
+     *
      * The chart fill color, as an HTML color string.
-     * 
      * Acceptable values [ 'blue' | '#C5C5C5' ]
-     * 
+     *
      * @param string HTML color string
      * @return \backgroundColor
      */
@@ -116,7 +118,7 @@ class backgroundColor extends configOptions
 
         return $this;
     }
-    
+
 }
 
 /* End of file Gcharts.php */

@@ -12,8 +12,8 @@
 
         $gcharts->LineChart->title('Temperature Variance');
 //        $gcharts->LineChart->titlePosition('in');
-        $gcharts->LineChart->curveType('function');
-        $gcharts->LineChart->width(1000)->height(250)->pointSize(2)->lineWidth(2);
+//        $gcharts->LineChart->curveType('function');
+        $gcharts->LineChart->width(1000)->height(350)->pointSize(2)->lineWidth(2);
 
         $chartArea = new chartArea();
         $chartArea->left(25)->top(25)->width('80%');
@@ -28,10 +28,10 @@
     }
 
 
-    for($a = 1; $a < 10; $a++)
+    for($a = 1; $a < 40; $a++)
     {
-        $line1 = rand(-20,20);
-        $line2 = rand(-20,20);
+        $line1 = rand(-50,50);
+        $line2 = rand(-50,50);
         $gcharts->LineChart->addData(array($a, $line1, $line2));
     }
 

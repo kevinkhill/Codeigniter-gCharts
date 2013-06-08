@@ -189,6 +189,31 @@ class LineChart extends Gcharts
         }
     }
 
+    public function enableInteractivity($param)
+    {
+
+    }
+
+    public function focusTarget($param)
+    {
+
+    }
+
+    public function fontSize($param)
+    {
+
+    }
+
+    public function fontName($param)
+    {
+
+    }
+
+    public function hAxis(hAxis $param)
+    {
+
+    }
+
     public function height($height)
     {
         if(is_int($height))
@@ -200,6 +225,21 @@ class LineChart extends Gcharts
         }
     }
 
+    public function isHtml($param)
+    {
+
+    }
+
+    public function interpolateNulls($param)
+    {
+
+    }
+
+    public function legend($param)
+    {
+
+    }
+    
     public function title($title = '')
     {
         $this->addOption(array('title' => (string) $title));

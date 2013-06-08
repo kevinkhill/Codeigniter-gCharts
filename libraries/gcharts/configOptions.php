@@ -6,16 +6,16 @@
  * functions to the child classes
  *
  * NOTICE OF LICENSE
- * 
+ *
  * Licensed under the Apache License, Version 2.0
  * which is included in the LICENSE file
  *
- * 
+ *
  * @author Kevin Hill <kevinkhill@gmail.com>
  * @copyright (c) 2013, Kevin Hill
  * @link https://github.com/kevinkhill/Codeigniter-gCharts Github Page
  * @license http://http://www.apache.org/licenses/LICENSE-2.0.html Apache-V2
- * 
+ *
  */
 
 class configOptions
@@ -119,4 +119,5 @@ class configOptions
 
 }
 
-?>
+/* End of file configOptions.php */
+/* Location: ./application/libraries/gcharts/configOptions.php */
