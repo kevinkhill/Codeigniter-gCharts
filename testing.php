@@ -1,8 +1,8 @@
 <?php define('BASEPATH', __DIR__); include(BASEPATH . '/libraries/Gcharts.php');
 
-
     $gcharts = new Gcharts();
-
+    $error;
+    
     try {
         $gcharts->LineChart(array('', 'Actual', 'Projected'));
 
@@ -19,7 +19,7 @@
 
         $gcharts->LineChart->addOption($chartArea)->titleTextStyle($textStyle);
     } catch(Exception $e) {
-        die($e->getMessage());
+        $error = $e->getMessage();
     }
 
 
@@ -38,13 +38,17 @@
         <meta http-equiv="Content-Language" content="en" />
         <title>Codeigniter-gCharts</title>
         <?php echo Gcharts::$googleAPI; ?>
+        <?php echo $gcharts->LineChart->output('chart_div'); ?>
     </head>
 
     <body>
         <div id="chart_div">
-            <?php echo $gcharts->LineChart->output('chart_div'); ?>
         </div>
         <hr />
+        <div>
+            <?php echo (isset($error) ? $error : ''); ?>
+        </div>
+        <hr />        
         <?php var_dump($gcharts->LineChart); ?>
     </body>
 </html>
