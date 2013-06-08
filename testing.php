@@ -38,7 +38,7 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Content-Language" content="en" />
-        <title>Codeigniter-gCharts</title>
+        <title>Codeigniter gCharts</title>
         <?php echo Gcharts::$googleAPI; ?>
         <?php echo $gcharts->LineChart->output('chart_div'); ?>
     </head>
@@ -51,6 +51,6 @@
             <?php echo (isset($error) ? $error : ''); ?>
         </div>
         <hr />        
-        <?php var_dump($gcharts->LineChart); ?>
+        <?php var_dump($gcharts); ?>
     </body>
 </html>

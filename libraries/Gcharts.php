@@ -10,9 +10,14 @@ class Gcharts
     var $jsonOptions;
 
     public static $googleAPI = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>';
-    public static $jsOpen = '<script type="text/javascript">';
-    public static $jsClose = '</script>';
 
+    /**
+    * Loads the required classes from the gcharts folder for the library to 
+    * work.
+    *
+    * @param none
+    * @return none
+    */
     public function __construct()
     {
         spl_autoload_register(function($class) {
@@ -20,20 +25,16 @@ class Gcharts
         });
     }
 
-    public function googleAPI()
-    {
-        return static::$googleAPI;
-    }
-
+    /**
+    * Creates a new LineChart object within the gcharts library.
+    *
+    * @param array
+    * @return gchart object
+    */
     public function LineChart($options = array())
     {
-        if(isset($this->LineChart))
-        {
-            return $this->LineChart;
-        } else {
-            $this->LineChart = new LineChart($options);
-            return $this;
-        }
+        $this->LineChart = new LineChart($options);
+        return $this;
     }
 
     public function setOptions($options)
@@ -75,6 +76,47 @@ class Gcharts
 //        return new PieChart($options);
 //    }
 
+    /**
+    * Builds the javascript block for the actual chart and passes it back to 
+    * output function of the calling chart object.
+    *
+    * @param string
+    * @return string
+    */
+    public function _build_script_block($className)
+    {
+        $this->output = '<script type="text/javascript">'.PHP_EOL;
+        $this->output .= "google.load('visualization', '1', {'packages':['corechart']});".PHP_EOL;
+        $this->output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
+        $this->output .= "function drawChart() {".PHP_EOL;
+        $this->output .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
+        $this->output .= "var options = ".$this->jsonOptions.";".PHP_EOL;
+        $this->output .= "var chart = new google.visualization.".$className."(document.getElementById('".$this->elementID."'));".PHP_EOL;
+        $this->output .= "chart.draw(data,options);".PHP_EOL."}".PHP_EOL;
+        $this->output .= '</script>'.PHP_EOL;
+
+        return $this->output;        
+    }
+    
+    /**
+     * Takes an array of values and ouputs them as a string between
+     * brackets and separated by a pipe.
+     * 
+     * @param array
+     * @return string
+     */
+    public function _array_string($array)
+    {
+        $tmp = '[ ';
+
+        foreach($array as $k => $v)
+        {
+            $tmp .= $v . ' | ';
+        }
+
+        return substr_replace($tmp, "", -1) . ' ]';
+    }
+    
 }
 
 /* End of file Gcharts.php */

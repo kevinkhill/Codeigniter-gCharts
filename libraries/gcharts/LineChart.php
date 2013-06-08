@@ -2,7 +2,15 @@
 
 class LineChart extends Gcharts
 {
+    var $width;
+    var $height;
+    var $curveType;
     var $title;
+    var $titlePosition;
+    var $titleTextStyle;
+    var $lineWidth;
+    var $pointSize;
+    
     var $elementID;
 
     public function __construct($labels) {
@@ -20,7 +28,7 @@ class LineChart extends Gcharts
 
             $this->data[] = $tmp;
         } else {
-            throw new Exception('Invalid labels, must have count > 1 and type (string) array("horizontal axis label", "first line label")');
+            throw new Exception('Invalid labels, must have count > 1 and type (string) array("horizontal axis label", "first line label", "etc...")');
             //$this->data[] = array();
         }
 
@@ -116,42 +124,34 @@ class LineChart extends Gcharts
         }
     }
 
+//    public function output($elementID = '')
+//    {
+//        $this->elementID = $elementID;
+//        $this->jsonData = json_encode($this->data);
+//        $this->jsonOptions = json_encode($this->options);
+//
+//        $this->output = '<script type="text/javascript">'.PHP_EOL;
+//        $this->output .= "google.load('visualization', '1', {'packages':['corechart']});".PHP_EOL;
+//        $this->output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
+//        $this->output .= "function drawChart() {".PHP_EOL;
+//        $this->output .= "var data = new google.visualization.arrayToDataTable(";
+//        $this->output .= $this->jsonData;
+//        $this->output .= ");".PHP_EOL;
+//        $this->output .= "var options = ".$this->jsonOptions.";".PHP_EOL;
+//        $this->output .= "var chart = new google.visualization.LineChart(document.getElementById('".$this->elementID."'));".PHP_EOL;
+//        $this->output .= "chart.draw(data,options);".PHP_EOL."}".PHP_EOL;
+//        $this->output .= '</script>'.PHP_EOL;
+//
+//        return $this->output;
+//    }    
+    
     public function output($elementID = '')
     {
         $this->elementID = $elementID;
         $this->jsonData = json_encode($this->data);
         $this->jsonOptions = json_encode($this->options);
-
-        $this->output = static::$jsOpen.PHP_EOL;
-        $this->output .= "google.load('visualization', '1', {'packages':['corechart']});".PHP_EOL;
-        $this->output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
-        $this->output .= "function drawChart() {".PHP_EOL;
-        $this->output .= "var data = new google.visualization.arrayToDataTable(";
-        $this->output .= $this->jsonData;
-        $this->output .= ");".PHP_EOL;
-        $this->output .= "var options = ".$this->jsonOptions.";".PHP_EOL;
-        $this->output .= "var chart = new google.visualization.LineChart(document.getElementById('".$this->elementID."'));".PHP_EOL;
-        $this->output .= "chart.draw(data,options);".PHP_EOL."}".PHP_EOL;
-        $this->output .= static::$jsClose.PHP_EOL;
-
-        return $this->output;
-    }
-
-
-//////////////////////////////////////////////
-// PRIVATE METHODS
-//////////////////////////////////////////////
-
-    private function _array_string($array)
-    {
-        $tmp = '[ ';
-
-        foreach($array as $k => $v)
-        {
-            $tmp .= $v . ' | ';
-        }
-
-        return substr_replace($tmp, "", -1) . ' ]';
+        
+        return parent::_build_script_block(get_class($this));
     }
 
 }
