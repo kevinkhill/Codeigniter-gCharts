@@ -22,6 +22,7 @@
         $textStyle->color('#FF0A04')->fontName('Lucida')->fontSize(18);
 
         $gcharts->LineChart->chartArea($chartArea)->titleTextStyle($textStyle);
+        $gcharts->LineChart->colors(array('green', 'orange'));
     } catch(Exception $e) {
         $error = $e->getMessage();
     }

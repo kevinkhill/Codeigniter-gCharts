@@ -147,6 +147,27 @@ class LineChart extends Gcharts
     }
 
     /**
+     * Chart Element Colors
+     *
+     * The colors to use for the chart elements. An array of strings, where each
+     * element is an HTML color string, for example: colors:['red','#004411'].
+     *
+     * @param array $colorArray
+     * @return \LineChart
+     * @throws Exception Invalid colors
+     */
+    public function colors($colorArray)
+    {
+        if(is_array($colorArray))
+        {
+            $this->addOption(array('colors' => $colorArray));
+            return $this;
+        } else {
+            throw new Exception('Invalid colors, must be (array) with valid HTML colors');
+        }
+    }
+
+    /**
      * Controls the curve of the lines when the line width is not zero. Can be one of the following:
      * 'none' - Straight lines without curve.
      * 'function' - The angles of the line will be smoothed.
