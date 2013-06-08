@@ -28,22 +28,55 @@ class LineChart extends Gcharts
 
             $this->data[] = $tmp;
         } else {
-            throw new Exception('Invalid labels, must have count > 1 and type (string) array("horizontal axis label", "first line label", "etc...")');
+            throw new chartException('Invalid labels, must have count > 1 and type (string) array("horizontal axis label", "first line label", "etc...")');
             //$this->data[] = array();
         }
 
         return $this;
     }
 
-
-    public function width($width)
+    /**
+     * Where to place the axis titles, compared to the chart area. Supported values:
+     * in - Draw the axis titles inside the the chart area.
+     * out - Draw the axis titles outside the chart area.
+     * none - Omit the axis titles.
+     * 
+     * @param string [ in | out | none ]
+     * @return \LineChart
+     * @throws Exception Invalid axisTitlesPosition
+     */
+    public function axisTitlesPosition($position)
     {
-        if(is_int($width))
+        $values = array('in', 'out', 'none');
+
+        if(in_array($position, $values))
         {
-            $this->addOption(array('width' => $width));
+            $this->addOption(array('axisTitlesPosition' => $position));
             return $this;
         } else {
-            throw new Exception('Invalid width, must be (int)');
+            throw new chartException('Invalid axisTitlesPosition, must be (string) '.$this->_array_string($values));
+        }
+    }
+    
+    /**
+     * Controls the curve of the lines when the line width is not zero. Can be one of the following:
+     * 'none' - Straight lines without curve.
+     * 'function' - The angles of the line will be smoothed.
+     * 
+     * @param string [ none | function ]
+     * @return \LineChart
+     * @throws Exception Invalid curveType
+     */
+    public function curveType($curveType = 'none')
+    {
+        $values = array('none', 'function');
+
+        if(in_array($curveType, $values))
+        {
+            $this->addOption(array('curveType' => (string) $curveType));
+            return $this;
+        } else {
+            throw new chartException('Invalid curveType, must be (string) '.$this->_array_string($values));
         }
     }
 
@@ -54,23 +87,10 @@ class LineChart extends Gcharts
             $this->addOption(array('height' => $height));
             return $this;
         } else {
-            throw new Exception('Invalid height, must be (int)');
+            throw new chartException('Invalid height, must be (int)');
         }
     }
-
-    public function curveType($curveType = 'none')
-    {
-        $values = array('none', 'function');
-
-        if(in_array($curveType, $values))
-        {
-            $this->addOption(array('curveType' => (string) $curveType));
-            return $this;
-        } else {
-            throw new Exception('Invalid curveType, must be (string) '.$this->_array_string($values));
-        }
-    }
-
+    
     public function title($title = '')
     {
         $this->addOption(array('title' => (string) $title));
@@ -84,21 +104,21 @@ class LineChart extends Gcharts
 
         if(in_array($position, $values))
         {
-            $this->addOption(array('axisTitlesPosition' => $position));
+            $this->addOption(array('titlePosition' => $position));
             return $this;
         } else {
-            throw new Exception('Invalid axisTitlesPosition, must be (string) '.$this->_array_string($values));
+            throw new chartException('Invalid axisTitlesPosition, must be (string) '.$this->_array_string($values));
         }
     }
 
-    public function titleTextStyle($textStyleObj)
+    public function titleTextStyle(textStyle $textStyleObj)
     {
         if(is_a($textStyleObj, 'textStyle'))
         {
             $this->addOption(array('titleTextStyle' => $textStyleObj->values()));
             return $this;
         } else {
-            throw new Exception('Invalid titleTextStyle, must be (object) type textStyle');
+            throw new chartException('Invalid titleTextStyle, must be (object) type textStyle');
         }
     }
 
@@ -109,7 +129,7 @@ class LineChart extends Gcharts
             $this->addOption(array('lineWidth' => $width));
             return $this;
         } else {
-            throw new Exception('Invalid lineWidth, must be (int)');
+            throw new chartException('Invalid lineWidth, must be (int)');
         }
     }
 
@@ -120,7 +140,18 @@ class LineChart extends Gcharts
             $this->addOption(array('pointSize' => $size));
             return $this;
         } else {
-            throw new Exception('Invalid pointSize, must be (int)');
+            throw new chartException('Invalid pointSize, must be (int)');
+        }
+    }
+    
+    public function width($width)
+    {
+        if(is_int($width))
+        {
+            $this->addOption(array('width' => $width));
+            return $this;
+        } else {
+            throw new chartException('Invalid width, must be (int)');
         }
     }
     

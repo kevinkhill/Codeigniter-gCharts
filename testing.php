@@ -4,20 +4,20 @@
     $error;
     
     try {
-        $gcharts->AreaChart(array('Count', 'Actual', 'Projected'));
+        $gcharts->LineChart(array('Count', 'Actual', 'Projected'));
 
-        $gcharts->AreaChart->title('Temperature Variance');
-//        $gcharts->AreaChart->titlePosition('in');
-        $gcharts->AreaChart->curveType('function');
-        $gcharts->AreaChart->width(800)->height(250)->pointSize(2)->lineWidth(2);
+        $gcharts->LineChart->title('Temperature Variance');
+//        $gcharts->LineChart->titlePosition('in');
+        $gcharts->LineChart->curveType('function');
+        $gcharts->LineChart->width(1000)->height(250)->pointSize(2)->lineWidth(2);
 
         $chartArea = new chartArea();
-        $chartArea->left(25)->top(25)->width('75%');
+        $chartArea->left(25)->top(25)->width('80%');
 
         $textStyle = new textStyle();
         $textStyle->color('#FF0A04')->fontName('Lucida')->fontSize(18);
 
-        $gcharts->AreaChart->addOption($chartArea)->titleTextStyle($textStyle);
+        $gcharts->LineChart->addOption($chartArea)->titleTextStyle($textStyle);
     } catch(Exception $e) {
         $error = $e->getMessage();
     }
@@ -27,7 +27,7 @@
     {
         $line1 = rand(-20,20);
         $line2 = rand(-20,20);
-        $gcharts->AreaChart->addData(array($a, $line1, $line2));
+        $gcharts->LineChart->addData(array($a, $line1, $line2));
     }
 
 ?>
@@ -40,7 +40,7 @@
         <meta http-equiv="Content-Language" content="en" />
         <title>Codeigniter gCharts</title>
         <?php echo Gcharts::$googleAPI; ?>
-        <?php echo $gcharts->AreaChart->output('chart_div'); ?>
+        <?php echo $gcharts->LineChart->output('chart_div'); ?>
     </head>
 
     <body>
