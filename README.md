@@ -24,7 +24,7 @@ $this->gcharts->LineChart(
 );
 ```
 
-
+###Example Controller with LineChart  
 ```php
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
@@ -43,3 +43,7 @@ class Welcome extends CI_Controller {
     
 }
 ```
+
+
+###Output  
+![Chart Output](http://i.imgur.com/Eojy0zu.png)

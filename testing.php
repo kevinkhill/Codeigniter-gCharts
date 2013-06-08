@@ -4,10 +4,10 @@
     $gcharts = new Gcharts();
 
     try {
-        $gcharts->LineChart(array('#', 'Acctual', 'Scheduled'));
+        $gcharts->LineChart(array('', 'Actual', 'Projected'));
 
-        $gcharts->LineChart->title('Scheduled vs Actual Machine Time');
-        $gcharts->LineChart->titlePosition('in');
+        $gcharts->LineChart->title('Temperature Variance');
+//        $gcharts->LineChart->titlePosition('in');
         $gcharts->LineChart->curveType('function');
         $gcharts->LineChart->width(800)->height(250)->pointSize(2)->lineWidth(2);
 
@@ -15,7 +15,7 @@
         $chartArea->left(25)->top(25)->width('75%');
 
         $textStyle = new textStyle();
-        $textStyle->color('#D2FA2B')->fontName('Impact')->fontSize(18);
+        $textStyle->color('#FF0A04')->fontName('Lucida')->fontSize(18);
 
         $gcharts->LineChart->addOption($chartArea)->titleTextStyle($textStyle);
     } catch(Exception $e) {
