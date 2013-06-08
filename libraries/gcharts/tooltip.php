@@ -19,10 +19,10 @@
  *
  */
 
-class legend extends configOptions
+class tooltip extends configOptions
 {
     var $showColorCode;
-    var $showColorCode;
+    var $textStyle;
     var $trigger;
 
     public function __construct($options = array()) {

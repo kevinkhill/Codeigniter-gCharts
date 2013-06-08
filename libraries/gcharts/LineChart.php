@@ -290,6 +290,17 @@ class LineChart extends Gcharts
         return $this;
     }
 
+    public function tooltip(tooltip $tooltipObj)
+    {
+        if(is_a($tooltipObj, 'tooltip'))
+        {
+            $this->addOption($tooltipObj->toArray());
+            return $this;
+        } else {
+            throw new Exception('Invalid tooltip, must be (object) type tooltip');
+        }
+    }
+
     public function titlePosition($position)
     {
         $values = array('in', 'out', 'none');

@@ -25,18 +25,26 @@
         $gcharts->LineChart->colors(array('green', 'navy'));
 
         $legendStyle = new textStyle();
-        $legendStyle->color('#F3BB00')->fontName('Arial Bold')->fontSize(20);
+        $legendStyle->color('#F3BB00')->fontName('Arial')->fontSize(20);
 
         $legend = new legend();
         $legend->position('bottom')->alignment('center')->textStyle($legendStyle);
 
         $gcharts->LineChart->legend($legend);
+
+        $tooltipStyle = new textStyle();
+        $tooltipStyle->color('#C42B5F')->fontName('Tahoma')->fontSize(10);
+
+        $tooltip = new tooltip();
+        $tooltip->textStyle($tooltipStyle);
+
+        $gcharts->LineChart->tooltip($tooltip);
     } catch(Exception $e) {
         $error = $e->getMessage();
     }
 
 
-    for($a = 1; $a < 40; $a++)
+    for($a = 1; $a < 20; $a++)
     {
         $line1 = rand(-50,50);
         $line2 = rand(-50,50);
