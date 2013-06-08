@@ -1,22 +1,22 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * chartArea Properties Object
+ * Chart Area Properties Object
  *
  * An object containing all the values for the chartArea which can be
  * passed into the chart's options
  *
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * Licensed under the Apache License, Version 2.0
  * which is included in the LICENSE file
  *
- * 
+ *
  * @author Kevin Hill <kevinkhill@gmail.com>
  * @copyright (c) 2013, Kevin Hill
  * @link https://github.com/kevinkhill/Codeigniter-gCharts Github Page
  * @license http://http://www.apache.org/licenses/LICENSE-2.0.html Apache-V2
- * 
+ *
  */
 
 class chartArea extends configOptions
@@ -94,4 +94,5 @@ class chartArea extends configOptions
 
 }
 
-?>
+/* End of file chartArea.php */
+/* Location: ./application/libraries/gcharts/chartArea.php */

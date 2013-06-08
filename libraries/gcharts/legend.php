@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * legend Properties Object
+ * Legend Properties Object
  *
  * An object containing all the values for the legend which can be
  * passed into the chart's options

@@ -1,21 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * hAxis Properties Object
+ * Horizontal Axis Properties Object
  *
  * An object containing all the values for the hAxis which can be
  * passed into the chart's options
  *
  * NOTICE OF LICENSE
- * 
+ *
  * Licensed under the Apache License, Version 2.0
  * which is included in the LICENSE file
  *
- * 
+ *
  * @author Kevin Hill <kevinkhill@gmail.com>
  * @copyright (c) 2013, Kevin Hill
  * @link https://github.com/kevinkhill/Codeigniter-gCharts Github Page
  * @license http://http://www.apache.org/licenses/LICENSE-2.0.html Apache-V2
- * 
+ *
  */
 
 class hAxis extends configOptions
@@ -195,4 +195,5 @@ class hAxis extends configOptions
 
 }
 
-?>
+/* End of file hAxis.php */
+/* Location: ./application/libraries/gcharts/hAxis.php */

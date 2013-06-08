@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * backgroundColor Properties Object
+ * Background Color Properties Object
  *
  * An object containing all the values for the backgroundColor which can be
  * passed into the chart's options
@@ -121,5 +121,5 @@ class backgroundColor extends configOptions
 
 }
 
-/* End of file Gcharts.php */
+/* End of file backgroundColor.php */
 /* Location: ./application/libraries/gcharts/backgroundColor.php */
