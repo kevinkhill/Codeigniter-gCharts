@@ -29,14 +29,14 @@ $this->gcharts->LineChart(
 
 ###Now the view
 1. The Google API needs to be loaded into the header first and foremost. Put this
-```php
+```
 <?php echo Gcharts::$googleAPI; ?>
 ```
 into the head of the view. The script tags are included.
 
  - - -
 
-###Example Controller with LineChart  
+###Example Controller, welcome.php with LineChart  
 ```php
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
@@ -82,7 +82,7 @@ class Welcome extends CI_Controller {
 ```
 
 
-###Example View
+###Example view.php
 ```html
 <!DOCTYPE html>
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
