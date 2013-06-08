@@ -1,7 +1,8 @@
 #Codeigniter-gCharts
 ###Google Chart API for CodeIgniter
 This is a library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5  
-by [Kevin Hill](http://khilldesigns.site11.com)
+by [Kevin Hill](http://khilldesigns.site11.com)  
+If you have any questions or comments, please email me or post issues here on github
 
  - - -
 
@@ -25,15 +26,6 @@ $this->gcharts->LineChart(
 );
 ```
 5. 
-
-
-###Now the view
-1. The Google API needs to be loaded into the header first and foremost. Put this
-```
-<?php echo Gcharts::$googleAPI; ?>
-```
-into the head of the view, The script tags are included.
-2. Then use the output method of the chart to pick where the chart will be loaded. Pass a string with the ID of an element to load the chart into, here we are using 'chart_div'.
 
  - - -
 
@@ -81,6 +73,16 @@ class Welcome extends CI_Controller {
     
 }
 ```
+
+ - - -
+
+###Now the view
+1. The Google API needs to be loaded into the header first and foremost. Put this
+```
+<?php echo Gcharts::$googleAPI; ?>
+```
+into the head of the view, The script tags are included.
+2. Then use the output method of the chart to pick where the chart will be loaded. Pass a string with the ID of an element to load the chart into, here we are using 'chart_div'.
 
 
 ###Example view.php
