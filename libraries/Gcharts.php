@@ -5,6 +5,7 @@
  * An open source library to extend the power of google charts into CI
  * for PHP 5.3 or newer
  *
+ * 
  * NOTICE OF LICENSE
  * 
  * Licensed under the Apache License, Version 2.0

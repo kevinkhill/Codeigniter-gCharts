@@ -1,5 +1,9 @@
-<?php define('BASEPATH', __DIR__); include(BASEPATH . '/libraries/Gcharts.php');
+<?php
+    define('BASEPATH', __DIR__);
+    include(BASEPATH . '/libraries/Gcharts.php');
 
+//==============================================================================
+    
     $gcharts = new Gcharts();
     $error;
     
@@ -30,6 +34,7 @@
         $gcharts->LineChart->addData(array($a, $line1, $line2));
     }
 
+//==============================================================================
 ?>
 
 
