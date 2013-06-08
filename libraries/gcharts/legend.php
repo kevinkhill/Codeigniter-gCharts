@@ -117,7 +117,7 @@ class legend extends configOptions
     {
         if(is_a($textStyle, 'textStyle'))
         {
-            $this->textStyle = $textStyle->toArray();
+            $this->textStyle = $textStyle->values();
         } else {
             throw new Exception('Invalid textStyle, must be (object) type textStyle');
         }

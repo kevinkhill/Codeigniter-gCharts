@@ -18,11 +18,19 @@
         $chartArea = new chartArea();
         $chartArea->left(25)->top(25)->width('80%');
 
-        $textStyle = new textStyle();
-        $textStyle->color('#FF0A04')->fontName('Lucida')->fontSize(18);
+        $titleStyle = new textStyle();
+        $titleStyle->color('#FF0A04')->fontName('Lucida')->fontSize(18);
 
-        $gcharts->LineChart->chartArea($chartArea)->titleTextStyle($textStyle);
-        $gcharts->LineChart->colors(array('green', 'orange'));
+        $gcharts->LineChart->chartArea($chartArea)->titleTextStyle($titleStyle);
+        $gcharts->LineChart->colors(array('green', 'navy'));
+
+        $legendStyle = new textStyle();
+        $legendStyle->color('#F3BB00')->fontName('Arial Bold')->fontSize(20);
+
+        $legend = new legend();
+        $legend->position('bottom')->alignment('center')->textStyle($legendStyle);
+
+        $gcharts->LineChart->legend($legend);
     } catch(Exception $e) {
         $error = $e->getMessage();
     }

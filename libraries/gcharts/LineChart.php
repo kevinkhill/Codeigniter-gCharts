@@ -235,11 +235,17 @@ class LineChart extends Gcharts
 
     }
 
-    public function legend($param)
+    public function legend(legend $legendObj)
     {
-
+        if(is_a($legendObj, 'legend'))
+        {
+            $this->addOption($legendObj->toArray());
+            return $this;
+        } else {
+            throw new Exception('Invalid legend, must be (object) type legend');
+        }
     }
-    
+
     public function title($title = '')
     {
         $this->addOption(array('title' => (string) $title));
