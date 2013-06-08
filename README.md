@@ -14,12 +14,12 @@ Here is an example of how to create a line chart with two lines of data
 ###First the controller
 1. Copy the "libraries" folder into your Codeigniter application folder.
 2. Load the library in your controller you will use to define the chart.  
-```php
+```
 $this->load->library('gcharts');
 ```
 3. Use the now defined gcharts library to pick which chart you are going to build, we will be creating a LineChart.
 4. Pass an array defining what you will be plotting in your graph. The first item will be the horizontal axis, the second item => the first line, the third item => second line, etc...  
-```php
+```
 $this->gcharts->LineChart(
     array('Amount', 'Current', 'Projected')
 );
@@ -32,12 +32,13 @@ $this->gcharts->LineChart(
 ```
 <?php echo Gcharts::$googleAPI; ?>
 ```
-into the head of the view. The script tags are included.
+into the head of the view, The script tags are included.
+2. Then use the output method of the chart to pick where the chart will be loaded. Pass a string with the ID of an element to load the chart into, here we are using 'chart_div'.
 
  - - -
 
 ###Example Controller, welcome.php with LineChart  
-```php
+```
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
