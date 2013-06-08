@@ -123,27 +123,6 @@ class LineChart extends Gcharts
             throw new Exception('Invalid pointSize, must be (int)');
         }
     }
-
-//    public function output($elementID = '')
-//    {
-//        $this->elementID = $elementID;
-//        $this->jsonData = json_encode($this->data);
-//        $this->jsonOptions = json_encode($this->options);
-//
-//        $this->output = '<script type="text/javascript">'.PHP_EOL;
-//        $this->output .= "google.load('visualization', '1', {'packages':['corechart']});".PHP_EOL;
-//        $this->output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
-//        $this->output .= "function drawChart() {".PHP_EOL;
-//        $this->output .= "var data = new google.visualization.arrayToDataTable(";
-//        $this->output .= $this->jsonData;
-//        $this->output .= ");".PHP_EOL;
-//        $this->output .= "var options = ".$this->jsonOptions.";".PHP_EOL;
-//        $this->output .= "var chart = new google.visualization.LineChart(document.getElementById('".$this->elementID."'));".PHP_EOL;
-//        $this->output .= "chart.draw(data,options);".PHP_EOL."}".PHP_EOL;
-//        $this->output .= '</script>'.PHP_EOL;
-//
-//        return $this->output;
-//    }    
     
     public function output($elementID = '')
     {

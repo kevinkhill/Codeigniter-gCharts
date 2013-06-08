@@ -2,72 +2,138 @@
 
 class AreaChart extends Gcharts
 {
-    var $data;
-    var $jsonData;
-    var $options;
-    var $jsonOptions;
-    var $chartType;
-    var $javascript;
-    var $html;
+    var $width;
+    var $height;
+    var $curveType;
+    var $title;
+    var $titlePosition;
+    var $titleTextStyle;
+    var $lineWidth;
+    var $pointSize;
     
-    public function __construct($data, $options) {
-        parent::__construct('AreaChart');
-        parent::setData($data);
-        parent::setOptions($options);
+    var $elementID;
+
+    public function __construct($labels) {
+        parent::__construct();
+
+        $this->setOptions(array());
+
+        if(is_array($labels) && count($labels) > 1)
+        {
+            $tmp = array();
+            foreach($labels as $label)
+            {
+                array_push($tmp, (string) $label);
+            }
+
+            $this->data[] = $tmp;
+        } else {
+            throw new Exception('Invalid labels, must have count > 1 and type (string) array("horizontal axis label", "first line label", "etc...")');
+            //$this->data[] = array();
+        }
 
         return $this;
     }
 
-    public function addOption($option)
+
+    public function width($width)
     {
-        parent::addOption($option);
+        if(is_int($width))
+        {
+            $this->addOption(array('width' => $width));
+            return $this;
+        } else {
+            throw new Exception('Invalid width, must be (int)');
+        }
     }
 
-    public function addData($data)
+    public function height($height)
     {
-        parent::addData($data);
+        if(is_int($height))
+        {
+            $this->addOption(array('height' => $height));
+            return $this;
+        } else {
+            throw new Exception('Invalid height, must be (int)');
+        }
     }
 
-    public function chartTitle($title = '')
+    public function curveType($curveType = 'none')
     {
-        parent::addOption(array('title' => $title));
+        $values = array('none', 'function');
+
+        if(in_array($curveType, $values))
+        {
+            $this->addOption(array('curveType' => (string) $curveType));
+            return $this;
+        } else {
+            throw new Exception('Invalid curveType, must be (string) '.$this->_array_string($values));
+        }
     }
 
-    public function hAxisTitle($title = '')
+    public function title($title = '')
     {
-        parent::addOption(array('hAxisTitle' => $title));
+        $this->addOption(array('title' => (string) $title));
+
+        return $this;
     }
 
-    public function axisTitlesPosition($position)
+    public function titlePosition($position)
     {
         $values = array('in', 'out', 'none');
 
         if(in_array($position, $values))
         {
-            parent::addOption(array('axisTitlesPosition' => $position));
+            $this->addOption(array('axisTitlesPosition' => $position));
             return $this;
         } else {
-            throw new Exception('Invalid axisTitlesPosition '.$this->_array_string($values));
+            throw new Exception('Invalid axisTitlesPosition, must be (string) '.$this->_array_string($values));
         }
     }
 
-
-//////////////////////////////////////////////
-// PRIVATE METHODS
-//////////////////////////////////////////////
-
-    private function _array_string($array)
+    public function titleTextStyle($textStyleObj)
     {
-        $tmp = '[';
-
-        foreach($array as $k => $v)
+        if(is_a($textStyleObj, 'textStyle'))
         {
-            $tmp .= $v . '|';
+            $this->addOption(array('titleTextStyle' => $textStyleObj->values()));
+            return $this;
+        } else {
+            throw new Exception('Invalid titleTextStyle, must be (object) type textStyle');
         }
-
-        return substr_replace($tmp, "", -1) . ']';
     }
+
+    public function lineWidth($width = 2)
+    {
+        if(is_int($width))
+        {
+            $this->addOption(array('lineWidth' => $width));
+            return $this;
+        } else {
+            throw new Exception('Invalid lineWidth, must be (int)');
+        }
+    }
+
+    public function pointSize($size = 0)
+    {
+        if(is_int($size))
+        {
+            $this->addOption(array('pointSize' => $size));
+            return $this;
+        } else {
+            throw new Exception('Invalid pointSize, must be (int)');
+        }
+    }
+    
+    public function output($elementID = '')
+    {
+        $this->elementID = $elementID;
+        $this->jsonData = json_encode($this->data);
+        $this->jsonOptions = json_encode($this->options);
+        
+        return parent::_build_script_block(get_class($this));
+    }
+
 }
 
-/* End of file LineChart.php */
-/* Location: ./application/libraries/gcharts/LineChart.php */
+/* End of file AreaChart.php */
+/* Location: ./application/libraries/gcharts/AreaChart.php */

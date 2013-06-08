@@ -32,9 +32,7 @@ class Gcharts
     /**
     * Loads the required classes from the gcharts folder for the library to 
     * work.
-    *
-    * @param none
-    * @return none
+    * 
     */
     public function __construct()
     {
@@ -46,13 +44,25 @@ class Gcharts
     /**
     * Creates a new LineChart object within the gcharts library.
     *
-    * @param array
-    * @return gchart object
+    * @param array horizontal and line titles
+    * @return object gchart
     */
     public function LineChart($options = array())
     {
         $this->LineChart = new LineChart($options);
-        return $this;
+        return $this->LineChart;
+    }
+    
+    /**
+    * Creates a new AreaChart object within the gcharts library.
+    *
+    * @param array horizontal and line titles
+    * @return object gchart
+    */    
+    public function AreaChart($options = array())
+    {
+        $this->AreaChart = new AreaChart($options);
+        return $this->AreaChart;
     }
 
     public function setOptions($options)
@@ -84,11 +94,7 @@ class Gcharts
         return $this;
     }
 
-//    public function AreaChart($options = array())
-//    {
-//        return new AreaChart($options);
-//    }
-//
+
 //    public function PieChart($options = array())
 //    {
 //        return new PieChart($options);
@@ -98,8 +104,8 @@ class Gcharts
     * Builds the javascript block for the actual chart and passes it back to 
     * output function of the calling chart object.
     *
-    * @param string
-    * @return string
+    * @param string type of chart to display
+    * @return string javascript code block
     */
     public function _build_script_block($className)
     {
@@ -120,8 +126,8 @@ class Gcharts
      * Takes an array of values and ouputs them as a string between
      * brackets and separated by a pipe.
      * 
-     * @param array
-     * @return string
+     * @param array default values
+     * @return string contains array values
      */
     public function _array_string($array)
     {

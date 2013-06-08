@@ -120,7 +120,7 @@ LICENSE file</p>
 href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<br />
 				<b>Link:</b>
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">Github Page</a><br />
-		<b>Located at</b> <a href="source-class-Gcharts.html#3-138" title="Go to source code">libraries/Gcharts.php</a><br />
+		<b>Located at</b> <a href="source-class-Gcharts.html#3-144" title="Go to source code">libraries/Gcharts.php</a><br />
 	</div>
 
 
@@ -131,14 +131,14 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			none
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Gcharts.html#32-44" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-Gcharts.html#32-42" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -155,10 +155,6 @@ work.</p>
 
 
 
-				<h4>Returns</h4>
-				<div class="list">
-					<code>none</code><br />
-				</div>
 
 
 
@@ -170,14 +166,14 @@ work.</p>
 
 		<td class="attributes"><code>
 			 public 
-			gchart
+			object
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_LineChart">#</a>
-		<code><a href="source-class-Gcharts.html#46-56" title="Go to source code">LineChart</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Gcharts.html#44-54" title="Go to source code">LineChart</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -194,12 +190,54 @@ work.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code></dd>
+					<dd><code>array</code><br>horizontal and line titles</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>gchart</code><br>object<br />
+					<code>object</code><br>gchart<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="AreaChart" id="_AreaChart">
+
+		<td class="attributes"><code>
+			 public 
+			object
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_AreaChart">#</a>
+		<code><a href="source-class-Gcharts.html#56-66" title="Go to source code">AreaChart</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Creates a new AreaChart object within the gcharts library.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Creates a new AreaChart object within the gcharts library.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>horizontal and line titles</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>object</code><br>gchart<br />
 				</div>
 
 
@@ -219,7 +257,7 @@ work.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOptions">#</a>
-		<code><a href="source-class-Gcharts.html#58-63" title="Go to source code">setOptions</a>( <span>mixed <var>$options</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#68-73" title="Go to source code">setOptions</a>( <span>mixed <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -248,7 +286,7 @@ work.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addOption">#</a>
-		<code><a href="source-class-Gcharts.html#65-78" title="Go to source code">addOption</a>( <span>mixed <var>$option</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#75-88" title="Go to source code">addOption</a>( <span>mixed <var>$option</var></span> )</code>
 
 		<div class="description short">
 			
@@ -277,7 +315,7 @@ work.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addData">#</a>
-		<code><a href="source-class-Gcharts.html#80-85" title="Go to source code">addData</a>( <span>mixed <var>$data</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#90-95" title="Go to source code">addData</a>( <span>mixed <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -306,7 +344,7 @@ work.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__build_script_block">#</a>
-		<code><a href="source-class-Gcharts.html#97-117" title="Go to source code">_build_script_block</a>( <span>string <var>$className</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#103-123" title="Go to source code">_build_script_block</a>( <span>string <var>$className</var></span> )</code>
 
 		<div class="description short">
 			
@@ -325,12 +363,12 @@ function of the calling chart object.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$className</var></dt>
-					<dd><code>string</code></dd>
+					<dd><code>string</code><br>type of chart to display</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br />
+					<code>string</code><br>javascript code block<br />
 				</div>
 
 
@@ -350,7 +388,7 @@ function of the calling chart object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__array_string">#</a>
-		<code><a href="source-class-Gcharts.html#119-136" title="Go to source code">_array_string</a>( <span>array <var>$array</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#125-142" title="Go to source code">_array_string</a>( <span>array <var>$array</var></span> )</code>
 
 		<div class="description short">
 			
@@ -369,12 +407,12 @@ separated by a pipe.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$array</var></dt>
-					<dd><code>array</code></dd>
+					<dd><code>array</code><br>default values</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br />
+					<code>string</code><br>contains array values<br />
 				</div>
 
 
