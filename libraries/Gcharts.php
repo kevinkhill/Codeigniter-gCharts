@@ -30,10 +30,9 @@ class Gcharts
     public static $googleAPI = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>';
 
     /**
-    * Loads the required classes from the gcharts folder for the library to 
-    * work.
-    * 
-    */
+     * Loads the required classes from the gcharts folder for the library to 
+     * work.
+     */
     public function __construct()
     {
         spl_autoload_register(function($class) {
@@ -42,11 +41,11 @@ class Gcharts
     }
 
     /**
-    * Creates a new LineChart object within the gcharts library.
-    *
-    * @param array horizontal and line titles
-    * @return object gchart
-    */
+     * Creates a new LineChart object within the gcharts library.
+     *
+     * @param array horizontal and line titles
+     * @return object gchart
+     */
     public function LineChart($options = array())
     {
         $this->LineChart = new LineChart($options);
@@ -54,11 +53,11 @@ class Gcharts
     }
     
     /**
-    * Creates a new AreaChart object within the gcharts library.
-    *
-    * @param array horizontal and line titles
-    * @return object gchart
-    */    
+     * Creates a new AreaChart object within the gcharts library.
+     *
+     * @param array horizontal and line titles
+     * @return object gchart
+     */    
     public function AreaChart($options = array())
     {
         $this->AreaChart = new AreaChart($options);
@@ -101,12 +100,12 @@ class Gcharts
 //    }
 
     /**
-    * Builds the javascript block for the actual chart and passes it back to 
-    * output function of the calling chart object.
-    *
-    * @param string type of chart to display
-    * @return string javascript code block
-    */
+     * Builds the javascript block for the actual chart and passes it back to 
+     * output function of the calling chart object.
+     *
+     * @param string type of chart to display
+     * @return string javascript code block
+     */
     public function _build_script_block($className)
     {
         $this->output = '<script type="text/javascript">'.PHP_EOL;

@@ -6,9 +6,18 @@ class backgroundColor extends configOptions
     var $strokeWidth;
     var $fill;
 
+    /**
+     * Builds the options for the backgrounColor object
+     * 
+     * Pass an associative array with values for the keys
+     * [ stroke | strokeWidth | fill ]
+     * 
+     * @param array $options
+     * @return \backgroundColor
+     */
     public function __construct($options = array()) {
 
-        $this->options = array('stroke', 'fill', 'strokeWidth');
+        $this->options = array('stroke', 'strokeWidth', 'fill');
 
         if(is_array($options) && count($options) > 1)
         {
@@ -32,7 +41,9 @@ class backgroundColor extends configOptions
     /**
      * The color of the chart border, as an HTML color string.
      * 
-     * @param string HTML color string
+     * Acceptable values [ 'red' | '#A2A2A2' ]
+     * 
+     * @param string $stroke
      * @return \backgroundColor
      */
     public function stroke($stroke)
@@ -49,6 +60,8 @@ class backgroundColor extends configOptions
 
     /**
      * The border width, in pixels.
+     * 
+     * Accepts any integer or integer as a string
      * 
      * @param int,string width
      * @return \backgroundColor
@@ -67,6 +80,8 @@ class backgroundColor extends configOptions
 
     /**
      * The chart fill color, as an HTML color string.
+     * 
+     * Acceptable values [ 'blue' | '#C5C5C5' ]
      * 
      * @param string HTML color string
      * @return \backgroundColor
