@@ -83,19 +83,15 @@ class Welcome extends CI_Controller {
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Content-Language" content="en" />
         <title>Codeigniter-gCharts</title>
-        ```php
         <?php echo Gcharts::$googleAPI; ?>
         <?php echo $gcharts->LineChart->output('chart_div'); ?>
-        ```
     </head>
 
     <body>
         <div id="chart_div">
         </div>
         <div>
-            ```php
             <?php echo $error; ?>
-            ```
         </div>
     </body>
 </html>
