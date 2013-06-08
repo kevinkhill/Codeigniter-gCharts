@@ -49,7 +49,7 @@ class Gcharts
      * second set of data, etc...
      *
      * @param array $options
-     * @return \gchart
+     * @return \Gcharts
      */
     public function LineChart($options = array())
     {
@@ -65,7 +65,7 @@ class Gcharts
      * second set of data, etc...
      *
      * @param array $options
-     * @return \gchart
+     * @return \Gcharts
      */
     public function AreaChart($options = array())
     {
@@ -73,6 +73,15 @@ class Gcharts
         return $this->AreaChart;
     }
 
+    /**
+     * Sets the options from an array
+     *
+     * You can set the options all at once instead of passing them individually
+     * or chaining the functions from the chart objects.
+     *
+     * @param type $options
+     * @return \Gcharts
+     */
     public function setOptions($options)
     {
         $this->options = $options;
@@ -80,6 +89,15 @@ class Gcharts
         return $this;
     }
 
+    /**
+     * Adds configuration option
+     *
+     * Takes either an array with option => value, or an object created by
+     * one of the configOptions child objects.
+     *
+     * @param mixed $option
+     * @return \Gcharts
+     */
     public function addOption($option)
     {
         if(is_object($option))
@@ -95,18 +113,21 @@ class Gcharts
         return $this;
     }
 
+    /**
+     * Add data to the charts
+     *
+     * Takes an array of values and adds them to the charts as data points to
+     * plot once the chart is rendered.
+     *
+     * @param array $data
+     * @return \Gcharts
+     */
     public function addData($data)
     {
         array_push($this->data, $data);
 
         return $this;
     }
-
-
-//    public function PieChart($options = array())
-//    {
-//        return new PieChart($options);
-//    }
 
     /**
      * Builds the javascript block

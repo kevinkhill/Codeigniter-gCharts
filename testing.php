@@ -3,10 +3,10 @@
     include(BASEPATH . '/libraries/Gcharts.php');
 
 //==============================================================================
-    
+
     $gcharts = new Gcharts();
     $error;
-    
+
     try {
         $gcharts->LineChart(array('Count', 'Actual', 'Projected'));
 
@@ -21,7 +21,7 @@
         $textStyle = new textStyle();
         $textStyle->color('#FF0A04')->fontName('Lucida')->fontSize(18);
 
-        $gcharts->LineChart->addOption($chartArea)->titleTextStyle($textStyle);
+        $gcharts->LineChart->chartArea($chartArea)->titleTextStyle($textStyle);
     } catch(Exception $e) {
         $error = $e->getMessage();
     }
@@ -55,7 +55,7 @@
         <div>
             <?php echo (isset($error) ? $error : ''); ?>
         </div>
-        <hr />        
+        <hr />
         <?php var_dump($gcharts); ?>
     </body>
 </html>

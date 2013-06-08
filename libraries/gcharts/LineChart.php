@@ -4,18 +4,18 @@
  *
  * Holds all the configuration for the LineChart
  *
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * Licensed under the Apache License, Version 2.0
  * which is included in the LICENSE file
  *
- * 
+ *
  * @author Kevin Hill <kevinkhill@gmail.com>
  * @copyright (c) 2013, Kevin Hill
  * @link https://github.com/kevinkhill/Codeigniter-gCharts Github Page
  * @license http://http://www.apache.org/licenses/LICENSE-2.0.html Apache-V2
- * 
+ *
  */
 
 class LineChart extends Gcharts
@@ -28,7 +28,7 @@ class LineChart extends Gcharts
     var $titleTextStyle;
     var $lineWidth;
     var $pointSize;
-    
+
     var $elementID;
 
     public function __construct($labels) {
@@ -47,7 +47,54 @@ class LineChart extends Gcharts
             $this->data[] = $tmp;
         } else {
             throw new Exception('Invalid labels, must have count > 1 and type (string) array("horizontal axis label", "first line label", "etc...")');
-            //$this->data[] = array();
+        }
+
+        return $this;
+    }
+
+    /**
+     * Animation Easing
+     *
+     * The easing function applied to the animation. The following options are available:
+     * 'linear' - Constant speed.
+     * 'in' - Ease in - Start slow and speed up.
+     * 'out' - Ease out - Start fast and slow down.
+     * 'inAndOut' - Ease in and out - Start slow, speed up, then slow down.
+     *
+     * @param string $easing
+     * @return \LineChart
+     * @throws Exception Invalid animationEasing
+     */
+    public function animationEasing($easing = 'linear')
+    {
+        $values = array('linear', 'in', 'out', 'inAndOut');
+
+        if(in_array($easing, $values))
+        {
+            $this->easing = $easing;
+            return $this;
+        } else {
+            throw new Exception('Invalid animationEasing value, must be (string) '.$this->_array_string($values));
+        }
+
+        return $this;
+    }
+
+    /**
+     * Animation Duration
+     *
+     * The duration of the animation, in milliseconds.
+     *
+     * @param mixed $duration
+     * @return \LineChart
+     */
+    public function animationDuration($duration)
+    {
+        if(is_int($duration) || is_string($duration))
+        {
+            $this->duration = $this->_valid_int($duration);
+        } else {
+            $this->duration = 0;
         }
 
         return $this;
@@ -58,8 +105,8 @@ class LineChart extends Gcharts
      * in - Draw the axis titles inside the the chart area.
      * out - Draw the axis titles outside the chart area.
      * none - Omit the axis titles.
-     * 
-     * @param string [ in | out | none ]
+     *
+     * @param string $position
      * @return \LineChart
      * @throws Exception Invalid axisTitlesPosition
      */
@@ -75,13 +122,36 @@ class LineChart extends Gcharts
             throw new Exception('Invalid axisTitlesPosition, must be (string) '.$this->_array_string($values));
         }
     }
-    
+
+    /**
+     * Chart Area
+     *
+     * An object with members to configure the placement and size of the chart area
+     * (where the chart itself is drawn, excluding axis and legends).
+     * Two formats are supported: a number, or a number followed by %.
+     * A simple number is a value in pixels; a number followed by % is a percentage.
+     *
+     * @param \chartArea $chartArea
+     * @return \LineChart
+     * @throws Exception Invalid chartArea
+     */
+    public function chartArea(chartArea $chartArea)
+    {
+        if(is_a($chartArea, 'chartArea'))
+        {
+            $this->addOption($chartArea->toArray());
+            return $this;
+        } else {
+            throw new Exception('Invalid chartArea, must be (object) type chartArea');
+        }
+    }
+
     /**
      * Controls the curve of the lines when the line width is not zero. Can be one of the following:
      * 'none' - Straight lines without curve.
      * 'function' - The angles of the line will be smoothed.
-     * 
-     * @param string [ none | function ]
+     *
+     * @param string $curveType
      * @return \LineChart
      * @throws Exception Invalid curveType
      */
@@ -108,7 +178,7 @@ class LineChart extends Gcharts
             throw new Exception('Invalid height, must be (int)');
         }
     }
-    
+
     public function title($title = '')
     {
         $this->addOption(array('title' => (string) $title));
@@ -161,7 +231,7 @@ class LineChart extends Gcharts
             throw new Exception('Invalid pointSize, must be (int)');
         }
     }
-    
+
     public function width($width)
     {
         if(is_int($width))
@@ -172,13 +242,13 @@ class LineChart extends Gcharts
             throw new Exception('Invalid width, must be (int)');
         }
     }
-    
+
     public function output($elementID = '')
     {
         $this->elementID = $elementID;
         $this->jsonData = json_encode($this->data);
         $this->jsonOptions = json_encode($this->options);
-        
+
         return parent::_build_script_block(get_class($this));
     }
 
