@@ -1,5 +1,6 @@
 #Codeigniter-gCharts
-###The power of Google Chart API with the magic of PHP5
+###Google Chart API for Codeigniter
+####The power of the Google, The simplicity of Codeigniter and the magic of PHP5
 by [Kevin Hill](http://khilldesigns.site11.com)
 
 A library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5
