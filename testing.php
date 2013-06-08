@@ -4,7 +4,7 @@
     $error;
     
     try {
-        $gcharts->LineChart(array('', 'Actual', 'Projected'));
+        $gcharts->LineChart(array('Count', 'Actual', 'Projected'));
 
         $gcharts->LineChart->title('Temperature Variance');
 //        $gcharts->LineChart->titlePosition('in');
@@ -23,9 +23,11 @@
     }
 
 
-    for($a=1; $a<10;$a++)
+    for($a = 1; $a < 10; $a++)
     {
-        $gcharts->LineChart->addData(array($a,rand(-20,20),rand(-20,20)));
+        $line1 = rand(-20,20);
+        $line2 = rand(-20,20);
+        $gcharts->LineChart->addData(array($a, $line1, $line2));
     }
 
 ?>

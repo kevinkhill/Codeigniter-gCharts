@@ -51,7 +51,7 @@ class Welcome extends CI_Controller {
     public function chart()
     {
         try {
-            $this->gcharts->LineChart(array('', 'Actual', 'Projected'));
+            $this->gcharts->LineChart(array('Count', 'Actual', 'Projected'));
 
             $this->gcharts->LineChart->title('Temperature Variance');
             $this->gcharts->LineChart->curveType('function');
@@ -66,6 +66,13 @@ class Welcome extends CI_Controller {
             $gcharts->LineChart->addOption($chartArea)->titleTextStyle($textStyle);
         } catch(Exception $e) {
             data['error'] = $e->getMessage();
+        }
+
+        for($a = 1; $a < 10; $a++)
+        {
+            $line1 = rand(-20,20);
+            $line2 = rand(-20,20);
+            $gcharts->LineChart->addData(array($a, $line1, $line2));
         }
 
         $this->load->view('example.php', $data);
