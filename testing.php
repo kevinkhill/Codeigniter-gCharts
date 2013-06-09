@@ -68,19 +68,6 @@
         <meta http-equiv="Content-Language" content="en" />
         <title>Codeigniter gCharts</title>
         <script type="text/javascript" src="json2.js"></script>
-        <script type="text/javascript">
-            if(typeof LineChart !== 'object') {
-                LineChart = {};
-            }
-
-            LineChart.select = function(event) {
-                alert(JSON.stringify(event));
-            }
-
-            LineChart.error = function(event) {
-                alert(JSON.stringify(event));
-            }
-        </script>
         <?php echo Gcharts::$googleAPI; ?>
         <?php echo $gcharts->LineChart->outputInto('chart_div'); ?>
     </head>
