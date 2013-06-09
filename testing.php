@@ -7,22 +7,13 @@
     $gcharts = new Gcharts();
     $error;
 
-    try {
-        $gcharts->LineChart(array('Count', 'Actual', 'Projected'));
-
-        $gcharts->LineChart->title('Temperature Variance');
-//        $gcharts->LineChart->titlePosition('in');
-//        $gcharts->LineChart->curveType('function');
-        $gcharts->LineChart->width(1000)->height(350)->pointSize(2)->lineWidth(2);
-
+    try
+    {
         $chartArea = new chartArea();
-        $chartArea->left(25)->top(25)->width('80%');
+        $chartArea->left(45)->top(25)->width('80%');
 
         $titleStyle = new textStyle();
         $titleStyle->color('#FF0A04')->fontName('Lucida')->fontSize(18);
-
-        $gcharts->LineChart->chartArea($chartArea)->titleTextStyle($titleStyle);
-        $gcharts->LineChart->colors(array('green', 'navy'));
 
         $legendStyle = new textStyle();
         $legendStyle->color('#F3BB00')->fontName('Arial')->fontSize(20);
@@ -30,15 +21,30 @@
         $legend = new legend();
         $legend->position('bottom')->alignment('center')->textStyle($legendStyle);
 
-        $gcharts->LineChart->legend($legend);
-
         $tooltipStyle = new textStyle();
         $tooltipStyle->color('#C42B5F')->fontName('Tahoma')->fontSize(10);
 
         $tooltip = new tooltip();
         $tooltip->textStyle($tooltipStyle);
 
-        $gcharts->LineChart->tooltip($tooltip);
+
+        $gcharts->LineChart(array('Count', 'Actual', 'Projected'));
+
+        $gcharts->LineChart->
+                title('Temperature Variance')->
+                titlePosition('out')->
+                curveType('function')->
+                width(1000)->
+                height(350)->
+                pointSize(2)->
+                lineWidth(2)->
+                chartArea($chartArea)->
+                titleTextStyle($titleStyle)->
+                colors(array('green', 'navy'))->
+                legend($legend)->
+                tooltip($tooltip)->
+                events(array('select' => 'clicked'));
+
     } catch(Exception $e) {
         $error = $e->getMessage();
     }
@@ -61,6 +67,13 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Content-Language" content="en" />
         <title>Codeigniter gCharts</title>
+        <script type="text/javascript">
+            var gchartCallbacks = {
+                clicked : function(event) {
+                    alert('clicked!');
+                }
+            };
+        </script>
         <?php echo Gcharts::$googleAPI; ?>
         <?php echo $gcharts->LineChart->output('chart_div'); ?>
     </head>

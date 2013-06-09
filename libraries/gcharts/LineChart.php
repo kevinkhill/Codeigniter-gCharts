@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * LineChart Object
+ * Line Chart Object
  *
  * Holds all the configuration for the LineChart
  *
@@ -29,6 +29,7 @@ class LineChart extends Gcharts
     var $lineWidth;
     var $pointSize;
 
+    var $events;
     var $elementID;
 
     public function __construct($labels) {
@@ -51,6 +52,52 @@ class LineChart extends Gcharts
 
         return $this;
     }
+
+    /**
+     * Register Events
+     *
+     * Register javascript callbacks for specific events. Valid values include
+     * [ animationfinish | error | onmouseover | onmouseout | ready | select ]
+     * associated to a respective pre-defined javascript function as the callback.
+     *
+     * @param array $events Array of events associated to a callback
+     * @return \LineChart
+     * @throws Exception Invalid event
+     */
+    public function events($events)
+    {
+        $values = array(
+            'animationfinish',
+            'error',
+            'onmouseover',
+            'onmouseout',
+            'ready',
+            'select'
+        );
+
+        if(is_array($events))
+        {
+            foreach($events as $event => $callback)
+            {
+                if(is_int($event) === FALSE)
+                {
+                    if(in_array($event, $values))
+                    {
+                        $this->events[$event] = $callback;
+                    } else {
+                        throw new Exception('Invalid events array key value, must be (string) with any key '.$this->_array_string($values));
+                    }
+                } else {
+                    throw new Exception('Invalid events array key value, must be (string) with any key '.$this->_array_string($values));
+                }
+            }
+        } else {
+            throw new Exception('Invalid events type, must be (array) containing any key '.$this->_array_string($values));
+        }
+
+        return $this;
+    }
+
 
     /**
      * Animation Easing

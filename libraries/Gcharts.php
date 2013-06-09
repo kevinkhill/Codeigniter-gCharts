@@ -141,16 +141,41 @@ class Gcharts
     public function _build_script_block($className)
     {
         $this->output = '<script type="text/javascript">'.PHP_EOL;
-        $this->output .= "google.load('visualization', '1', {'packages':['corechart']});".PHP_EOL;
-        $this->output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
-        $this->output .= "function drawChart() {".PHP_EOL;
-        $this->output .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
-        $this->output .= "var options = ".$this->jsonOptions.";".PHP_EOL;
-        $this->output .= "var chart = new google.visualization.".$className."(document.getElementById('".$this->elementID."'));".PHP_EOL;
-        $this->output .= "chart.draw(data,options);".PHP_EOL."}".PHP_EOL;
+
+            $this->output .= "google.load('visualization', '1', {'packages':['corechart']});".PHP_EOL;
+
+            $this->output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
+            $this->output .= "function drawChart() {".PHP_EOL;
+            $this->output .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
+            $this->output .= "var options = ".$this->jsonOptions.";".PHP_EOL;
+            $this->output .= "var chart = new google.visualization.".$className."(document.getElementById('".$this->elementID."'));".PHP_EOL;
+            $this->output .= "chart.draw(data,options);".PHP_EOL;
+
+                $this->_add_event_listeners($className);
+
+            $this->output .= "}".PHP_EOL;
+
         $this->output .= '</script>'.PHP_EOL;
 
         return $this->output;
+    }
+
+    /**
+     * Addes javascript event listeners
+     *
+     * This will build the event listeners if defined, adding them to the script
+     * block for the chart.
+     *
+     * @param string $className
+     * @return string javascript code block
+     */
+    public function _add_event_listeners($className)
+    {
+        foreach($this->events as $event => $callback)
+        {
+            $this->output .= "google.visualization.events.addListener(chart, '".$event."', ";
+            $this->output .= "gchartCallbacks.".$callback."(event));".PHP_EOL;
+        }
     }
 
     /**
@@ -171,7 +196,7 @@ class Gcharts
             $tmp .= $v . ' | ';
         }
 
-        return substr_replace($tmp, "", -1) . ' ]';
+        return substr_replace($tmp, "", -2) . ']';
     }
 
 }
