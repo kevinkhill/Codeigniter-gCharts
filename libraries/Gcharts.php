@@ -28,6 +28,8 @@ class Gcharts
     var $jsonData;
     var $jsonOptions;
 
+    var $workingDir;
+
     public static $googleAPI = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>';
 
     /**
@@ -36,6 +38,8 @@ class Gcharts
      */
     public function __construct()
     {
+        $this->workingDir = realpath(dirname(__FILE__)) . '/';
+
         spl_autoload_register(function($class) {
             include 'gcharts/' . $class . '.php';
         });
@@ -140,18 +144,33 @@ class Gcharts
      */
     public function _build_script_block($className)
     {
-        $this->output = '<script type="text/javascript">'.PHP_EOL;
+        $this->output = '';
+
+        if(isset($this->events) && count($this->events) > 0)
+        {
+            $this->output .= '<script type="text/javascript">'.PHP_EOL;
+            $this->output .= $this->_load_event_callbacks();
+            $this->output .= '</script>'.PHP_EOL;
+
+        }
+        $this->output .= '<script type="text/javascript">'.PHP_EOL;
 
             $this->output .= "google.load('visualization', '1', {'packages':['corechart']});".PHP_EOL;
-
             $this->output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
             $this->output .= "function drawChart() {".PHP_EOL;
             $this->output .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
             $this->output .= "var options = ".$this->jsonOptions.";".PHP_EOL;
             $this->output .= "var chart = new google.visualization.".$className."(document.getElementById('".$this->elementID."'));".PHP_EOL;
-            $this->output .= "chart.draw(data,options);".PHP_EOL;
+            $this->output .= "chart.draw(data, options);".PHP_EOL;
 
-                $this->_add_event_listeners($className);
+            if(isset($this->events) && count($this->events) > 0)
+            {
+                foreach($this->events as $event)
+                {
+                    $this->output .= "google.visualization.events.addListener(chart, '".$event."', ";
+                    $this->output .= "function(event){".$className.".".$event."(event);});".PHP_EOL;
+                }
+            }
 
             $this->output .= "}".PHP_EOL;
 
@@ -161,21 +180,32 @@ class Gcharts
     }
 
     /**
-     * Addes javascript event listeners
+     * Builds the javascript object for the event callbacks
      *
-     * This will build the event listeners if defined, adding them to the script
-     * block for the chart.
-     *
-     * @param string $className
-     * @return string javascript code block
+     * @return string Javascript code block
+     * @throws Exception file not found
      */
-    public function _add_event_listeners($className)
+    public function _load_event_callbacks()
     {
-        foreach($this->events as $event => $callback)
+        $script = "if(typeof LineChart !== 'object') { ".get_class($this)." = {}; }".PHP_EOL;
+
+        foreach($this->events as $event)
         {
-            $this->output .= "google.visualization.events.addListener(chart, '".$event."', ";
-            $this->output .= "gchartCallbacks.".$callback."(event));".PHP_EOL;
+             $script .= get_class($this).".".$event." = function(event) {";
+
+             $callbackScript = file_get_contents($this->workingDir.'gcharts/callbacks/'.get_class($this).'.'.$event.'.js');
+
+             if($callbackScript !== FALSE)
+             {
+                $script .= $callbackScript;
+             } else {
+                 throw new Exception('Error loading javascript file, in '.$this->workingDir.'gcharts/callbacks/'.get_class($this).$event.'.js');
+             }
+
+             $script .= "};";
         }
+
+        return $script;
     }
 
     /**

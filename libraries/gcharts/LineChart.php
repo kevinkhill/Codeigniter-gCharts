@@ -77,16 +77,11 @@ class LineChart extends Gcharts
 
         if(is_array($events))
         {
-            foreach($events as $event => $callback)
+            foreach($events as $event)
             {
-                if(is_int($event) === FALSE)
+                if(in_array($event, $values))
                 {
-                    if(in_array($event, $values))
-                    {
-                        $this->events[$event] = $callback;
-                    } else {
-                        throw new Exception('Invalid events array key value, must be (string) with any key '.$this->_array_string($values));
-                    }
+                    $this->events[] = $event;
                 } else {
                     throw new Exception('Invalid events array key value, must be (string) with any key '.$this->_array_string($values));
                 }
@@ -384,7 +379,7 @@ class LineChart extends Gcharts
         }
     }
 
-    public function output($elementID = '')
+    public function outputInto($elementID = '')
     {
         $this->elementID = $elementID;
         $this->jsonData = json_encode($this->data);

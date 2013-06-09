@@ -43,7 +43,7 @@
                 colors(array('green', 'navy'))->
                 legend($legend)->
                 tooltip($tooltip)->
-                events(array('select' => 'clicked'));
+                events(array('select', 'error'));
 
     } catch(Exception $e) {
         $error = $e->getMessage();
@@ -67,15 +67,22 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Content-Language" content="en" />
         <title>Codeigniter gCharts</title>
+        <script type="text/javascript" src="json2.js"></script>
         <script type="text/javascript">
-            var gchartCallbacks = {
-                clicked : function(event) {
-                    alert('clicked!');
-                }
-            };
+            if(typeof LineChart !== 'object') {
+                LineChart = {};
+            }
+
+            LineChart.select = function(event) {
+                alert(JSON.stringify(event));
+            }
+
+            LineChart.error = function(event) {
+                alert(JSON.stringify(event));
+            }
         </script>
         <?php echo Gcharts::$googleAPI; ?>
-        <?php echo $gcharts->LineChart->output('chart_div'); ?>
+        <?php echo $gcharts->LineChart->outputInto('chart_div'); ?>
     </head>
 
     <body>
