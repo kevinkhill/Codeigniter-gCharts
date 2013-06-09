@@ -134,12 +134,14 @@ class Gcharts
     }
 
     /**
-     * Builds the javascript block
+     * Builds the Javascript code block
      *
      * This will build the script block for the actual chart and passes it
-     * back to output function of the calling chart object.
+     * back to output function of the calling chart object. If there are any
+     * events defined, they will be automatically be attached to the chart and
+     * pulled from the callbacks folder.
      *
-     * @param string $className
+     * @param string $className Passed from the calling chart
      * @return string javascript code block
      */
     public function _build_script_block($className)
