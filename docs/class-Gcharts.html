@@ -7,7 +7,7 @@
 	<title>Class Gcharts | Codeigniter-gCharts</title>
 
 	<script type="text/javascript" src="resources/combined.js?2248719689"></script>
-	<script type="text/javascript" src="elementlist.js?94777904"></script>
+	<script type="text/javascript" src="elementlist.js?812775070"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -42,8 +42,10 @@
 				<li><a href="class-hAxis.html">hAxis</a></li>
 				<li><a href="class-legend.html">legend</a></li>
 				<li><a href="class-LineChart.html">LineChart</a></li>
+				<li><a href="class-LineChartEvents.html">LineChartEvents</a></li>
 				<li><a href="class-PieChart.html">PieChart</a></li>
 				<li><a href="class-textStyle.html">textStyle</a></li>
+				<li><a href="class-tooltip.html">tooltip</a></li>
 			</ul>
 
 
@@ -132,7 +134,7 @@ LICENSE file</p>
 href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<br />
 				<b>Link:</b>
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">Github Page</a><br />
-		<b>Located at</b> <a href="source-class-Gcharts.html#3-177" title="Go to source code">libraries/Gcharts.php</a><br />
+		<b>Located at</b> <a href="source-class-Gcharts.html#3-234" title="Go to source code">libraries/Gcharts.php</a><br />
 	</div>
 
 
@@ -150,7 +152,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Gcharts.html#33-42" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-Gcharts.html#35-46" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -185,7 +187,7 @@ work.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_LineChart">#</a>
-		<code><a href="source-class-Gcharts.html#44-58" title="Go to source code">LineChart</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Gcharts.html#48-62" title="Go to source code">LineChart</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -231,7 +233,7 @@ data, etc...</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_AreaChart">#</a>
-		<code><a href="source-class-Gcharts.html#60-74" title="Go to source code">AreaChart</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Gcharts.html#64-78" title="Go to source code">AreaChart</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -277,7 +279,7 @@ data, etc...</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOptions">#</a>
-		<code><a href="source-class-Gcharts.html#76-90" title="Go to source code">setOptions</a>( <span>type <var>$options</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#80-94" title="Go to source code">setOptions</a>( <span>type <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -322,7 +324,7 @@ chaining the functions from the chart objects.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addOption">#</a>
-		<code><a href="source-class-Gcharts.html#92-114" title="Go to source code">addOption</a>( <span>mixed <var>$option</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#96-118" title="Go to source code">addOption</a>( <span>mixed <var>$option</var></span> )</code>
 
 		<div class="description short">
 			
@@ -367,7 +369,7 @@ the configOptions child objects.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addData">#</a>
-		<code><a href="source-class-Gcharts.html#116-130" title="Go to source code">addData</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#120-134" title="Go to source code">addData</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -412,27 +414,29 @@ once the chart is rendered.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__build_script_block">#</a>
-		<code><a href="source-class-Gcharts.html#132-154" title="Go to source code">_build_script_block</a>( <span>string <var>$className</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#136-182" title="Go to source code">_build_script_block</a>( <span>string <var>$className</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Builds the javascript block</p>
+<p>Builds the Javascript code block</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Builds the javascript block</p>
+<p>Builds the Javascript code block</p>
 
 <p>This will build the script block for the actual chart and passes it back to
-output function of the calling chart object.</p>
+output function of the calling chart object. If there are any events defined,
+they will be automatically be attached to the chart and pulled from the
+callbacks folder.</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$className</var></dt>
-					<dd><code>string</code><br>$className</dd>
+					<dd><code>string</code><br>$className Passed from the calling chart</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -440,6 +444,47 @@ output function of the calling chart object.</p>
 					<code>string</code><br>javascript code block<br />
 				</div>
 
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="_load_event_callbacks" id="__load_event_callbacks">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#__load_event_callbacks">#</a>
+		<code><a href="source-class-Gcharts.html#184-211" title="Go to source code">_load_event_callbacks</a>( )</code>
+
+		<div class="description short">
+			
+<p>Builds the javascript object for the event callbacks</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Builds the javascript object for the event callbacks</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Javascript code block<br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br>file not found<br />
+				</div>
 
 
 
@@ -457,7 +502,7 @@ output function of the calling chart object.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#__array_string">#</a>
-		<code><a href="source-class-Gcharts.html#156-175" title="Go to source code">_array_string</a>( <span>array <var>$defaultValues</var></span> )</code>
+		<code><a href="source-class-Gcharts.html#213-232" title="Go to source code">_array_string</a>( <span>array <var>$defaultValues</var></span> )</code>
 
 		<div class="description short">
 			
@@ -621,6 +666,29 @@ separated by a pipe.</p>
 			</div>
 		</div></td>
 	</tr>
+	<tr data-order="workingDir" id="$workingDir">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Gcharts.html#31" title="Go to source code"><var>$workingDir</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$workingDir" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
 	<tr data-order="googleAPI" id="$googleAPI">
 		<td class="attributes"><code>
 			public static 
@@ -628,7 +696,7 @@ separated by a pipe.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Gcharts.html#31" title="Go to source code"><var>$googleAPI</var></a>
+				<a href="source-class-Gcharts.html#33" title="Go to source code"><var>$googleAPI</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'&lt;script type=&quot;text/javascript&quot; src=&quot;https://www.google.com/jsapi&quot;&gt;&lt;/script&gt;'</span></code></td>
 		<td class="description"><div>

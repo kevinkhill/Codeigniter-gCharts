@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class textStyle | Codeigniter-gCharts</title>
+	<title>Class tooltip | Codeigniter-gCharts</title>
 
 	<script type="text/javascript" src="resources/combined.js?2248719689"></script>
 	<script type="text/javascript" src="elementlist.js?812775070"></script>
@@ -44,8 +44,8 @@
 				<li><a href="class-LineChart.html">LineChart</a></li>
 				<li><a href="class-LineChartEvents.html">LineChartEvents</a></li>
 				<li><a href="class-PieChart.html">PieChart</a></li>
-				<li class="active"><a href="class-textStyle.html">textStyle</a></li>
-				<li><a href="class-tooltip.html">tooltip</a></li>
+				<li><a href="class-textStyle.html">textStyle</a></li>
+				<li class="active"><a href="class-tooltip.html">tooltip</a></li>
 			</ul>
 
 
@@ -88,15 +88,15 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class textStyle</h1>
+	<h1>Class tooltip</h1>
 
 
 	<div class="description">
 	
-<p>Text Style Properties Object</p>
+<p>Tooltip Properties Object</p>
 
-<p>An object containing all the values for the textStyle which can be passed
-into the chart's options</p>
+<p>An object containing all the values for the tooltip which can be passed into
+the chart's options</p>
 
 <p>NOTICE OF LICENSE</p>
 
@@ -114,7 +114,7 @@ LICENSE file</p>
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by" />
-<b><span>textStyle</span></b>			
+<b><span>tooltip</span></b>			
 			
 			
 		</dd>
@@ -142,7 +142,7 @@ LICENSE file</p>
 href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<br />
 				<b>Link:</b>
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">Github Page</a><br />
-		<b>Located at</b> <a href="source-class-textStyle.html#3-86" title="Go to source code">libraries/gcharts/textStyle.php</a><br />
+		<b>Located at</b> <a href="source-class-tooltip.html#3-116" title="Go to source code">libraries/gcharts/tooltip.php</a><br />
 	</div>
 
 
@@ -160,7 +160,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-textStyle.html#27-48" title="Go to source code">__construct</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-tooltip.html#28-44" title="Go to source code">__construct</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -178,87 +178,148 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="color" id="_color">
+	<tr data-order="showColorCode" id="_showColorCode">
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-tooltip.html">tooltip</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_color">#</a>
-		<code><a href="source-class-textStyle.html#50-60" title="Go to source code">color</a>( <span>mixed <var>$color</var></span> )</code>
+		<a class="anchor" href="#_showColorCode">#</a>
+		<code><a href="source-class-tooltip.html#46-67" title="Go to source code">showColorCode</a>( <span>boolean <var>$showColorCode</var> = <span class="php-keyword1">FALSE</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Tooltip Show Color Code</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Tooltip Show Color Code</p>
+
+<p>If true, show colored squares next to the series information in the tooltip.
+The default is true when focusTarget is set to 'category', otherwise the default
+is false.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$showColorCode</var></dt>
+					<dd><code>boolean</code><br>$showColorCode</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-tooltip.html">tooltip</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br>Invalid showColorCode<br />
+				</div>
 
 
 
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="fontName" id="_fontName">
+	<tr data-order="textStyle" id="_textStyle">
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-tooltip.html">tooltip</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_fontName">#</a>
-		<code><a href="source-class-textStyle.html#62-72" title="Go to source code">fontName</a>( <span>mixed <var>$fontName</var></span> )</code>
+		<a class="anchor" href="#_textStyle">#</a>
+		<code><a href="source-class-tooltip.html#69-88" title="Go to source code">textStyle</a>( <span><code><a href="class-textStyle.html">textStyle</a></code> <var>$textStyle</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Tooltip Text Style</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Tooltip Text Style</p>
+
+<p>An object that specifies the tooltip text style.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$textStyle</var></dt>
+					<dd><code><code><a href="class-textStyle.html">textStyle</a></code></code><br>$textStyle</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-tooltip.html">tooltip</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br>Invalid textStyle<br />
+				</div>
 
 
 
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="fontSize" id="_fontSize">
+	<tr data-order="trigger" id="_trigger">
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-tooltip.html">tooltip</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_fontSize">#</a>
-		<code><a href="source-class-textStyle.html#74-84" title="Go to source code">fontSize</a>( <span>mixed <var>$fontSize</var></span> )</code>
+		<a class="anchor" href="#_trigger">#</a>
+		<code><a href="source-class-tooltip.html#90-114" title="Go to source code">trigger</a>( <span>type <var>$trigger</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Tooltip Trigger</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Tooltip Trigger</p>
+
+<p>The user interaction that causes the tooltip to be displayed: 'focus' - The
+tooltip will be displayed when the user hovers over an element. 'none' - The
+tooltip will not be displayed.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$trigger</var></dt>
+					<dd><code>type</code><br>$trigger</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-tooltip.html">tooltip</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br>Invalid trigger value<br />
+				</div>
 
 
 
@@ -293,18 +354,18 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="color" id="$color">
+	<tr data-order="showColorCode" id="$showColorCode">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-textStyle.html#23" title="Go to source code"><var>$color</var></a>
+				<a href="source-class-tooltip.html#24" title="Go to source code"><var>$showColorCode</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$color" class="anchor">#</a>
+			<a href="#$showColorCode" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -316,18 +377,18 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="fontName" id="$fontName">
+	<tr data-order="textStyle" id="$textStyle">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-textStyle.html#24" title="Go to source code"><var>$fontName</var></a>
+				<a href="source-class-tooltip.html#25" title="Go to source code"><var>$textStyle</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$fontName" class="anchor">#</a>
+			<a href="#$textStyle" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -339,18 +400,18 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="fontSize" id="$fontSize">
+	<tr data-order="trigger" id="$trigger">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-textStyle.html#25" title="Go to source code"><var>$fontSize</var></a>
+				<a href="source-class-tooltip.html#26" title="Go to source code"><var>$trigger</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$fontSize" class="anchor">#</a>
+			<a href="#$trigger" class="anchor">#</a>
 
 			<div class="description short">
 				
