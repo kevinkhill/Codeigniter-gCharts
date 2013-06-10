@@ -154,7 +154,7 @@ class Gcharts
      */
     public function _build_script_block($className)
     {
-        $this->output = '';
+        $this->output = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>'.PHP_EOL;
 
         if(isset($this->events) && count($this->events) > 0)
         {
