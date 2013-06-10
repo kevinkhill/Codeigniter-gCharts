@@ -1,1 +1,1 @@
-alert('external onmouseout callback');
+alert('called from callbacks/LineChart.onmouseout.js');

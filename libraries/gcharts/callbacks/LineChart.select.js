@@ -1,1 +1,1 @@
-alert('external select callback');
+alert('called from callbacks/LineChart.select.js');

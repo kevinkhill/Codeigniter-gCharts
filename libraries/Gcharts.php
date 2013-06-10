@@ -40,7 +40,7 @@ class Gcharts
 
 //Charts
         require_once('gcharts/LineChart.php');
-        //require_once('gcharts/AreaChart.php');
+        require_once('gcharts/AreaChart.php');
         //require_once('gcharts/PieChart.php');
 
 //Configs

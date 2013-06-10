@@ -1,1 +1,1 @@
-alert('external error callback');
+alert('called from callbacks/LineChart.error.js');
