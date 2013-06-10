@@ -1,3 +1,5 @@
 <?php
 
-$autoload['helper'] = array('gchart');
+$autoload['helper'] = array('gcharts');
+
+$autoload['libraries'] = array('gcharts');

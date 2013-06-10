@@ -30,8 +30,6 @@ class Gcharts
 
     var $workingDir;
 
-    public static $googleAPI = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>';
-
     /**
      * Loads the required classes from the gcharts folder for the library to
      * work.
@@ -40,9 +38,19 @@ class Gcharts
     {
         $this->workingDir = realpath(dirname(__FILE__)) . '/';
 
-        spl_autoload_register(function($class) {
-            include 'gcharts/' . $class . '.php';
-        });
+//Charts
+        require_once('gcharts/LineChart.php');
+        //require_once('gcharts/AreaChart.php');
+        //require_once('gcharts/PieChart.php');
+
+//Configs
+        require_once('gcharts/configOptions.php');
+        require_once('gcharts/backgroundColor.php');
+        require_once('gcharts/chartArea.php');
+        require_once('gcharts/hAxis.php');
+        require_once('gcharts/legend.php');
+        require_once('gcharts/textStyle.php');
+        require_once('gcharts/tooltip.php');
     }
 
     /**
