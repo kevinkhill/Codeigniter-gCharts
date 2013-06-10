@@ -56,6 +56,10 @@
         $line2 = rand(-50,50);
         $gcharts->LineChart->addData(array($a, $line1, $line2));
     }
+//    $gcharts->LineChart->addData(array(22, null, 0));
+//    $gcharts->LineChart->addData(array(23, null, 50));
+//    $gcharts->LineChart->addData(array(24, 50, null));
+//    $gcharts->LineChart->addData(array(25, 40, null));
 
 //==============================================================================
 ?>
