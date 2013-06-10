@@ -189,22 +189,22 @@ class Gcharts
      */
     public function _load_event_callbacks()
     {
-        $script = "if(typeof LineChart !== 'object') { ".get_class($this)." = {}; }".PHP_EOL;
+        $script = "if(typeof LineChart !== 'object') { ".get_class($this)." = {}; }".PHP_EOL.PHP_EOL;
 
         foreach($this->events as $event)
         {
-             $script .= get_class($this).".".$event." = function(event) {";
+             $script .= get_class($this).".".$event." = function(event) {".PHP_EOL;
 
              $callbackScript = file_get_contents($this->workingDir.'gcharts/callbacks/'.get_class($this).'.'.$event.'.js');
 
              if($callbackScript !== FALSE)
              {
-                $script .= $callbackScript;
+                $script .= $callbackScript.PHP_EOL;
              } else {
                  throw new Exception('Error loading javascript file, in '.$this->workingDir.'gcharts/callbacks/'.get_class($this).$event.'.js');
              }
 
-             $script .= "};";
+             $script .= "};".PHP_EOL;
         }
 
         return $script;
