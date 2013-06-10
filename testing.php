@@ -43,7 +43,7 @@
                 colors(array('green', 'navy'))->
                 legend($legend)->
                 tooltip($tooltip)->
-                events(array('select', 'error'));
+                events(array('select', 'error', 'onmouseout', 'onmouseover'));
 
     } catch(Exception $e) {
         $error = $e->getMessage();
