@@ -2,7 +2,7 @@
 /**
  * CodeIgniter gCharts Library
  *
- * An open source library to extend the power of google charts into CI
+ * An open source library to extend the power of google charts into CodeIgniter
  * for PHP 5.3 or newer
  *
  *
