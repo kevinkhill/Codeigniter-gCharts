@@ -156,37 +156,53 @@ class Gcharts
     {
         $this->output = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>'.PHP_EOL;
 
-        if(isset($this->events) && count($this->events) > 0)
+        if($className != 'AnnotatedTimeLine')
         {
+            if(isset($this->events) && count($this->events) > 0)
+            {
+                $this->output .= '<script type="text/javascript">'.PHP_EOL;
+                $this->output .= $this->_load_event_callbacks();
+                $this->output .= '</script>'.PHP_EOL;
+
+            }
             $this->output .= '<script type="text/javascript">'.PHP_EOL;
-            $this->output .= $this->_load_event_callbacks();
+
+                $this->output .= "google.load('visualization', '1', {'packages':['corechart']});".PHP_EOL;
+                $this->output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
+                $this->output .= "function drawChart() {".PHP_EOL;
+                $this->output .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
+                $this->output .= "var options = ".$this->jsonOptions.";".PHP_EOL;
+                $this->output .= "var chart = new google.visualization.".$className."(document.getElementById('".$this->elementID."'));".PHP_EOL;
+                $this->output .= "chart.draw(data, options);".PHP_EOL;
+
+                if(isset($this->events) && count($this->events) > 0)
+                {
+                    foreach($this->events as $event)
+                    {
+                        $this->output .= "google.visualization.events.addListener(chart, '".$event."', ";
+                        $this->output .= "function(event){".$className.".".$event."(event);});".PHP_EOL;
+                    }
+                }
+
+                $this->output .= "}".PHP_EOL;
+
             $this->output .= '</script>'.PHP_EOL;
 
-        }
-        $this->output .= '<script type="text/javascript">'.PHP_EOL;
-
-            $this->output .= "google.load('visualization', '1', {'packages':['corechart']});".PHP_EOL;
+            return $this->output;
+        } else { //AnnotatedTimeLine https://developers.google.com/chart/interactive/docs/gallery/annotatedtimeline
+            $this->output .= '<script type="text/javascript">'.PHP_EOL;
+            $this->output .= "google.load('visualization', '1', {'packages':['annotatedtimeline']});".PHP_EOL;
             $this->output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
             $this->output .= "function drawChart() {".PHP_EOL;
-            $this->output .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
+            $this->output .= "var data = new google.visualization.DataTable();".PHP_EOL;
+//            $this->output .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
             $this->output .= "var options = ".$this->jsonOptions.";".PHP_EOL;
             $this->output .= "var chart = new google.visualization.".$className."(document.getElementById('".$this->elementID."'));".PHP_EOL;
             $this->output .= "chart.draw(data, options);".PHP_EOL;
-
-            if(isset($this->events) && count($this->events) > 0)
-            {
-                foreach($this->events as $event)
-                {
-                    $this->output .= "google.visualization.events.addListener(chart, '".$event."', ";
-                    $this->output .= "function(event){".$className.".".$event."(event);});".PHP_EOL;
-                }
-            }
-
             $this->output .= "}".PHP_EOL;
 
-        $this->output .= '</script>'.PHP_EOL;
-
-        return $this->output;
+            $this->output .= '</script>'.PHP_EOL;
+        }
     }
 
     /**
