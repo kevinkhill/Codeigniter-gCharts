@@ -32,7 +32,8 @@ class LineChart extends Gcharts
     var $events;
     var $elementID;
 
-    public function __construct($labels) {
+    public function __construct($labels)
+    {
         parent::__construct();
 
         $this->setOptions(array());

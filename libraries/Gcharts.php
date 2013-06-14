@@ -45,6 +45,7 @@ class Gcharts
 
 //Configs
         require_once('gcharts/configOptions.php');
+        require_once('gcharts/DataTable.php');
         require_once('gcharts/backgroundColor.php');
         require_once('gcharts/chartArea.php');
         require_once('gcharts/hAxis.php');
