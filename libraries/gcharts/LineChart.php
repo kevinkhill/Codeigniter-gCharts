@@ -32,27 +32,27 @@ class LineChart extends Gcharts
     var $events;
     var $elementID;
 
-    public function __construct($labels)
-    {
-        parent::__construct();
-
-        $this->setOptions(array());
-
-        if(is_array($labels) && count($labels) > 1)
-        {
-            $tmp = array();
-            foreach($labels as $label)
-            {
-                array_push($tmp, (string) $label);
-            }
-
-            $this->data[] = $tmp;
-        } else {
-            throw new Exception('Invalid labels, must have count > 1 and type (string) array("horizontal axis label", "first line label", "etc...")');
-        }
-
-        return $this;
-    }
+//    public function __construct($labels)
+//    {
+//        parent::__construct();
+//
+//        $this->setOptions(array());
+//
+//        if(is_array($labels) && count($labels) > 1)
+//        {
+//            $tmp = array();
+//            foreach($labels as $label)
+//            {
+//                array_push($tmp, (string) $label);
+//            }
+//
+//            $this->data[] = $tmp;
+//        } else {
+//            throw new Exception('Invalid labels, must have count > 1 and type (string) array("horizontal axis label", "first line label", "etc...")');
+//        }
+//
+//        return $this;
+//    }
 
     /**
      * Register Events
@@ -382,8 +382,14 @@ class LineChart extends Gcharts
 
     public function outputInto($elementID = '')
     {
+        if(gettype($this->data) == 'object' && get_class($this->data))
+        {
+            $this->jsonData = $this->data->toJSON();
+        } else {
+            $this->jsonData = json_encode($this->data);
+        }
+
         $this->elementID = $elementID;
-        $this->jsonData = json_encode($this->data);
         $this->jsonOptions = json_encode($this->options);
 
         return parent::_build_script_block(get_class($this));

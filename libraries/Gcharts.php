@@ -30,6 +30,8 @@ class Gcharts
 
     var $workingDir;
 
+    var $dataTables = array();
+
     /**
      * Loads the required classes from the gcharts folder for the library to
      * work.
@@ -43,15 +45,39 @@ class Gcharts
         require_once('gcharts/AreaChart.php');
         //require_once('gcharts/PieChart.php');
 
-//Configs
-        require_once('gcharts/configOptions.php');
+//Configurations
         require_once('gcharts/DataTable.php');
+        require_once('gcharts/configOptions.php');
         require_once('gcharts/backgroundColor.php');
         require_once('gcharts/chartArea.php');
         require_once('gcharts/hAxis.php');
         require_once('gcharts/legend.php');
         require_once('gcharts/textStyle.php');
         require_once('gcharts/tooltip.php');
+    }
+
+    /**
+     * Creates and returns a new DataTable object if undefined or returns the
+     * corresponding labeled DataTable if it is defined.
+     *
+     * @param string $dataTableLabel
+     * @return \gcharts\DataTable DataTable object
+     * @throws Exception label missing or invalid
+     */
+    public function DataTable($dataTableLabel = '')
+    {
+        if(is_string($dataTableLabel) && $dataTableLabel != '')
+        {
+            if(isset($this->dataTables[$dataTableLabel]))
+            {
+                return $this->dataTables[$dataTableLabel];
+            } else {
+                $this->dataTables[$dataTableLabel] = new DataTable();
+                return $this->dataTables[$dataTableLabel];
+            }
+        } else {
+            throw new Exception('You must provide a label for the DataTable type (sring).');
+        }
     }
 
     /**
@@ -129,15 +155,34 @@ class Gcharts
     /**
      * Add data to the charts
      *
-     * Takes an array of values and adds them to the charts as data points to
-     * plot once the chart is rendered.
+     * Takes an array of values or a DataTable object and adds them to the
+     * charts as data points to plot once the chart is rendered.
      *
-     * @param array $data
+     * @param mixed $data
      * @return \Gcharts
+     * @throws Exception
      */
     public function addData($data)
     {
-        array_push($this->data, $data);
+        switch(gettype($data))
+        {
+            case 'object':
+                if(get_class($data) == 'DataTable')
+                {
+                    $this->data = $data;
+                } else {
+                    throw new Exception('Invalid data, must be (object) type DataTable');
+                }
+            break;
+
+            case 'array':
+                array_push($this->data, $data);
+            break;
+
+            default:
+                throw new Exception('Invalid data, must be (object) type DataTable or (array)');
+            break;
+        }
 
         return $this;
     }
@@ -171,7 +216,12 @@ class Gcharts
                 $this->output .= "google.load('visualization', '1', {'packages':['corechart']});".PHP_EOL;
                 $this->output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
                 $this->output .= "function drawChart() {".PHP_EOL;
-                $this->output .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
+                if(gettype($this->data) == 'object' && get_class($this->data))
+                {
+                    $this->output .= "var data = new google.visualization.DataTable(".$this->jsonData.", 0.6);".PHP_EOL;
+                } else {
+                    $this->output .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
+                }
                 $this->output .= "var options = ".$this->jsonOptions.";".PHP_EOL;
                 $this->output .= "var chart = new google.visualization.".$className."(document.getElementById('".$this->elementID."'));".PHP_EOL;
                 $this->output .= "chart.draw(data, options);".PHP_EOL;
@@ -190,7 +240,9 @@ class Gcharts
             $this->output .= '</script>'.PHP_EOL;
 
             return $this->output;
+
         } else { //AnnotatedTimeLine https://developers.google.com/chart/interactive/docs/gallery/annotatedtimeline
+
             $this->output .= '<script type="text/javascript">'.PHP_EOL;
             $this->output .= "google.load('visualization', '1', {'packages':['annotatedtimeline']});".PHP_EOL;
             $this->output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
