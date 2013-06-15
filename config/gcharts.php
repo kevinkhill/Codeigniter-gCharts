@@ -1,5 +1,4 @@
-<?php
-
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
  * Use this array to enable the use of specific charts. The currently supported 

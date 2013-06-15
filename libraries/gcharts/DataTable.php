@@ -255,12 +255,12 @@ class DataTable
 
     public function getNumberOfColumns()
     {
-
+        return count($this->cols);
     }
 
     public function getNumberOfRows()
     {
-
+        return count($this->rows);
     }
 
     public function getProperties($rowIndex, $columnIndex)

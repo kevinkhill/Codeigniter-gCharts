@@ -31,13 +31,14 @@ class DataCell
      * @param type $f A string version of the v value
      * @param type $p An object that is a map of custom values applied to the cell
      */
-    public function __construct($v, $f, $p)
+    public function __construct($v = NULL, $f = NULL, $p = NULL)
     {
         $this->v = $v;
         $this->f = $f;
+        
         if(gettype($p) == 'array')
         {
-            $vals;
+            $vals = array();
             foreach($p as $k => $v)
             {
                 $vals[$k] = $v;
@@ -46,8 +47,14 @@ class DataCell
         } else {
             $this->p = $p;   
         }
+        
+        return $this;
     }
 
+    public function toJSON()
+    {
+        return json_encode($this);
+    }
 }
 
 /* End of file DataCell.php */
