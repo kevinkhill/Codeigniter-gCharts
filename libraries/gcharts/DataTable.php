@@ -38,6 +38,7 @@ class DataTable
      * opt_id - [Optional] A string with a unique identifier for the column. If
      * not value is specified, an empty string is assigned.
      *
+     * 
      * Second signature has a single array parameter with the following members:
      *
      * type - A string describing the column data type. Same values as type above.
