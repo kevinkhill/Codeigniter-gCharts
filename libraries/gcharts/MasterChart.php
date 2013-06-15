@@ -20,12 +20,21 @@
 
 class MasterChart extends Gcharts
 {
+    var $chartType;
+    var $chartLabel;
+//    var $dataTableLabel;
     var $data;
     var $options;
     var $output;
 
     var $jsonData;
     var $jsonOptions;
+
+    public function __construct($chartType, $chartLabel)
+    {
+        $this->chartType = $chartType;
+        $this->chartLabel = $chartLabel;
+    }
 
     /**
      * Sets the options from an array
@@ -90,20 +99,20 @@ class MasterChart extends Gcharts
                 }
             break;
 
-            case 'array':
-                array_push($this->data, $data);
+//            case 'array':
+//                array_push($this->data, $data);
+//            break;
+
+            case 'string':
+//                var_dump($this->dataTables[$data]);
+                if(isset($this->dataTables[$data]))
+                {
+                    $this->data = $this->dataTables[$data];
+                } else {
+                    throw new Exception('Invalid DataTable label, there is no DataTable defined as "'.$data.'"');
+                }
             break;
 
-//            case 'string':
-//                var_dump($this->dataTables[$data]);
-//                if(isset($this->dataTables[$data]))
-//                {
-//                    $this->data = $this->dataTables[$data];
-//                } else {
-//                    throw new Exception('Invalid DataTable label, there is no DataTable defined as "'.$data.'"');
-//                }
-//            break;
-        
             default:
                 throw new Exception('Invalid data, must be (object) type DataTable or (array)');
             break;
@@ -111,28 +120,32 @@ class MasterChart extends Gcharts
 
         return $this;
     }
-
-    public function useDataTable($dataTableLabel)
-    {
-//        var_dump($this->dataTables);exit;
-        if(get_class(parent::DataTable($dataTableLabel)) == 'DataTable')
-        {
-            $this->data = parent::DataTable($dataTableLabel);
-        } else {
-            throw new Exception('Invalid DataTable label, there is no DataTable defined as "'.$dataTableLabel.'"');
-        }
-    }
+//
+//    public function useDataTable($dataTableLabel)
+//    {
+//        if(get_class(parent::DataTable($dataTableLabel)) == 'DataTable')
+//        {
+//            $this->data = parent::DataTable($dataTableLabel);
+//        } else {
+//            throw new Exception('Invalid DataTable label, there is no DataTable defined as "'.$dataTableLabel.'"');
+//        }
+//    }
 
     /**
      * Encodes the object into JSON notation.
-     * 
-     * @return string $this JSON encoded string
+     *
+     * @return string JSON encoded string
      */
     public function toJSON()
     {
         return json_encode($this);
     }
-    
+
+    public function _setDataTable($dataTableLabel)
+    {
+        return parent::_setDataTable($dataTableLabel);
+    }
+
 }
 
 /* End of file Gcharts.php */

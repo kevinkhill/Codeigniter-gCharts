@@ -23,8 +23,10 @@ class Gcharts
 {
     var $workingDir;
 
-    var $dataTables = array();
-    var $lineCharts = array();
+    static $dataTables = array();
+    static $lineCharts = array();
+
+    static $output;
 
     /**
      * Loads the required classes from the gcharts folder for the library to
@@ -34,13 +36,13 @@ class Gcharts
     {
         $this->workingDir = realpath(dirname(__FILE__)) . '/';
 
-        require_once('gcharts/MasterChart.php');
-        
+//        require_once('gcharts/MasterChart.php');
+
         foreach(config_item('autoload_charts') as $chart)
         {
             require_once('gcharts/'.$chart.'.php');
         }
-        
+
 //        require_once('gcharts/AreaChart.php');
 //        require_once('gcharts/PieChart.php');
 
@@ -57,7 +59,7 @@ class Gcharts
 
     /**
      * Loads a specified chart manually
-     * 
+     *
      * @param string $chartName
      * @throws Exception
      */
@@ -70,7 +72,7 @@ class Gcharts
             throw new Exception('Invalid Chart, could not load "gcharts/'.$chartName.'.php"');
         }
     }
-    
+
     /**
      * Creates and returns a new DataTable object if undefined or returns the
      * corresponding labeled DataTable if it is defined.
@@ -83,12 +85,12 @@ class Gcharts
     {
         if(is_string($dataTableLabel) && $dataTableLabel != '')
         {
-            if(isset($this->dataTables[$dataTableLabel]))
+            if(isset(Gcharts::$dataTables[$dataTableLabel]))
             {
-                return $this->dataTables[$dataTableLabel];
+                return Gcharts::$dataTables[$dataTableLabel];
             } else {
-                $this->dataTables[$dataTableLabel] = new DataTable();
-                return $this->dataTables[$dataTableLabel];
+                Gcharts::$dataTables[$dataTableLabel] = new DataTable($dataTableLabel);
+                return Gcharts::$dataTables[$dataTableLabel];
             }
         } else {
             throw new Exception('You must provide a label for the DataTable type (sring).');
@@ -109,12 +111,12 @@ class Gcharts
     {
         if(is_string($lineChartLabel) && $lineChartLabel != '')
         {
-            if(isset($this->lineCharts[$lineChartLabel]))
+            if(isset(Gcharts::$lineCharts[$lineChartLabel]))
             {
-                return $this->lineCharts[$lineChartLabel];
+                return Gcharts::$lineCharts[$lineChartLabel];
             } else {
-                $this->lineCharts[$lineChartLabel] = new LineChart();
-                return $this->lineCharts[$lineChartLabel];
+                Gcharts::$lineCharts[$lineChartLabel] = new LineChart($lineChartLabel);
+                return Gcharts::$lineCharts[$lineChartLabel];
             }
         } else {
             throw new Exception('You must provide a label for the LineChart type (sring).');
@@ -137,17 +139,6 @@ class Gcharts
         return $this->AreaChart;
     }
 
-//    public function useDataTable($dataTableLabel)
-//    {
-//        var_dump($this->dataTables);exit;
-//        if(get_class($this->dataTables[$dataTableLabel]) == 'DataTable')
-//        {
-//            $this->data = $this->dataTables[$dataTableLabel];
-//        } else {
-//            throw new Exception('Invalid DataTable label, there is no DataTable defined as "'.$dataTableLabel.'"');
-//        }
-//    }
-    
     /**
      * Builds the Javascript code block
      *
@@ -159,48 +150,50 @@ class Gcharts
      * @param string $className Passed from the calling chart
      * @return string javascript code block
      */
-    public function _build_script_block($className)
+    public static function _build_script_block($chart)
     {
-        $this->output = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>'.PHP_EOL;
+        Gcharts::$output = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>'.PHP_EOL;
 
-        if($className != 'AnnotatedTimeLine')
+        if($chart->chartType != 'AnnotatedTimeLine')
         {
-            if(isset($this->events) && count($this->events) > 0)
+            if(isset($chart->events) && count($chart->events) > 0)
             {
-                $this->output .= '<script type="text/javascript">'.PHP_EOL;
-                $this->output .= $this->_load_event_callbacks();
-                $this->output .= '</script>'.PHP_EOL;
+                Gcharts::$output .= '<script type="text/javascript">'.PHP_EOL;
+                Gcharts::$output .= $this->_load_event_callbacks();
+                Gcharts::$output .= '</script>'.PHP_EOL;
 
             }
-            $this->output .= '<script type="text/javascript">'.PHP_EOL;
+            Gcharts::$output .= '<script type="text/javascript">'.PHP_EOL;
 
-                $this->output .= "google.load('visualization', '1', {'packages':['corechart']});".PHP_EOL;
-                $this->output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
-                $this->output .= "function drawChart() {".PHP_EOL;
-                if(gettype($this->data) == 'object' && get_class($this->data))
-                {
-                    $this->output .= "var data = new google.visualization.DataTable(".$this->jsonData.", 0.6);".PHP_EOL;
-                } else {
-                    $this->output .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
-                }
-                $this->output .= "var options = ".$this->jsonOptions.";".PHP_EOL;
-                $this->output .= "var chart = new google.visualization.".$className."(document.getElementById('".$this->elementID."'));".PHP_EOL;
-                $this->output .= "chart.draw(data, options);".PHP_EOL;
+                Gcharts::$output .= "google.load('visualization', '1', {'packages':['corechart']});".PHP_EOL;
+                Gcharts::$output .= "google.setOnLoadCallback(drawChart);".PHP_EOL;
+                Gcharts::$output .= "function drawChart() {".PHP_EOL;
+//                if(gettype($chart->data) == 'object' && get_class($data) == 'DataTable')
+//                {
+                    $data = Gcharts::$dataTables[$chart->dataTable];
+                    Gcharts::$output .= "var data = new google.visualization.DataTable(".$data->toJSON().", 0.6);".PHP_EOL;
+//                } else {
+//                    Gcharts::$output .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
+//                }
+                Gcharts::$output .= "var options = ".json_encode($chart->options).";".PHP_EOL;
+                Gcharts::$output .= "var chart = new google.visualization.".$chart->chartType;
+                    Gcharts::$output .= "(document.getElementById('".$chart->elementID."'));".PHP_EOL;
+                Gcharts::$output .= "chart.draw(data, options);".PHP_EOL;
 
-                if(isset($this->events) && count($this->events) > 0)
+                if(isset($chart->events) && count($chart->events) > 0)
                 {
-                    foreach($this->events as $event)
+                    foreach($chart->events as $event)
                     {
-                        $this->output .= "google.visualization.events.addListener(chart, '".$event."', ";
-                        $this->output .= "function(event){".$className.".".$event."(event);});".PHP_EOL;
+                        Gcharts::$output .= "google.visualization.events.addListener(chart, '".$event."', ";
+                        Gcharts::$output .= "function(event){".$chart->chartType.".".$event."(event);});".PHP_EOL;
                     }
                 }
 
-                $this->output .= "}".PHP_EOL;
+                Gcharts::$output .= "}".PHP_EOL;
 
-            $this->output .= '</script>'.PHP_EOL;
+            Gcharts::$output .= '</script>'.PHP_EOL;
 
-            return $this->output;
+            return Gcharts::$output;
 
         } else { //AnnotatedTimeLine https://developers.google.com/chart/interactive/docs/gallery/annotatedtimeline
 
@@ -267,6 +260,16 @@ class Gcharts
         }
 
         return substr_replace($tmp, "", -2) . ']';
+    }
+
+    public function _getDataTable($dataTableLabel)
+    {
+        if(isset($this->dataTables[$dataTableLabel]))
+        {
+            return $this->dataTables[$dataTableLabel];
+        } else {
+            throw new Exception('Error, DataTable with label "'.$dataTableLabel.'" not found.');
+        }
     }
 
 }

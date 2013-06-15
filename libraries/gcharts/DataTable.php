@@ -23,7 +23,7 @@ class DataTable
     var $cols = array();
     var $rows = array();
 
-    public function __construct()
+    public function __construct($dataTableLabel)
     {
         require_once('DataCell.php');
     }
@@ -42,7 +42,7 @@ class DataTable
      * opt_id - [Optional] A string with a unique identifier for the column. If
      * not value is specified, an empty string is assigned.
      *
-     * 
+     *
      * Second signature has a single array parameter with the following members:
      *
      * type - A string describing the column data type. Same values as type above.
@@ -147,29 +147,29 @@ class DataTable
 
     /**
      * Add a row to the DataTable
-     * 
+     *
      * Each cell in the table is described by an array with the following properties:
-     * 
+     *
      * v [Optional] The cell value. The data type should match the column data type.
      * If null, the whole object should be empty and have neither v nor f properties.
-     * f [Optional] A string version of the v value, formatted for display. The 
-     * values should match, so if you specify Date(2008, 0, 1) for v, you should 
-     * specify "January 1, 2008" or some such string for this property. This value 
-     * is not checked against the v value. The visualization will not use this value 
-     * for calculation, only as a label for display. If omitted, a string version 
+     * f [Optional] A string version of the v value, formatted for display. The
+     * values should match, so if you specify Date(2008, 0, 1) for v, you should
+     * specify "January 1, 2008" or some such string for this property. This value
+     * is not checked against the v value. The visualization will not use this value
+     * for calculation, only as a label for display. If omitted, a string version
      * of v will be used.
-     * p [Optional] An object that is a map of custom values applied to the cell. 
-     * These values can be of any JavaScript type. If your visualization supports 
-     * any cell-level properties, it will describe them; otherwise, this property 
+     * p [Optional] An object that is a map of custom values applied to the cell.
+     * These values can be of any JavaScript type. If your visualization supports
+     * any cell-level properties, it will describe them; otherwise, this property
      * will be ignored. Example: p:{style: 'border: 1px solid green;'}.
-     * 
-     * Cells in the row array should be in the same order as their column descriptions 
-     * in cols. To indicate a null cell, you can specify null, leave a blank for 
-     * a cell in an array, or omit trailing array members. So, to indicate a row 
-     * with null for the first two cells, you could specify [ , , {cell_val}] or 
+     *
+     * Cells in the row array should be in the same order as their column descriptions
+     * in cols. To indicate a null cell, you can specify null, leave a blank for
+     * a cell in an array, or omit trailing array members. So, to indicate a row
+     * with null for the first two cells, you could specify [ , , {cell_val}] or
      * [null, null, {cell_val}].
-     * 
-     * 
+     *
+     *
      * @param type $opt_cellArray
      */
     public function addRow($opt_cellArray = NULL)
@@ -179,23 +179,55 @@ class DataTable
             'f',
             'p'
         );
-        
+
         if($opt_cellArray == NULL)
         {
-            $this->rows[] = array('c' => array(array(), array(), array()));
-        } else {
-            foreach($opt_cellArray as $prop => $value)
+            for($a = 0; $a < count($this->cols); $a++)
             {
-                if(in_array($prop, $props))
-                {
-                    $rowVals[] = array($prop => $value);
-                } else {
-                    throw new Exception('Invalid row property, array with keys type (string) with values [ v | f | p ] ');
-                }
+                $tmp[] = array('v' => NULL);
             }
-            
-            $this->rows[] = array('c' => $rowVals);
+            $this->rows[] = array('c' => $tmp);
+        } else {
+            if(gettype($opt_cellArray) == 'array')
+            {
+                if($this->_is_multi($opt_cellArray))
+                {
+                    foreach($opt_cellArray as $prop => $value)
+                    {
+                        if(in_array($prop, $props))
+                        {
+                            $rowVals[] = array($prop => $value);
+                        } else {
+                            throw new Exception('Invalid row property, array with keys type (string) with values [ v | f | p ] ');
+                        }
+                    }
+
+                    $this->rows[] = array('c' => $rowVals);
+                } else {
+                    if(count($opt_cellArray) <= count($this->cols))
+                    {
+                        for($b = 0; $b < count($this->cols); $b++)
+                        {
+                            if(isset($opt_cellArray[$b]))
+                            {
+                                $rowVals[] = array('v' => $opt_cellArray[$b]);
+                            } else {
+                                $rowVals[] = array('v' => NULL);
+                            }
+                        }
+                        $this->rows[] = array('c' => $rowVals);
+                    } else {
+                        $msg = 'Invalid number of cells, must be equal or less than number of columns. ';
+                        $msg .= '(cells '.count($opt_cellArray).' > cols '.count($this->cols).')';
+                        throw new Exception($msg);
+                    }
+                }
+            } else {
+                throw new Exception('Invalid row definition, must be type (array)');
+            }
         }
+
+        return $this;
     }
 
     public function addRows($numOrArray)
@@ -439,6 +471,19 @@ class DataTable
         }
 
         return substr_replace($tmp, "", -2) . ']';
+    }
+
+    public function _is_multi($arr)
+    {
+        $rv = array_filter($arr,'is_array');
+
+        if(count($rv) > 0)
+        {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+
     }
 }
 

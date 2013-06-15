@@ -26,7 +26,7 @@ class DataCell
 
     /**
      * Defines a DataCell
-     * 
+     *
      * @param type $v The cell value
      * @param type $f A string version of the v value
      * @param type $p An object that is a map of custom values applied to the cell
@@ -35,7 +35,7 @@ class DataCell
     {
         $this->v = $v;
         $this->f = $f;
-        
+
         if(gettype($p) == 'array')
         {
             $vals = array();
@@ -45,15 +45,21 @@ class DataCell
             }
             $this->p = $vals;
         } else {
-            $this->p = $p;   
+            $this->p = $p;
         }
-        
+
         return $this;
     }
 
     public function toJSON()
     {
-        return json_encode($this);
+        $output = array();
+
+        if($this->v != NULL) { $output['v'] = $this->v; }
+        if($this->f != NULL) { $output['f'] = $this->f; }
+        if($this->p != NULL) { $output['p'] = $this->p; }
+
+        return json_encode($output);
     }
 }
 

@@ -18,41 +18,52 @@
  *
  */
 
-class LineChart extends MasterChart
+class LineChart
 {
-//    var $width;
-//    var $height;
-//    var $curveType;
-//    var $title;
-//    var $titlePosition;
-//    var $titleTextStyle;
-//    var $lineWidth;
-//    var $pointSize;
+    var $chartType;
+    var $chartLabel;
+//    var $dataTableLabel;
+    var $data;
+    var $options;
+    var $output;
 
+//    var $jsonData;
+//    var $jsonOptions;
+
+    var $dataTable;
     var $events;
     var $elementID;
 
-//    public function __construct($labels)
-//    {
-//        parent::__construct();
+    public function __construct($chartLabel)
+    {
+        $this->chartType = get_class($this);
+        $this->chartLabel = $chartLabel;
+    }
+
+    /**
+     * Assigns wich DataTable will be used for this LineChart. If a label is provided
+     * then the defined DataTable will be used. If called with no argument, it will
+     * attempt to use a DataTable with the same label as the LineChart
+     *
+     * @param string $dataTableLabel
+     * @return \gcharts\DataTable DataTable object
+     * @throws Exception label missing or invalid
+     */
+    public function useDataTable($dataTableLabel = '')
+    {
+        if($dataTableLabel == '')
+        {
+            $this->dataTable = $this->chartLabel;
+        } else {
+            $this->dataTable = $dataTableLabel;
+        }
+
+//        $this->data = Gcharts::_getDataTable($this->dataTableLabel);
 //
-//        $this->setOptions(array());
-//
-//        if(is_array($labels) && count($labels) > 1)
-//        {
-//            $tmp = array();
-//            foreach($labels as $label)
-//            {
-//                array_push($tmp, (string) $label);
-//            }
-//
-//            $this->data[] = $tmp;
-//        } else {
-//            throw new Exception('Invalid labels, must have count > 1 and type (string) array("horizontal axis label", "first line label", "etc...")');
-//        }
-//
-//        return $this;
-//    }
+//        var_dump($this->data);exit;
+
+        return $this;
+    }
 
     /**
      * Register Events
@@ -382,18 +393,23 @@ class LineChart extends MasterChart
 
     public function outputInto($elementID = '')
     {
-        if(gettype($this->data) == 'object' && get_class($this->data))
-        {
-            $this->jsonData = $this->data->toJSON();
-        } else {
-            $this->jsonData = json_encode($this->data);
-        }
+//        if(gettype($this->data) == 'object' && get_class($this->data))
+//        {
+//            $this->jsonData = $this->data->toJSON();
+//        } else {
+//            $this->jsonData = json_encode($this->data);
+//        }
 
         $this->elementID = $elementID;
-        $this->jsonOptions = json_encode($this->options);
+//        $this->jsonOptions = json_encode($this->options);
 
-        return parent::_build_script_block(get_class($this));
+        return Gcharts::_build_script_block($this);
     }
+//
+//    public function _setDataTable($dataTableLabel)
+//    {
+//        return parent::_setDataTable($dataTableLabel);
+//    }
 
 }
 
