@@ -31,6 +31,7 @@ class Gcharts
     var $workingDir;
 
     var $dataTables = array();
+    var $lineCharts = array();
 
     /**
      * Loads the required classes from the gcharts folder for the library to
@@ -90,10 +91,20 @@ class Gcharts
      * @param array $options
      * @return \Gcharts
      */
-    public function LineChart($options = array())
+    public function LineChart($lineChartLabel = '')
     {
-        $this->LineChart = new LineChart($options);
-        return $this->LineChart;
+        if(is_string($lineChartLabel) && $lineChartLabel != '')
+        {
+            if(isset($this->lineCharts[$lineChartLabel]))
+            {
+                return $this->lineCharts[$lineChartLabel];
+            } else {
+                $this->lineCharts[$lineChartLabel] = new LineChart();
+                return $this->lineCharts[$lineChartLabel];
+            }
+        } else {
+            throw new Exception('You must provide a label for the LineChart type (sring).');
+        }
     }
 
     /**

@@ -21,6 +21,7 @@
 class DataTable
 {
     var $cols = array();
+    var $rows = array();
 
     public function __construct() { }
 
