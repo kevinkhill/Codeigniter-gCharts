@@ -23,7 +23,10 @@ class DataTable
     var $cols = array();
     var $rows = array();
 
-    public function __construct() { }
+    public function __construct()
+    {
+        require_once('DataCell.php');
+    }
 
     /**
      * Adds a column to the DataTable
@@ -142,25 +145,63 @@ class DataTable
         return $this;
     }
 
-//    public function addColumn($description_object)
-//    {
-//
-//    }
-
-    public function addRow($opt_cellArray)
+    /**
+     * Add a row to the DataTable
+     * 
+     * Each cell in the table is described by an array with the following properties:
+     * 
+     * v [Optional] The cell value. The data type should match the column data type.
+     * If null, the whole object should be empty and have neither v nor f properties.
+     * f [Optional] A string version of the v value, formatted for display. The 
+     * values should match, so if you specify Date(2008, 0, 1) for v, you should 
+     * specify "January 1, 2008" or some such string for this property. This value 
+     * is not checked against the v value. The visualization will not use this value 
+     * for calculation, only as a label for display. If omitted, a string version 
+     * of v will be used.
+     * p [Optional] An object that is a map of custom values applied to the cell. 
+     * These values can be of any JavaScript type. If your visualization supports 
+     * any cell-level properties, it will describe them; otherwise, this property 
+     * will be ignored. Example: p:{style: 'border: 1px solid green;'}.
+     * 
+     * Cells in the row array should be in the same order as their column descriptions 
+     * in cols. To indicate a null cell, you can specify null, leave a blank for 
+     * a cell in an array, or omit trailing array members. So, to indicate a row 
+     * with null for the first two cells, you could specify [ , , {cell_val}] or 
+     * [null, null, {cell_val}].
+     * 
+     * 
+     * @param type $opt_cellArray
+     */
+    public function addRow($opt_cellArray = NULL)
     {
-
+        $props = array(
+            'v',
+            'f',
+            'p'
+        );
+        
+        if($opt_cellArray == NULL)
+        {
+            $this->rows[] = array('c' => array(array(), array(), array()));
+        } else {
+            foreach($opt_cellArray as $prop => $value)
+            {
+                if(in_array($prop, $props))
+                {
+                    $rowVals[] = array($prop => $value);
+                } else {
+                    throw new Exception('Invalid row property, array with keys type (string) with values [ v | f | p ] ');
+                }
+            }
+            
+            $this->rows[] = array('c' => $rowVals);
+        }
     }
 
     public function addRows($numOrArray)
     {
 
     }
-
-//    public function clone()
-//    {
-//
-//    }
 
     public function getColumnId($columnIndex)
     {

@@ -21,13 +21,6 @@
 
 class Gcharts
 {
-    var $data;
-    var $options;
-    var $output;
-
-    var $jsonData;
-    var $jsonOptions;
-
     var $workingDir;
 
     var $dataTables = array();
@@ -41,12 +34,17 @@ class Gcharts
     {
         $this->workingDir = realpath(dirname(__FILE__)) . '/';
 
-//Charts
-        require_once('gcharts/LineChart.php');
-        require_once('gcharts/AreaChart.php');
-        //require_once('gcharts/PieChart.php');
+        require_once('gcharts/MasterChart.php');
+        
+        foreach(config_item('autoload_charts') as $chart)
+        {
+            require_once('gcharts/'.$chart.'.php');
+        }
+        
+//        require_once('gcharts/AreaChart.php');
+//        require_once('gcharts/PieChart.php');
 
-//Configurations
+//Configuration Classes
         require_once('gcharts/DataTable.php');
         require_once('gcharts/configOptions.php');
         require_once('gcharts/backgroundColor.php');
@@ -57,6 +55,22 @@ class Gcharts
         require_once('gcharts/tooltip.php');
     }
 
+    /**
+     * Loads a specified chart manually
+     * 
+     * @param string $chartName
+     * @throws Exception
+     */
+    public function load($chartName)
+    {
+        if(file_exists('gcharts/'.$chartName.'.php'))
+        {
+            require_once('gcharts/'.$chartName.'.php');
+        } else {
+            throw new Exception('Invalid Chart, could not load "gcharts/'.$chartName.'.php"');
+        }
+    }
+    
     /**
      * Creates and returns a new DataTable object if undefined or returns the
      * corresponding labeled DataTable if it is defined.
@@ -123,81 +137,17 @@ class Gcharts
         return $this->AreaChart;
     }
 
-    /**
-     * Sets the options from an array
-     *
-     * You can set the options all at once instead of passing them individually
-     * or chaining the functions from the chart objects.
-     *
-     * @param type $options
-     * @return \Gcharts
-     */
-    public function setOptions($options)
-    {
-        $this->options = $options;
-
-        return $this;
-    }
-
-    /**
-     * Adds configuration option
-     *
-     * Takes either an array with option => value, or an object created by
-     * one of the configOptions child objects.
-     *
-     * @param mixed $option
-     * @return \Gcharts
-     */
-    public function addOption($option)
-    {
-        if(is_object($option))
-        {
-            $this->options = array_merge($this->options, $option->toArray());
-        }
-
-        if(is_array($option))
-        {
-            $this->options = array_merge($this->options, $option);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Add data to the charts
-     *
-     * Takes an array of values or a DataTable object and adds them to the
-     * charts as data points to plot once the chart is rendered.
-     *
-     * @param mixed $data
-     * @return \Gcharts
-     * @throws Exception
-     */
-    public function addData($data)
-    {
-        switch(gettype($data))
-        {
-            case 'object':
-                if(get_class($data) == 'DataTable')
-                {
-                    $this->data = $data;
-                } else {
-                    throw new Exception('Invalid data, must be (object) type DataTable');
-                }
-            break;
-
-            case 'array':
-                array_push($this->data, $data);
-            break;
-
-            default:
-                throw new Exception('Invalid data, must be (object) type DataTable or (array)');
-            break;
-        }
-
-        return $this;
-    }
-
+//    public function useDataTable($dataTableLabel)
+//    {
+//        var_dump($this->dataTables);exit;
+//        if(get_class($this->dataTables[$dataTableLabel]) == 'DataTable')
+//        {
+//            $this->data = $this->dataTables[$dataTableLabel];
+//        } else {
+//            throw new Exception('Invalid DataTable label, there is no DataTable defined as "'.$dataTableLabel.'"');
+//        }
+//    }
+    
     /**
      * Builds the Javascript code block
      *

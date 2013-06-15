@@ -18,16 +18,16 @@
  *
  */
 
-class LineChart extends Gcharts
+class LineChart extends MasterChart
 {
-    var $width;
-    var $height;
-    var $curveType;
-    var $title;
-    var $titlePosition;
-    var $titleTextStyle;
-    var $lineWidth;
-    var $pointSize;
+//    var $width;
+//    var $height;
+//    var $curveType;
+//    var $title;
+//    var $titlePosition;
+//    var $titleTextStyle;
+//    var $lineWidth;
+//    var $pointSize;
 
     var $events;
     var $elementID;
