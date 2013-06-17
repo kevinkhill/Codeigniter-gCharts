@@ -21,8 +21,7 @@
 
 class Gcharts
 {
-    var $config;
-
+    static $config;
     static $ignited;
     static $output;
     static $masterPath;
@@ -35,27 +34,14 @@ class Gcharts
     static $dataTables = array();
     static $lineCharts = array();
     static $areaCharts = array();
+    static $pieCharts = array();
 
     /**
      * Loads the required classes for the library to work.
      */
     public function __construct()
     {
-        Gcharts::$masterPath = '/gcharts/';
-        Gcharts::$configPath = Gcharts::masterPath.'configs/';
-        Gcharts::$chartPath = Gcharts::masterPath.'charts/';
-        Gcharts::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
-
-        $this->_getConfig();
-//        $this->_setupPaths();
-
-        if(is_array($this->config->autoloadCharts) && count($this->config->autoloadCharts) > 0)
-        {
-            foreach($this->config->autoloadCharts as $chart)
-            {
-                require_once('/gcharts/charts/'.$chart.'.php');
-            }
-        }
+        $this->_building_static();
 
 //Configuration Classes
         $configClasses = array(
@@ -70,6 +56,15 @@ class Gcharts
             'tooltip'
         );
 
+        //Autoload Chart Classes
+        if(is_array($this->config->autoloadCharts) && count($this->config->autoloadCharts) > 0)
+        {
+            foreach($this->config->autoloadCharts as $chart)
+            {
+                require_once(Gcharts::$chartPath.$chart.'.php');
+            }
+        }
+        //Load Config Classes
         foreach($configClasses as $configClass)
         {
             require_once(Gcharts::$configPath.$configClass.'.php');
@@ -314,65 +309,17 @@ class Gcharts
         Gcharts::$output .= Gcharts::$jsClose.PHP_EOL;
     }
 
-    private function _setupPaths()
+    private function _building_static()
     {
-        $system_path = 'gcharts';
+        Gcharts::$masterPath = '/gcharts/';
+        Gcharts::$configPath = Gcharts::$masterPath.'configs/';
+        Gcharts::$chartPath = Gcharts::$masterPath.'charts/';
+        Gcharts::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
 
-        $working_dir = dirname(__FILE__);
-
-	if (realpath($working_dir.'/'.$system_path) !== FALSE)
-	{
-            $system_path = realpath($system_path).'/';
-	}
-
-	// ensure there's a trailing slash
-	$system_path = rtrim($system_path, '/').'/';
-
-	// Is the system path correct?
-	if ( ! is_dir($system_path))
-	{
-            exit($system_path);
-            exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: ".pathinfo(__FILE__, PATHINFO_BASENAME));
-	}
-
-	// The name of THIS file
-	define('GCHARTS_SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
-
-	// The PHP file extension
-	// this global constant is deprecated.
-	(defined('EXT') ? NULL : define('EXT', '.php'));
-
-	// Path to the system folder
-	define('GCHARTS_BASEPATH', str_replace("\\", "/", $system_path));
-
-	// Path to the front controller (this file)
-	define('GCHARTS_SUPERPATH', str_replace(SELF, '', __FILE__));
-
-	// Name of the "system folder"
-//	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
-
-	// The path to the "application" folder
-	if (is_dir('gcharts'))
-	{
-            define('GCHARTS_APPPATH', $application_folder.'/');
-	}
-	else
-	{
-            if ( ! is_dir(GCHARTS_BASEPATH.'gcharts/'))
-            {
-                exit("Your application folder path does not appear to be set correctly. Please open the following file and correct this: ".SELF);
-            }
-
-            define('APPPATH', BASEPATH.$application_folder.'/');
-	}
-    }
-
-    private function _getConfig()
-    {
-        $this->config = new stdClass();
-        $this->config->autoloadCharts = config_item('autoloadCharts');
-        $this->config->useGlobalTextStyle = config_item('useGlobalTextStyle');
-        $this->config->globalTextStyle = config_item('globalTextStyle');
+        Gcharts::$config = new stdClass();
+        Gcharts::$config->autoloadCharts = config_item('autoloadCharts');
+        Gcharts::$config->useGlobalTextStyle = config_item('useGlobalTextStyle');
+        Gcharts::$config->globalTextStyle = config_item('globalTextStyle');
     }
 
     /**
