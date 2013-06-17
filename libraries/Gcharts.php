@@ -21,6 +21,8 @@
 
 class Gcharts
 {
+    var $config;
+
     static $output;
     static $dataTableVersion = '0.6';
     static $jsOpen = '<script type="text/javascript">';
@@ -36,9 +38,14 @@ class Gcharts
      */
     public function __construct()
     {
-        foreach(config_item('autoload_charts') as $chart)
+        $this->_getConfig();
+
+        if(is_array($this->config->autoloadCharts) && count($this->config->autoloadCharts) > 0)
         {
-            require_once('gcharts/charts/'.$chart.'.php');
+            foreach($this->config->autoloadCharts as $chart)
+            {
+                require_once('gcharts/charts/'.$chart.'.php');
+            }
         }
 
 //Configuration Classes
@@ -201,6 +208,16 @@ class Gcharts
 
         $out .= Gcharts::$jsOpen.PHP_EOL;
 
+        if($chart->elementID == NULL)
+        {
+            $out .= 'alert("Error calling '.$chart->chartType.'(\''.$chart->chartLabel.'\')->outputInto(), requires a valid html elementID.");'.PHP_EOL;
+        }
+
+        if(isset($chart->data) === FALSE && isset(Gcharts::$dataTables[$chart->dataTable]) === FALSE)
+        {
+            $out .= 'alert("No DataTable has been defined for '.$chart->chartType.'(\''.$chart->chartLabel.'\').");'.PHP_EOL;
+        }
+
         $vizType = ($chart->chartType == 'AnnotatedTimeLine' ? 'annotatedtimeline' : 'corechart');
 
         $out .= sprintf("google.load('visualization', '1', {'packages':['%s']});", $vizType).PHP_EOL;
@@ -212,7 +229,9 @@ class Gcharts
             $data = $chart->data->toJSON();
             $format = 'var data = new google.visualization.DataTable(%s, %s);';
             $out .= sprintf($format, $data, Gcharts::$dataTableVersion).PHP_EOL;
-        } else {
+        }
+        if(isset(Gcharts::$dataTables[$chart->dataTable]))
+        {
             $data = Gcharts::$dataTables[$chart->dataTable];
             $format = 'var data = new google.visualization.DataTable(%s, %s);';
             $out .= sprintf($format, $data->toJSON(), Gcharts::$dataTableVersion).PHP_EOL;
@@ -222,10 +241,6 @@ class Gcharts
         $out .= "var options = ".json_encode($chart->options).";".PHP_EOL;
         $out .= "var chart = new google.visualization.".$chart->chartType;
             $out .= sprintf("(document.getElementById('%s'));", $chart->elementID).PHP_EOL;
-            if($chart->elementID == NULL)
-            {
-                $out .= "alert('Error: calling outputInto() on the chart object requires a valid html elementID.');".PHP_EOL;
-            }
         $out .= "chart.draw(data, options);".PHP_EOL;
 
         if(isset($chart->events) && count($chart->events) > 0)
@@ -277,6 +292,14 @@ class Gcharts
         Gcharts::$output .= Gcharts::$jsOpen.PHP_EOL;
         Gcharts::$output .= $script;
         Gcharts::$output .= Gcharts::$jsClose.PHP_EOL;
+    }
+
+    private function _getConfig()
+    {
+        $this->config = new stdClass();
+        $this->config->autoloadCharts = config_item('autoloadCharts');
+        $this->config->useGlobalTextStyle = config_item('useGlobalTextStyle');
+        $this->config->globalTextStyle = config_item('globalTextStyle');
     }
 
     /**
