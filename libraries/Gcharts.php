@@ -27,6 +27,7 @@ class Gcharts
     static $masterPath;
     static $configPath;
     static $chartPath;
+    static $callbackPath;
     static $dataTableVersion = '0.6';
     static $jsOpen = '<script type="text/javascript">';
     static $jsClose = '</script>';
@@ -284,7 +285,7 @@ class Gcharts
      */
     private static function _build_event_callbacks($chartType, $chartEvents)
     {
-        $gchartsDir = realpath(dirname(__FILE__));
+//        $gchartsDir = realpath(dirname(__FILE__));
 
         $script = sprintf('if(typeof %s !== "object") { %s = {}; }', $chartType).PHP_EOL.PHP_EOL;
 
@@ -292,7 +293,7 @@ class Gcharts
         {
              $script .= sprintf('%s.%s.$event." = function(event) {', $chartType, $event).PHP_EOL;
 
-             $path = sprintf('%s/gcharts/callbacks/%s.%s.js', $gchartsDir, $chartType, $event);
+             $path = Gcharts::$callbackPath.$chartType.$event.'.js';
 
              if(($callback = file_get_contents($path)) !== FALSE)
              {
@@ -314,14 +315,13 @@ class Gcharts
         Gcharts::$masterPath = '/gcharts/';
         Gcharts::$configPath = Gcharts::$masterPath.'configs/';
         Gcharts::$chartPath = Gcharts::$masterPath.'charts/';
+        Gcharts::$callbackPath = Gcharts::$masterPath.'callbacks/';
         Gcharts::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
 
         Gcharts::$config = new stdClass();
         Gcharts::$config->autoloadCharts = config_item('autoloadCharts');
         Gcharts::$config->useGlobalTextStyle = config_item('useGlobalTextStyle');
         Gcharts::$config->globalTextStyle = config_item('globalTextStyle');
-
-        echo array_string(array('asdf', 'asef', 'ADEad'));
     }
 
 }

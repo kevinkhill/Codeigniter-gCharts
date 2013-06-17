@@ -114,14 +114,14 @@ class DataTable
 
                     if(is_string($opt_label))
                     {
-                        $descArray['opt_label'] = $opt_label;
+                        $descArray['label'] = $opt_label;
                     } else {
                         throw new Exception('Invalid opt_label, must be type (string).');
                     }
 
                     if(is_string($opt_id))
                     {
-                        $descArray['opt_id'] = $opt_id;
+                        $descArray['id'] = $opt_id;
                     } else {
                         throw new Exception('Invalid opt_id, must be type (string).');
                     }
