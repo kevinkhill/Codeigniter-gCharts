@@ -20,14 +20,14 @@
 
 class LineChart
 {
-    var $chartType;
-    var $chartLabel;
-    var $dataTable;
+    var $chartType = NULL;
+    var $chartLabel = NULL;
+    var $dataTable = NULL;
 
-    var $data;
-    var $options;
-    var $events;
-    var $elementID;
+    var $data = NULL;
+    var $options = NULL;
+    var $events = NULL;
+    var $elementID = NULL;
 
     public function __construct($chartLabel)
     {
@@ -36,21 +36,80 @@ class LineChart
     }
 
     /**
+     * Sets configuration options from array of values
+     *
+     * You can set the options all at once instead of passing them individually
+     * or chaining the functions from the chart objects.
+     *
+     * @param array $options
+     * @return \LineChart
+     */
+    public function initialize($options = array())
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * Sets a configuration option
+     *
+     * Takes either an array with option => value, or an object created by
+     * one of the configOptions child objects.
+     *
+     * @param mixed $option
+     * @return \LineChart
+     */
+    public function setOption($option)
+    {
+        if(is_object($option))
+        {
+            $this->options = array_merge($this->options, $option->toArray());
+        }
+
+        if(is_array($option))
+        {
+            $this->options = array_merge($this->options, $option);
+        }
+
+        return $this;
+    }
+
+    /**
      * Assigns wich DataTable will be used for this LineChart. If a label is provided
      * then the defined DataTable will be used. If called with no argument, it will
      * attempt to use a DataTable with the same label as the LineChart
      *
-     * @param string $dataTableLabel
+     * @param mixed dataTableLabel String label or DataTable object
      * @return \gcharts\DataTable DataTable object
      * @throws Exception label missing or invalid
      */
-    public function useDataTable($dataTableLabel = '')
+    public function dataTable($data = NULL)
     {
-        if($dataTableLabel == '')
+        switch(gettype($data))
         {
-            $this->dataTable = $this->chartLabel;
-        } else {
-            $this->dataTable = $dataTableLabel;
+            case 'object':
+                if(get_class($data) == 'DataTable')
+                {
+                    $this->data = $data;
+                    $this->dataTable = 'local';
+                } else {
+                    throw new Exception('Invalid dataTable object, must be type (DataTable).');
+                }
+            break;
+
+            case 'string':
+                if($data != '')
+                {
+                    $this->dataTable = $data;
+                } else {
+                    throw new Exception('Invalid dataTable label, must be type (string) non-empty.');
+                }
+            break;
+
+            default:
+                $this->dataTable = $this->chartLabel;
+            break;
         }
 
         return $this;
@@ -382,17 +441,28 @@ class LineChart
         }
     }
 
-    public function outputInto($elementID = '')
+    /**
+     * Outputs the chart javascript into the page
+     *
+     * Pass in a string of the html elementID that you want the chart to be
+     * rendered into. Plus, if the dataTable function was never called on the
+     * chart to assign a DataTable to use, it will automatically attempt to use
+     * a DataTable with the same label as the chart.
+     *
+     * @param string $elementID
+     * @return string Javscript code blocks
+     */
+    public function outputInto($elementID = NULL)
     {
-//        if(gettype($this->data) == 'object' && get_class($this->data))
-//        {
-//            $this->jsonData = $this->data->toJSON();
-//        } else {
-//            $this->jsonData = json_encode($this->data);
-//        }
+        if($this->dataTable === NULL)
+        {
+            $this->dataTable = $this->chartLabel;
+        }
 
-        $this->elementID = $elementID;
-//        $this->jsonOptions = json_encode($this->options);
+        if(gettype($elementID) == 'string' && $elementID != NULL)
+        {
+            $this->elementID = $elementID;
+        }
 
         return Gcharts::_build_script_block($this);
     }

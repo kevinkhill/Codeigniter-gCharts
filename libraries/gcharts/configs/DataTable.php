@@ -23,7 +23,7 @@ class DataTable
     var $cols = array();
     var $rows = array();
 
-    public function __construct($dataTableLabel)
+    public function __construct()
     {
         require_once('DataCell.php');
     }
