@@ -20,37 +20,20 @@
 
 class AnnotatedTimeLine
 {
-    var $width;
-    var $height;
-    var $curveType;
-    var $title;
-    var $titlePosition;
-    var $titleTextStyle;
-    var $lineWidth;
-    var $pointSize;
+    var $chartType = NULL;
+    var $chartLabel = NULL;
+    var $dataTable = NULL;
 
-    var $events;
-    var $elementID;
+    var $data = NULL;
+    var $options = NULL;
+    var $events = NULL;
+    var $elementID = NULL;
 
-    public function __construct($labels) {
-        parent::__construct();
-
-        $this->setOptions(array());
-
-        if(is_array($labels) && count($labels) > 1)
-        {
-            $tmp = array();
-            foreach($labels as $label)
-            {
-                array_push($tmp, (string) $label);
-            }
-
-            $this->data[] = $tmp;
-        } else {
-            throw new Exception('Invalid labels, must have count > 1 and type (string) array("horizontal axis label", "first line label", "etc...")');
-        }
-
-        return $this;
+    public function __construct($chartLabel)
+    {
+        $this->chartType = get_class($this);
+        $this->chartLabel = $chartLabel;
+        $this->options = array();
     }
 
     /**

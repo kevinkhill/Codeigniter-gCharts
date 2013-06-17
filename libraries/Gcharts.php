@@ -57,9 +57,9 @@ class Gcharts
         );
 
         //Autoload Chart Classes
-        if(is_array($this->config->autoloadCharts) && count($this->config->autoloadCharts) > 0)
+        if(is_array(Gcharts::$config->autoloadCharts) && count(Gcharts::$config->autoloadCharts) > 0)
         {
-            foreach($this->config->autoloadCharts as $chart)
+            foreach(Gcharts::$config->autoloadCharts as $chart)
             {
                 require_once(Gcharts::$chartPath.$chart.'.php');
             }

@@ -4,28 +4,36 @@
  *
  * Holds all the configuration for the PieChart
  *
- * 
+ *
  * NOTICE OF LICENSE
- * 
+ *
  * Licensed under the Apache License, Version 2.0
  * which is included in the LICENSE file
  *
- * 
+ *
  * @author Kevin Hill <kevinkhill@gmail.com>
  * @copyright (c) 2013, Kevin Hill
  * @link https://github.com/kevinkhill/Codeigniter-gCharts Github Page
  * @license http://http://www.apache.org/licenses/LICENSE-2.0.html Apache-V2
- * 
+ *
  */
 
-class PieChart extends Gcharts
+class PieChart
 {
-    public function __construct($data, $options) {
-        parent::__construct('LineChart');
-        parent::setData($data);
-        parent::setOptions($options);
+    var $chartType = NULL;
+    var $chartLabel = NULL;
+    var $dataTable = NULL;
 
-        return $this;
+    var $data = NULL;
+    var $options = NULL;
+    var $events = NULL;
+    var $elementID = NULL;
+
+    public function __construct($chartLabel)
+    {
+        $this->chartType = get_class($this);
+        $this->chartLabel = $chartLabel;
+        $this->options = array();
     }
 
     public function hAxisTitle($title = '')
