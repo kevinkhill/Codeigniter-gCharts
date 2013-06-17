@@ -60,11 +60,35 @@ class Gcharts
      */
     public function load($chartName)
     {
-        if(file_exists('gcharts/'.$chartName.'.php'))
+        if(file_exists('gcharts/charts/'.$chartName.'.php'))
         {
-            require_once('gcharts/'.$chartName.'.php');
+            require_once('gcharts/charts/'.$chartName.'.php');
         } else {
-            throw new Exception('Invalid Chart, could not load "gcharts/'.$chartName.'.php"');
+            throw new Exception('Invalid Chart, could not load "gcharts/charts/'.$chartName.'.php"');
+        }
+    }
+
+    /**
+     * Creates and returns a new configuration object
+     *
+     * @param string $type config object name
+     * @return \configs\configOptions
+     * @throws Exception invalid config object
+     */
+    public function configObj($type)
+    {
+        $configObjects = array(
+            'chartArea',
+            'textStyle',
+            'legend',
+            'tooltip'
+        );
+
+        if(in_array($type, $configObjects))
+        {
+            return new $type();
+        } else {
+            throw new Exception('Error, "'.$type.'" is not a valid config object');
         }
     }
 

@@ -33,6 +33,7 @@ class LineChart
     {
         $this->chartType = get_class($this);
         $this->chartLabel = $chartLabel;
+        $this->options = array();
     }
 
     /**
@@ -46,7 +47,45 @@ class LineChart
      */
     public function initialize($options = array())
     {
-        $this->options = $options;
+        $defaultOptions = array(
+//            'animation',
+            'backgroundColor',
+            'chartArea',
+            'colors',
+            'curveType',
+            'enableInteractivity',
+            'focusTarget',
+            'fontSize',
+            'fontName',
+            'hAxis',
+            'isHtml',
+            'interpolateNulls',
+            'legend',
+            'lineWidth',
+            'pointSize',
+            'reverseCategories',
+            'series',
+            'theme',
+            'title',
+            'titlePosition',
+            'titleTextStyle',
+            'tooltip',
+            'vAxes',
+            'vAxis'
+        );
+
+        foreach($options as $oKey => $oVal)
+        {
+            if(in_array($oKey, $defaultOptions))
+            {
+                if(method_exists($this, $oKey))
+                {
+                    $this->$oKey($oVal);
+                } else {
+                    $this->addOption($oVal);
+                }
+            }
+        }
 
         return $this;
     }
@@ -60,7 +99,7 @@ class LineChart
      * @param mixed $option
      * @return \LineChart
      */
-    public function setOption($option)
+    public function addOption($option)
     {
         if(is_object($option))
         {
@@ -169,20 +208,20 @@ class LineChart
      * @return \LineChart
      * @throws Exception Invalid animationEasing
      */
-    public function animationEasing($easing = 'linear')
-    {
-        $values = array('linear', 'in', 'out', 'inAndOut');
-
-        if(in_array($easing, $values))
-        {
-            $this->easing = $easing;
-            return $this;
-        } else {
-            throw new Exception('Invalid animationEasing value, must be (string) '.$this->_array_string($values));
-        }
-
-        return $this;
-    }
+//    public function animationEasing($easing = 'linear')
+//    {
+//        $values = array('linear', 'in', 'out', 'inAndOut');
+//
+//        if(in_array($easing, $values))
+//        {
+//            $this->easing = $easing;
+//            return $this;
+//        } else {
+//            throw new Exception('Invalid animationEasing value, must be (string) '.$this->_array_string($values));
+//        }
+//
+//        return $this;
+//    }
 
     /**
      * Animation Duration
@@ -192,17 +231,17 @@ class LineChart
      * @param mixed $duration
      * @return \LineChart
      */
-    public function animationDuration($duration)
-    {
-        if(is_int($duration) || is_string($duration))
-        {
-            $this->duration = $this->_valid_int($duration);
-        } else {
-            $this->duration = 0;
-        }
-
-        return $this;
-    }
+//    public function animationDuration($duration)
+//    {
+//        if(is_int($duration) || is_string($duration))
+//        {
+//            $this->duration = $this->_valid_int($duration);
+//        } else {
+//            $this->duration = 0;
+//        }
+//
+//        return $this;
+//    }
 
     /**
      * Where to place the axis titles, compared to the chart area. Supported values:
