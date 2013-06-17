@@ -22,11 +22,11 @@
 class Gcharts
 {
     var $workingDir;
-
+    static $output;
     static $dataTables = array();
     static $lineCharts = array();
+    static $areaCharts = array();
 
-    static $output;
 
     /**
      * Loads the required classes from the gcharts folder for the library to
@@ -40,21 +40,21 @@ class Gcharts
 
         foreach(config_item('autoload_charts') as $chart)
         {
-            require_once('gcharts/'.$chart.'.php');
+            require_once('gcharts/charts/'.$chart.'.php');
         }
 
 //        require_once('gcharts/AreaChart.php');
 //        require_once('gcharts/PieChart.php');
 
 //Configuration Classes
-        require_once('gcharts/DataTable.php');
-        require_once('gcharts/configOptions.php');
-        require_once('gcharts/backgroundColor.php');
-        require_once('gcharts/chartArea.php');
-        require_once('gcharts/hAxis.php');
-        require_once('gcharts/legend.php');
-        require_once('gcharts/textStyle.php');
-        require_once('gcharts/tooltip.php');
+        require_once('gcharts/configs/DataTable.php');
+        require_once('gcharts/configs/configOptions.php');
+        require_once('gcharts/configs/backgroundColor.php');
+        require_once('gcharts/configs/chartArea.php');
+        require_once('gcharts/configs/hAxis.php');
+        require_once('gcharts/configs/legend.php');
+        require_once('gcharts/configs/textStyle.php');
+        require_once('gcharts/configs/tooltip.php');
     }
 
     /**
@@ -133,10 +133,20 @@ class Gcharts
      * @param array $options
      * @return \Gcharts
      */
-    public function AreaChart($options = array())
+    public function AreaChart($areaChartLabel = '')
     {
-        $this->AreaChart = new AreaChart($options);
-        return $this->AreaChart;
+        if(is_string($areaChartLabel) && $areaChartLabel != '')
+        {
+            if(isset(Gcharts::$areaCharts[$areaChartLabel]))
+            {
+                return Gcharts::$areaCharts[$areaChartLabel];
+            } else {
+                Gcharts::$areaCharts[$areaChartLabel] = new LineChart($areaChartLabel);
+                return Gcharts::$areaCharts[$areaChartLabel];
+            }
+        } else {
+            throw new Exception('You must provide a label for the AreaChart type (sring).');
+        }
     }
 
     /**
@@ -262,15 +272,15 @@ class Gcharts
         return substr_replace($tmp, "", -2) . ']';
     }
 
-    public function _getDataTable($dataTableLabel)
-    {
-        if(isset($this->dataTables[$dataTableLabel]))
-        {
-            return $this->dataTables[$dataTableLabel];
-        } else {
-            throw new Exception('Error, DataTable with label "'.$dataTableLabel.'" not found.');
-        }
-    }
+//    public function _getDataTable($dataTableLabel)
+//    {
+//        if(isset($this->dataTables[$dataTableLabel]))
+//        {
+//            return $this->dataTables[$dataTableLabel];
+//        } else {
+//            throw new Exception('Error, DataTable with label "'.$dataTableLabel.'" not found.');
+//        }
+//    }
 
 }
 
