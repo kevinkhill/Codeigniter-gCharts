@@ -23,7 +23,11 @@ class Gcharts
 {
     var $config;
 
+    static $ignited;
     static $output;
+    static $masterPath;
+    static $configPath;
+    static $chartPath;
     static $dataTableVersion = '0.6';
     static $jsOpen = '<script type="text/javascript">';
     static $jsClose = '</script>';
@@ -33,30 +37,43 @@ class Gcharts
     static $areaCharts = array();
 
     /**
-     * Loads the required classes from the gcharts folder for the library to
-     * work.
+     * Loads the required classes for the library to work.
      */
     public function __construct()
     {
+        Gcharts::$masterPath = '/gcharts/';
+        Gcharts::$configPath = Gcharts::masterPath.'configs/';
+        Gcharts::$chartPath = Gcharts::masterPath.'charts/';
+        Gcharts::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
+
         $this->_getConfig();
+//        $this->_setupPaths();
 
         if(is_array($this->config->autoloadCharts) && count($this->config->autoloadCharts) > 0)
         {
             foreach($this->config->autoloadCharts as $chart)
             {
-                require_once('gcharts/charts/'.$chart.'.php');
+                require_once('/gcharts/charts/'.$chart.'.php');
             }
         }
 
 //Configuration Classes
-        require_once('gcharts/configs/DataTable.php');
-        require_once('gcharts/configs/configOptions.php');
-        require_once('gcharts/configs/backgroundColor.php');
-        require_once('gcharts/configs/chartArea.php');
-        require_once('gcharts/configs/hAxis.php');
-        require_once('gcharts/configs/legend.php');
-        require_once('gcharts/configs/textStyle.php');
-        require_once('gcharts/configs/tooltip.php');
+        $configClasses = array(
+            'configOptions',
+            'DataTable',
+            'DataCell',
+            'backgroundColor',
+            'chartArea',
+            'hAxis',
+            'legend',
+            'textStyle',
+            'tooltip'
+        );
+
+        foreach($configClasses as $configClass)
+        {
+            require_once(Gcharts::$configPath.$configClass.'.php');
+        }
     }
 
     /**
@@ -100,12 +117,16 @@ class Gcharts
     }
 
     /**
-     * Creates and returns a new DataTable object if undefined or returns the
-     * corresponding labeled DataTable if it is defined.
+     * When passed a string label, this creates and stores within the gcharts
+     * parent object a new DataTable object and returns it.
+     *
+     * If already defined, it returns the corresponding labeled DataTable.
+     *
+     * If called with no argument, it just returns a new DataTable without storing
+     * it within the parent object.
      *
      * @param string $dataTableLabel
      * @return \gcharts\DataTable DataTable object
-     * @throws Exception label missing or invalid
      */
     public function DataTable($dataTableLabel = NULL)
     {
@@ -120,7 +141,6 @@ class Gcharts
             }
         } else {
             return new DataTable();
-//            throw new Exception('You must provide a label for the DataTable type (sring).');
         }
     }
 
@@ -292,6 +312,59 @@ class Gcharts
         Gcharts::$output .= Gcharts::$jsOpen.PHP_EOL;
         Gcharts::$output .= $script;
         Gcharts::$output .= Gcharts::$jsClose.PHP_EOL;
+    }
+
+    private function _setupPaths()
+    {
+        $system_path = 'gcharts';
+
+        $working_dir = dirname(__FILE__);
+
+	if (realpath($working_dir.'/'.$system_path) !== FALSE)
+	{
+            $system_path = realpath($system_path).'/';
+	}
+
+	// ensure there's a trailing slash
+	$system_path = rtrim($system_path, '/').'/';
+
+	// Is the system path correct?
+	if ( ! is_dir($system_path))
+	{
+            exit($system_path);
+            exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: ".pathinfo(__FILE__, PATHINFO_BASENAME));
+	}
+
+	// The name of THIS file
+	define('GCHARTS_SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+
+	// The PHP file extension
+	// this global constant is deprecated.
+	(defined('EXT') ? NULL : define('EXT', '.php'));
+
+	// Path to the system folder
+	define('GCHARTS_BASEPATH', str_replace("\\", "/", $system_path));
+
+	// Path to the front controller (this file)
+	define('GCHARTS_SUPERPATH', str_replace(SELF, '', __FILE__));
+
+	// Name of the "system folder"
+//	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
+
+	// The path to the "application" folder
+	if (is_dir('gcharts'))
+	{
+            define('GCHARTS_APPPATH', $application_folder.'/');
+	}
+	else
+	{
+            if ( ! is_dir(GCHARTS_BASEPATH.'gcharts/'))
+            {
+                exit("Your application folder path does not appear to be set correctly. Please open the following file and correct this: ".SELF);
+            }
+
+            define('APPPATH', BASEPATH.$application_folder.'/');
+	}
     }
 
     private function _getConfig()

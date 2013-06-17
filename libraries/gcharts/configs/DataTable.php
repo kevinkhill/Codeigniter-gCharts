@@ -23,11 +23,6 @@ class DataTable
     var $cols = array();
     var $rows = array();
 
-    public function __construct()
-    {
-        require_once('DataCell.php');
-    }
-
     /**
      * Adds a column to the DataTable
      *
