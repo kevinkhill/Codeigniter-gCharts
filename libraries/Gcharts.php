@@ -203,6 +203,26 @@ class Gcharts
     }
 
     /**
+     * Builds a div html element for a chart to be rendered into.
+     *
+     * This is useful for the AnnotatedTimeLine Chart since it MUST have explicitly
+     * defined dimensions of the div it is rendered into.
+     *
+     * The other charts do not require height and width, but do require an ID of
+     * the div that will be receiving the chart.
+     *
+     * @param string $elementID
+     * @param int $width
+     * @param int $height
+     * @return string HTML div element
+     */
+    public function div($elementID, $width = 960, $height = 540)
+    {
+        $format = '<div id="%s" width="%s" height="%s"></div>';
+        return sprintf($format, $elementID, $width, $height);
+    }
+
+    /**
      * Builds the Javascript code block
      *
      * This will build the script block for the actual chart and passes it
