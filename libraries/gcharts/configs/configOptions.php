@@ -120,4 +120,4 @@ class configOptions
 }
 
 /* End of file configOptions.php */
-/* Location: ./application/libraries/gcharts/configOptions.php */
+/* Location: ./gcharts/configs/configOptions.php */

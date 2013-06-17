@@ -509,4 +509,4 @@ class LineChart
 }
 
 /* End of file LineChart.php */
-/* Location: ./application/libraries/gcharts/LineChart.php */
+/* Location: ./gcharts/charts/LineChart.php */

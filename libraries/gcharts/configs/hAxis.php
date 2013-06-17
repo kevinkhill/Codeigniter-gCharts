@@ -196,4 +196,4 @@ class hAxis extends configOptions
 }
 
 /* End of file hAxis.php */
-/* Location: ./application/libraries/gcharts/hAxis.php */
+/* Location: ./gcharts/configs/hAxis.php */

@@ -128,4 +128,4 @@ class legend extends configOptions
 }
 
 /* End of file legend.php */
-/* Location: ./application/libraries/gcharts/legend.php */
+/* Location: ./gcharts/configs/legend.php */

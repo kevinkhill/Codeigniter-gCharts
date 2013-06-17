@@ -54,4 +54,4 @@ class description
 }
 
 /* End of file description.php */
-/* Location: ./application/libraries/gcharts/description.php */
+/* Location: ./gcharts/configs/description.php */

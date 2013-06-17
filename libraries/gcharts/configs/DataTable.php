@@ -447,4 +447,4 @@ class DataTable
 }
 
 /* End of file DataTable.php */
-/* Location: ./application/libraries/gcharts/DataTable.php */
+/* Location: ./gcharts/configs/DataTable.php */

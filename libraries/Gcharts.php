@@ -46,11 +46,12 @@ class Gcharts
 
 //Configuration Classes
         $configClasses = array(
-            'configOptions',
             'DataTable',
             'DataCell',
+            'configOptions',
             'backgroundColor',
             'chartArea',
+            'jsDate',
             'hAxis',
             'legend',
             'textStyle',
@@ -347,4 +348,4 @@ class Gcharts
 }
 
 /* End of file Gcharts.php */
-/* Location: ./application/libraries/Gcharts.php */
+/* Location: ./Gcharts.php */

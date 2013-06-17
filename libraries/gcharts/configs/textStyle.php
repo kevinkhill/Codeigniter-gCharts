@@ -86,4 +86,4 @@ class textStyle extends configOptions
 }
 
 /* End of file textStyle.php */
-/* Location: ./application/libraries/gcharts/textStyle.php */
+/* Location: ./gcharts/configs/textStyle.php */

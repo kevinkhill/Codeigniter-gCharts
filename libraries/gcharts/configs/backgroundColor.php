@@ -122,4 +122,4 @@ class backgroundColor extends configOptions
 }
 
 /* End of file backgroundColor.php */
-/* Location: ./application/libraries/gcharts/backgroundColor.php */
+/* Location: ./gcharts/configs/backgroundColor.php */

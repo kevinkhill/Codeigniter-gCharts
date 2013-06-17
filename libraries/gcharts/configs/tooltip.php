@@ -116,4 +116,4 @@ class tooltip extends configOptions
 }
 
 /* End of file tooltip.php */
-/* Location: ./application/libraries/gcharts/tooltip.php */
+/* Location: ./gcharts/configs/tooltip.php */

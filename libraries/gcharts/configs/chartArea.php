@@ -95,4 +95,4 @@ class chartArea extends configOptions
 }
 
 /* End of file chartArea.php */
-/* Location: ./application/libraries/gcharts/chartArea.php */
+/* Location: ./gcharts/configs/chartArea.php */
