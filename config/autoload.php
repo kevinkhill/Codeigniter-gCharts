@@ -6,5 +6,6 @@
  * ------------------------------------------------------
  */
 
-$autoload['libraries'] = array('gcharts');
 $autoload['config'] = array('gcharts');
+$autoload['helper'] = array('gcharts');
+$autoload['libraries'] = array('gcharts');

@@ -320,27 +320,8 @@ class Gcharts
         Gcharts::$config->autoloadCharts = config_item('autoloadCharts');
         Gcharts::$config->useGlobalTextStyle = config_item('useGlobalTextStyle');
         Gcharts::$config->globalTextStyle = config_item('globalTextStyle');
-    }
 
-    /**
-     * Converts array to string
-     *
-     * Takes an array of values and ouputs them as a string between
-     * brackets and separated by a pipe.
-     *
-     * @param array $defaultValues
-     * @return string contains array values in readable form
-     */
-    public function _array_string($defaultValues)
-    {
-        $tmp = '[ ';
-
-        foreach($defaultValues as $k => $v)
-        {
-            $tmp .= $v . ' | ';
-        }
-
-        return substr_replace($tmp, "", -2) . ']';
+        echo array_string(array('asdf', 'asef', 'ADEad'));
     }
 
 }

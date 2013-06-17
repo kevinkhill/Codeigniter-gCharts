@@ -185,7 +185,7 @@ class DataTable
         } else {
             if(gettype($opt_cellArray) == 'array')
             {
-                if($this->_is_multi($opt_cellArray))
+                if(array_is_multi($opt_cellArray))
                 {
                     foreach($opt_cellArray as $prop => $value)
                     {
@@ -427,10 +427,7 @@ class DataTable
 
     public function toJSON()
     {
-
         return json_encode($this);
-
-
 
 
 //        {
@@ -447,39 +444,6 @@ class DataTable
 
     }
 
-    /**
-     * Converts array to string
-     *
-     * Takes an array of values and ouputs them as a string between
-     * brackets and separated by a pipe.
-     *
-     * @param array $defaultValues
-     * @return string contains array values in readable form
-     */
-    public function _array_string($defaultValues)
-    {
-        $tmp = '[ ';
-
-        foreach($defaultValues as $k => $v)
-        {
-            $tmp .= $v . ' | ';
-        }
-
-        return substr_replace($tmp, "", -2) . ']';
-    }
-
-    public function _is_multi($arr)
-    {
-        $rv = array_filter($arr,'is_array');
-
-        if(count($rv) > 0)
-        {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
-
-    }
 }
 
 /* End of file DataTable.php */
