@@ -49,8 +49,49 @@ class hAxis extends configOptions
     var $viewWindowMax;
     var $viewWindowMin;
 
-    public function __construct($options = array()) {
-        return $this;
+    public function __construct($options = array())
+    {
+        $this->options = array(
+            'baseline',
+            'baselineColor',
+            'direction',
+            'format',
+            'gridlines',
+            'gridlinesColor',
+            'gridlinesCount',
+            'minorGridlines',
+            'minorGridlinesColor',
+            'minorGridlinesCount',
+            'logScale',
+            'textPosition',
+            'textStyle',
+            'title',
+            'titleTextStyle',
+            'allowContainerBoundaryTextCufoff',
+            'slantedText',
+            'slantedTextAngle',
+            'maxAlternation',
+            'maxTextLines',
+            'minTextSpacing',
+            'showTextEvery',
+            'maxValue',
+            'minValue',
+            'viewWindowMode',
+            'viewWindow',
+            'viewWindowMax',
+            'viewWindowMin'
+        );
+    
+        if(is_array($options) && count($options) > 0)
+        {
+            foreach($options as $option => $value)
+            {
+                if(in_array($option, $this->options))
+                {
+                    $this->$option($value);
+                }
+            }
+        }
     }
 
     public function baseline()

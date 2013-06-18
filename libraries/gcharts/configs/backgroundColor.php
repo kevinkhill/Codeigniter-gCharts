@@ -36,20 +36,19 @@ class backgroundColor extends configOptions
      */
     public function __construct($options = array()) {
 
-        $this->options = array('stroke', 'strokeWidth', 'fill');
+        $this->options = array(
+            'stroke',
+            'strokeWidth',
+            'fill'
+        );
 
-        if(is_array($options) && count($options) > 1)
+        if(is_array($options) && count($options) > 0)
         {
             foreach($options as $option => $value)
             {
                 if(in_array($option, $this->options))
                 {
-                    if($option == 'strokeWidth')
-                    {
-                        $this->$option = $this->_valid_int($value);
-                    } else {
-                        $this->$option = $value;
-                    }
+                    $this->$option($value);
                 }
             }
         }
