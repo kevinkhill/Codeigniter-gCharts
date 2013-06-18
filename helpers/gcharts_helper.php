@@ -32,3 +32,18 @@ function array_is_multi($arr)
         return FALSE;
     }
 }
+
+function valid_int($val)
+{
+    if(is_int($val) === TRUE)
+    {
+        return (int) $val;
+    } else if(is_string($val) === TRUE) {
+        if(ctype_digit($val) === TRUE)
+        {
+            return (int) $val;
+        }
+    } else {
+        throw new Exception('"'.$val.'" is an invalid value, must be (int) or (string) representing an int');
+    }
+}

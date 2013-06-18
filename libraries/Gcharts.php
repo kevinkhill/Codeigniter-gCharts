@@ -51,25 +51,25 @@ class Gcharts
             'configOptions',
             'backgroundColor',
             'chartArea',
-            'date',
             'hAxis',
+            'jsDate',
             'legend',
             'textStyle',
             'tooltip'
         );
 
         //Autoload Chart Classes
-        if(is_array(Gcharts::$config->autoloadCharts) && count(Gcharts::$config->autoloadCharts) > 0)
+        if(is_array(self::$config->autoloadCharts) && count(self::$config->autoloadCharts) > 0)
         {
-            foreach(Gcharts::$config->autoloadCharts as $chart)
+            foreach(self::$config->autoloadCharts as $chart)
             {
-                require_once(Gcharts::$chartPath.$chart.'.php');
+                require_once(self::$chartPath.$chart.'.php');
             }
         }
         //Load Config Classes
         foreach($configClasses as $configClass)
         {
-            require_once(Gcharts::$configPath.$configClass.'.php');
+            require_once(self::$configPath.$configClass.'.php');
         }
     }
 
@@ -130,12 +130,12 @@ class Gcharts
     {
         if(is_string($dataTableLabel) && $dataTableLabel != NULL)
         {
-            if(isset(Gcharts::$dataTables[$dataTableLabel]))
+            if(isset(self::$dataTables[$dataTableLabel]))
             {
-                return Gcharts::$dataTables[$dataTableLabel];
+                return self::$dataTables[$dataTableLabel];
             } else {
-                Gcharts::$dataTables[$dataTableLabel] = new DataTable();
-                return Gcharts::$dataTables[$dataTableLabel];
+                self::$dataTables[$dataTableLabel] = new DataTable();
+                return self::$dataTables[$dataTableLabel];
             }
         } else {
             return new DataTable();
@@ -156,12 +156,12 @@ class Gcharts
     {
         if(is_string($lineChartLabel) && $lineChartLabel != '')
         {
-            if(isset(Gcharts::$lineCharts[$lineChartLabel]))
+            if(isset(self::$lineCharts[$lineChartLabel]))
             {
-                return Gcharts::$lineCharts[$lineChartLabel];
+                return self::$lineCharts[$lineChartLabel];
             } else {
-                Gcharts::$lineCharts[$lineChartLabel] = new LineChart($lineChartLabel);
-                return Gcharts::$lineCharts[$lineChartLabel];
+                self::$lineCharts[$lineChartLabel] = new LineChart($lineChartLabel);
+                return self::$lineCharts[$lineChartLabel];
             }
         } else {
             throw new Exception('You must provide a label for the LineChart type (sring).');
@@ -182,12 +182,12 @@ class Gcharts
     {
         if(is_string($areaChartLabel) && $areaChartLabel != '')
         {
-            if(isset(Gcharts::$areaCharts[$areaChartLabel]))
+            if(isset(self::$areaCharts[$areaChartLabel]))
             {
-                return Gcharts::$areaCharts[$areaChartLabel];
+                return self::$areaCharts[$areaChartLabel];
             } else {
-                Gcharts::$areaCharts[$areaChartLabel] = new LineChart($areaChartLabel);
-                return Gcharts::$areaCharts[$areaChartLabel];
+                self::$areaCharts[$areaChartLabel] = new LineChart($areaChartLabel);
+                return self::$areaCharts[$areaChartLabel];
             }
         } else {
             throw new Exception('You must provide a label for the AreaChart type (sring).');
@@ -201,7 +201,7 @@ class Gcharts
      */
     public function getOutput()
     {
-        return Gcharts::$output;
+        return self::$output;
     }
 
     /**
@@ -237,21 +237,21 @@ class Gcharts
      */
     public static function _build_script_block($chart)
     {
-        $out = Gcharts::$googleAPI.PHP_EOL;
+        $out = self::$googleAPI.PHP_EOL;
 
         if(isset($chart->events) && is_array($chart->events) && count($chart->events) > 0)
         {
-            $out .= Gcharts::_build_event_callbacks($chart->chartType, $chart->events);
+            $out .= self::_build_event_callbacks($chart->chartType, $chart->events);
         }
 
-        $out .= Gcharts::$jsOpen.PHP_EOL;
+        $out .= self::$jsOpen.PHP_EOL;
 
         if($chart->elementID == NULL)
         {
             $out .= 'alert("Error calling '.$chart->chartType.'(\''.$chart->chartLabel.'\')->outputInto(), requires a valid html elementID.");'.PHP_EOL;
         }
 
-        if(isset($chart->data) === FALSE && isset(Gcharts::$dataTables[$chart->dataTable]) === FALSE)
+        if(isset($chart->data) === FALSE && isset(self::$dataTables[$chart->dataTable]) === FALSE)
         {
             $out .= 'alert("No DataTable has been defined for '.$chart->chartType.'(\''.$chart->chartLabel.'\').");'.PHP_EOL;
         }
@@ -266,13 +266,13 @@ class Gcharts
         {
             $data = $chart->data->toJSON();
             $format = 'var data = new google.visualization.DataTable(%s, %s);';
-            $out .= sprintf($format, $data, Gcharts::$dataTableVersion).PHP_EOL;
+            $out .= sprintf($format, $data, self::$dataTableVersion).PHP_EOL;
         }
-        if(isset(Gcharts::$dataTables[$chart->dataTable]))
+        if(isset(self::$dataTables[$chart->dataTable]))
         {
-            $data = Gcharts::$dataTables[$chart->dataTable];
+            $data = self::$dataTables[$chart->dataTable];
             $format = 'var data = new google.visualization.DataTable(%s, %s);';
-            $out .= sprintf($format, $data->toJSON(), Gcharts::$dataTableVersion).PHP_EOL;
+            $out .= sprintf($format, $data->toJSON(), self::$dataTableVersion).PHP_EOL;
         }
 //$out .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
 
@@ -292,11 +292,11 @@ class Gcharts
 
         $out .= "}".PHP_EOL;
 
-        $out .= Gcharts::$jsClose.PHP_EOL;
+        $out .= self::$jsClose.PHP_EOL;
 
-        Gcharts::$output = $out;
+        self::$output = $out;
 
-        return Gcharts::$output;
+        return self::$output;
     }
 
     /**
@@ -313,9 +313,9 @@ class Gcharts
         {
              $script .= sprintf('%s.%s = function(event) {', $chartType, $event).PHP_EOL;
 
-             $callback = Gcharts::$callbackPath.$chartType.'.'.$event.'.js';
+             $callback = self::$callbackPath.$chartType.'.'.$event.'.js';
              $callbackScript = file_get_contents($callback);
-            
+
              if($callbackScript !== FALSE)
              {
                 $script .= $callbackScript.PHP_EOL;
@@ -326,25 +326,25 @@ class Gcharts
              $script .= "};".PHP_EOL;
         }
 //var_dump($script);
-        $tmp = Gcharts::$jsOpen.PHP_EOL;
+        $tmp = self::$jsOpen.PHP_EOL;
         $tmp .= $script;
-        $tmp .= Gcharts::$jsClose.PHP_EOL;
-        
+        $tmp .= self::$jsClose.PHP_EOL;
+
         return $tmp;
     }
 
     private function _building_static()
     {
-        Gcharts::$masterPath = realpath(dirname(__FILE__)).'/gcharts/';
-        Gcharts::$configPath = Gcharts::$masterPath.'configs/';
-        Gcharts::$chartPath = Gcharts::$masterPath.'charts/';
-        Gcharts::$callbackPath = Gcharts::$masterPath.'callbacks/';
-        Gcharts::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
+        self::$masterPath = realpath(dirname(__FILE__)).'/gcharts/';
+        self::$configPath = self::$masterPath.'configs/';
+        self::$chartPath = self::$masterPath.'charts/';
+        self::$callbackPath = self::$masterPath.'callbacks/';
+        self::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
 
-        Gcharts::$config = new stdClass();
-        Gcharts::$config->autoloadCharts = config_item('autoloadCharts');
-        Gcharts::$config->useGlobalTextStyle = config_item('useGlobalTextStyle');
-        Gcharts::$config->globalTextStyle = config_item('globalTextStyle');
+        self::$config = new stdClass();
+        self::$config->autoloadCharts = config_item('autoloadCharts');
+        self::$config->useGlobalTextStyle = config_item('useGlobalTextStyle');
+        self::$config->globalTextStyle = config_item('globalTextStyle');
     }
 
 }

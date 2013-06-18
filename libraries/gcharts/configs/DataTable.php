@@ -205,7 +205,12 @@ class DataTable
                         {
                             if(isset($opt_cellArray[$b]))
                             {
-                                $rowVals[] = array('v' => $opt_cellArray[$b]);
+                                if(is_a($opt_cellArray[$b], 'jsDate'))
+                                {
+                                    $rowVals[] = array('v' => $opt_cellArray[$b]->toString());
+                                } else {
+                                    $rowVals[] = array('v' => $opt_cellArray[$b]);
+                                }
                             } else {
                                 $rowVals[] = array('v' => NULL);
                             }
