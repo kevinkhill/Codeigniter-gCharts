@@ -129,7 +129,7 @@ class legend extends configOptions
      */
     public function textStyle(textStyle $textStyle)
     {
-        if(get_class($textStyle) == 'textStyle')
+        if(is_a($textStyle, 'textStyle'))
         {
             $this->textStyle = $textStyle->values();
         } else {

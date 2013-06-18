@@ -74,7 +74,7 @@ class LineChart
             'vAxes',
             'vAxis'
         );
-        
+
         if(is_array($options) && count($options) > 0)
         {
             foreach($options as $option => $value)
@@ -356,11 +356,31 @@ class LineChart
 
     }
 
-    public function hAxis(hAxis $param)
+    /**
+     *
+     * @param hAxis $hAxis
+     * @return \LineChart
+     * @throws Exception
+     */
+    public function hAxis($hAxis)
     {
+        if(is_a($hAxis, 'hAxis'))
+        {
+            $this->addOption($hAxis->toArray());
+            return $this;
+        } else {
+            throw new Exception('Invalid hAxis, must be (object) type hAxis');
+        }
 
+        return $this;
     }
 
+    /**
+     *
+     * @param int $height
+     * @return \LineChart
+     * @throws Exception
+     */
     public function height($height)
     {
         if(is_int($height))

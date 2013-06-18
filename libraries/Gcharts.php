@@ -42,7 +42,16 @@ class Gcharts
      */
     public function __construct()
     {
-        $this->_building_static();
+        self::$masterPath = realpath(dirname(__FILE__)).'/gcharts/';
+        self::$configPath = self::$masterPath.'configs/';
+        self::$chartPath = self::$masterPath.'charts/';
+        self::$callbackPath = self::$masterPath.'callbacks/';
+        self::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
+
+        self::$config = new stdClass();
+        self::$config->autoloadCharts = config_item('autoloadCharts');
+        self::$config->useGlobalTextStyle = config_item('useGlobalTextStyle');
+        self::$config->globalTextStyle = config_item('globalTextStyle');
 
 //Configuration Classes
         $configClasses = array(
@@ -331,20 +340,6 @@ class Gcharts
         $tmp .= self::$jsClose.PHP_EOL;
 
         return $tmp;
-    }
-
-    private function _building_static()
-    {
-        self::$masterPath = realpath(dirname(__FILE__)).'/gcharts/';
-        self::$configPath = self::$masterPath.'configs/';
-        self::$chartPath = self::$masterPath.'charts/';
-        self::$callbackPath = self::$masterPath.'callbacks/';
-        self::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
-
-        self::$config = new stdClass();
-        self::$config->autoloadCharts = config_item('autoloadCharts');
-        self::$config->useGlobalTextStyle = config_item('useGlobalTextStyle');
-        self::$config->globalTextStyle = config_item('globalTextStyle');
     }
 
 }
