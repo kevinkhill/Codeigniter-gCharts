@@ -27,15 +27,19 @@ class legend extends configOptions
 
     public function __construct($options = array()) {
 
-        $this->options = array('position', 'alignment', 'textStyle');
+        $this->options = array(
+            'position',
+            'alignment',
+            'textStyle'
+        );
 
-        if(is_array($options) && count($options) > 1)
+        if(is_array($options) && count($options) > 0)
         {
             foreach($options as $option => $value)
             {
                 if(in_array($option, $this->options))
                 {
-                    $this->$option = $this->_valid_int_or_percent($value);
+                    $this->$option($value);
                 }
             }
         }
@@ -58,7 +62,13 @@ class legend extends configOptions
      */
     public function position($position = 'right')
     {
-        $values = array('right', 'top', 'bottom', 'in', 'none');
+        $values = array(
+            'right',
+            'top',
+            'bottom',
+            'in',
+            'none'
+        );
 
         if(in_array($position, $values))
         {
@@ -91,7 +101,11 @@ class legend extends configOptions
      */
     public function alignment($alignment)
     {
-        $values = array('start', 'center', 'end');
+        $values = array(
+            'start',
+            'center',
+            'end'
+        );
 
         if(in_array($alignment, $values))
         {
@@ -115,7 +129,7 @@ class legend extends configOptions
      */
     public function textStyle(textStyle $textStyle)
     {
-        if(is_a($textStyle, 'textStyle'))
+        if(get_class($textStyle) == 'textStyle')
         {
             $this->textStyle = $textStyle->values();
         } else {
