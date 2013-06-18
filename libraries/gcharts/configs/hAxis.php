@@ -466,17 +466,7 @@ class hAxis extends configOptions
 
     public function viewWindow()
     {
-
-    }
-
-    public function viewWindowMax()
-    {
-
-    }
-
-    public function viewWindowMin()
-    {
-
+//        viewWindowMax()viewWindowMin()
     }
 
 }
