@@ -219,7 +219,7 @@ class Gcharts
      */
     public function div($elementID, $width = 960, $height = 540)
     {
-        $format = '<div id="%s" width="%s" height="%s"></div>';
+        $format = '<div id="%s" style="width:%spx;height:%spx;"></div>';
         return sprintf($format, $elementID, $width, $height);
     }
 
@@ -238,9 +238,9 @@ class Gcharts
     {
         $out = Gcharts::$googleAPI.PHP_EOL;
 
-        if(isset($chart->events) && count($chart->events) > 0)
+        if(isset($chart->events) && is_array($chart->events) && count($chart->events) > 0)
         {
-            Gcharts::_build_event_callbacks($chart->chartType, $chart->events);
+            $out .= Gcharts::_build_event_callbacks($chart->chartType, $chart->events);
         }
 
         $out .= Gcharts::$jsOpen.PHP_EOL;
@@ -306,34 +306,35 @@ class Gcharts
      */
     private static function _build_event_callbacks($chartType, $chartEvents)
     {
-//        $gchartsDir = realpath(dirname(__FILE__));
-
-        $script = sprintf('if(typeof %s !== "object") { %s = {}; }', $chartType).PHP_EOL.PHP_EOL;
+        $script = sprintf('if(typeof %s !== "object") { %s = {}; }', $chartType, $chartType).PHP_EOL.PHP_EOL;
 
         foreach($chartEvents as $event)
         {
-             $script .= sprintf('%s.%s.$event." = function(event) {', $chartType, $event).PHP_EOL;
+             $script .= sprintf('%s.%s = function(event) {', $chartType, $event).PHP_EOL;
 
-             $path = Gcharts::$callbackPath.$chartType.$event.'.js';
-
-             if(($callback = file_get_contents($path)) !== FALSE)
+             $callback = Gcharts::$callbackPath.$chartType.'.'.$event.'.js';
+             $callbackScript = file_get_contents($callback);
+            
+             if($callbackScript !== FALSE)
              {
-                $script .= $callback.PHP_EOL;
+                $script .= $callbackScript.PHP_EOL;
              } else {
-                 throw new Exception('Error loading javascript file, in '.$gchartsDir.'gcharts/callbacks/'.get_class($this).$event.'.js');
+                 throw new Exception('Error loading javascript file, in '.$callback.'.js');
              }
 
              $script .= "};".PHP_EOL;
         }
-
-        Gcharts::$output .= Gcharts::$jsOpen.PHP_EOL;
-        Gcharts::$output .= $script;
-        Gcharts::$output .= Gcharts::$jsClose.PHP_EOL;
+//var_dump($script);
+        $tmp = Gcharts::$jsOpen.PHP_EOL;
+        $tmp .= $script;
+        $tmp .= Gcharts::$jsClose.PHP_EOL;
+        
+        return $tmp;
     }
 
     private function _building_static()
     {
-        Gcharts::$masterPath = '/gcharts/';
+        Gcharts::$masterPath = realpath(dirname(__FILE__)).'/gcharts/';
         Gcharts::$configPath = Gcharts::$masterPath.'configs/';
         Gcharts::$chartPath = Gcharts::$masterPath.'charts/';
         Gcharts::$callbackPath = Gcharts::$masterPath.'callbacks/';

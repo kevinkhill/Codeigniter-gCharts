@@ -54,6 +54,7 @@ class LineChart
             'colors',
             'curveType',
             'enableInteractivity',
+            'events',
             'focusTarget',
             'fontSize',
             'fontName',
@@ -73,16 +74,19 @@ class LineChart
             'vAxes',
             'vAxis'
         );
-
-        foreach($options as $oKey => $oVal)
+        
+        if(is_array($options) && count($options) > 0)
         {
-            if(in_array($oKey, $defaultOptions))
+            foreach($options as $option => $value)
             {
-                if(method_exists($this, $oKey))
+                if(in_array($option, $defaultOptions))
                 {
-                    $this->$oKey($oVal);
-                } else {
-                    $this->addOption($oVal);
+                    if(method_exists($this, $option))
+                    {
+                        $this->$option($value);
+                    } else {
+                        $this->addOption($value);
+                    }
                 }
             }
         }
@@ -184,11 +188,11 @@ class LineChart
                 {
                     $this->events[] = $event;
                 } else {
-                    throw new Exception('Invalid events array key value, must be (string) with any key '.$this->_array_string($values));
+                    throw new Exception('Invalid events array key value, must be (string) with any key '.array_string($values));
                 }
             }
         } else {
-            throw new Exception('Invalid events type, must be (array) containing any key '.$this->_array_string($values));
+            throw new Exception('Invalid events type, must be (array) containing any key '.array_string($values));
         }
 
         return $this;
@@ -217,7 +221,7 @@ class LineChart
 //            $this->easing = $easing;
 //            return $this;
 //        } else {
-//            throw new Exception('Invalid animationEasing value, must be (string) '.$this->_array_string($values));
+//            throw new Exception('Invalid animationEasing value, must be (string) '.array_string($values));
 //        }
 //
 //        return $this;
@@ -262,7 +266,7 @@ class LineChart
             $this->addOption(array('axisTitlesPosition' => $position));
             return $this;
         } else {
-            throw new Exception('Invalid axisTitlesPosition, must be (string) '.$this->_array_string($values));
+            throw new Exception('Invalid axisTitlesPosition, must be (string) '.array_string($values));
         }
     }
 
@@ -328,7 +332,7 @@ class LineChart
             $this->addOption(array('curveType' => (string) $curveType));
             return $this;
         } else {
-            throw new Exception('Invalid curveType, must be (string) '.$this->_array_string($values));
+            throw new Exception('Invalid curveType, must be (string) '.array_string($values));
         }
     }
 
@@ -453,7 +457,7 @@ class LineChart
             $this->addOption(array('titlePosition' => $position));
             return $this;
         } else {
-            throw new Exception('Invalid axisTitlesPosition, must be (string) '.$this->_array_string($values));
+            throw new Exception('Invalid axisTitlesPosition, must be (string) '.array_string($values));
         }
     }
 

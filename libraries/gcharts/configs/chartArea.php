@@ -28,15 +28,20 @@ class chartArea extends configOptions
 
     public function __construct($options = array()) {
 
-        $this->options = array('left', 'top', 'width', 'height');
+        $this->options = array(
+            'left',
+            'top',
+            'width',
+            'height'
+        );
 
-        if(is_array($options) && count($options) > 1)
+        if(is_array($options) && count($options) > 0)
         {
             foreach($options as $option => $value)
             {
                 if(in_array($option, $this->options))
                 {
-                    $this->$option = $this->_valid_int_or_percent($value);
+                    $this->$option($value);
                 }
             }
         }
