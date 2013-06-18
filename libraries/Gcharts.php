@@ -51,7 +51,7 @@ class Gcharts
             'configOptions',
             'backgroundColor',
             'chartArea',
-            'jsDate',
+            'date',
             'hAxis',
             'legend',
             'textStyle',
@@ -100,8 +100,9 @@ class Gcharts
     {
         $configObjects = array(
             'chartArea',
-            'textStyle',
+            'date',
             'legend',
+            'textStyle',
             'tooltip'
         );
 
