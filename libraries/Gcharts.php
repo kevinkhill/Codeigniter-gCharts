@@ -23,19 +23,29 @@ class Gcharts
 {
     static $config;
     static $ignited;
+
     static $output;
+    static $elementID;
     static $masterPath;
     static $configPath;
     static $chartPath;
     static $callbackPath;
+
     static $dataTableVersion = '0.6';
     static $jsOpen = '<script type="text/javascript">';
     static $jsClose = '</script>';
     static $googleAPI = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>';
+
+    static $supportedCharts = array(
+        'LineChart'
+    );
+
     static $dataTables = array();
     static $lineCharts = array();
     static $areaCharts = array();
     static $pieCharts = array();
+
+    static $errorLog = array();
 
     /**
      * Loads the required classes for the library to work.
@@ -50,15 +60,17 @@ class Gcharts
 
         self::$config = new stdClass();
         self::$config->autoloadCharts = config_item('autoloadCharts');
-        self::$config->useGlobalTextStyle = config_item('useGlobalTextStyle');
-        self::$config->globalTextStyle = config_item('globalTextStyle');
+
+// @TODO: build this functionality
+//        self::$config->useGlobalTextStyle = config_item('useGlobalTextStyle');
+//        self::$config->globalTextStyle = config_item('globalTextStyle');
 
 //Configuration Classes
         $configClasses = array(
+            'configOptions',
             'Axis',
             'DataTable',
             'DataCell',
-            'configOptions',
             'backgroundColor',
             'chartArea',
             'hAxis',
@@ -81,6 +93,34 @@ class Gcharts
         foreach($configClasses as $configClass)
         {
             require_once(self::$configPath.$configClass.'.php');
+        }
+    }
+
+    public function __call($member, $arguments)
+    {
+        if(in_array($member, self::$supportedCharts))
+        {
+            return $this->Chart($member, $arguments[0]);
+        } else {
+            //@TODO: ERRORS
+        }
+    }
+
+    public function Chart($chartType, $chartLabel)
+    {
+        if(is_string($chartLabel) && $chartLabel != '')
+        {
+            $chartStorage = lcfirst($chartType) . 's';
+
+            if(isset(self::${$chartStorage}[$chartLabel]))
+            {
+                return self::${$chartStorage}[$chartLabel];
+            } else {
+                self::${$chartStorage}[$chartLabel] = new $chartType($chartLabel);
+                return self::${$chartStorage}[$chartLabel];
+            }
+        } else {
+            return new $chartType();
         }
     }
 
@@ -107,27 +147,27 @@ class Gcharts
      * @return \configs\configOptions
      * @throws Exception invalid config object
      */
-    public function configObj($type)
-    {
-        $configObjects = array(
-            'chartArea',
-            'date',
-            'legend',
-            'textStyle',
-            'tooltip'
-        );
-
-        if(in_array($type, $configObjects))
-        {
-            return new $type();
-        } else {
-            throw new Exception('Error, "'.$type.'" is not a valid config object');
-        }
-    }
+//    public function configObj($type)
+//    {
+//        $configObjects = array(
+//            'chartArea',
+//            'date',
+//            'legend',
+//            'textStyle',
+//            'tooltip'
+//        );
+//
+//        if(in_array($type, $configObjects))
+//        {
+//            return new $type();
+//        } else {
+//            throw new Exception('Error, "'.$type.'" is not a valid config object');
+//        }
+//    } @TODO: Depreciated
 
     /**
-     * When passed a string label, this creates and stores within the gcharts
-     * parent object a new DataTable object and returns it.
+     * When passed a label as a (string), this creates and stores a new DataTable
+     * object within the Gcharts parent object and returns it.
      *
      * If already defined, it returns the corresponding labeled DataTable.
      *
@@ -135,11 +175,11 @@ class Gcharts
      * it within the parent object.
      *
      * @param string $dataTableLabel
-     * @return \gcharts\DataTable DataTable object
+     * @return \gcharts\DataTable
      */
-    public function DataTable($dataTableLabel = NULL)
+    public function DataTable($dataTableLabel)
     {
-        if(is_string($dataTableLabel) && $dataTableLabel != NULL)
+        if(is_string($dataTableLabel) && $dataTableLabel != '')
         {
             if(isset(self::$dataTables[$dataTableLabel]))
             {
@@ -154,16 +194,20 @@ class Gcharts
     }
 
     /**
-     * Creates a new LineChart object
+     * LineChart Object
      *
-     * Pass an array with the first item as the label for the xAxis, the second
-     * item being the label for the first set of data, the third item for the
-     * second set of data, etc...
+     * When passed a label as a (string), this creates and stores a new LineChart
+     * object within the Gcharts parent object and returns it.
      *
-     * @param array $options
-     * @return \Gcharts
+     * If already defined, it returns the corresponding labeled LineChart.
+     *
+     * If called with no argument, it just returns a new LineChart without storing
+     * it within the parent object.
+     *
+     * @param string $lineChartLabel
+     * @return \charts\LineChart
      */
-    public function LineChart($lineChartLabel = '')
+    public function LineChart1($lineChartLabel)
     {
         if(is_string($lineChartLabel) && $lineChartLabel != '')
         {
@@ -175,21 +219,25 @@ class Gcharts
                 return self::$lineCharts[$lineChartLabel];
             }
         } else {
-            throw new Exception('You must provide a label for the LineChart type (sring).');
+            return new LineChart();
         }
     }
 
     /**
-     * Creates a new AreaChart object
+     * AreaChart Object
      *
-     * Pass an array with the first item as the label for the xAxis, the second
-     * item being the label for the first set of data, the third item for the
-     * second set of data, etc...
+     * When passed a label as a (string), this creates and stores a new AreaChart
+     * object within the Gcharts parent object and returns it.
      *
-     * @param array $options
-     * @return \Gcharts
+     * If already defined, it returns the corresponding labeled AreaChart.
+     *
+     * If called with no argument, it just returns a new AreaChart without storing
+     * it within the parent object.
+     *
+     * @param string $areaChartLabel
+     * @return \charts\AreaChart
      */
-    public function AreaChart($areaChartLabel = '')
+    public function AreaChart1($areaChartLabel)
     {
         if(is_string($areaChartLabel) && $areaChartLabel != '')
         {
@@ -201,7 +249,7 @@ class Gcharts
                 return self::$areaCharts[$areaChartLabel];
             }
         } else {
-            throw new Exception('You must provide a label for the AreaChart type (sring).');
+            return new AreaChart();
         }
     }
 
@@ -218,21 +266,78 @@ class Gcharts
     /**
      * Builds a div html element for a chart to be rendered into.
      *
+     * Passing two (int)s will set the width and height respectivly and the div
+     * ID will be set via the string given in the outputInto() function.
+     *
+     * Passing a (string) and two (int)s will set div's ID, and set the width
+     * and height respectivly
+     *
+     *
      * This is useful for the AnnotatedTimeLine Chart since it MUST have explicitly
      * defined dimensions of the div it is rendered into.
      *
      * The other charts do not require height and width, but do require an ID of
      * the div that will be receiving the chart.
      *
-     * @param string $elementID
-     * @param int $width
-     * @param int $height
      * @return string HTML div element
      */
-    public function div($elementID, $width = 960, $height = 540)
+    // @TODO: Fix up this function
+    public function div()//string $elementID = '', int $width = 960, int $height = 540)
     {
         $format = '<div id="%s" style="width:%spx;height:%spx;"></div>';
-        return sprintf($format, $elementID, $width, $height);
+        $args = array();
+
+        for($i = 0; $i < func_num_args(); $i++)
+        {
+            $args[$i] = func_get_arg($i);
+        }
+
+        switch(func_num_args())
+        {
+            case 0:
+                if(isset(self::$elementID))
+                {
+                    return sprintf($format, self::$elementID, 1280, 720);
+                } else {
+                    //error, not set
+                }
+            break;
+
+            case 2:
+                if(is_int($args[0]) && is_int($args[1]))
+                {
+                    if(isset(self::$elementID))
+                    {
+                        return sprintf($format, self::$elementID, $width, $height);
+                    } else {
+                        //error, not set
+                    }
+                } else {
+                    // invalid params, int int
+                }
+            break;
+
+            case 3:
+                if(is_string($args[0]) && is_int($args[1]) && is_int($args[2]))
+                {
+                    return sprintf($format, $args[0], $args[1], $args[2]);
+                } else {
+                    // invalid params, string int int
+                }
+            break;
+
+            default:
+                if(func_num_args() > 3)
+                {
+                    //TOO MANY
+                }
+
+                if(func_num_args() == 1)
+                {
+                    //NOT ENOUGH
+                }
+            break;
+        }
     }
 
     /**
@@ -248,6 +353,8 @@ class Gcharts
      */
     public static function _build_script_block($chart)
     {
+        self::$elementID = $chart->elementID;
+
         $out = self::$googleAPI.PHP_EOL;
 
         if(isset($chart->events) && is_array($chart->events) && count($chart->events) > 0)

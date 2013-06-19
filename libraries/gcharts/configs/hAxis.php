@@ -79,7 +79,7 @@ class hAxis extends Axis
             'viewWindow'
         );
 
-        return parent::__constructor();
+        return parent::__construct();
     }
 
     /**
