@@ -159,8 +159,6 @@ class LineChart
     }
 
     /**
-     * Register Events
-     *
      * Register javascript callbacks for specific events. Valid values include
      * [ animationfinish | error | onmouseover | onmouseout | ready | select ]
      * associated to a respective pre-defined javascript function as the callback.
@@ -271,8 +269,6 @@ class LineChart
     }
 
     /**
-     * Chart Area
-     *
      * An object with members to configure the placement and size of the chart area
      * (where the chart itself is drawn, excluding axis and legends).
      * Two formats are supported: a number, or a number followed by %.
@@ -294,8 +290,6 @@ class LineChart
     }
 
     /**
-     * Chart Element Colors
-     *
      * The colors to use for the chart elements. An array of strings, where each
      * element is an HTML color string, for example: colors:['red','#004411'].
      *
@@ -316,6 +310,7 @@ class LineChart
 
     /**
      * Controls the curve of the lines when the line width is not zero. Can be one of the following:
+     *
      * 'none' - Straight lines without curve.
      * 'function' - The angles of the line will be smoothed.
      *
@@ -357,6 +352,9 @@ class LineChart
     }
 
     /**
+     * An object with members to configure various horizontal axis elements. To
+     * specify properties of this property, create a new hAxis() object, set
+     * the values then pass it to this function or to the constructor.
      *
      * @param hAxis $hAxis
      * @return \LineChart
@@ -376,6 +374,7 @@ class LineChart
     }
 
     /**
+     * Height of the chart, in pixels.
      *
      * @param int $height
      * @return \LineChart
@@ -397,42 +396,86 @@ class LineChart
 
     }
 
-    public function interpolateNulls($param)
+    /**
+     * Whether to guess the value of missing points. If true, it will guess the
+     * value of any missing data based on neighboring points. If false, it will
+     * leave a break in the line at the unknown point.
+     *
+     * @param boolean $interpolateNulls
+     * @return \LineChart
+     */
+    public function interpolateNulls($interpolateNulls)
     {
+        if(is_bool($interpolateNulls))
+        {
+            $this->interpolateNulls = $interpolateNulls;
+        } else {
+            $this->interpolateNulls = FALSE;
+        }
 
+        return $this;
     }
 
+    /**
+     * An object with members to configure various aspects of the legend. To
+     * specify properties of this object, create a new legend() object, set the
+     * values then pass it to this function or to the constructor.
+     *
+     * @param legend $legendObj
+     * @return \LineChart
+     * @throws Exception
+     */
     public function legend(legend $legendObj)
     {
         if(is_a($legendObj, 'legend'))
         {
             $this->addOption($legendObj->toArray());
-            return $this;
         } else {
             throw new Exception('Invalid legend, must be (object) type legend');
         }
+
+        return $this;
     }
 
+    /**
+     * Data line width in pixels. Use zero to hide all lines and show only the
+     * points. You can override values for individual series using the series
+     * property.
+     *
+     * @param int $width
+     * @return \LineChart
+     * @throws Exception
+     */
     public function lineWidth($width = 2)
     {
         if(is_int($width))
         {
             $this->addOption(array('lineWidth' => $width));
-            return $this;
         } else {
             throw new Exception('Invalid lineWidth, must be (int)');
         }
+
+        return $this;
     }
 
+    /**
+     * Diameter of displayed points in pixels. Use zero to hide all points. You
+     * can override values for individual series using the series property.
+     *
+     * @param int $size
+     * @return \LineChart
+     * @throws Exception
+     */
     public function pointSize($size = 0)
     {
         if(is_int($size))
         {
             $this->addOption(array('pointSize' => $size));
-            return $this;
         } else {
             throw new Exception('Invalid pointSize, must be (int)');
         }
+
+        return $this;
     }
 
     public function reverseCatagories($param)
@@ -450,6 +493,12 @@ class LineChart
 
     }
 
+    /**
+     * Text to display above the chart.
+     *
+     * @param string $title
+     * @return \LineChart
+     */
     public function title($title = '')
     {
         $this->addOption(array('title' => (string) $title));
@@ -457,51 +506,92 @@ class LineChart
         return $this;
     }
 
+    /**
+     * An object with members to configure various tooltip elements. To specify
+     * properties of this object, create a new tooltip() object, set the values
+     * then pass it to this function or to the constructor.
+     *
+     * @param tooltip $tooltipObj
+     * @return \LineChart
+     * @throws Exception
+     */
     public function tooltip(tooltip $tooltipObj)
     {
         if(is_a($tooltipObj, 'tooltip'))
         {
             $this->addOption($tooltipObj->toArray());
-            return $this;
         } else {
             throw new Exception('Invalid tooltip, must be (object) type tooltip');
         }
+
+        return $this;
     }
 
+    /**
+     * Where to place the chart title, compared to the chart area. Supported values:
+     * 'in' - Draw the title inside the chart area.
+     * 'out' - Draw the title outside the chart area.
+     * 'none' - Omit the title.
+     *
+     * @param string $position
+     * @return \LineChart
+     * @throws Exception
+     */
     public function titlePosition($position)
     {
-        $values = array('in', 'out', 'none');
+        $values = array(
+            'in',
+            'out',
+            'none'
+        );
 
         if(in_array($position, $values))
         {
             $this->addOption(array('titlePosition' => $position));
-            return $this;
         } else {
             throw new Exception('Invalid axisTitlesPosition, must be (string) '.array_string($values));
         }
+
+        return $this;
     }
 
+    /**
+     * An object that specifies the title text style. create a new textStyle()
+     * object, set the values then pass it to this function or to the constructor.
+     *
+     * @param textStyle $textStyleObj
+     * @return \LineChart
+     * @throws Exception
+     */
     public function titleTextStyle(textStyle $textStyleObj)
     {
         if(is_a($textStyleObj, 'textStyle'))
         {
             $this->addOption(array('titleTextStyle' => $textStyleObj->values()));
-            return $this;
         } else {
             throw new Exception('Invalid titleTextStyle, must be (object) type textStyle');
         }
+
+        return $this;
     }
 
-
+    /**
+     * Width of the chart, in pixels.
+     *
+     * @param int $width
+     * @return \LineChart
+     * @throws Exception
+     */
     public function width($width)
     {
         if(is_int($width))
         {
             $this->addOption(array('width' => $width));
-            return $this;
         } else {
             throw new Exception('Invalid width, must be (int)');
         }
+
+        return $this;
     }
 
     /**

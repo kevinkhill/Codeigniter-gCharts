@@ -20,7 +20,7 @@
 
 class hAxis extends configOptions
 {
-    var $baseline;
+    private $baseline;
     var $baselineColor = 'black';
     var $direction = 1;
     var $format;
@@ -40,7 +40,7 @@ class hAxis extends configOptions
     var $showTextEvery;
     var $maxValue;
     var $minValue;
-    var $viewWindowMode;
+    var $viewWindowMode = NULL;
     var $viewWindow = NULL;
 
     /**
@@ -384,7 +384,7 @@ class hAxis extends configOptions
     {
         if(is_a($titleTextStyle, 'textStyle'))
         {
-            $this->textStyle = $titleTextStyle->values();
+            $this->titleTextStyle = $titleTextStyle->values();
         } else {
             throw new Exception('Invalid titleTextStyle, must be (object) type textStyle');
         }
@@ -578,9 +578,9 @@ class hAxis extends configOptions
     {
         if(valid_int($max))
         {
-            $this->max = $max;
+            $this->maxValue = $max;
         } else {
-            $this->max = NULL;
+            $this->maxValue = NULL;
         }
 
         return $this;
@@ -600,9 +600,9 @@ class hAxis extends configOptions
     {
         if(valid_int($min))
         {
-            $this->min = $min;
+            $this->minValue = $min;
         } else {
-            $this->min = NULL;
+            $this->minValue = NULL;
         }
 
         return $this;
@@ -658,13 +658,13 @@ class hAxis extends configOptions
      * For a discrete axis:
      * 'min' - The zero-based row index where the cropping window begins. Data
      * points at indices lower than this will be cropped out. In conjunction with
-     * vAxis->viewWindowMode['max'], it defines a half-opened range (min, max)
+     * vAxis->viewWindow['max'], it defines a half-opened range (min, max)
      * that denotes the element indices to display. In other words, every index
      * such that min <= index < max will be displayed.
      *
      * 'max' - The zero-based row index where the cropping window ends. Data
      * points at this index and higher will be cropped out. In conjunction with
-     * vAxis->viewWindowMode['min'], it defines a half-opened range (min, max)
+     * vAxis->viewWindow['min'], it defines a half-opened range (min, max)
      * that denotes the element indices to display. In other words, every index
      * such that min <= index < max will be displayed.
      *
@@ -677,17 +677,14 @@ class hAxis extends configOptions
 
         if(is_array($viewWindow))
         {
-            if(array_key_exists('min', $viewWindow))
+            if(array_key_exists('min', $viewWindow) && array_key_exists('max', $viewWindow))
             {
                 $tmp['viewWindowMin'] = $viewWindow['min'];
+                $tmp['viewWindowMax'] = $viewWindow['max'];
+
+                $this->viewWindowMode = 'explicit';
             } else {
                 $tmp['viewWindowMin'] = NULL;
-            }
-
-            if(array_key_exists('max', $viewWindow))
-            {
-                $tmp['viewWindowMax'] = $viewWindow['max'];
-            } else {
                 $tmp['viewWindowMax'] = NULL;
             }
 
