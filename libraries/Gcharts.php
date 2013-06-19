@@ -55,6 +55,7 @@ class Gcharts
 
 //Configuration Classes
         $configClasses = array(
+            'Axis',
             'DataTable',
             'DataCell',
             'configOptions',
@@ -64,7 +65,8 @@ class Gcharts
             'jsDate',
             'legend',
             'textStyle',
-            'tooltip'
+            'tooltip',
+            'vAxis'
         );
 
         //Autoload Chart Classes
