@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Horizontal Axis Properties Object
+ * Vertical Axis Properties Object
  *
  * An object containing all the values for the axis which can be
  * passed into the chart's options
@@ -18,7 +18,7 @@
  *
  */
 
-class hAxis extends Axis
+class vAxis extends Axis
 {
     var $baseline;
     var $baselineColor = 'black';
@@ -32,8 +32,6 @@ class hAxis extends Axis
     var $title = NULL;
     var $titleTextStyle;
     var $allowContainerBoundaryTextCufoff = FALSE;
-    var $slantedText;
-    var $slantedTextAngle = 30;
     var $maxAlternation = 2;
     var $maxTextLines;
     var $minTextSpacing;
@@ -44,7 +42,7 @@ class hAxis extends Axis
     var $viewWindow = NULL;
 
     /**
-     * Stores all the information about the horizontal axis. All options can be
+     * Stores all the information about the vertical axis. All options can be
      * set either by passing an array with associative values for option =>
      * value, or by chaining together the functions once an object has been
      * created.
@@ -67,8 +65,6 @@ class hAxis extends Axis
             'title',
             'titleTextStyle',
             'allowContainerBoundaryTextCufoff',
-            'slantedText',
-            'slantedTextAngle',
             'maxAlternation',
             'maxTextLines',
             'minTextSpacing',

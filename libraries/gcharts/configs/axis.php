@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Horizontal Axis Properties Object
+ * Axis Properties Parent Object
  *
  * An object containing all the values for the axis which can be
  * passed into the chart's options
@@ -18,33 +18,10 @@
  *
  */
 
-class hAxis extends Axis
+class Axis extends configOptions
 {
-    var $baseline;
-    var $baselineColor = 'black';
-    var $direction = 1;
-    var $format;
-    var $gridlines;
-    var $minorGridlines;
-    var $logScale = FALSE;
-    var $textPosition = 'out';
-    var $textStyle;
-    var $title = NULL;
-    var $titleTextStyle;
-    var $allowContainerBoundaryTextCufoff = FALSE;
-    var $slantedText;
-    var $slantedTextAngle = 30;
-    var $maxAlternation = 2;
-    var $maxTextLines;
-    var $minTextSpacing;
-    var $showTextEvery;
-    var $maxValue;
-    var $minValue;
-    var $viewWindowMode = NULL;
-    var $viewWindow = NULL;
-
     /**
-     * Stores all the information about the horizontal axis. All options can be
+     * Stores all the information about the axis. All options can be
      * set either by passing an array with associative values for option =>
      * value, or by chaining together the functions once an object has been
      * created.
@@ -54,32 +31,18 @@ class hAxis extends Axis
      */
     public function __construct($options = array())
     {
-        $this->options = array(
-            'baseline',
-            'baselineColor',
-            'direction',
-            'format',
-            'gridlines',
-            'minorGridlines',
-            'logScale',
-            'textPosition',
-            'textStyle',
-            'title',
-            'titleTextStyle',
-            'allowContainerBoundaryTextCufoff',
-            'slantedText',
-            'slantedTextAngle',
-            'maxAlternation',
-            'maxTextLines',
-            'minTextSpacing',
-            'showTextEvery',
-            'maxValue',
-            'minValue',
-            'viewWindowMode',
-            'viewWindow'
-        );
+        if(is_array($options) && count($options) > 0)
+        {
+            foreach($options as $option => $value)
+            {
+                if(in_array($option, $this->options))
+                {
+                    $this->$option($value);
+                }
+            }
+        }
 
-        return parent::__constructor();
+        return $this;
     }
 
     /**

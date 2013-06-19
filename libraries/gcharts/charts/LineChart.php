@@ -391,9 +391,22 @@ class LineChart
         }
     }
 
-    public function isHtml($param)
+    /**
+     * If set to true, use HTML-rendered (rather than SVG-rendered) tooltips.
+     *
+     * @param boolean $isHTML
+     * @return \LineChart
+     */
+    public function isHtml($isHTML)
     {
+        if(is_bool($isHTML))
+        {
+            $this->isHTML = $isHTML;
+        } else {
+            $this->isHTML = FALSE;
+        }
 
+        return $this;
     }
 
     /**
