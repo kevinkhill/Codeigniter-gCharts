@@ -41,9 +41,7 @@ class hAxis extends configOptions
     var $maxValue;
     var $minValue;
     var $viewWindowMode;
-    var $viewWindow;
-    var $viewWindowMax;
-    var $viewWindowMin;
+    var $viewWindow = NULL;
 
     /**
      * hAxis Object
@@ -621,16 +619,27 @@ class hAxis extends configOptions
      *
      * This option is only supported for a continuous axis.
      *
-     * @param type $viewMode
+     * @param string $viewMode
      * @return \hAxis
      */
     public function viewWindowMode($viewMode)
     {
-        if(true)
+        $values = array(
+            'pretty',
+            'maximized',
+            'explicit',
+        );
+
+        if($this->viewWindow == NULL)
         {
-
+            $this->viewWindowMode = 'pretty';
         } else {
-
+            if(in_array($viewMode, $values))
+            {
+                $this->viewWindowMode = $viewMode;
+            } else {
+                $this->viewWindowMode = 'explicit';
+            }
         }
 
         return $this;
@@ -665,16 +674,20 @@ class hAxis extends configOptions
 
         if(is_array($viewWindow))
         {
-            if(array_key_exists('min', $viewWindow) && array_key_exists('max', $viewWindow))
+            if(array_key_exists('min', $viewWindow))
             {
                 $tmp['viewWindowMin'] = $viewWindow['min'];
-                $tmp['viewWindowMax'] = $viewWindow['max'];
-
-                $this->viewWindow = $tmp;
             } else {
-                $this->viewWindow = $tmp;
+                $tmp['viewWindowMin'] = NULL;
             }
-        } else {
+
+            if(array_key_exists('max', $viewWindow))
+            {
+                $tmp['viewWindowMax'] = $viewWindow['max'];
+            } else {
+                $tmp['viewWindowMax'] = NULL;
+            }
+
             $this->viewWindow = $tmp;
         }
 
