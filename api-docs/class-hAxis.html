@@ -6,8 +6,8 @@
 
 	<title>Class hAxis | Codeigniter-gCharts</title>
 
-	<script type="text/javascript" src="resources/combined.js?2248719689"></script>
-	<script type="text/javascript" src="elementlist.js?1125606565"></script>
+	<script type="text/javascript" src="resources/combined.js?3715972085"></script>
+	<script type="text/javascript" src="elementlist.js?2221220596"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -39,10 +39,12 @@
 				<li><a href="class-backgroundColor.html">backgroundColor</a></li>
 				<li><a href="class-chartArea.html">chartArea</a></li>
 				<li><a href="class-configOptions.html">configOptions</a></li>
+				<li><a href="class-DataCell.html">DataCell</a></li>
 				<li><a href="class-DataTable.html">DataTable</a></li>
 				<li><a href="class-description.html">description</a></li>
 				<li><a href="class-Gcharts.html">Gcharts</a></li>
 				<li class="active"><a href="class-hAxis.html">hAxis</a></li>
+				<li><a href="class-jsDate.html">jsDate</a></li>
 				<li><a href="class-legend.html">legend</a></li>
 				<li><a href="class-LineChart.html">LineChart</a></li>
 				<li><a href="class-PieChart.html">PieChart</a></li>
@@ -54,6 +56,12 @@
 
 
 
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-array_is_multi.html">array_is_multi</a></li>
+				<li><a href="function-array_string.html">array_string</a></li>
+				<li><a href="function-valid_int.html">valid_int</a></li>
+			</ul>
 		</div>
 	</div>
 </div>
@@ -83,6 +91,9 @@
 		<ul>
 			<li>
 				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
 			</li>
 		</ul>
 		<ul>
@@ -147,7 +158,7 @@ LICENSE file</p>
 href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<br />
 				<b>Link:</b>
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">Github Page</a><br />
-		<b>Located at</b> libraries/gcharts/hAxis.php<br />
+		<b>Located at</b> <a href="source-class-hAxis.html#3-533" title="Go to source code">libraries/gcharts/configs/hAxis.php</a><br />
 	</div>
 
 
@@ -165,16 +176,29 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>mixed <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-hAxis.html#50-103" title="Go to source code">__construct</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
+<p>hAxis Object</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>hAxis Object</p>
+
+<p>Stores all the information about the horizontal axis. All options can be set
+either by passing an array with associative values for option =&gt; value, or by
+chaining together the functions once an object has been created.</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
 
 
 
@@ -187,24 +211,41 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_baseline">#</a>
-		<code>baseline( )</code>
+		<code><a href="source-class-hAxis.html#105-123" title="Go to source code">baseline</a>( <span>mixed <var>$baseline</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Baseline Position</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Baseline Position</p>
+
+<p>The baseline for the horizontal axis.</p>
+
+<p>This option is only supported for a continuous axis.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$baseline</var></dt>
+					<dd><code>mixed</code><br>$baseline</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -216,24 +257,42 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_baselineColor">#</a>
-		<code>baselineColor( )</code>
+		<code><a href="source-class-hAxis.html#125-146" title="Go to source code">baselineColor</a>( <span>string <var>$color</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Baseline Color</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Baseline Color</p>
+
+<p>The color of the baseline for the horizontal axis.</p>
+
+<p>Can be any HTML color string, for example: 'red' or '#00cc00'. This option is
+only supported for a continuous axis.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$color</var></dt>
+					<dd><code>string</code><br>$color</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -245,24 +304,40 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_direction">#</a>
-		<code>direction( )</code>
+		<code><a href="source-class-hAxis.html#148-167" title="Go to source code">direction</a>( <span>integer <var>$direction</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Text Direction</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Text Direction</p>
+
+<p>The direction in which the values along the horizontal axis grow. Specify -1
+to reverse the order of the values.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$direction</var></dt>
+					<dd><code>integer</code><br>$direction</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -274,24 +349,51 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_format">#</a>
-		<code>format( )</code>
+		<code><a href="source-class-hAxis.html#169-199" title="Go to source code">format</a>( <span>string <var>$format</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Text Formatting</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Text Formatting</p>
+
+<p>For number axis labels, this is a subset of the decimal formatting ICU
+pattern set. For instance, {format:'#,###%'} will display values "1,000%",
+"750%", and "50%" for values 10, 7.5, and 0.5.</p>
+
+<p>For date axis labels, this is a subset of the date formatting ICU pattern
+set. For instance, {format:'MMM d, y'} will display the value "Jul 1, 2011" for
+the date of July first in 2011.</p>
+
+<p>The actual formatting applied to the label is derived from the locale the API
+has been loaded with. For more details, see loading charts with a specific
+locale.</p>
+
+<p>This option is only supported for a continuous axis.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$format</var></dt>
+					<dd><code>string</code><br>$format format string for numeric or date axis labels.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -303,82 +405,44 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_gridlines">#</a>
-		<code>gridlines( )</code>
+		<code><a href="source-class-hAxis.html#201-242" title="Go to source code">gridlines</a>( <span>array <var>$gridlines</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Major Gridlines</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Major Gridlines</p>
+
+<p>An array with members to configure the gridlines on the horizontal axis. To
+specify properties of this option, use an array, as shown here:</p>
+
+<p>array('color' =&gt; '#333', 'count' =&gt; 4);</p>
+
+<p>This option is only supported for a continuous axis.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$gridlines</var></dt>
+					<dd><code>array</code><br>$gridlines</dd>
+				</dl></div>
 
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="gridlinesColor" id="_gridlinesColor">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_gridlinesColor">#</a>
-		<code>gridlinesColor( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="gridlinesCount" id="_gridlinesCount">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_gridlinesCount">#</a>
-		<code>gridlinesCount( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -390,82 +454,46 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_minorGridlines">#</a>
-		<code>minorGridlines( )</code>
+		<code><a href="source-class-hAxis.html#244-286" title="Go to source code">minorGridlines</a>( <span>array <var>$minorGridlines</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Minor Gridlines</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Minor Gridlines</p>
+
+<p>An array with members to configure the minor gridlines on the horizontal
+axis, similar to the gridlines option.</p>
+
+<p>'color' - The color of the horizontal minor gridlines inside the chart area.
+Specify a valid HTML color string. 'count' - The number of horizontal minor
+gridlines between two regular gridlines.</p>
+
+<p>This option is only supported for a continuous axis.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$minorGridlines</var></dt>
+					<dd><code>array</code><br>$minorGridlines</dd>
+				</dl></div>
 
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="minorGridlinesColor" id="_minorGridlinesColor">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_minorGridlinesColor">#</a>
-		<code>minorGridlinesColor( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="minorGridlinesCount" id="_minorGridlinesCount">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_minorGridlinesCount">#</a>
-		<code>minorGridlinesCount( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -477,24 +505,42 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_logScale">#</a>
-		<code>logScale( )</code>
+		<code><a href="source-class-hAxis.html#288-309" title="Go to source code">logScale</a>( <span>boolean <var>$log</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Scaling</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Scaling</p>
+
+<p>hAxis property that makes the horizontal axis a logarithmic scale (requires
+all values to be positive). Set to [ TRUE | FALSE ].</p>
+
+<p>This option is only supported for a continuous axis.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$log</var></dt>
+					<dd><code>boolean</code><br>$log</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -506,24 +552,40 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_textPosition">#</a>
-		<code>textPosition( )</code>
+		<code><a href="source-class-hAxis.html#311-336" title="Go to source code">textPosition</a>( <span>string <var>$position</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Text Position</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Text Position</p>
+
+<p>Position of the horizontal axis text, relative to the chart area. Supported
+values: 'out', 'in', 'none'.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$position</var></dt>
+					<dd><code>string</code><br>$position</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -535,24 +597,39 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_textStyle">#</a>
-		<code>textStyle( )</code>
+		<code><a href="source-class-hAxis.html#338-356" title="Go to source code">textStyle</a>( <span><code><a href="class-textStyle.html">textStyle</a></code> <var>$textStyle</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Text Style</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Text Style</p>
+
+<p>This function takes a textStyle object, created via "new textStyle();"</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$textStyle</var></dt>
+					<dd><code><code><a href="class-textStyle.html">textStyle</a></code></code><br>$textStyle</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -564,24 +641,39 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_title">#</a>
-		<code>title( )</code>
+		<code><a href="source-class-hAxis.html#358-376" title="Go to source code">title</a>( <span>string <var>$title</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Title</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Title</p>
+
+<p>hAxis property that specifies the title of the horizontal axis.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$title</var></dt>
+					<dd><code>string</code><br>$title</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -593,25 +685,44 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_titleTextStyle">#</a>
-		<code>titleTextStyle( )</code>
+		<code><a href="source-class-hAxis.html#378-397" title="Go to source code">titleTextStyle</a>( <span><code><a href="class-textStyle.html">textStyle</a></code> <var>$titleTextStyle</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Text Style</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Text Style</p>
+
+<p>An object that specifies the horizontal axis title text style.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$titleTextStyle</var></dt>
+					<dd><code><code><a href="class-textStyle.html">textStyle</a></code></code><br>$titleTextStyle</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+				</div>
 
 
 
@@ -622,24 +733,42 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_allowContainerBoundaryTextCufoff">#</a>
-		<code>allowContainerBoundaryTextCufoff( )</code>
+		<code><a href="source-class-hAxis.html#399-420" title="Go to source code">allowContainerBoundaryTextCufoff</a>( <span>type <var>$cutoff</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Label Cutoff</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Label Cutoff</p>
+
+<p>If false, will hide outermost labels rather than allow them to be cropped by
+the chart container. If true, will allow label cropping.</p>
+
+<p>This option is only supported for a discrete axis.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cutoff</var></dt>
+					<dd><code>type</code><br>$cutoff</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -651,24 +780,45 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_slantedText">#</a>
-		<code>slantedText( )</code>
+		<code><a href="source-class-hAxis.html#422-446" title="Go to source code">slantedText</a>( <span>boolean <var>$slant</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Label Slant</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Label Slant</p>
+
+<p>If true, draw the horizontal axis text at an angle, to help fit more text
+along the axis; if false, draw horizontal axis text upright. Default behavior is
+to slant text if it cannot all fit when drawn upright. Notice that this option
+is available only when the $this-&gt;textPosition is set to 'out' (which is the
+default).</p>
+
+<p>This option is only supported for a discrete axis.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$slant</var></dt>
+					<dd><code>boolean</code><br>$slant</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -680,24 +830,43 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_slantedTextAngle">#</a>
-		<code>slantedTextAngle( )</code>
+		<code><a href="source-class-hAxis.html#448-470" title="Go to source code">slantedTextAngle</a>( <span>integer <var>$angle</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Label Slant Angle</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Label Slant Angle</p>
+
+<p>The angle of the horizontal axis text, if it's drawn slanted. Ignored if
+hAxis.slantedText is false, or is in auto mode, and the chart decided to draw
+the text horizontally.</p>
+
+<p>This option is only supported for a discrete axis.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$angle</var></dt>
+					<dd><code>integer</code><br>$angle</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -709,24 +878,44 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-hAxis.html">hAxis</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxAlternation">#</a>
-		<code>maxAlternation( )</code>
+		<code><a href="source-class-hAxis.html#472-496" title="Go to source code">maxAlternation</a>( <span>integer <var>$alternation</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Horizontal Axis Max Alternation</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Horizontal Axis Max Alternation</p>
+
+<p>Maximum number of levels of horizontal axis text. If axis text labels become
+too crowded, the server might shift neighboring labels up or down in order to
+fit labels closer together. This value specifies the most number of levels to
+use; the server can use fewer levels, if labels can fit without overlapping.</p>
+
+<p>This option is only supported for a discrete axis.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$alternation</var></dt>
+					<dd><code>integer</code><br>$alternation</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-hAxis.html">hAxis</a></code></code><br />
+				</div>
 
 
 
@@ -745,7 +934,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxTextLines">#</a>
-		<code>maxTextLines( )</code>
+		<code><a href="source-class-hAxis.html#498-501" title="Go to source code">maxTextLines</a>( )</code>
 
 		<div class="description short">
 			
@@ -774,7 +963,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_minTextSpacing">#</a>
-		<code>minTextSpacing( )</code>
+		<code><a href="source-class-hAxis.html#503-506" title="Go to source code">minTextSpacing</a>( )</code>
 
 		<div class="description short">
 			
@@ -803,7 +992,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_showTextEvery">#</a>
-		<code>showTextEvery( )</code>
+		<code><a href="source-class-hAxis.html#508-511" title="Go to source code">showTextEvery</a>( )</code>
 
 		<div class="description short">
 			
@@ -832,7 +1021,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxValue">#</a>
-		<code>maxValue( )</code>
+		<code><a href="source-class-hAxis.html#513-516" title="Go to source code">maxValue</a>( )</code>
 
 		<div class="description short">
 			
@@ -861,7 +1050,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_minValue">#</a>
-		<code>minValue( )</code>
+		<code><a href="source-class-hAxis.html#518-521" title="Go to source code">minValue</a>( )</code>
 
 		<div class="description short">
 			
@@ -890,7 +1079,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_viewWindowMode">#</a>
-		<code>viewWindowMode( )</code>
+		<code><a href="source-class-hAxis.html#523-526" title="Go to source code">viewWindowMode</a>( )</code>
 
 		<div class="description short">
 			
@@ -919,65 +1108,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_viewWindow">#</a>
-		<code>viewWindow( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="viewWindowMax" id="_viewWindowMax">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_viewWindowMax">#</a>
-		<code>viewWindowMax( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="viewWindowMin" id="_viewWindowMin">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_viewWindowMin">#</a>
-		<code>viewWindowMin( )</code>
+		<code><a href="source-class-hAxis.html#528-531" title="Go to source code">viewWindow</a>( )</code>
 
 		<div class="description short">
 			
@@ -1030,7 +1161,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$baseline</var>		</td>
+				<a href="source-class-hAxis.html#23" title="Go to source code"><var>$baseline</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$baseline" class="anchor">#</a>
@@ -1048,12 +1180,13 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 	<tr data-order="baselineColor" id="$baselineColor">
 		<td class="attributes"><code>
 			public  
-			mixed
+			string
 		</code></td>
 
 		<td class="name">
-<var>$baselineColor</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-hAxis.html#24" title="Go to source code"><var>$baselineColor</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">'black'</span></code></td>
 		<td class="description"><div>
 			<a href="#$baselineColor" class="anchor">#</a>
 
@@ -1070,12 +1203,13 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 	<tr data-order="direction" id="$direction">
 		<td class="attributes"><code>
 			public  
-			mixed
+			integer
 		</code></td>
 
 		<td class="name">
-<var>$direction</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-hAxis.html#25" title="Go to source code"><var>$direction</var></a>
+		</td>
+		<td class="value"><code><span class="php-num">1</span></code></td>
 		<td class="description"><div>
 			<a href="#$direction" class="anchor">#</a>
 
@@ -1096,7 +1230,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$format</var>		</td>
+				<a href="source-class-hAxis.html#26" title="Go to source code"><var>$format</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$format" class="anchor">#</a>
@@ -1118,54 +1253,11 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$gridlines</var>		</td>
+				<a href="source-class-hAxis.html#27" title="Go to source code"><var>$gridlines</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$gridlines" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="gridlinesColor" id="$gridlinesColor">
-		<td class="attributes"><code>
-			public  
-			mixed
-		</code></td>
-
-		<td class="name">
-<var>$gridlinesColor</var>		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$gridlinesColor" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="gridlinesCount" id="$gridlinesCount">
-		<td class="attributes"><code>
-			public  
-			mixed
-		</code></td>
-
-		<td class="name">
-<var>$gridlinesCount</var>		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$gridlinesCount" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -1184,7 +1276,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$minorGridlines</var>		</td>
+				<a href="source-class-hAxis.html#28" title="Go to source code"><var>$minorGridlines</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$minorGridlines" class="anchor">#</a>
@@ -1206,7 +1299,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$minorGridlinesColor</var>		</td>
+				<a href="source-class-hAxis.html#29" title="Go to source code"><var>$minorGridlinesColor</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$minorGridlinesColor" class="anchor">#</a>
@@ -1228,7 +1322,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$minorGridlinesCount</var>		</td>
+				<a href="source-class-hAxis.html#30" title="Go to source code"><var>$minorGridlinesCount</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$minorGridlinesCount" class="anchor">#</a>
@@ -1246,12 +1341,13 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 	<tr data-order="logScale" id="$logScale">
 		<td class="attributes"><code>
 			public  
-			mixed
+			boolean
 		</code></td>
 
 		<td class="name">
-<var>$logScale</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-hAxis.html#31" title="Go to source code"><var>$logScale</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">FALSE</span></code></td>
 		<td class="description"><div>
 			<a href="#$logScale" class="anchor">#</a>
 
@@ -1268,12 +1364,13 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 	<tr data-order="textPosition" id="$textPosition">
 		<td class="attributes"><code>
 			public  
-			mixed
+			string
 		</code></td>
 
 		<td class="name">
-<var>$textPosition</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-hAxis.html#32" title="Go to source code"><var>$textPosition</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">'out'</span></code></td>
 		<td class="description"><div>
 			<a href="#$textPosition" class="anchor">#</a>
 
@@ -1294,7 +1391,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$textStyle</var>		</td>
+				<a href="source-class-hAxis.html#33" title="Go to source code"><var>$textStyle</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$textStyle" class="anchor">#</a>
@@ -1316,8 +1414,9 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$title</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-hAxis.html#34" title="Go to source code"><var>$title</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$title" class="anchor">#</a>
 
@@ -1338,7 +1437,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$titleTextStyle</var>		</td>
+				<a href="source-class-hAxis.html#35" title="Go to source code"><var>$titleTextStyle</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$titleTextStyle" class="anchor">#</a>
@@ -1356,12 +1456,13 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 	<tr data-order="allowContainerBoundaryTextCufoff" id="$allowContainerBoundaryTextCufoff">
 		<td class="attributes"><code>
 			public  
-			mixed
+			boolean
 		</code></td>
 
 		<td class="name">
-<var>$allowContainerBoundaryTextCufoff</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-hAxis.html#36" title="Go to source code"><var>$allowContainerBoundaryTextCufoff</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">FALSE</span></code></td>
 		<td class="description"><div>
 			<a href="#$allowContainerBoundaryTextCufoff" class="anchor">#</a>
 
@@ -1382,7 +1483,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$slantedText</var>		</td>
+				<a href="source-class-hAxis.html#37" title="Go to source code"><var>$slantedText</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$slantedText" class="anchor">#</a>
@@ -1400,12 +1502,13 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 	<tr data-order="slantedTextAngle" id="$slantedTextAngle">
 		<td class="attributes"><code>
 			public  
-			mixed
+			integer
 		</code></td>
 
 		<td class="name">
-<var>$slantedTextAngle</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-hAxis.html#38" title="Go to source code"><var>$slantedTextAngle</var></a>
+		</td>
+		<td class="value"><code><span class="php-num">30</span></code></td>
 		<td class="description"><div>
 			<a href="#$slantedTextAngle" class="anchor">#</a>
 
@@ -1422,12 +1525,13 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 	<tr data-order="maxAlternation" id="$maxAlternation">
 		<td class="attributes"><code>
 			public  
-			mixed
+			integer
 		</code></td>
 
 		<td class="name">
-<var>$maxAlternation</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-hAxis.html#39" title="Go to source code"><var>$maxAlternation</var></a>
+		</td>
+		<td class="value"><code><span class="php-num">2</span></code></td>
 		<td class="description"><div>
 			<a href="#$maxAlternation" class="anchor">#</a>
 
@@ -1448,7 +1552,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$maxTextLines</var>		</td>
+				<a href="source-class-hAxis.html#40" title="Go to source code"><var>$maxTextLines</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$maxTextLines" class="anchor">#</a>
@@ -1470,7 +1575,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$minTextSpacing</var>		</td>
+				<a href="source-class-hAxis.html#41" title="Go to source code"><var>$minTextSpacing</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$minTextSpacing" class="anchor">#</a>
@@ -1492,7 +1598,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$showTextEvery</var>		</td>
+				<a href="source-class-hAxis.html#42" title="Go to source code"><var>$showTextEvery</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$showTextEvery" class="anchor">#</a>
@@ -1514,7 +1621,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$maxValue</var>		</td>
+				<a href="source-class-hAxis.html#43" title="Go to source code"><var>$maxValue</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$maxValue" class="anchor">#</a>
@@ -1536,7 +1644,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$minValue</var>		</td>
+				<a href="source-class-hAxis.html#44" title="Go to source code"><var>$minValue</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$minValue" class="anchor">#</a>
@@ -1558,7 +1667,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$viewWindowMode</var>		</td>
+				<a href="source-class-hAxis.html#45" title="Go to source code"><var>$viewWindowMode</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$viewWindowMode" class="anchor">#</a>
@@ -1580,7 +1690,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$viewWindow</var>		</td>
+				<a href="source-class-hAxis.html#46" title="Go to source code"><var>$viewWindow</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$viewWindow" class="anchor">#</a>
@@ -1602,7 +1713,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$viewWindowMax</var>		</td>
+				<a href="source-class-hAxis.html#47" title="Go to source code"><var>$viewWindowMax</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$viewWindowMax" class="anchor">#</a>
@@ -1624,7 +1736,8 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 		</code></td>
 
 		<td class="name">
-<var>$viewWindowMin</var>		</td>
+				<a href="source-class-hAxis.html#48" title="Go to source code"><var>$viewWindowMin</var></a>
+		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$viewWindowMin" class="anchor">#</a>

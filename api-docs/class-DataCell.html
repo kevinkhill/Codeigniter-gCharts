@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class description | Codeigniter-gCharts</title>
+	<title>Class DataCell | Codeigniter-gCharts</title>
 
 	<script type="text/javascript" src="resources/combined.js?3715972085"></script>
 	<script type="text/javascript" src="elementlist.js?2221220596"></script>
@@ -39,9 +39,9 @@
 				<li><a href="class-backgroundColor.html">backgroundColor</a></li>
 				<li><a href="class-chartArea.html">chartArea</a></li>
 				<li><a href="class-configOptions.html">configOptions</a></li>
-				<li><a href="class-DataCell.html">DataCell</a></li>
+				<li class="active"><a href="class-DataCell.html">DataCell</a></li>
 				<li><a href="class-DataTable.html">DataTable</a></li>
-				<li class="active"><a href="class-description.html">description</a></li>
+				<li><a href="class-description.html">description</a></li>
 				<li><a href="class-Gcharts.html">Gcharts</a></li>
 				<li><a href="class-hAxis.html">hAxis</a></li>
 				<li><a href="class-jsDate.html">jsDate</a></li>
@@ -104,14 +104,14 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class description</h1>
+	<h1>Class DataCell</h1>
 
 
 	<div class="description">
 	
-<p>Description Object</p>
+<p>Data Cell Object</p>
 
-<p>Holds all the data for charts</p>
+<p>Holds the information for a data point</p>
 
 <p>NOTICE OF LICENSE</p>
 
@@ -143,7 +143,7 @@ LICENSE file</p>
 href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<br />
 				<b>Link:</b>
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">Github Page</a><br />
-		<b>Located at</b> <a href="source-class-description.html#3-54" title="Go to source code">libraries/gcharts/configs/description.php</a><br />
+		<b>Located at</b> <a href="source-class-DataCell.html#3-64" title="Go to source code">libraries/gcharts/configs/DataCell.php</a><br />
 	</div>
 
 
@@ -161,7 +161,49 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-description.html#29-52" title="Go to source code">__construct</a>( <span>mixed <var>$type</var></span>, <span>mixed <var>$label</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$id</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$role</var> = <span class="php-quote">''</span></span>, <span>mixed <var>$pattern</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-DataCell.html#27-52" title="Go to source code">__construct</a>( <span>type <var>$v</var> = <span class="php-keyword1">NULL</span></span>, <span>type <var>$f</var> = <span class="php-keyword1">NULL</span></span>, <span>type <var>$p</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Defines a DataCell</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Defines a DataCell</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$v</var></dt>
+					<dd><code>type</code><br>$v The cell value</dd>
+					<dt><var>$f</var></dt>
+					<dd><code>type</code><br>$f A string version of the v value</dd>
+					<dt><var>$p</var></dt>
+					<dd><code>type</code><br>$p An object that is a map of custom values applied to the cell</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="toJSON" id="_toJSON">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_toJSON">#</a>
+		<code><a href="source-class-DataCell.html#54-63" title="Go to source code">toJSON</a>( )</code>
 
 		<div class="description short">
 			
@@ -194,18 +236,18 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="type" id="$type">
+	<tr data-order="v" id="$v">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-description.html#23" title="Go to source code"><var>$type</var></a>
+				<a href="source-class-DataCell.html#23" title="Go to source code"><var>$v</var></a>
 		</td>
-		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$type" class="anchor">#</a>
+			<a href="#$v" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -217,18 +259,18 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="label" id="$label">
+	<tr data-order="f" id="$f">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-description.html#24" title="Go to source code"><var>$label</var></a>
+				<a href="source-class-DataCell.html#24" title="Go to source code"><var>$f</var></a>
 		</td>
-		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$label" class="anchor">#</a>
+			<a href="#$f" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -240,64 +282,18 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="id" id="$id">
+	<tr data-order="p" id="$p">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-description.html#25" title="Go to source code"><var>$id</var></a>
+				<a href="source-class-DataCell.html#25" title="Go to source code"><var>$p</var></a>
 		</td>
-		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
+		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$id" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="role" id="$role">
-		<td class="attributes"><code>
-			public  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-description.html#26" title="Go to source code"><var>$role</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
-		<td class="description"><div>
-			<a href="#$role" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="pattern" id="$pattern">
-		<td class="attributes"><code>
-			public  
-			mixed
-		</code></td>
-
-		<td class="name">
-				<a href="source-class-description.html#27" title="Go to source code"><var>$pattern</var></a>
-		</td>
-		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
-		<td class="description"><div>
-			<a href="#$pattern" class="anchor">#</a>
+			<a href="#$p" class="anchor">#</a>
 
 			<div class="description short">
 				

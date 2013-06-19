@@ -21,22 +21,20 @@
 class hAxis extends configOptions
 {
     var $baseline;
-    var $baselineColor;
-    var $direction;
+    var $baselineColor = 'black';
+    var $direction = 1;
     var $format;
     var $gridlines;
     var $minorGridlines;
-    var $minorGridlinesColor;
-    var $minorGridlinesCount;
-    var $logScale;
-    var $textPosition;
+    var $logScale = FALSE;
+    var $textPosition = 'out';
     var $textStyle;
-    var $title;
+    var $title = NULL;
     var $titleTextStyle;
-    var $allowContainerBoundaryTextCufoff;
+    var $allowContainerBoundaryTextCufoff = FALSE;
     var $slantedText;
-    var $slantedTextAngle;
-    var $maxAlternation;
+    var $slantedTextAngle = 30;
+    var $maxAlternation = 2;
     var $maxTextLines;
     var $minTextSpacing;
     var $showTextEvery;
@@ -56,6 +54,7 @@ class hAxis extends configOptions
      * created.
      *
      * @param array $options
+     * @return \hAxis
      */
     public function __construct($options = array())
     {
@@ -65,11 +64,7 @@ class hAxis extends configOptions
             'direction',
             'format',
             'gridlines',
-            'gridlinesColor',
-            'gridlinesCount',
             'minorGridlines',
-            'minorGridlinesColor',
-            'minorGridlinesCount',
             'logScale',
             'textPosition',
             'textStyle',
@@ -85,9 +80,7 @@ class hAxis extends configOptions
             'maxValue',
             'minValue',
             'viewWindowMode',
-            'viewWindow',
-            'viewWindowMax',
-            'viewWindowMin'
+            'viewWindow'
         );
 
         if(is_array($options) && count($options) > 0)
@@ -100,6 +93,8 @@ class hAxis extends configOptions
                 }
             }
         }
+
+        return $this;
     }
 
     /**
@@ -404,7 +399,7 @@ class hAxis extends configOptions
      *
      * This option is only supported for a discrete axis.
      *
-     * @param type $cutoff
+     * @param boolean $cutoff
      * @return \hAxis
      */
     public function allowContainerBoundaryTextCufoff($cutoff)
@@ -419,54 +414,271 @@ class hAxis extends configOptions
         return $this;
     }
 
-    public function slantedText()
+    /**
+     * Horizontal Axis Label Slant
+     *
+     * If true, draw the horizontal axis text at an angle, to help fit more text
+     * along the axis; if false, draw horizontal axis text upright. Default
+     * behavior is to slant text if it cannot all fit when drawn upright.
+     * Notice that this option is available only when the $this->textPosition is
+     * set to 'out' (which is the default).
+     *
+     * This option is only supported for a discrete axis.
+     *
+     * @param boolean $slant
+     * @return \hAxis
+     */
+    public function slantedText($slant)
     {
+        if(is_bool($slant) && $this->textPosition == 'out')
+        {
+            $this->slantedText = $slant;
+        } else {
+            $this->slantedText = FALSE;
+        }
 
+        return $this;
     }
 
-    public function slantedTextAngle()
+    /**
+     * Horizontal Axis Label Slant Angle
+     *
+     * The angle of the horizontal axis text, if it's drawn slanted. Ignored if
+     * hAxis.slantedText is false, or is in auto mode, and the chart decided to
+     * draw the text horizontally.
+     *
+     * This option is only supported for a discrete axis.
+     *
+     * @param int $angle
+     * @return \hAxis
+     */
+    public function slantedTextAngle($angle)
     {
+        if(valid_int($angle) && $angle >= 1 && $angle <= 90)
+        {
+            $this->slantedTextAngle = $angle;
+        } else {
+            $this->slantedTextAngle = 30;
+        }
 
+        return $this;
     }
 
-    public function maxAlternation()
+    /**
+     * Horizontal Axis Max Alternation
+     *
+     * Maximum number of levels of horizontal axis text. If axis text labels
+     * become too crowded, the server might shift neighboring labels up or down
+     * in order to fit labels closer together. This value specifies the most
+     * number of levels to use; the server can use fewer levels, if labels can
+     * fit without overlapping.
+     *
+     * This option is only supported for a discrete axis.
+     *
+     * @param int $alternation
+     * @return \hAxis
+     */
+    public function maxAlternation($alternation)
     {
+        if(valid_int($alternation))
+        {
+            $this->maxAlternation = $alternation;
+        } else {
+            $this->maxAlternation = 2;
+        }
 
+        return $this;
     }
 
-    public function maxTextLines()
+    /**
+     * Maximum number of lines allowed for the text labels. Labels can span
+     * multiple lines if they are too long, and the nuber of lines is, by
+     * default, limited by the height of the available space.
+     *
+     * This option is only supported for a discrete axis.
+     *
+     * @param int $maxTextLines
+     * @return \hAxis
+     */
+    public function maxTextLines($maxTextLines)
     {
+        if(valid_int($maxTextLines))
+        {
+            $this->maxTextLines = $maxTextLines;
+        } else {
+            $this->maxTextLines = NULL;
+        }
 
+        return $this;
     }
 
-    public function minTextSpacing()
+    /**
+     * Minimum horizontal spacing, in pixels, allowed between two adjacent text
+     * labels. If the labels are spaced too densely, or they are too long,
+     * the spacing can drop below this threshold, and in this case one of the
+     * label-unclutter measures will be applied (e.g, truncating the lables or
+     * dropping some of them).
+     *
+     * This option is only supported for a discrete axis.
+     *
+     * @param int $minTextSpacing
+     * @return \hAxis
+     */
+    public function minTextSpacing($minTextSpacing)
     {
+        if(valid_int($minTextSpacing))
+        {
+            $this->minTextSpacing = $minTextSpacing;
+        } else {
+            if(isset($this->textStyle['fontSize']))
+            {
+                $this->minTextSpacing = $this->textStyle['fontSize'];
+            } else {
+                $this->minTextSpacing = 12;
+            }
+        }
 
+        return $this;
     }
 
-    public function showTextEvery()
+    /**
+     * How many horizontal axis labels to show, where 1 means show every label,
+     * 2 means show every other label, and so on. Default is to try to show as
+     * many labels as possible without overlapping.
+     *
+     * This option is only supported for a discrete axis.
+     *
+     * @param int $showTextEvery
+     * @return \hAxis
+     */
+    public function showTextEvery($showTextEvery)
     {
+        if(valid_int($showTextEvery))
+        {
+            $this->showTextEvery = $showTextEvery;
+        } else {
+            $this->showTextEvery = NULL;
+        }
 
+        return $this;
     }
 
-    public function maxValue()
+    /**
+     * hAxis property that specifies the highest horizontal axis grid line. The
+     * actual grid line will be the greater of two values: the maxValue option
+     * value, or the highest data value, rounded up to the next higher grid mark.
+     *
+     * This option is only supported for a continuous axis.
+     *
+     * @param int $max
+     * @return \hAxis
+     */
+    public function maxValue($max)
     {
+        if(valid_int($max))
+        {
+            $this->max = $max;
+        } else {
+            $this->max = NULL;
+        }
 
+        return $this;
     }
 
-    public function minValue()
+    /**
+     * hAxis property that specifies the lowest horizontal axis grid line. The
+     * actual grid line will be the lower of two values: the minValue option
+     * value, or the lowest data value, rounded down to the next lower grid mark.
+     *
+     * This option is only supported for a continuous axis.
+     *
+     * @param int $min
+     * @return \hAxis
+     */
+    public function minValue($min)
     {
+        if(valid_int($min))
+        {
+            $this->min = $min;
+        } else {
+            $this->min = NULL;
+        }
 
+        return $this;
     }
 
-    public function viewWindowMode()
+    /**
+     * Specifies how to scale the horizontal axis to render the values within
+     * the chart area. The following string values are supported:
+     *
+     * 'pretty' - Scale the horizontal values so that the maximum and minimum
+     * data values are rendered a bit inside the left and right of the chart area.
+     * 'maximized' - Scale the horizontal values so that the maximum and minimum
+     * data values touch the left and right of the chart area.
+     * 'explicit' - Specify the left and right scale values of the chart area.
+     * Data values outside these values will be cropped. You must specify an
+     * hAxis.viewWindow array describing the maximum and minimum values to show.
+     *
+     * This option is only supported for a continuous axis.
+     *
+     * @param type $viewMode
+     * @return \hAxis
+     */
+    public function viewWindowMode($viewMode)
     {
+        if(true)
+        {
 
+        } else {
+
+        }
+
+        return $this;
     }
 
-    public function viewWindow()
+    /**
+     * Specifies the cropping range of the horizontal axis.
+     *
+     * For a continuous axis:
+     * The minimum and maximum horizontal data value to render. Has an effect
+     * only if $this->viewWindowMode = 'explicit'.
+     *
+     * For a discrete axis:
+     * 'min' - The zero-based row index where the cropping window begins. Data
+     * points at indices lower than this will be cropped out. In conjunction with
+     * vAxis->viewWindowMode['max'], it defines a half-opened range (min, max)
+     * that denotes the element indices to display. In other words, every index
+     * such that min <= index < max will be displayed.
+     *
+     * 'max' - The zero-based row index where the cropping window ends. Data
+     * points at this index and higher will be cropped out. In conjunction with
+     * vAxis->viewWindowMode['min'], it defines a half-opened range (min, max)
+     * that denotes the element indices to display. In other words, every index
+     * such that min <= index < max will be displayed.
+     *
+     * @param array $viewWindow
+     * @return \hAxis
+     */
+    public function viewWindow($viewWindow)
     {
-//        viewWindowMax()viewWindowMin()
+        $tmp = array();
+
+        if(is_array($viewWindow))
+        {
+            if(array_key_exists('min', $viewWindow) && array_key_exists('max', $viewWindow))
+            {
+                $tmp['viewWindowMin'] = $viewWindow['min'];
+                $tmp['viewWindowMax'] = $viewWindow['max'];
+
+                $this->viewWindow = $tmp;
+            } else {
+                $this->viewWindow = $tmp;
+            }
+        } else {
+            $this->viewWindow = $tmp;
+        }
+
+        return $this;
     }
 
 }

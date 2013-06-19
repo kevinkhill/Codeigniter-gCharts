@@ -6,8 +6,8 @@
 
 	<title>Class AreaChart | Codeigniter-gCharts</title>
 
-	<script type="text/javascript" src="resources/combined.js?2248719689"></script>
-	<script type="text/javascript" src="elementlist.js?1125606565"></script>
+	<script type="text/javascript" src="resources/combined.js?3715972085"></script>
+	<script type="text/javascript" src="elementlist.js?2221220596"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -39,10 +39,12 @@
 				<li><a href="class-backgroundColor.html">backgroundColor</a></li>
 				<li><a href="class-chartArea.html">chartArea</a></li>
 				<li><a href="class-configOptions.html">configOptions</a></li>
+				<li><a href="class-DataCell.html">DataCell</a></li>
 				<li><a href="class-DataTable.html">DataTable</a></li>
 				<li><a href="class-description.html">description</a></li>
 				<li><a href="class-Gcharts.html">Gcharts</a></li>
 				<li><a href="class-hAxis.html">hAxis</a></li>
+				<li><a href="class-jsDate.html">jsDate</a></li>
 				<li><a href="class-legend.html">legend</a></li>
 				<li><a href="class-LineChart.html">LineChart</a></li>
 				<li><a href="class-PieChart.html">PieChart</a></li>
@@ -54,6 +56,12 @@
 
 
 
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-array_is_multi.html">array_is_multi</a></li>
+				<li><a href="function-array_string.html">array_string</a></li>
+				<li><a href="function-valid_int.html">valid_int</a></li>
+			</ul>
 		</div>
 	</div>
 </div>
@@ -84,6 +92,9 @@
 			<li>
 				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
 			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
 		</ul>
 		<ul>
 			<li>
@@ -109,20 +120,6 @@ LICENSE file</p>
 
 	</div>
 
-	<dl class="tree">
-		<dd style="padding-left:0px">
-			<a href="class-Gcharts.html"><span>Gcharts</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by" />
-<b><span>AreaChart</span></b>			
-			
-			
-		</dd>
-	</dl>
 
 
 
@@ -146,7 +143,7 @@ LICENSE file</p>
 href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<br />
 				<b>Link:</b>
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">Github Page</a><br />
-		<b>Located at</b> libraries/gcharts/AreaChart.php<br />
+		<b>Located at</b> <a href="source-class-AreaChart.html#3-374" title="Go to source code">libraries/gcharts/charts/AreaChart.php</a><br />
 	</div>
 
 
@@ -164,28 +161,20 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>mixed <var>$labels</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#32-37" title="Go to source code">__construct</a>( <span>mixed <var>$chartLabel</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Loads the required classes from the gcharts folder for the library to
-work.</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Loads the required classes from the gcharts folder for the library to
-work.</p>
 
 
 
 
 
 
-
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-Gcharts.html#___construct">Gcharts::__construct()</a></code></div>
 
 		</div>
 		</div></td>
@@ -201,7 +190,7 @@ work.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_events">#</a>
-		<code>events( <span>array <var>$events</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#39-77" title="Go to source code">events</a>( <span>array <var>$events</var></span> )</code>
 
 		<div class="description short">
 			
@@ -251,7 +240,7 @@ to a respective pre-defined javascript function as the callback.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_animationEasing">#</a>
-		<code>animationEasing( <span>string <var>$easing</var> = <span class="php-quote">'linear'</span></span> )</code>
+		<code><a href="source-class-AreaChart.html#80-106" title="Go to source code">animationEasing</a>( <span>string <var>$easing</var> = <span class="php-quote">'linear'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -302,7 +291,7 @@ Start slow, speed up, then slow down.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_animationDuration">#</a>
-		<code>animationDuration( <span>mixed <var>$duration</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#108-126" title="Go to source code">animationDuration</a>( <span>mixed <var>$duration</var></span> )</code>
 
 		<div class="description short">
 			
@@ -346,7 +335,7 @@ Start slow, speed up, then slow down.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_axisTitlesPosition">#</a>
-		<code>axisTitlesPosition( <span>string <var>$position</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#128-149" title="Go to source code">axisTitlesPosition</a>( <span>string <var>$position</var></span> )</code>
 
 		<div class="description short">
 			
@@ -396,7 +385,7 @@ outside the chart area. none - Omit the axis titles.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_chartArea">#</a>
-		<code>chartArea( <span><code><a href="class-chartArea.html">chartArea</a></code> <var>$chartArea</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#151-172" title="Go to source code">chartArea</a>( <span><code><a href="class-chartArea.html">chartArea</a></code> <var>$chartArea</var></span> )</code>
 
 		<div class="description short">
 			
@@ -447,7 +436,7 @@ pixels; a number followed by % is a percentage.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_colors">#</a>
-		<code>colors( <span>array <var>$colorArray</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#174-193" title="Go to source code">colors</a>( <span>array <var>$colorArray</var></span> )</code>
 
 		<div class="description short">
 			
@@ -497,7 +486,7 @@ href="'red','#004411'">colors</a>.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_curveType">#</a>
-		<code>curveType( <span>string <var>$curveType</var> = <span class="php-quote">'none'</span></span> )</code>
+		<code><a href="source-class-AreaChart.html#195-215" title="Go to source code">curveType</a>( <span>string <var>$curveType</var> = <span class="php-quote">'none'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -547,7 +536,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_enableInteractivity">#</a>
-		<code>enableInteractivity( <span>mixed <var>$param</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#217-220" title="Go to source code">enableInteractivity</a>( <span>mixed <var>$param</var></span> )</code>
 
 		<div class="description short">
 			
@@ -576,7 +565,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_focusTarget">#</a>
-		<code>focusTarget( <span>mixed <var>$param</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#222-225" title="Go to source code">focusTarget</a>( <span>mixed <var>$param</var></span> )</code>
 
 		<div class="description short">
 			
@@ -605,7 +594,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fontSize">#</a>
-		<code>fontSize( <span>mixed <var>$param</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#227-230" title="Go to source code">fontSize</a>( <span>mixed <var>$param</var></span> )</code>
 
 		<div class="description short">
 			
@@ -634,7 +623,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fontName">#</a>
-		<code>fontName( <span>mixed <var>$param</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#232-235" title="Go to source code">fontName</a>( <span>mixed <var>$param</var></span> )</code>
 
 		<div class="description short">
 			
@@ -663,7 +652,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hAxis">#</a>
-		<code>hAxis( <span><code><a href="class-hAxis.html">hAxis</a></code> <var>$param</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#237-240" title="Go to source code">hAxis</a>( <span><code><a href="class-hAxis.html">hAxis</a></code> <var>$param</var></span> )</code>
 
 		<div class="description short">
 			
@@ -692,7 +681,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_height">#</a>
-		<code>height( <span>mixed <var>$height</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#242-251" title="Go to source code">height</a>( <span>mixed <var>$height</var></span> )</code>
 
 		<div class="description short">
 			
@@ -721,7 +710,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isHtml">#</a>
-		<code>isHtml( <span>mixed <var>$param</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#253-256" title="Go to source code">isHtml</a>( <span>mixed <var>$param</var></span> )</code>
 
 		<div class="description short">
 			
@@ -750,7 +739,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_interpolateNulls">#</a>
-		<code>interpolateNulls( <span>mixed <var>$param</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#258-261" title="Go to source code">interpolateNulls</a>( <span>mixed <var>$param</var></span> )</code>
 
 		<div class="description short">
 			
@@ -779,7 +768,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_legend">#</a>
-		<code>legend( <span><code><a href="class-legend.html">legend</a></code> <var>$legendObj</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#263-272" title="Go to source code">legend</a>( <span><code><a href="class-legend.html">legend</a></code> <var>$legendObj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -808,7 +797,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_lineWidth">#</a>
-		<code>lineWidth( <span>mixed <var>$width</var> = <span class="php-num">2</span></span> )</code>
+		<code><a href="source-class-AreaChart.html#274-283" title="Go to source code">lineWidth</a>( <span>mixed <var>$width</var> = <span class="php-num">2</span></span> )</code>
 
 		<div class="description short">
 			
@@ -837,7 +826,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_pointSize">#</a>
-		<code>pointSize( <span>mixed <var>$size</var> = <span class="php-num">0</span></span> )</code>
+		<code><a href="source-class-AreaChart.html#285-294" title="Go to source code">pointSize</a>( <span>mixed <var>$size</var> = <span class="php-num">0</span></span> )</code>
 
 		<div class="description short">
 			
@@ -866,7 +855,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_reverseCatagories">#</a>
-		<code>reverseCatagories( <span>mixed <var>$param</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#296-299" title="Go to source code">reverseCatagories</a>( <span>mixed <var>$param</var></span> )</code>
 
 		<div class="description short">
 			
@@ -895,7 +884,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_series">#</a>
-		<code>series( <span>mixed <var>$param</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#301-304" title="Go to source code">series</a>( <span>mixed <var>$param</var></span> )</code>
 
 		<div class="description short">
 			
@@ -924,7 +913,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_theme">#</a>
-		<code>theme( <span>mixed <var>$param</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#306-309" title="Go to source code">theme</a>( <span>mixed <var>$param</var></span> )</code>
 
 		<div class="description short">
 			
@@ -953,7 +942,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_title">#</a>
-		<code>title( <span>mixed <var>$title</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-AreaChart.html#311-316" title="Go to source code">title</a>( <span>mixed <var>$title</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -982,7 +971,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_tooltip">#</a>
-		<code>tooltip( <span><code><a href="class-tooltip.html">tooltip</a></code> <var>$tooltipObj</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#318-327" title="Go to source code">tooltip</a>( <span><code><a href="class-tooltip.html">tooltip</a></code> <var>$tooltipObj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1011,7 +1000,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_titlePosition">#</a>
-		<code>titlePosition( <span>mixed <var>$position</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#329-340" title="Go to source code">titlePosition</a>( <span>mixed <var>$position</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1040,7 +1029,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_titleTextStyle">#</a>
-		<code>titleTextStyle( <span><code><a href="class-textStyle.html">textStyle</a></code> <var>$textStyleObj</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#342-351" title="Go to source code">titleTextStyle</a>( <span><code><a href="class-textStyle.html">textStyle</a></code> <var>$textStyleObj</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1069,7 +1058,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_width">#</a>
-		<code>width( <span>mixed <var>$width</var></span> )</code>
+		<code><a href="source-class-AreaChart.html#354-363" title="Go to source code">width</a>( <span>mixed <var>$width</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1098,7 +1087,7 @@ of the line will be smoothed.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_outputInto">#</a>
-		<code>outputInto( <span>mixed <var>$elementID</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-AreaChart.html#365-372" title="Go to source code">outputInto</a>( <span>mixed <var>$elementID</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1118,22 +1107,6 @@ of the line will be smoothed.</p>
 	</tr>
 	</table>
 
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Gcharts.html#methods">Gcharts</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Gcharts.html#_AreaChart">AreaChart()</a>, 
-			<a href="class-Gcharts.html#_DataTable">DataTable()</a>, 
-			<a href="class-Gcharts.html#_LineChart">LineChart()</a>, 
-			<a href="class-Gcharts.html#__array_string">_array_string()</a>, 
-			<a href="class-Gcharts.html#__build_script_block">_build_script_block()</a>, 
-			<a href="class-Gcharts.html#__load_event_callbacks">_load_event_callbacks()</a>, 
-			<a href="class-Gcharts.html#_addData">addData()</a>, 
-			<a href="class-Gcharts.html#_addOption">addOption()</a>, 
-			<a href="class-Gcharts.html#_setOptions">setOptions()</a>
-		</code></td>
-	</tr>
-	</table>
 
 
 
@@ -1147,17 +1120,18 @@ of the line will be smoothed.</p>
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="width" id="$width">
+	<tr data-order="chartType" id="$chartType">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-<var>$width</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-AreaChart.html#23" title="Go to source code"><var>$chartType</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
-			<a href="#$width" class="anchor">#</a>
+			<a href="#$chartType" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -1169,17 +1143,18 @@ of the line will be smoothed.</p>
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="height" id="$height">
+	<tr data-order="chartLabel" id="$chartLabel">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-<var>$height</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-AreaChart.html#24" title="Go to source code"><var>$chartLabel</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
-			<a href="#$height" class="anchor">#</a>
+			<a href="#$chartLabel" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -1191,17 +1166,18 @@ of the line will be smoothed.</p>
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="curveType" id="$curveType">
+	<tr data-order="dataTable" id="$dataTable">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-<var>$curveType</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-AreaChart.html#25" title="Go to source code"><var>$dataTable</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
-			<a href="#$curveType" class="anchor">#</a>
+			<a href="#$dataTable" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -1213,17 +1189,18 @@ of the line will be smoothed.</p>
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="title" id="$title">
+	<tr data-order="data" id="$data">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-<var>$title</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-AreaChart.html#27" title="Go to source code"><var>$data</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
-			<a href="#$title" class="anchor">#</a>
+			<a href="#$data" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -1235,83 +1212,18 @@ of the line will be smoothed.</p>
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="titlePosition" id="$titlePosition">
+	<tr data-order="options" id="$options">
 		<td class="attributes"><code>
 			public  
 			mixed
 		</code></td>
 
 		<td class="name">
-<var>$titlePosition</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-AreaChart.html#28" title="Go to source code"><var>$options</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
-			<a href="#$titlePosition" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="titleTextStyle" id="$titleTextStyle">
-		<td class="attributes"><code>
-			public  
-			mixed
-		</code></td>
-
-		<td class="name">
-<var>$titleTextStyle</var>		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$titleTextStyle" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="lineWidth" id="$lineWidth">
-		<td class="attributes"><code>
-			public  
-			mixed
-		</code></td>
-
-		<td class="name">
-<var>$lineWidth</var>		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$lineWidth" class="anchor">#</a>
-
-			<div class="description short">
-				
-			</div>
-
-			<div class="description detailed hidden">
-				
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="pointSize" id="$pointSize">
-		<td class="attributes"><code>
-			public  
-			mixed
-		</code></td>
-
-		<td class="name">
-<var>$pointSize</var>		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$pointSize" class="anchor">#</a>
+			<a href="#$options" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -1330,8 +1242,9 @@ of the line will be smoothed.</p>
 		</code></td>
 
 		<td class="name">
-<var>$events</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-AreaChart.html#29" title="Go to source code"><var>$events</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$events" class="anchor">#</a>
 
@@ -1352,8 +1265,9 @@ of the line will be smoothed.</p>
 		</code></td>
 
 		<td class="name">
-<var>$elementID</var>		</td>
-		<td class="value"><code></code></td>
+				<a href="source-class-AreaChart.html#30" title="Go to source code"><var>$elementID</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$elementID" class="anchor">#</a>
 
@@ -1369,21 +1283,6 @@ of the line will be smoothed.</p>
 	</tr>
 	</table>
 
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-Gcharts.html#properties">Gcharts</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Gcharts.html#$data"><var>$data</var></a>, 
-			<a href="class-Gcharts.html#$dataTables"><var>$dataTables</var></a>, 
-			<a href="class-Gcharts.html#$jsonData"><var>$jsonData</var></a>, 
-			<a href="class-Gcharts.html#$jsonOptions"><var>$jsonOptions</var></a>, 
-			<a href="class-Gcharts.html#$lineCharts"><var>$lineCharts</var></a>, 
-			<a href="class-Gcharts.html#$options"><var>$options</var></a>, 
-			<a href="class-Gcharts.html#$output"><var>$output</var></a>, 
-			<a href="class-Gcharts.html#$workingDir"><var>$workingDir</var></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 
