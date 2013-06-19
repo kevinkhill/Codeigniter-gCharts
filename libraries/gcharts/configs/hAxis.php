@@ -210,11 +210,14 @@ class hAxis extends configOptions
 
         if(is_array($gridlines))
         {
-            if(array_key_exists('count', $gridlines) &&
-                    $gridlines['count'] >= 2 ||
-                    $gridlines['count'] == -1
-            ) {
-                $tmp['count'] = $gridlines['count'];
+            if(array_key_exists('count', $gridlines))
+            {
+                if($gridlines['count'] >= 2 || $gridlines['count'] == -1)
+                {
+                    $tmp['count'] = $gridlines['count'];
+                } else {
+                    $tmp['count'] = 5;
+                }
             } else {
                 $tmp['count'] = 5;
             }
@@ -630,13 +633,13 @@ class hAxis extends configOptions
             'explicit',
         );
 
-        if($this->viewWindow == NULL)
+        if(in_array($viewMode, $values))
         {
-            $this->viewWindowMode = 'pretty';
+            $this->viewWindowMode = $viewMode;
         } else {
-            if(in_array($viewMode, $values))
+            if($this->viewWindow == NULL)
             {
-                $this->viewWindowMode = $viewMode;
+                $this->viewWindowMode = 'pretty';
             } else {
                 $this->viewWindowMode = 'explicit';
             }
