@@ -137,7 +137,8 @@ class LineChart
                     $this->data = $data;
                     $this->dataTable = 'local';
                 } else {
-                    throw new Exception('Invalid dataTable object, must be type (DataTable).');
+                    //throw new Exception('Invalid dataTable object, must be type (DataTable).');
+                    Gcharts::_set_error(get_class($this), 'Invalid dataTable object, must be type (DataTable).');
                 }
             break;
 
@@ -146,7 +147,8 @@ class LineChart
                 {
                     $this->dataTable = $data;
                 } else {
-                    throw new Exception('Invalid dataTable label, must be type (string) non-empty.');
+                    //throw new Exception('Invalid dataTable label, must be type (string) non-empty.');
+                    Gcharts::_set_error(get_class($this), 'Invalid dataTable label, must be type (string) non-empty.');
                 }
             break;
 

@@ -19,6 +19,7 @@
  *
  */
 
+//@TODO: do these really need to be static?
 class Gcharts
 {
     static $config;
@@ -36,16 +37,34 @@ class Gcharts
     static $jsClose = '</script>';
     static $googleAPI = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>';
 
-    static $supportedCharts = array(
-        'LineChart'
-    );
-
     static $dataTables = array();
     static $lineCharts = array();
     static $areaCharts = array();
     static $pieCharts = array();
 
+    static $hasError = FALSE;
     static $errorLog = array();
+
+    private $supportedClasses = array(
+        'DataTable',
+        'LineChart'
+    );
+
+    private $configClasses = array(
+        'configOptions',
+        'Axis',
+        'DataTable',
+        'DataCell',
+        'backgroundColor',
+        'chartArea',
+        'hAxis',
+        'jsDate',
+        'legend',
+        'textStyle',
+        'tooltip',
+        'vAxis'
+    );
+
 
     /**
      * Loads the required classes for the library to work.
@@ -60,26 +79,12 @@ class Gcharts
 
         self::$config = new stdClass();
         self::$config->autoloadCharts = config_item('autoloadCharts');
-
+        self::$config->errorPrepend = config_item('errorPrepend');
+        self::$config->errorAppend = config_item('errorAppend');
 // @TODO: build this functionality
 //        self::$config->useGlobalTextStyle = config_item('useGlobalTextStyle');
 //        self::$config->globalTextStyle = config_item('globalTextStyle');
 
-//Configuration Classes
-        $configClasses = array(
-            'configOptions',
-            'Axis',
-            'DataTable',
-            'DataCell',
-            'backgroundColor',
-            'chartArea',
-            'hAxis',
-            'jsDate',
-            'legend',
-            'textStyle',
-            'tooltip',
-            'vAxis'
-        );
 
         //Autoload Chart Classes
         if(is_array(self::$config->autoloadCharts) && count(self::$config->autoloadCharts) > 0)
@@ -89,8 +94,9 @@ class Gcharts
                 require_once(self::$chartPath.$chart.'.php');
             }
         }
+
         //Load Config Classes
-        foreach($configClasses as $configClass)
+        foreach($this->configClasses as $configClass)
         {
             require_once(self::$configPath.$configClass.'.php');
         }
@@ -98,29 +104,29 @@ class Gcharts
 
     public function __call($member, $arguments)
     {
-        if(in_array($member, self::$supportedCharts))
+        if(in_array($member, $this->supportedClasses))
         {
-            return $this->Chart($member, $arguments[0]);
+            return $this->_generator($member, $arguments[0]);
         } else {
             //@TODO: ERRORS
         }
     }
 
-    public function Chart($chartType, $chartLabel)
+    private function _generator($objType, $objLabel)
     {
-        if(is_string($chartLabel) && $chartLabel != '')
+        if(is_string($objLabel) && $objLabel != '')
         {
-            $chartStorage = lcfirst($chartType) . 's';
+            $objStorage = lcfirst($objType) . 's';
 
-            if(isset(self::${$chartStorage}[$chartLabel]))
+            if(isset(self::${$objStorage}[$objLabel]))
             {
-                return self::${$chartStorage}[$chartLabel];
+                return self::${$objStorage}[$objLabel];
             } else {
-                self::${$chartStorage}[$chartLabel] = new $chartType($chartLabel);
-                return self::${$chartStorage}[$chartLabel];
+                self::${$objStorage}[$objLabel] = new $objType($objLabel);
+                return self::${$objStorage}[$objLabel];
             }
         } else {
-            return new $chartType();
+            return new $objType();
         }
     }
 
@@ -177,21 +183,21 @@ class Gcharts
      * @param string $dataTableLabel
      * @return \gcharts\DataTable
      */
-    public function DataTable($dataTableLabel)
-    {
-        if(is_string($dataTableLabel) && $dataTableLabel != '')
-        {
-            if(isset(self::$dataTables[$dataTableLabel]))
-            {
-                return self::$dataTables[$dataTableLabel];
-            } else {
-                self::$dataTables[$dataTableLabel] = new DataTable();
-                return self::$dataTables[$dataTableLabel];
-            }
-        } else {
-            return new DataTable();
-        }
-    }
+//    public function DataTable($dataTableLabel)
+//    {
+//        if(is_string($dataTableLabel) && $dataTableLabel != '')
+//        {
+//            if(isset(self::$dataTables[$dataTableLabel]))
+//            {
+//                return self::$dataTables[$dataTableLabel];
+//            } else {
+//                self::$dataTables[$dataTableLabel] = new DataTable();
+//                return self::$dataTables[$dataTableLabel];
+//            }
+//        } else {
+//            return new DataTable();
+//        }
+//    } //@TODO:DEPRECIATED
 
     /**
      * LineChart Object
@@ -207,21 +213,21 @@ class Gcharts
      * @param string $lineChartLabel
      * @return \charts\LineChart
      */
-    public function LineChart1($lineChartLabel)
-    {
-        if(is_string($lineChartLabel) && $lineChartLabel != '')
-        {
-            if(isset(self::$lineCharts[$lineChartLabel]))
-            {
-                return self::$lineCharts[$lineChartLabel];
-            } else {
-                self::$lineCharts[$lineChartLabel] = new LineChart($lineChartLabel);
-                return self::$lineCharts[$lineChartLabel];
-            }
-        } else {
-            return new LineChart();
-        }
-    }
+//    public function LineChart1($lineChartLabel)
+//    {
+//        if(is_string($lineChartLabel) && $lineChartLabel != '')
+//        {
+//            if(isset(self::$lineCharts[$lineChartLabel]))
+//            {
+//                return self::$lineCharts[$lineChartLabel];
+//            } else {
+//                self::$lineCharts[$lineChartLabel] = new LineChart($lineChartLabel);
+//                return self::$lineCharts[$lineChartLabel];
+//            }
+//        } else {
+//            return new LineChart();
+//        }
+//    }//@TODO:DEPRECIATED
 
     /**
      * AreaChart Object
@@ -237,21 +243,21 @@ class Gcharts
      * @param string $areaChartLabel
      * @return \charts\AreaChart
      */
-    public function AreaChart1($areaChartLabel)
-    {
-        if(is_string($areaChartLabel) && $areaChartLabel != '')
-        {
-            if(isset(self::$areaCharts[$areaChartLabel]))
-            {
-                return self::$areaCharts[$areaChartLabel];
-            } else {
-                self::$areaCharts[$areaChartLabel] = new LineChart($areaChartLabel);
-                return self::$areaCharts[$areaChartLabel];
-            }
-        } else {
-            return new AreaChart();
-        }
-    }
+//    public function AreaChart1($areaChartLabel)
+//    {
+//        if(is_string($areaChartLabel) && $areaChartLabel != '')
+//        {
+//            if(isset(self::$areaCharts[$areaChartLabel]))
+//            {
+//                return self::$areaCharts[$areaChartLabel];
+//            } else {
+//                self::$areaCharts[$areaChartLabel] = new LineChart($areaChartLabel);
+//                return self::$areaCharts[$areaChartLabel];
+//            }
+//        } else {
+//            return new AreaChart();
+//        }
+//    }//@TODO:DEPRECIATED
 
     /**
      * Returns the Javascript block to place in the page
@@ -340,6 +346,31 @@ class Gcharts
         }
     }
 
+    static function _set_error($where, $what)
+    {
+        self::$hasError = TRUE;
+        self::$errorLog[$where] = $what;
+    }
+
+    static function getErrors()
+    {
+        if(count(self::$errorLog) > 0 && self::$hasError === TRUE)
+        {
+            $errors = '';
+
+            foreach(self::$errorLog as $where => $error)
+            {
+                $errors .= self::$config->errorPrepend;
+                $errors .= '['.$where.'] -> '.$error;
+                $errors .= self::$config->errorAppend;
+            }
+
+            return $errors;
+        } else {
+            return 'No Errors.';
+        }
+    }
+
     /**
      * Builds the Javascript code block
      *
@@ -351,7 +382,7 @@ class Gcharts
      * @param string $className Passed from the calling chart
      * @return string javascript code block
      */
-    public static function _build_script_block($chart)
+    static function _build_script_block($chart)
     {
         self::$elementID = $chart->elementID;
 
@@ -423,7 +454,7 @@ class Gcharts
      * @return string Javascript code block
      * @throws Exception file not found
      */
-    private static function _build_event_callbacks($chartType, $chartEvents)
+    static function _build_event_callbacks($chartType, $chartEvents)
     {
         $script = sprintf('if(typeof %s !== "object") { %s = {}; }', $chartType, $chartType).PHP_EOL.PHP_EOL;
 
@@ -451,6 +482,10 @@ class Gcharts
         return $tmp;
     }
 
+    private function _init_config()
+    {
+
+    }
 }
 
 /* End of file Gcharts.php */
