@@ -8,14 +8,24 @@
  *
  * NOTICE OF LICENSE
  *
- * Licensed under the Apache License, Version 2.0
- * which is included in the LICENSE file
+ * This file is part of CodeIgniter gCharts.
+ * CodeIgniter gCharts is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
+ * CodeIgniter gCharts is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with CodeIgniter gCharts.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Kevin Hill <kevinkhill@gmail.com>
- * @copyright (c) 2013, Kevin Hill
+ * @copyright (c) 2013, KHill Designs
  * @link https://github.com/kevinkhill/Codeigniter-gCharts Github Page
- * @license http://http://www.apache.org/licenses/LICENSE-2.0.html Apache-V2
+ * @license http://www.gnu.org/licenses/gpl.html GPL-V3
  *
  */
 
@@ -108,7 +118,7 @@ class Gcharts
         {
             return $this->_generator($member, $arguments[0]);
         } else {
-            //@TODO: ERRORS
+            exit($member.'() IS UNDEFINED');
         }
     }
 
@@ -350,6 +360,11 @@ class Gcharts
     {
         self::$hasError = TRUE;
         self::$errorLog[$where] = $what;
+    }
+
+    public function hasErrors()
+    {
+        return self::$hasError = TRUE;
     }
 
     static function getErrors()

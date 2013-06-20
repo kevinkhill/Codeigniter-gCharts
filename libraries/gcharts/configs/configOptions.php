@@ -5,16 +5,27 @@
  * The base class for the individual configuration objects, providing common
  * functions to the child classes
  *
+ * 
  * NOTICE OF LICENSE
  *
- * Licensed under the Apache License, Version 2.0
- * which is included in the LICENSE file
+ * This file is part of CodeIgniter gCharts.
+ * CodeIgniter gCharts is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
+ * CodeIgniter gCharts is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with CodeIgniter gCharts.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Kevin Hill <kevinkhill@gmail.com>
- * @copyright (c) 2013, Kevin Hill
+ * @copyright (c) 2013, KHill Designs
  * @link https://github.com/kevinkhill/Codeigniter-gCharts Github Page
- * @license http://http://www.apache.org/licenses/LICENSE-2.0.html Apache-V2
+ * @license http://www.gnu.org/licenses/gpl.html GPL-V3
  *
  */
 
@@ -79,7 +90,7 @@ class configOptions
                 return (int) $val;
             }
         } else {
-            throw new Exception('"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) representing an int');
+            Gcharts::_set_error(get_class($this), '"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) representing an int');
         }
     }
 
@@ -103,10 +114,10 @@ class configOptions
                     return $tmp.'%';
                 }
             } else {
-                throw new Exception('"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) as percent [ 100 | "50%" ]');
+                Gcharts::_set_error(get_class($this), '"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) as percent [ 100 | "50%" ]');
             }
         } else {
-            throw new Exception('"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) as percent [ 100 | "50%" ]');
+            Gcharts::_set_error(get_class($this), '"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) as percent [ 100 | "50%" ]');
         }
     }
 

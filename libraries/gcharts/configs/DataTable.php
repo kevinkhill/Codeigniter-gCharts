@@ -7,14 +7,24 @@
  *
  * NOTICE OF LICENSE
  *
- * Licensed under the Apache License, Version 2.0
- * which is included in the LICENSE file
+ * This file is part of CodeIgniter gCharts.
+ * CodeIgniter gCharts is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
+ * CodeIgniter gCharts is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with CodeIgniter gCharts.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Kevin Hill <kevinkhill@gmail.com>
- * @copyright (c) 2013, Kevin Hill
+ * @copyright (c) 2013, KHill Designs
  * @link https://github.com/kevinkhill/Codeigniter-gCharts Github Page
- * @license http://http://www.apache.org/licenses/LICENSE-2.0.html Apache-V2
+ * @license http://www.gnu.org/licenses/gpl.html GPL-V3
  *
  */
 
@@ -90,17 +100,17 @@ class DataTable
                                     {
                                         $descArray[$key] = $value;
                                     } else {
-                                        throw new Exception('Invalid description array value, must be type (string).');
+                                        Gcharts::_set_error(get_class($this), 'Invalid description array value, must be type (string).');
                                     }
                                 }
                             } else {
-                                throw new Exception('Invalid description array key value, must be type (string) with any key value '.$this->_array_string($descriptions));
+                                Gcharts::_set_error(get_class($this), 'Invalid description array key value, must be type (string) with any key value '.$this->_array_string($descriptions));
                             }
                         } else {
-                            throw new Exception('Invalid type, must be type (string) with the value '.$this->_array_string($types));
+                            Gcharts::_set_error(get_class($this), 'Invalid type, must be type (string) with the value '.$this->_array_string($types));
                         }
                     } else {
-                        throw new Exception('Invalid description array, must contain (array) with at least one key type (string) value [ type ]');
+                        Gcharts::_set_error(get_class($this), 'Invalid description array, must contain (array) with at least one key type (string) value [ type ]');
                     }
                 }
 
@@ -116,24 +126,24 @@ class DataTable
                     {
                         $descArray['label'] = $opt_label;
                     } else {
-                        throw new Exception('Invalid opt_label, must be type (string).');
+                        Gcharts::_set_error(get_class($this), 'Invalid opt_label, must be type (string).');
                     }
 
                     if(is_string($opt_id))
                     {
                         $descArray['id'] = $opt_id;
                     } else {
-                        throw new Exception('Invalid opt_id, must be type (string).');
+                        Gcharts::_set_error(get_class($this), 'Invalid opt_id, must be type (string).');
                     }
                 } else {
-                    throw new Exception('Invalid type, must be type (string) with the value '.$this->_array_string($types));
+                    Gcharts::_set_error(get_class($this), 'Invalid type, must be type (string) with the value '.$this->_array_string($types));
                 }
 
                 $this->cols[] = $descArray;
             break;
 
             default:
-                throw new Exception('Invalid type or description array, must be type (string) or (array).');
+                Gcharts::_set_error(get_class($this), 'Invalid type or description array, must be type (string) or (array).');
             break;
         }
 
@@ -193,7 +203,7 @@ class DataTable
                         {
                             $rowVals[] = array($prop => $value);
                         } else {
-                            throw new Exception('Invalid row property, array with keys type (string) with values [ v | f | p ] ');
+                            Gcharts::_set_error(get_class($this), 'Invalid row property, array with keys type (string) with values [ v | f | p ] ');
                         }
                     }
 
@@ -219,11 +229,11 @@ class DataTable
                     } else {
                         $msg = 'Invalid number of cells, must be equal or less than number of columns. ';
                         $msg .= '(cells '.count($opt_cellArray).' > cols '.count($this->cols).')';
-                        throw new Exception($msg);
+                        Gcharts::_set_error(get_class($this), $msg);
                     }
                 }
             } else {
-                throw new Exception('Invalid row definition, must be type (array)');
+                Gcharts::_set_error(get_class($this), 'Invalid row definition, must be type (array)');
             }
         }
 

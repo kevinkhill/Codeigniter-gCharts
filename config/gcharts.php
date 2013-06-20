@@ -49,5 +49,5 @@ $config['globalTextStyle'] = array(
 | each error. Feel free to change to div's or span's, or apply a css class.
 |
 */
-$confg['errorPrepend'] = '<p style="color:red;">';
-$confg['errorAppend'] = '</p>';
+$config['errorPrepend'] = '<p style="color:red;">';
+$config['errorAppend'] = '</p>';
