@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Line Chart Object
+ * LineChart Object
  *
  * Holds all the configuration for the LineChart
  *
@@ -39,11 +39,16 @@ class LineChart
     var $events = NULL;
     var $elementID = NULL;
 
-    public function __construct($chartLabel)
+    public function __construct($chartLabel, $config = array())
     {
         $this->chartType = get_class($this);
         $this->chartLabel = $chartLabel;
-        $this->options = array();
+        if(is_array($config) && count($config) > 0)
+        {
+            $this->initialize($config);
+        } else {
+            $this->options = $config;
+        }
     }
 
     /**
@@ -55,7 +60,7 @@ class LineChart
      * @param array $options
      * @return \LineChart
      */
-    public function initialize($options = array())
+    public function initialize($options)
     {
         $defaultOptions = array(
 //            'animation',
@@ -99,9 +104,21 @@ class LineChart
                     }
                 }
             }
+        } else {
+            $this->error('Invalid config value, must be type (array) containing any key '.array_string($defaultOptions));
         }
 
         return $this;
+    }
+
+    /**
+     * Adds the error message to the error log in the gcharts master object.
+     *
+     * @param string $msg
+     */
+    private function error($msg)
+    {
+        Gcharts::_set_error($this->chartType, $msg);
     }
 
     /**
@@ -153,7 +170,7 @@ class LineChart
             {
                 $this->dataTable = $data;
             } else {
-                Gcharts::_set_error(get_class($this), 'Invalid argument, must be a label type (string) or a data table type (DataTable).');
+                $this->error('Invalid argument, must be a label type (string) or a data table type (DataTable).');
             }
         }
 
@@ -167,7 +184,6 @@ class LineChart
      *
      * @param array $events Array of events associated to a callback
      * @return \LineChart
-     * @throws Exception Invalid event
      */
     public function events($events)
     {
@@ -188,11 +204,11 @@ class LineChart
                 {
                     $this->events[] = $event;
                 } else {
-                    Gcharts::_set_error(get_class($this), 'Invalid events array key value, must be (string) with any key '.array_string($values));
+                    $this->error('Invalid events array key value, must be (string) with any key '.array_string($values));
                 }
             }
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid events type, must be (array) containing any key '.array_string($values));
+            $this->error('Invalid events type, must be (array) containing any key '.array_string($values));
         }
 
         return $this;
@@ -210,7 +226,6 @@ class LineChart
      *
      * @param string $easing
      * @return \LineChart
-     * @throws Exception Invalid animationEasing
      */
 //    public function animationEasing($easing = 'linear')
 //    {
@@ -221,7 +236,7 @@ class LineChart
 //            $this->easing = $easing;
 //            return $this;
 //        } else {
-//            Gcharts::_set_error(get_class($this), 'Invalid animationEasing value, must be (string) '.array_string($values));
+//            $this->error('Invalid animationEasing value, must be (string) '.array_string($values));
 //        }
 //
 //        return $this;
@@ -255,7 +270,6 @@ class LineChart
      *
      * @param string $position
      * @return \LineChart
-     * @throws Exception Invalid axisTitlesPosition
      */
     public function axisTitlesPosition($position)
     {
@@ -264,10 +278,11 @@ class LineChart
         if(in_array($position, $values))
         {
             $this->addOption(array('axisTitlesPosition' => $position));
-            return $this;
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid axisTitlesPosition, must be (string) '.array_string($values));
+            $this->error('Invalid axisTitlesPosition, must be (string) '.array_string($values));
         }
+
+        return $this;
     }
 
     /**
@@ -278,17 +293,17 @@ class LineChart
      *
      * @param \chartArea $chartArea
      * @return \LineChart
-     * @throws Exception Invalid chartArea
      */
     public function chartArea(chartArea $chartArea)
     {
         if(is_a($chartArea, 'chartArea'))
         {
             $this->addOption($chartArea->toArray());
-            return $this;
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid chartArea, must be (object) type chartArea');
+            $this->error('Invalid chartArea, must be (object) type chartArea');
         }
+
+        return $this;
     }
 
     /**
@@ -297,17 +312,17 @@ class LineChart
      *
      * @param array $colorArray
      * @return \LineChart
-     * @throws Exception Invalid colors
      */
     public function colors($colorArray)
     {
         if(is_array($colorArray))
         {
             $this->addOption(array('colors' => $colorArray));
-            return $this;
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid colors, must be (array) with valid HTML colors');
+            $this->error('Invalid colors, must be (array) with valid HTML colors');
         }
+
+        return $this;
     }
 
     /**
@@ -318,7 +333,6 @@ class LineChart
      *
      * @param string $curveType
      * @return \LineChart
-     * @throws Exception Invalid curveType
      */
     public function curveType($curveType = 'none')
     {
@@ -327,30 +341,39 @@ class LineChart
         if(in_array($curveType, $values))
         {
             $this->addOption(array('curveType' => (string) $curveType));
-            return $this;
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid curveType, must be (string) '.array_string($values));
+            $this->error('Invalid curveType, must be (string) '.array_string($values));
         }
+
+        return $this;
     }
 
     public function enableInteractivity($param)
     {
 
+
+        return $this;
     }
 
     public function focusTarget($param)
     {
 
+
+        return $this;
     }
 
     public function fontSize($param)
     {
 
+
+        return $this;
     }
 
     public function fontName($param)
     {
 
+
+        return $this;
     }
 
     /**
@@ -360,16 +383,14 @@ class LineChart
      *
      * @param hAxis $hAxis
      * @return \LineChart
-     * @throws Exception
      */
     public function hAxis($hAxis)
     {
         if(is_a($hAxis, 'hAxis'))
         {
             $this->addOption($hAxis->toArray());
-            return $this;
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid hAxis, must be (object) type hAxis');
+            $this->error('Invalid hAxis, must be (object) type hAxis');
         }
 
         return $this;
@@ -380,17 +401,17 @@ class LineChart
      *
      * @param int $height
      * @return \LineChart
-     * @throws Exception
      */
     public function height($height)
     {
         if(is_int($height))
         {
             $this->addOption(array('height' => $height));
-            return $this;
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid height, must be (int)');
+            $this->error('Invalid height, must be (int)');
         }
+
+        return $this;
     }
 
     /**
@@ -403,9 +424,9 @@ class LineChart
     {
         if(is_bool($isHTML))
         {
-            $this->isHTML = $isHTML;
+            $this->addOption(array('isHTML' => $isHTML));
         } else {
-            $this->isHTML = FALSE;
+            $this->error('Invalid isHTML value, must be type (boolean)');
         }
 
         return $this;
@@ -423,9 +444,9 @@ class LineChart
     {
         if(is_bool($interpolateNulls))
         {
-            $this->interpolateNulls = $interpolateNulls;
+            $this->addOption(array('interpolateNulls' => $interpolateNulls));
         } else {
-            $this->interpolateNulls = FALSE;
+            Gcharts::_set_error($where, 'Invalid interpolateNulls value, must be type (boolean)');
         }
 
         return $this;
@@ -438,7 +459,6 @@ class LineChart
      *
      * @param legend $legendObj
      * @return \LineChart
-     * @throws Exception
      */
     public function legend(legend $legendObj)
     {
@@ -446,7 +466,7 @@ class LineChart
         {
             $this->addOption($legendObj->toArray());
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid legend, must be (object) type legend');
+            $this->error('Invalid legend, must be (object) type legend');
         }
 
         return $this;
@@ -459,7 +479,6 @@ class LineChart
      *
      * @param int $width
      * @return \LineChart
-     * @throws Exception
      */
     public function lineWidth($width = 2)
     {
@@ -467,7 +486,7 @@ class LineChart
         {
             $this->addOption(array('lineWidth' => $width));
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid lineWidth, must be (int)');
+            $this->error('Invalid lineWidth, must be (int)');
         }
 
         return $this;
@@ -479,7 +498,6 @@ class LineChart
      *
      * @param int $size
      * @return \LineChart
-     * @throws Exception
      */
     public function pointSize($size = 0)
     {
@@ -487,7 +505,7 @@ class LineChart
         {
             $this->addOption(array('pointSize' => $size));
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid pointSize, must be (int)');
+            $this->error('Invalid pointSize, must be (int)');
         }
 
         return $this;
@@ -496,17 +514,23 @@ class LineChart
     public function reverseCatagories($param)
     {
 
+
+        return $this;
     }
 
     public function series($param)
     {
 
+
+        return $this;
     }
 
-    public function theme($param)
-    {
-
-    }
+//    public function theme($param)
+//    {
+//
+//
+//        return $this;
+//    }
 
     /**
      * Text to display above the chart.
@@ -516,7 +540,12 @@ class LineChart
      */
     public function title($title = '')
     {
-        $this->addOption(array('title' => (string) $title));
+        if(is_string($title))
+        {
+            $this->addOption(array('title' => (string) $title));
+        } else {
+            $this->error('Invalid title, must be type (string)');
+        }
 
         return $this;
     }
@@ -528,7 +557,6 @@ class LineChart
      *
      * @param tooltip $tooltipObj
      * @return \LineChart
-     * @throws Exception
      */
     public function tooltip(tooltip $tooltipObj)
     {
@@ -536,7 +564,7 @@ class LineChart
         {
             $this->addOption($tooltipObj->toArray());
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid tooltip, must be (object) type tooltip');
+            $this->error('Invalid tooltip, must be (object) type tooltip');
         }
 
         return $this;
@@ -550,7 +578,6 @@ class LineChart
      *
      * @param string $position
      * @return \LineChart
-     * @throws Exception
      */
     public function titlePosition($position)
     {
@@ -564,7 +591,7 @@ class LineChart
         {
             $this->addOption(array('titlePosition' => $position));
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid axisTitlesPosition, must be (string) '.array_string($values));
+            $this->error('Invalid axisTitlesPosition, must be (string) '.array_string($values));
         }
 
         return $this;
@@ -576,7 +603,6 @@ class LineChart
      *
      * @param textStyle $textStyleObj
      * @return \LineChart
-     * @throws Exception
      */
     public function titleTextStyle(textStyle $textStyleObj)
     {
@@ -584,7 +610,7 @@ class LineChart
         {
             $this->addOption(array('titleTextStyle' => $textStyleObj->values()));
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid titleTextStyle, must be (object) type textStyle');
+            $this->error('Invalid titleTextStyle, must be (object) type textStyle');
         }
 
         return $this;
@@ -595,7 +621,6 @@ class LineChart
      *
      * @param int $width
      * @return \LineChart
-     * @throws Exception
      */
     public function width($width)
     {
@@ -603,7 +628,7 @@ class LineChart
         {
             $this->addOption(array('width' => $width));
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid width, must be (int)');
+            $this->error('Invalid width, must be (int)');
         }
 
         return $this;
