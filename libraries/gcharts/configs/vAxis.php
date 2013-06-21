@@ -5,7 +5,7 @@
  * An object containing all the values for the axis which can be
  * passed into the chart's options
  *
- * 
+ *
  * NOTICE OF LICENSE
  *
  * This file is part of CodeIgniter gCharts.
@@ -42,7 +42,7 @@ class vAxis extends Axis
     var $textStyle;
     var $title = NULL;
     var $titleTextStyle;
-    var $allowContainerBoundaryTextCufoff = FALSE;
+    var $allowContainerBoundaryTextCutoff = FALSE;
     var $maxAlternation = 2;
     var $maxTextLines;
     var $minTextSpacing;
@@ -75,7 +75,7 @@ class vAxis extends Axis
             'textStyle',
             'title',
             'titleTextStyle',
-            'allowContainerBoundaryTextCufoff',
+            'allowContainerBoundaryTextCutoff',
             'maxAlternation',
             'maxTextLines',
             'minTextSpacing',
@@ -373,13 +373,13 @@ class vAxis extends Axis
      * @param boolean $cutoff
      * @return \axis
      */
-    public function allowContainerBoundaryTextCufoff($cutoff)
+    public function allowContainerBoundaryTextCutoff($cutoff)
     {
         if(is_bool($cutoff))
         {
-            $this->allowContainerBoundaryTextCufoff = $cutoff;
+            $this->allowContainerBoundaryTextCutoff = $cutoff;
         } else {
-            $this->allowContainerBoundaryTextCufoff = FALSE;
+            $this->allowContainerBoundaryTextCutoff = FALSE;
         }
 
         return $this;

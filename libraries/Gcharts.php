@@ -313,7 +313,7 @@ class Gcharts
             case 0:
                 if(isset(self::$elementID))
                 {
-                    return sprintf($format, self::$elementID, 1280, 720);
+                    return sprintf($format, self::$elementID, 960, 540);
                 } else {
                     //error, not set
                 }
@@ -382,7 +382,7 @@ class Gcharts
 
             return $errors;
         } else {
-            return 'No Errors.';
+            return NULL;
         }
     }
 
