@@ -39,7 +39,7 @@ class LineChart
     var $events = NULL;
     var $elementID = NULL;
 
-    public function __construct($chartLabel, $config = array())
+    public function __construct($chartLabel)
     {
         $this->chartType = get_class($this);
         $this->chartLabel = $chartLabel;

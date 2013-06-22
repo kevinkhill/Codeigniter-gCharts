@@ -57,7 +57,8 @@ class Gcharts
 
     private $supportedClasses = array(
         'DataTable',
-        'LineChart'
+        'LineChart',
+        'AreaChart'
     );
 
     private $configClasses = array(
@@ -144,130 +145,16 @@ class Gcharts
      * Loads a specified chart manually
      *
      * @param string $chartName
-     * @throws Exception
      */
     public function load($chartName)
     {
-        if(file_exists('gcharts/charts/'.$chartName.'.php'))
+        if(file_exists(self::$chartPath.$chartName.'.php'))
         {
-            require_once('gcharts/charts/'.$chartName.'.php');
+            require_once(self::$chartPath.$chartName.'.php');
         } else {
-            throw new Exception('Invalid Chart, could not load "gcharts/charts/'.$chartName.'.php"');
+            $this->_set_error(get_class($this), 'Invalid Chart, could not load "'.self::$chartPath.$chartName.'.php"');
         }
     }
-
-    /**
-     * Creates and returns a new configuration object
-     *
-     * @param string $type config object name
-     * @return \configs\configOptions
-     * @throws Exception invalid config object
-     */
-//    public function configObj($type)
-//    {
-//        $configObjects = array(
-//            'chartArea',
-//            'date',
-//            'legend',
-//            'textStyle',
-//            'tooltip'
-//        );
-//
-//        if(in_array($type, $configObjects))
-//        {
-//            return new $type();
-//        } else {
-//            throw new Exception('Error, "'.$type.'" is not a valid config object');
-//        }
-//    } @TODO: Depreciated
-
-    /**
-     * When passed a label as a (string), this creates and stores a new DataTable
-     * object within the Gcharts parent object and returns it.
-     *
-     * If already defined, it returns the corresponding labeled DataTable.
-     *
-     * If called with no argument, it just returns a new DataTable without storing
-     * it within the parent object.
-     *
-     * @param string $dataTableLabel
-     * @return \gcharts\DataTable
-     */
-//    public function DataTable($dataTableLabel)
-//    {
-//        if(is_string($dataTableLabel) && $dataTableLabel != '')
-//        {
-//            if(isset(self::$dataTables[$dataTableLabel]))
-//            {
-//                return self::$dataTables[$dataTableLabel];
-//            } else {
-//                self::$dataTables[$dataTableLabel] = new DataTable();
-//                return self::$dataTables[$dataTableLabel];
-//            }
-//        } else {
-//            return new DataTable();
-//        }
-//    } //@TODO:DEPRECIATED
-
-    /**
-     * LineChart Object
-     *
-     * When passed a label as a (string), this creates and stores a new LineChart
-     * object within the Gcharts parent object and returns it.
-     *
-     * If already defined, it returns the corresponding labeled LineChart.
-     *
-     * If called with no argument, it just returns a new LineChart without storing
-     * it within the parent object.
-     *
-     * @param string $lineChartLabel
-     * @return \charts\LineChart
-     */
-//    public function LineChart1($lineChartLabel)
-//    {
-//        if(is_string($lineChartLabel) && $lineChartLabel != '')
-//        {
-//            if(isset(self::$lineCharts[$lineChartLabel]))
-//            {
-//                return self::$lineCharts[$lineChartLabel];
-//            } else {
-//                self::$lineCharts[$lineChartLabel] = new LineChart($lineChartLabel);
-//                return self::$lineCharts[$lineChartLabel];
-//            }
-//        } else {
-//            return new LineChart();
-//        }
-//    }//@TODO:DEPRECIATED
-
-    /**
-     * AreaChart Object
-     *
-     * When passed a label as a (string), this creates and stores a new AreaChart
-     * object within the Gcharts parent object and returns it.
-     *
-     * If already defined, it returns the corresponding labeled AreaChart.
-     *
-     * If called with no argument, it just returns a new AreaChart without storing
-     * it within the parent object.
-     *
-     * @param string $areaChartLabel
-     * @return \charts\AreaChart
-     */
-//    public function AreaChart1($areaChartLabel)
-//    {
-//        if(is_string($areaChartLabel) && $areaChartLabel != '')
-//        {
-//            if(isset(self::$areaCharts[$areaChartLabel]))
-//            {
-//                return self::$areaCharts[$areaChartLabel];
-//            } else {
-//                self::$areaCharts[$areaChartLabel] = new LineChart($areaChartLabel);
-//                return self::$areaCharts[$areaChartLabel];
-//            }
-//        } else {
-//            return new AreaChart();
-//        }
-//    }//@TODO:DEPRECIATED
 
     /**
      * Returns the Javascript block to place in the page
