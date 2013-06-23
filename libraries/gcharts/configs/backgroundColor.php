@@ -8,25 +8,15 @@
  *
  * NOTICE OF LICENSE
  *
- * This file is part of CodeIgniter gCharts.
- * CodeIgniter gCharts is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * You should have received a copy of the MIT License along with this project.
+ * If not, see <http://opensource.org/licenses/MIT>.
  *
- * CodeIgniter gCharts is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with CodeIgniter gCharts.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Kevin Hill <kevinkhill@gmail.com>
  * @copyright (c) 2013, KHill Designs
- * @link https://github.com/kevinkhill/Codeigniter-gCharts Github Page
- * @license http://www.gnu.org/licenses/gpl.html GPL-V3
- *
+ * @link https://github.com/kevinkhill/Codeigniter-gCharts GitHub Repository Page
+ * @link http://kevinkhill.github.io/Codeigniter-gCharts/ GitHub Project Page
+ * @license http://opensource.org/licenses/MIT MIT
  */
 
 class backgroundColor extends configOptions
