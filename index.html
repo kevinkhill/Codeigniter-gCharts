@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Codeigniter-gCharts : A library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Codeigniter-gCharts</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/kevinkhill/Codeigniter-gCharts">View on GitHub</a>
+
+          <h1 id="project_title">Codeigniter-gCharts</h1>
+          <h2 id="project_tagline">A library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/kevinkhill/Codeigniter-gCharts/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/kevinkhill/Codeigniter-gCharts/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="codeigniter-gcharts" class="anchor" href="#codeigniter-gcharts"><span class="octicon octicon-link"></span></a>Codeigniter-gCharts</h1>
+
+<h3>
+<a name="google-chart-api-for-codeigniter" class="anchor" href="#google-chart-api-for-codeigniter"><span class="octicon octicon-link"></span></a>Google Chart API for CodeIgniter</h3>
+
+<p>This is a library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5<br>
+by <a href="http://khilldesigns.site11.com">Kevin Hill</a><br>
+If you have any questions or comments, please email me or post issues here on github</p>
+
+<hr><h2>
+<a name="installing" class="anchor" href="#installing"><span class="octicon octicon-link"></span></a>Installing</h2>
+
+<p>Copy the "libraries" folder into your Codeigniter application folder.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Here is an example of how to create a line chart with two lines of data</p>
+
+<h3>
+<a name="first-the-controller" class="anchor" href="#first-the-controller"><span class="octicon octicon-link"></span></a>First the controller</h3>
+
+<ol>
+<li>Copy the "libraries" folder into your Codeigniter application folder.</li>
+<li>Load the library in your controller you will use to define the chart.<br><code>
+$this-&gt;load-&gt;library('gcharts');
+</code>
+</li>
+<li>Use the now defined gcharts library to pick which chart you are going to build, we will be creating a LineChart.</li>
+<li>Pass an array defining what you will be plotting in your graph. The first item will be the horizontal axis, the second item =&gt; the first line, the third item =&gt; second line, etc...<br><code>
+$this-&gt;gcharts-&gt;LineChart(
+array('Amount', 'Current', 'Projected')
+);
+</code>
+</li>
+<li>
+</ol><hr><h3>
+<a name="example-controller-welcomephp-with-linechart" class="anchor" href="#example-controller-welcomephp-with-linechart"><span class="octicon octicon-link"></span></a>Example Controller, welcome.php with LineChart</h3>
+
+<pre><code>&lt;?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Welcome extends CI_Controller {
+
+    function __construct()
+    {
+        parent::__construct();
+        $this-&gt;load-&gt;library('gcharts');
+    }
+
+    public function chart()
+    {
+        try {
+            $this-&gt;gcharts-&gt;LineChart(array('Count', 'Actual', 'Projected'));
+
+            $this-&gt;gcharts-&gt;LineChart-&gt;title('Temperature Variance');
+            $this-&gt;gcharts-&gt;LineChart-&gt;curveType('function');
+            $this-&gt;gcharts-&gt;LineChart-&gt;width(800)-&gt;height(250)-&gt;pointSize(2)-&gt;lineWidth(2);
+
+            $chartArea = new chartArea();
+            $chartArea-&gt;left(25)-&gt;top(25)-&gt;width('75%');
+
+            $textStyle = new textStyle();
+            $textStyle-&gt;color('#FF0A04')-&gt;fontName('Lucida')-&gt;fontSize(18);
+
+            $gcharts-&gt;LineChart-&gt;addOption($chartArea)-&gt;titleTextStyle($textStyle);
+        } catch(Exception $e) {
+            data['error'] = $e-&gt;getMessage();
+        }
+
+        for($a = 1; $a &lt; 10; $a++)
+        {
+            $line1 = rand(-20,20);
+            $line2 = rand(-20,20);
+            $gcharts-&gt;LineChart-&gt;addData(array($a, $line1, $line2));
+        }
+
+        $this-&gt;load-&gt;view('example.php', $data);
+    }
+
+}
+</code></pre>
+
+<hr><h3>
+<a name="now-the-view" class="anchor" href="#now-the-view"><span class="octicon octicon-link"></span></a>Now the view</h3>
+
+<ol>
+<li>The Google API needs to be loaded into the header first and foremost. Put this
+<code>
+&lt;?php echo Gcharts::$googleAPI; ?&gt;
+</code>
+into the head of the view, The script tags are included.</li>
+<li>Then use the output method of the chart to pick where the chart will be loaded. Pass a string with the ID of an element to load the chart into, here we are using 'chart_div'.</li>
+</ol><h3>
+<a name="example-viewphp" class="anchor" href="#example-viewphp"><span class="octicon octicon-link"></span></a>Example view.php</h3>
+
+<div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span> <span class="na">xml:lang=</span><span class="s">"en"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/1999/xhtml"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"content-type"</span> <span class="na">content=</span><span class="s">"text/html; charset=UTF-8"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"en"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;title&gt;</span>Codeigniter-gCharts<span class="nt">&lt;/title&gt;</span>
+        <span class="cp">&lt;?php echo Gcharts::$googleAPI; ?&gt;</span>
+        <span class="cp">&lt;?php echo $gcharts-&gt;LineChart-&gt;output('chart_div'); ?&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"chart_div"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            <span class="cp">&lt;?php echo $error; ?&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+<h3>
+<a name="output" class="anchor" href="#output"><span class="octicon octicon-link"></span></a>Output</h3>
+
+<p><img src="http://i.imgur.com/Eojy0zu.png" alt="Chart Output"></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Codeigniter-gCharts maintained by <a href="https://github.com/kevinkhill">kevinkhill</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
