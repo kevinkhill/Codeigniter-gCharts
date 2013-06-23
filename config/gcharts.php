@@ -8,17 +8,20 @@
 | Use this array to enable the use of specific charts. The currently supported
 | charts include:
 | - LineChart
+| - AreaChart
+|
 | - More coming soon!
 |
 */
 $config['autoloadCharts'] = array(
-    'LineChart'
+    'LineChart',
+    'AreaChart'
 );
 
 
 /*
 |--------------------------------------------------------------------------
-| Global Auto Load Charts
+| Global Auto Load Charts - Coming Soon!
 |--------------------------------------------------------------------------
 |
 | Enable the use of Global Text Styles for the charts.
@@ -33,12 +36,13 @@ $config['autoloadCharts'] = array(
 | 'fontSize' - The default font size, in pixels, of all text in the chart.
 |
 */
-$config['useGlobalTextStyle'] = FALSE;
-$config['globalTextStyle'] = array(
-    'color' => 'black',
-    'fontName' => 'Arial',
-    'fontSize' => 12
-);
+//$config['useGlobalTextStyle'] = FALSE;
+//$config['globalTextStyle'] = array(
+//    'color' => 'black',
+//    'fontName' => 'Arial',
+//    'fontSize' => 12
+//);
+
 
 /*
 |--------------------------------------------------------------------------

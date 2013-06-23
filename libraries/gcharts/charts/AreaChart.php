@@ -45,7 +45,7 @@ class AreaChart
      * @param array $options
      * @return \AreaChart
      */
-    public function initialize($options = array())
+    public function setConfig($options = array())
     {
         $defaultOptions = array(
 //            'animation',

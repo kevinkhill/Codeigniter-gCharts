@@ -45,7 +45,7 @@ class LineChart
      * @param array $options
      * @return \LineChart
      */
-    public function initialize($options)
+    public function setConfig($options)
     {
         $defaultOptions = array(
 //            'animation',
