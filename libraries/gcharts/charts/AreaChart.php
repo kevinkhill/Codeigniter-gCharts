@@ -39,16 +39,11 @@ class AreaChart
     var $events = NULL;
     var $elementID = NULL;
 
-    public function __construct($chartLabel, $config = array())
+    public function __construct($chartLabel)
     {
         $this->chartType = get_class($this);
         $this->chartLabel = $chartLabel;
-        if(is_array($config) && count($config) > 0)
-        {
-            $this->initialize($config);
-        } else {
-            $this->options = $config;
-        }
+        $this->options = array();
     }
 
     /**

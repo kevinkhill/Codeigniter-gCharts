@@ -169,11 +169,11 @@ class Gcharts
     /**
      * Builds a div html element for a chart to be rendered into.
      *
+     * Calling with no arguments will return a div with the ID set to what was
+     * given to the outputInto() function.
+     *
      * Passing two (int)s will set the width and height respectivly and the div
      * ID will be set via the string given in the outputInto() function.
-     *
-     * Passing a (string) and two (int)s will set div's ID, and set the width
-     * and height respectivly
      *
      *
      * This is useful for the AnnotatedTimeLine Chart since it MUST have explicitly
@@ -182,64 +182,34 @@ class Gcharts
      * The other charts do not require height and width, but do require an ID of
      * the div that will be receiving the chart.
      *
+     * @param int $width
+     * @param int $height
      * @return string HTML div element
      */
     // @TODO: Fix up this function
-    public function div()//string $elementID = '', int $width = 960, int $height = 540)
+    public function div($width = 0, $height = 0)//string $elementID = '', int $width = 960, int $height = 540)
     {
-        $format = '<div id="%s" style="width:%spx;height:%spx;"></div>';
-        $args = array();
-
-        for($i = 0; $i < func_num_args(); $i++)
+        if($width == 0 && $height == 0)
         {
-            $args[$i] = func_get_arg($i);
-        }
-
-        switch(func_num_args())
-        {
-            case 0:
+            if(isset(self::$elementID))
+            {
+                return sprintf('<div id="%s"></div>', self::$elementID);
+            } else {
+                $this->_set_error(get_class($this), 'Error, output element ID is not set.');
+            }
+        } else {
+            if((is_int($width) && $width > 0) && (is_int($height) && $height > 0))
+            {
                 if(isset(self::$elementID))
                 {
-                    return sprintf($format, self::$elementID, 960, 540);
+                    $format = '<div id="%s" style="width:%spx;height:%spx;"></div>';
+                    return sprintf($format, self::$elementID, $width, $height);
                 } else {
-                    //error, not set
+                    $this->_set_error(get_class($this), 'Error, output element ID is not set.');
                 }
-            break;
-
-            case 2:
-                if(is_int($args[0]) && is_int($args[1]))
-                {
-                    if(isset(self::$elementID))
-                    {
-                        return sprintf($format, self::$elementID, $width, $height);
-                    } else {
-                        //error, not set
-                    }
-                } else {
-                    // invalid params, int int
-                }
-            break;
-
-            case 3:
-                if(is_string($args[0]) && is_int($args[1]) && is_int($args[2]))
-                {
-                    return sprintf($format, $args[0], $args[1], $args[2]);
-                } else {
-                    // invalid params, string int int
-                }
-            break;
-
-            default:
-                if(func_num_args() > 3)
-                {
-                    //TOO MANY
-                }
-
-                if(func_num_args() == 1)
-                {
-                    //NOT ENOUGH
-                }
-            break;
+            } else {
+                $this->_set_error(get_class($this), 'Invalid div width | height, must be type (int) > 0');
+            }
         }
     }
 
