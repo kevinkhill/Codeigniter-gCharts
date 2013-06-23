@@ -1,36 +1,42 @@
 #Codeigniter-gCharts
 ###Google Chart API for CodeIgniter
-This is a library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5  
-by [Kevin Hill](http://khilldesigns.site11.com)  
-If you have any questions or comments, please email me or post issues here on github
+This is a library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5
+by [Kevin Hill](http://khilldesigns.site11.com)
+If you have any questions or comments, please email me or post issues here on Github
 
+> This has been designed as a "Spark" for Codeigniter, which is also hosted here on
+> [Getsparks](http://getsparks.org)
  - - -
 
 ##Installing
-Copy the "libraries" folder into your Codeigniter application folder.
+1. Follow this guide on [getsparks](http://getsparks.org/install) to enable
+the spark manager for your codeigniter project
+2. Follow this next [guide](http://getsparks.org/get-sparks) to install the gcharts
+spark into codeigniter, replacing "example-spark" with "gcharts" (no quotes & ommiting
+the version number)
 
 ##Usage
-Here is an example of how to create a line chart with two lines of data
+The library has Here is an example of how to create a line chart with two lines of data
 
 ###First the controller
 1. Copy the "libraries" folder into your Codeigniter application folder.
-2. Load the library in your controller you will use to define the chart.  
+2. Load the library in your controller you will use to define the chart.
 ```
 $this->load->library('gcharts');
 ```
 3. Use the now defined gcharts library to pick which chart you are going to build, we will be creating a LineChart.
-4. Pass an array defining what you will be plotting in your graph. The first item will be the horizontal axis, the second item => the first line, the third item => second line, etc...  
+4. Pass an array defining what you will be plotting in your graph. The first item will be the horizontal axis, the second item => the first line, the third item => second line, etc...
 ```
 $this->gcharts->LineChart(
     array('Amount', 'Current', 'Projected')
 );
 ```
-5. 
+5.
 
  - - -
 
-###Example Controller, welcome.php with LineChart  
-```
+###Example Controller, welcome.php with LineChart
+```php
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
@@ -70,7 +76,7 @@ class Welcome extends CI_Controller {
 
         $this->load->view('example.php', $data);
     }
-    
+
 }
 ```
 
@@ -107,5 +113,5 @@ into the head of the view, The script tags are included.
 </html>
 ```
 
-###Output  
+###Output
 ![Chart Output](http://i.imgur.com/Eojy0zu.png)
