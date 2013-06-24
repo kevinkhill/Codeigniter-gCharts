@@ -36,7 +36,7 @@ class DataCell
         $this->v = $v;
         $this->f = $f;
 
-        if(gettype($p) == 'array')
+        if(is_array($p))
         {
             $vals = array();
             foreach($p as $k => $v)

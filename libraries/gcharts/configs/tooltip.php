@@ -40,6 +40,8 @@ class tooltip extends configOptions
                 if(in_array($option, $this->options))
                 {
                     $this->$option($value);
+                } else {
+                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
                 }
             }
         }

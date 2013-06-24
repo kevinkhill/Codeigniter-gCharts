@@ -37,6 +37,8 @@ class Axis extends configOptions
     var $viewWindowMode;
     var $viewWindow;
 
+    var $options = array();
+    
     /**
      * Stores all the information about the axis. All options can be
      * set either by passing an array with associative values for option =>
@@ -82,16 +84,6 @@ class Axis extends configOptions
         }
 
         return $this;
-    }
-
-    /**
-     * Adds the error message to the error log in the gcharts master object.
-     *
-     * @param string $msg
-     */
-    private function error($msg)
-    {
-        Gcharts::_set_error(get_class($this), $msg);
     }
 
     /**

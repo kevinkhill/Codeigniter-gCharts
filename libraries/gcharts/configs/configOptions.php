@@ -24,6 +24,16 @@ class configOptions
     var $output;
     var $options;
 
+    /**
+     * Adds the error message to the error log in the gcharts master object.
+     *
+     * @param string $msg
+     */
+    private function error($msg)
+    {
+        Gcharts::_set_error(get_class($this), $msg);
+    }
+
     public function toJSON()
     {
         $this->output = array();
@@ -69,21 +79,21 @@ class configOptions
         return $this->output;
     }
 
-    public function _valid_int($val)
-    {
-        if(is_int($val) === TRUE)
-        {
-            return (int) $val;
-        } else if(is_string($val) === TRUE) {
-            if(ctype_digit($val) === TRUE)
-            {
-                return (int) $val;
-            }
-        } else {
-            Gcharts::_set_error(get_class($this), '"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) representing an int');
-        }
-    }
-
+//    public function _valid_int($val)
+//    {
+//        if(is_int($val) === TRUE)
+//        {
+//            return (int) $val;
+//        } else if(is_string($val) === TRUE) {
+//            if(ctype_digit($val) === TRUE)
+//            {
+//                return (int) $val;
+//            }
+//        } else {
+//            $this->error('"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) representing an int');
+//        }
+//    }
+//
     public function _valid_int_or_percent($val)
     {
         if(is_int($val) === TRUE)
@@ -104,19 +114,19 @@ class configOptions
                     return $tmp.'%';
                 }
             } else {
-                Gcharts::_set_error(get_class($this), '"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) as percent [ 100 | "50%" ]');
+                $this->error('"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) as percent [ 100 | "50%" ]');
             }
         } else {
-            Gcharts::_set_error(get_class($this), '"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) as percent [ 100 | "50%" ]');
+            $this->error('"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) as percent [ 100 | "50%" ]');
         }
     }
-
-    public function _get_caller() {
-        $trace = debug_backtrace();
-        $caller = $trace[2];
-
-        return $caller['function'].'()';
-    }
+//
+//    public function _get_caller() {
+//        $trace = debug_backtrace();
+//        $caller = $trace[2];
+//
+//        return $caller['function'].'()';
+//    }
 
 }
 

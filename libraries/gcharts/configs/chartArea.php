@@ -26,8 +26,8 @@ class chartArea extends configOptions
     var $width;
     var $height;
 
-    public function __construct($options = array()) {
-
+    public function __construct($options = array())
+    {
         $this->options = array(
             'left',
             'top',
@@ -42,6 +42,8 @@ class chartArea extends configOptions
                 if(in_array($option, $this->options))
                 {
                     $this->$option($value);
+                } else {
+                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
                 }
             }
         }

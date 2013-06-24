@@ -30,7 +30,7 @@ class DataTable
      */
     private function error($msg)
     {
-        $this->error($msg);
+        Gcharts::_set_error(get_class($this), $msg);
     }
 
     /**

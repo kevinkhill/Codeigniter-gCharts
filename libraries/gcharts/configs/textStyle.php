@@ -40,6 +40,8 @@ class textStyle extends configOptions
                 if(in_array($option, $this->options))
                 {
                     $this->$option($value);
+                } else {
+                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
                 }
             }
         }
@@ -59,8 +61,6 @@ class textStyle extends configOptions
         if(is_string($color))
         {
             $this->color = $color;
-        } else {
-            $this->color = 'black';
         }
 
         return $this;
@@ -77,8 +77,6 @@ class textStyle extends configOptions
         if(is_string($fontName))
         {
             $this->fontName = $fontName;
-        } else {
-            $this->fontName = 'Arial';
         }
 
         return $this;
@@ -93,11 +91,11 @@ class textStyle extends configOptions
      */
     public function fontSize($fontSize)
     {
-        if(is_int($fontSize) || is_string($fontSize))
+        if(is_int($fontSize))
         {
-            $this->fontSize = $this->_valid_int($fontSize);
+            $this->fontSize = $fontSize;
         } else {
-            $this->fontSize = 12;
+            $this->error('Invalid fontSize, must be type (int).');
         }
 
         return $this;

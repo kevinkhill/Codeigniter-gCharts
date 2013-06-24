@@ -49,6 +49,8 @@ class backgroundColor extends configOptions
                 if(in_array($option, $this->options))
                 {
                     $this->$option($value);
+                } else {
+                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
                 }
             }
         }
@@ -70,8 +72,6 @@ class backgroundColor extends configOptions
         if(is_string($stroke))
         {
             $this->stroke = $stroke;
-        } else {
-            $this->stroke = '#666';
         }
 
         return $this;
@@ -82,16 +82,16 @@ class backgroundColor extends configOptions
      *
      * The border width, in pixels. Accepts any integer or integer as a string
      *
-     * @param mixed $strokeWidth
+     * @param int $strokeWidth
      * @return \backgroundColor
      */
     public function strokeWidth($strokeWidth)
     {
-        if(is_int($strokeWidth) || is_string($strokeWidth))
+        if(is_int($strokeWidth))
         {
-            $this->strokeWidth = $this->_valid_int($strokeWidth);
+            $this->strokeWidth = $strokeWidth;
         } else {
-            $this->strokeWidth = 0;
+            $this->error('Invalid strokeWidth, must be type (int).');
         }
 
         return $this;
@@ -111,8 +111,6 @@ class backgroundColor extends configOptions
         if(is_string($fill))
         {
             $this->fill = $fill;
-        } else {
-            $this->fill = 'white';
         }
 
         return $this;

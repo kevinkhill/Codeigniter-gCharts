@@ -40,21 +40,13 @@ class legend extends configOptions
                 if(in_array($option, $this->options))
                 {
                     $this->$option($value);
+                } else {
+                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
                 }
             }
         }
 
         return $this;
-    }
-
-    /**
-     * Adds the error message to the error log in the gcharts master object.
-     *
-     * @param string $msg
-     */
-    private function error($msg)
-    {
-        Gcharts::_set_error($this->chartType, $msg);
     }
 
     /**
