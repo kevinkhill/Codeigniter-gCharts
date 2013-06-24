@@ -21,6 +21,27 @@
 
 class Axis extends configOptions
 {
+    var $baseline;
+    var $baselineColor;// = 'black';
+    var $direction;// = 1;
+    var $format;
+    var $gridlines;
+    var $minorGridlines;
+    var $logScale;// = FALSE;
+    var $textPosition;// = 'out';
+    var $textStyle;
+    var $title;// = NULL;
+    var $titleTextStyle;
+    var $allowContainerBoundaryTextCutoff;// = FALSE;
+    var $maxAlternation;// = 2;
+    var $maxTextLines;
+    var $minTextSpacing;
+    var $showTextEvery;
+    var $maxValue;
+    var $minValue;
+    var $viewWindowMode;// = NULL;
+    var $viewWindow;// = NULL;
+
     /**
      * Stores all the information about the axis. All options can be
      * set either by passing an array with associative values for option =>
@@ -32,6 +53,29 @@ class Axis extends configOptions
      */
     public function __construct($options = array())
     {
+        $this->options = array(
+            'baseline',
+            'baselineColor',
+            'direction',
+            'format',
+            'gridlines',
+            'minorGridlines',
+            'logScale',
+            'textPosition',
+            'textStyle',
+            'title',
+            'titleTextStyle',
+            'allowContainerBoundaryTextCutoff',
+            'maxAlternation',
+            'maxTextLines',
+            'minTextSpacing',
+            'showTextEvery',
+            'maxValue',
+            'minValue',
+            'viewWindowMode',
+            'viewWindow'
+        );
+
         if(is_array($options) && count($options) > 0)
         {
             foreach($options as $option => $value)
@@ -47,6 +91,16 @@ class Axis extends configOptions
     }
 
     /**
+     * Adds the error message to the error log in the gcharts master object.
+     *
+     * @param string $msg
+     */
+    private function error($msg)
+    {
+        Gcharts::_set_error(get_class($this), $msg);
+    }
+
+    /**
      * The baseline for the axis.
      *
      * This option is only supported for a continuous axis.
@@ -56,9 +110,16 @@ class Axis extends configOptions
      */
     public function baseline($baseline)
     {
-        if(valid_int($baseline))
+        if(is_a($baseline, 'jsDate'))
         {
-            $this->baseline = $baseline;
+            $this->baseline = $baseline->toString();
+        } else {
+            if(valid_int($baseline))
+            {
+                $this->baseline = $baseline;
+            } else {
+                $this->error('Invalid value for baseline, must be (int) if column is "number", must be (jsDate) if column is "date"');
+            }
         }
 
         return $this;
@@ -79,7 +140,7 @@ class Axis extends configOptions
         {
             $this->baselineColor = $color;
         } else {
-            $this->baselineColor = 'black';
+            $this->error('Invalid value for baselineColor, must be a valid HTML color type (string)');
         }
 
         return $this;
@@ -98,7 +159,7 @@ class Axis extends configOptions
         {
             $this->direction = $direction;
         } else {
-            $this->direction = 1;
+            $this->error('Invalid direction value, must be (int) 1 or (int) -1');
         }
 
         return $this;
@@ -106,11 +167,11 @@ class Axis extends configOptions
 
     /**
      * For number axis labels, this is a subset of the decimal formatting ICU
-     * pattern set. For instance, {format:'#,###%'} will display values
+     * pattern set. For instance, "#,###%" will display values
      * "1,000%", "750%", and "50%" for values 10, 7.5, and 0.5.
      *
      * For date axis labels, this is a subset of the date formatting ICU pattern
-     * set. For instance, {format:'MMM d, y'} will display the value
+     * set. For instance, "MMM d, y" will display the value
      * "Jul 1, 2011" for the date of July first in 2011.
      *
      * The actual formatting applied to the label is derived from the locale the
@@ -172,7 +233,7 @@ class Axis extends configOptions
 
             $this->gridlines = $tmp;
         } else {
-            $this->gridlines = NULL;
+            $this->error('Invalid value for gridlines, must be type (array) with keys for count & color');
         }
 
         return $this;
@@ -182,10 +243,9 @@ class Axis extends configOptions
      * An array with members to configure the minor gridlines on the horizontal
      * axis, similar to the gridlines option.
      *
-     * 'color' - The color of the minor gridlines inside the chart
-     * area. Specify a valid HTML color string.
-     * 'count' - The number of minor gridlines between two regular
-     * gridlines.
+     * 'color' - The color of the minor gridlines inside the chart area.
+     * Specify a valid HTML color string.
+     * 'count' - The number of minor gridlines between two regular gridlines.
      *
      * This option is only supported for a continuous axis.
      *
@@ -204,7 +264,7 @@ class Axis extends configOptions
             ) {
                 $tmp['count'] = $minorGridlines['count'];
             } else {
-                $tmp['count'] = 0;
+                $this->error('Invalid minorGridlines[count] value, must be type (int) >= 2 or -1 for auto');
             }
 
             if(array_key_exists('color', $minorGridlines))
@@ -214,7 +274,7 @@ class Axis extends configOptions
 
             $this->minorGridlines = $tmp;
         } else {
-            $this->minorGridlines = NULL;
+            $this->error('Invalid value for minorGridlines, must be type (array) with keys count & color');
         }
 
         return $this;
@@ -235,7 +295,7 @@ class Axis extends configOptions
         {
             $this->logScale = $log;
         } else {
-            $this->logScale = FALSE;
+            $this->error('Invalid value for logScale, must be type (boolean).');
         }
 
         return $this;
@@ -260,7 +320,7 @@ class Axis extends configOptions
         {
             $this->textPosition = $position;
         } else {
-            $this->textPosition = 'out';
+            $this->error('Invalid value for textPosition, must be type string with a value of '.array_string($values));
         }
 
         return $this;
@@ -278,7 +338,7 @@ class Axis extends configOptions
         {
             $this->textStyle = $textStyle->values();
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid textStyle, must be (object) type textStyle');
+            $this->error('Invalid textStyle, must be an object type (textStyle).');
         }
 
         return $this;

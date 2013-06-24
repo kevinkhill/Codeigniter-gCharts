@@ -39,7 +39,6 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
-//@TODO: do these really need to be static?
 class Gcharts
 {
     static $config;
@@ -223,15 +222,9 @@ class Gcharts
         }
     }
 
-    static function _set_error($where, $what)
+    static function hasErrors()
     {
-        self::$hasError = TRUE;
-        self::$errorLog[$where] = $what;
-    }
-
-    public function hasErrors()
-    {
-        return self::$hasError = TRUE;
+        return self::$hasError;
     }
 
     static function getErrors()
@@ -253,6 +246,12 @@ class Gcharts
         }
     }
 
+    static function _set_error($where, $what)
+    {
+        self::$hasError = TRUE;
+        self::$errorLog[$where] = $what;
+    }
+    
     /**
      * Builds the Javascript code block
      *

@@ -24,6 +24,16 @@ class DataTable
     var $rows = array();
 
     /**
+     * Adds the error message to the error log in the gcharts master object.
+     *
+     * @param string $msg
+     */
+    private function error($msg)
+    {
+        $this->error($msg);
+    }
+
+    /**
      * Adds a column to the DataTable
      *
      * First signature has the following parameters:
@@ -50,7 +60,6 @@ class DataTable
      * @param type $opt_label
      * @param type $opt_id
      * @return \DataTable
-     * @throws Exception
      */
     public function addColumn($typeOrDescriptionArray, $opt_label = '', $opt_id = '')
     {
@@ -90,17 +99,17 @@ class DataTable
                                     {
                                         $descArray[$key] = $value;
                                     } else {
-                                        Gcharts::_set_error(get_class($this), 'Invalid description array value, must be type (string).');
+                                        $this->error('Invalid description array value, must be type (string).');
                                     }
                                 }
                             } else {
-                                Gcharts::_set_error(get_class($this), 'Invalid description array key value, must be type (string) with any key value '.$this->_array_string($descriptions));
+                                $this->error('Invalid description array key value, must be type (string) with any key value '.$this->_array_string($descriptions));
                             }
                         } else {
-                            Gcharts::_set_error(get_class($this), 'Invalid type, must be type (string) with the value '.$this->_array_string($types));
+                            $this->error('Invalid type, must be type (string) with the value '.$this->_array_string($types));
                         }
                     } else {
-                        Gcharts::_set_error(get_class($this), 'Invalid description array, must contain (array) with at least one key type (string) value [ type ]');
+                        $this->error('Invalid description array, must contain (array) with at least one key type (string) value [ type ]');
                     }
                 }
 
@@ -116,24 +125,24 @@ class DataTable
                     {
                         $descArray['label'] = $opt_label;
                     } else {
-                        Gcharts::_set_error(get_class($this), 'Invalid opt_label, must be type (string).');
+                        $this->error('Invalid opt_label, must be type (string).');
                     }
 
                     if(is_string($opt_id))
                     {
                         $descArray['id'] = $opt_id;
                     } else {
-                        Gcharts::_set_error(get_class($this), 'Invalid opt_id, must be type (string).');
+                        $this->error('Invalid opt_id, must be type (string).');
                     }
                 } else {
-                    Gcharts::_set_error(get_class($this), 'Invalid type, must be type (string) with the value '.$this->_array_string($types));
+                    $this->error('Invalid type, must be type (string) with the value '.$this->_array_string($types));
                 }
 
                 $this->cols[] = $descArray;
             break;
 
             default:
-                Gcharts::_set_error(get_class($this), 'Invalid type or description array, must be type (string) or (array).');
+                $this->error('Invalid type or description array, must be type (string) or (array).');
             break;
         }
 
@@ -161,8 +170,7 @@ class DataTable
      * Cells in the row array should be in the same order as their column descriptions
      * in cols. To indicate a null cell, you can specify null, leave a blank for
      * a cell in an array, or omit trailing array members. So, to indicate a row
-     * with null for the first two cells, you could specify [ , , {cell_val}] or
-     * [null, null, {cell_val}].
+     * with null for the first two cells, you would specify [null, null, {cell_val}].
      *
      *
      * @param type $opt_cellArray
@@ -193,7 +201,7 @@ class DataTable
                         {
                             $rowVals[] = array($prop => $value);
                         } else {
-                            Gcharts::_set_error(get_class($this), 'Invalid row property, array with keys type (string) with values [ v | f | p ] ');
+                            $this->error('Invalid row property, array with keys type (string) with values [ v | f | p ] ');
                         }
                     }
 
@@ -219,11 +227,11 @@ class DataTable
                     } else {
                         $msg = 'Invalid number of cells, must be equal or less than number of columns. ';
                         $msg .= '(cells '.count($opt_cellArray).' > cols '.count($this->cols).')';
-                        Gcharts::_set_error(get_class($this), $msg);
+                        $this->error($msg);
                     }
                 }
             } else {
-                Gcharts::_set_error(get_class($this), 'Invalid row definition, must be type (array)');
+                $this->error('Invalid row definition, must be type (array)');
             }
         }
 
@@ -433,20 +441,6 @@ class DataTable
     public function toJSON()
     {
         return json_encode($this);
-
-
-//        {
-//       cols: [{id: 'task', label: 'Task', type: 'string'},
-//                {id: 'hours', label: 'Hours per Day', type: 'number'}],
-//       rows: [{c:[{v: 'Work'}, {v: 11}]},
-//              {c:[{v: 'Eat'}, {v: 2}]},
-//              {c:[{v: 'Commute'}, {v: 2}]},
-//              {c:[{v: 'Watch TV'}, {v:2}]},
-//              {c:[{v: 'Sleep'}, {v:7, f:'7.000'}]}
-//             ]
-//     },
-//   0.6
-
     }
 
 }

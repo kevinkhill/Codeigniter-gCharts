@@ -23,7 +23,7 @@ function array_string($defaultValues)
 
 function array_is_multi($arr)
 {
-    $rv = array_filter($arr,'is_array');
+    $rv = array_filter($arr, 'is_array');
 
     if(count($rv) > 0)
     {
@@ -37,13 +37,13 @@ function valid_int($val)
 {
     if(is_int($val) === TRUE)
     {
-        return (int) $val;
+        return TRUE;
     } else if(is_string($val) === TRUE) {
         if(ctype_digit($val) === TRUE)
         {
-            return (int) $val;
+            return TRUE;
         }
     } else {
-        throw new Exception('"'.$val.'" is an invalid value, must be (int) or (string) representing an int');
+        return FALSE;
     }
 }
