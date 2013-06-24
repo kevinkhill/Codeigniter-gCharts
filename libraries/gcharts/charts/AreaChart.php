@@ -54,26 +54,28 @@ class AreaChart
             'chartArea',
             'colors',
             'curveType',
-            'enableInteractivity',
+//            'enableInteractivity',
             'events',
-            'focusTarget',
-            'fontSize',
-            'fontName',
+//            'focusTarget',
+//            'fontSize',
+//            'fontName',
             'hAxis',
+            'height',
             'isHtml',
             'interpolateNulls',
             'legend',
             'lineWidth',
             'pointSize',
-            'reverseCategories',
-            'series',
-            'theme',
+//            'reverseCategories',
+//            'series',
+//            'theme',
             'title',
             'titlePosition',
             'titleTextStyle',
             'tooltip',
             'vAxes',
-            'vAxis'
+            'vAxis',
+            'width'
         );
 
         if(is_array($options) && count($options) > 0)
@@ -88,6 +90,8 @@ class AreaChart
                     } else {
                         $this->addOption($value);
                     }
+                } else {
+                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
                 }
             }
         } else {
@@ -307,7 +311,7 @@ class AreaChart
         {
             $this->addOption($chartArea->toArray());
         } else {
-            $this->error('Invalid chartArea, must be (object) type chartArea');
+            $this->error('Invalid chartArea, must be an object type (chartArea).');
         }
 
         return $this;
@@ -349,39 +353,39 @@ class AreaChart
         {
             $this->addOption(array('curveType' => (string) $curveType));
         } else {
-            $this->error('Invalid curveType, must be (string) '.array_string($values));
+            $this->error('Invalid curveType, must be type (string) with a value of '.array_string($values));
         }
 
         return $this;
     }
 
-    public function enableInteractivity($param)
-    {
-
-
-        return $this;
-    }
-
-    public function focusTarget($param)
-    {
-
-
-        return $this;
-    }
-
-    public function fontSize($param)
-    {
-
-
-        return $this;
-    }
-
-    public function fontName($param)
-    {
-
-
-        return $this;
-    }
+//    public function enableInteractivity($param)
+//    {
+//
+//
+//        return $this;
+//    }
+//
+//    public function focusTarget($param)
+//    {
+//
+//
+//        return $this;
+//    }
+//
+//    public function fontSize($param)
+//    {
+//
+//
+//        return $this;
+//    }
+//
+//    public function fontName($param)
+//    {
+//
+//
+//        return $this;
+//    }
 
     /**
      * An object with members to configure various horizontal axis elements. To
@@ -397,7 +401,7 @@ class AreaChart
         {
             $this->addOption($hAxis->toArray());
         } else {
-            $this->error('Invalid hAxis, must be (object) type hAxis');
+            $this->error('Invalid hAxis, must be an object type (hAxis).');
         }
 
         return $this;
@@ -415,7 +419,7 @@ class AreaChart
         {
             $this->addOption(array('height' => $height));
         } else {
-            $this->error('Invalid height, must be (int)');
+            $this->error('Invalid height, must be type (int).');
         }
 
         return $this;
@@ -433,7 +437,7 @@ class AreaChart
         {
             $this->addOption(array('isHTML' => $isHTML));
         } else {
-            $this->error('Invalid isHTML value, must be type (boolean)');
+            $this->error('Invalid isHTML value, must be type (boolean).');
         }
 
         return $this;
@@ -451,7 +455,7 @@ class AreaChart
         {
             $this->addOption(array('isStacked' => $isStacked));
         } else {
-            $this->error('Invalid isStacked value, must be type (boolean)');
+            $this->error('Invalid isStacked value, must be type (boolean).');
         }
 
         return $this;
@@ -471,7 +475,7 @@ class AreaChart
         {
             $this->addOption(array('interpolateNulls' => $interpolateNulls));
         } else {
-            Gcharts::_set_error($where, 'Invalid interpolateNulls value, must be type (boolean)');
+            Gcharts::_set_error($where, 'Invalid interpolateNulls value, must be type (boolean).');
         }
 
         return $this;
@@ -491,7 +495,7 @@ class AreaChart
         {
             $this->addOption($legendObj->toArray());
         } else {
-            $this->error('Invalid legend, must be (object) type legend');
+            $this->error('Invalid legend, must be an object type (legend).');
         }
 
         return $this;
@@ -505,13 +509,13 @@ class AreaChart
      * @param int $width
      * @return \AreaChart
      */
-    public function lineWidth($width = 2)
+    public function lineWidth($width)
     {
         if(is_int($width))
         {
             $this->addOption(array('lineWidth' => $width));
         } else {
-            $this->error('Invalid lineWidth, must be (int)');
+            $this->error('Invalid lineWidth, must be type (int).');
         }
 
         return $this;
@@ -524,13 +528,13 @@ class AreaChart
      * @param int $size
      * @return \AreaChart
      */
-    public function pointSize($size = 0)
+    public function pointSize($size)
     {
         if(is_int($size))
         {
             $this->addOption(array('pointSize' => $size));
         } else {
-            $this->error('Invalid pointSize, must be (int)');
+            $this->error('Invalid pointSize, must be type (int).');
         }
 
         return $this;
@@ -563,13 +567,13 @@ class AreaChart
      * @param string $title
      * @return \AreaChart
      */
-    public function title($title = '')
+    public function title($title)
     {
         if(is_string($title))
         {
             $this->addOption(array('title' => (string) $title));
         } else {
-            $this->error('Invalid title, must be type (string)');
+            $this->error('Invalid title, must be type (string).');
         }
 
         return $this;
@@ -589,7 +593,7 @@ class AreaChart
         {
             $this->addOption($tooltipObj->toArray());
         } else {
-            $this->error('Invalid tooltip, must be (object) type tooltip');
+            $this->error('Invalid tooltip, must be an object type (tooltip).');
         }
 
         return $this;
@@ -616,7 +620,7 @@ class AreaChart
         {
             $this->addOption(array('titlePosition' => $position));
         } else {
-            $this->error('Invalid axisTitlesPosition, must be (string) '.array_string($values));
+            $this->error('Invalid axisTitlesPosition, must be type (string) with a value of '.array_string($values));
         }
 
         return $this;
@@ -635,7 +639,7 @@ class AreaChart
         {
             $this->addOption(array('titleTextStyle' => $textStyleObj->values()));
         } else {
-            $this->error('Invalid titleTextStyle, must be (object) type textStyle');
+            $this->error('Invalid titleTextStyle, must be an object type (textStyle).');
         }
 
         return $this;
@@ -653,7 +657,7 @@ class AreaChart
         {
             $this->addOption(array('width' => $width));
         } else {
-            $this->error('Invalid width, must be (int)');
+            $this->error('Invalid width, must be type (int).');
         }
 
         return $this;

@@ -195,8 +195,7 @@ class Gcharts
      * @param int $height
      * @return string HTML div element
      */
-    // @TODO: Fix up this function
-    public function div($width = 0, $height = 0)//string $elementID = '', int $width = 960, int $height = 540)
+    public function div($width = 0, $height = 0)
     {
         if($width == 0 && $height == 0)
         {
@@ -251,7 +250,7 @@ class Gcharts
         self::$hasError = TRUE;
         self::$errorLog[$where] = $what;
     }
-    
+
     /**
      * Builds the Javascript code block
      *

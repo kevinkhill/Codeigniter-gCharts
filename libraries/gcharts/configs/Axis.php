@@ -22,25 +22,20 @@
 class Axis extends configOptions
 {
     var $baseline;
-    var $baselineColor;// = 'black';
-    var $direction;// = 1;
+    var $baselineColor;
+    var $direction;
     var $format;
     var $gridlines;
     var $minorGridlines;
-    var $logScale;// = FALSE;
-    var $textPosition;// = 'out';
+    var $logScale;
+    var $textPosition;
     var $textStyle;
-    var $title;// = NULL;
+    var $title;
     var $titleTextStyle;
-    var $allowContainerBoundaryTextCutoff;// = FALSE;
-    var $maxAlternation;// = 2;
-    var $maxTextLines;
-    var $minTextSpacing;
-    var $showTextEvery;
     var $maxValue;
     var $minValue;
-    var $viewWindowMode;// = NULL;
-    var $viewWindow;// = NULL;
+    var $viewWindowMode;
+    var $viewWindow;
 
     /**
      * Stores all the information about the axis. All options can be
@@ -65,7 +60,6 @@ class Axis extends configOptions
             'textStyle',
             'title',
             'titleTextStyle',
-            'allowContainerBoundaryTextCutoff',
             'maxAlternation',
             'maxTextLines',
             'minTextSpacing',
@@ -679,5 +673,5 @@ class Axis extends configOptions
 
 }
 
-/* End of file axis.php */
-/* Location: ./gcharts/configs/axis.php */
+/* End of file Axis.php */
+/* Location: ./gcharts/configs/Axis.php */

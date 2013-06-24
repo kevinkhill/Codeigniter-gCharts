@@ -25,8 +25,8 @@ class legend extends configOptions
     var $alignment;
     var $textStyle;
 
-    public function __construct($options = array()) {
-
+    public function __construct($options = array())
+    {
         $this->options = array(
             'position',
             'alignment',
@@ -48,6 +48,16 @@ class legend extends configOptions
     }
 
     /**
+     * Adds the error message to the error log in the gcharts master object.
+     *
+     * @param string $msg
+     */
+    private function error($msg)
+    {
+        Gcharts::_set_error($this->chartType, $msg);
+    }
+
+    /**
      * Legend Position
      *
      * Position of the legend. Can be one of the following:
@@ -60,7 +70,7 @@ class legend extends configOptions
      * @param type $position
      * @return \legend
      */
-    public function position($position = 'right')
+    public function position($position)
     {
         $values = array(
             'right',
@@ -75,7 +85,7 @@ class legend extends configOptions
             $this->position = $position;
             return $this;
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid position value, must be (string) '.$this->_array_string($values));
+            $this->error('Invalid position value, must be (string) with a value of '.array_string($values));
         }
 
         return $this;
@@ -112,7 +122,7 @@ class legend extends configOptions
             $this->alignment = $alignment;
             return $this;
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid alignment value, must be (string) '.$this->_array_string($values));
+            $this->error('Invalid alignment value, must be (string) with a value of '.array_string($values));
         }
 
         return $this;
@@ -133,7 +143,7 @@ class legend extends configOptions
         {
             $this->textStyle = $textStyle->values();
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid textStyle, must be (object) type textStyle');
+            $this->error('Invalid textStyle, must be (object) type textStyle');
         }
 
         return $this;

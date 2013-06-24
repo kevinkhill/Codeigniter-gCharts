@@ -21,28 +21,13 @@
 
 class hAxis extends Axis
 {
-    var $baseline;
-    var $baselineColor = 'black';
-    var $direction = 1;
-    var $format;
-    var $gridlines;
-    var $minorGridlines;
-    var $logScale = FALSE;
-    var $textPosition = 'out';
-    var $textStyle;
-    var $title = NULL;
-    var $titleTextStyle;
-    var $allowContainerBoundaryTextCutoff = FALSE;
+    var $allowContainerBoundaryTextCutoff;
     var $slantedText;
-    var $slantedTextAngle = 30;
-    var $maxAlternation = 2;
+    var $slantedTextAngle;
+    var $maxAlternation;
     var $maxTextLines;
     var $minTextSpacing;
     var $showTextEvery;
-    var $maxValue;
-    var $minValue;
-    var $viewWindowMode = NULL;
-    var $viewWindow = NULL;
 
     /**
      * Stores all the information about the horizontal axis. All options can be
@@ -55,69 +40,17 @@ class hAxis extends Axis
      */
     public function __construct($options = array())
     {
-        $this->options = array(
-            'baseline',
-            'baselineColor',
-            'direction',
-            'format',
-            'gridlines',
-            'minorGridlines',
-            'logScale',
-            'textPosition',
-            'textStyle',
-            'title',
-            'titleTextStyle',
-            'allowContainerBoundaryTextCufoff',
+        array_merge($this->options, array(
+            'allowContainerBoundaryTextCutoff',
             'slantedText',
             'slantedTextAngle',
             'maxAlternation',
             'maxTextLines',
             'minTextSpacing',
             'showTextEvery',
-            'maxValue',
-            'minValue',
-            'viewWindowMode',
-            'viewWindow'
-        );
+        ));
 
         return parent::__construct($options);
-    }
-
-    /**
-     * axis property that specifies the title of the axis.
-     *
-     * @param string $title
-     * @return \axis
-     */
-    public function title($title)
-    {
-        if(is_string($title))
-        {
-            $this->title = $title;
-        } else {
-            $this->title = NULL;
-        }
-
-        return $this;
-    }
-
-    /**
-     * An object that specifies the axis title text style.
-     *
-     * @param textStyle $titleTextStyle
-     * @return \axis
-     * @throws Exception
-     */
-    public function titleTextStyle(textStyle $titleTextStyle)
-    {
-        if(is_a($titleTextStyle, 'textStyle'))
-        {
-            $this->titleTextStyle = $titleTextStyle->values();
-        } else {
-            Gcharts::_set_error(get_class($this), 'Invalid titleTextStyle, must be (object) type textStyle');
-        }
-
-        return $this;
     }
 
     /**
@@ -286,137 +219,7 @@ class hAxis extends Axis
         return $this;
     }
 
-    /**
-     * axis property that specifies the highest axis grid line. The
-     * actual grid line will be the greater of two values: the maxValue option
-     * value, or the highest data value, rounded up to the next higher grid mark.
-     *
-     * This option is only supported for a continuous axis.
-     *
-     * @param int $max
-     * @return \axis
-     */
-    public function maxValue($max)
-    {
-        if(valid_int($max))
-        {
-            $this->maxValue = $max;
-        } else {
-            $this->maxValue = NULL;
-        }
-
-        return $this;
-    }
-
-    /**
-     * axis property that specifies the lowest axis grid line. The
-     * actual grid line will be the lower of two values: the minValue option
-     * value, or the lowest data value, rounded down to the next lower grid mark.
-     *
-     * This option is only supported for a continuous axis.
-     *
-     * @param int $min
-     * @return \axis
-     */
-    public function minValue($min)
-    {
-        if(valid_int($min))
-        {
-            $this->minValue = $min;
-        } else {
-            $this->minValue = NULL;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Specifies how to scale the axis to render the values within
-     * the chart area. The following string values are supported:
-     *
-     * 'pretty' - Scale the values so that the maximum and minimum
-     * data values are rendered a bit inside the left and right of the chart area.
-     * 'maximized' - Scale the values so that the maximum and minimum
-     * data values touch the left and right of the chart area.
-     * 'explicit' - Specify the left and right scale values of the chart area.
-     * Data values outside these values will be cropped. You must specify an
-     * axis.viewWindow array describing the maximum and minimum values to show.
-     *
-     * This option is only supported for a continuous axis.
-     *
-     * @param string $viewMode
-     * @return \axis
-     */
-    public function viewWindowMode($viewMode)
-    {
-        $values = array(
-            'pretty',
-            'maximized',
-            'explicit',
-        );
-
-        if(in_array($viewMode, $values))
-        {
-            $this->viewWindowMode = $viewMode;
-        } else {
-            if($this->viewWindow == NULL)
-            {
-                $this->viewWindowMode = 'pretty';
-            } else {
-                $this->viewWindowMode = 'explicit';
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * Specifies the cropping range of the axis.
-     *
-     * For a continuous axis:
-     * The minimum and maximum data value to render. Has an effect
-     * only if $this->viewWindowMode = 'explicit'.
-     *
-     * For a discrete axis:
-     * 'min' - The zero-based row index where the cropping window begins. Data
-     * points at indices lower than this will be cropped out. In conjunction with
-     * vAxis->viewWindow['max'], it defines a half-opened range (min, max)
-     * that denotes the element indices to display. In other words, every index
-     * such that min <= index < max will be displayed.
-     *
-     * 'max' - The zero-based row index where the cropping window ends. Data
-     * points at this index and higher will be cropped out. In conjunction with
-     * vAxis->viewWindow['min'], it defines a half-opened range (min, max)
-     * that denotes the element indices to display. In other words, every index
-     * such that min <= index < max will be displayed.
-     *
-     * @param array $viewWindow
-     * @return \axis
-     */
-    public function viewWindow($viewWindow)
-    {
-        $tmp = array();
-
-        if(is_array($viewWindow))
-        {
-            if(array_key_exists('min', $viewWindow) && array_key_exists('max', $viewWindow))
-            {
-                $tmp['viewWindowMin'] = $viewWindow['min'];
-                $tmp['viewWindowMax'] = $viewWindow['max'];
-
-                $this->viewWindowMode = 'explicit';
-            } else {
-                $tmp['viewWindowMin'] = NULL;
-                $tmp['viewWindowMax'] = NULL;
-            }
-
-            $this->viewWindow = $tmp;
-        }
-
-        return $this;
-    }
-
 }
 
-/* End of file axis.php */
-/* Location: ./gcharts/configs/axis.php */
+/* End of file hAxis.php */
+/* Location: ./gcharts/configs/hAxis.php */
