@@ -19,7 +19,6 @@ legend.position
 legend.alignment
 legend.textStyle
 slices
-color
 pieSliceBorderColor
 pieSliceText
 pieSliceTextStyle

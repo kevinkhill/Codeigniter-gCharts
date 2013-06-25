@@ -28,7 +28,6 @@ class AreaChart extends Chart
 //            'animation',
             'areaOpacity',
 //            'enableInteractivity',
-            'events',
 //            'focusTarget',
 //            'fontSize',
 //            'fontName',
@@ -44,44 +43,6 @@ class AreaChart extends Chart
             'vAxis'
         ));
     }
-
-    /**
-     * Register javascript callbacks for specific events. Valid values include
-     * [ animationfinish | error | onmouseover | onmouseout | ready | select ]
-     * associated to a respective pre-defined javascript function as the callback.
-     *
-     * @param array $events Array of events associated to a callback
-     * @return \AreaChart
-     */
-    public function events($events)
-    {
-        $values = array(
-            'animationfinish',
-            'error',
-            'onmouseover',
-            'onmouseout',
-            'ready',
-            'select'
-        );
-
-        if(is_array($events))
-        {
-            foreach($events as $event)
-            {
-                if(in_array($event, $values))
-                {
-                    $this->events[] = $event;
-                } else {
-                    $this->error('Invalid events array key value, must be (string) with any key '.array_string($values));
-                }
-            }
-        } else {
-            Gcharts::_set_error($this->chartType, 'Invalid events type, must be (array) containing any key '.array_string($values));
-        }
-
-        return $this;
-    }
-
 
     /**
      * Animation Easing

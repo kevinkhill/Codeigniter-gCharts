@@ -64,6 +64,28 @@ class PieChart extends Chart
         return $this;
     }
 
+    public function slices()
+    {
+
+    }
+
+    public function pieSliceBorderColor()
+    {
+
+    }
+
+
+    public function pieSliceText()
+    {
+
+    }
+
+
+    public function pieSliceTextStyle()
+    {
+
+    }
+
     public function reverseCategories($reverseCategories)
     {
         if(is_bool($reverseCategories))
@@ -72,6 +94,22 @@ class PieChart extends Chart
         } else {
             $this->error('Invalid value for reverseCategories, must be type (boolean).s');
         }
+    }
+
+    public function sliceVisibilityThreshold()
+    {
+
+    }
+
+    public function pieResidueSliceColor()
+    {
+
+    }
+
+
+    public function pieResidueSliceLabel()
+    {
+
     }
 
 }

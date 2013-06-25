@@ -208,6 +208,43 @@ class Chart
     }
 
     /**
+     * Register javascript callbacks for specific events. Valid values include
+     * [ animationfinish | error | onmouseover | onmouseout | ready | select ]
+     * associated to a respective pre-defined javascript function as the callback.
+     *
+     * @param array $events Array of events associated to a callback
+     * @return \Chart
+     */
+    public function events($events)
+    {
+        $values = array(
+            'animationfinish',
+            'error',
+            'onmouseover',
+            'onmouseout',
+            'ready',
+            'select'
+        );
+
+        if(is_array($events))
+        {
+            foreach($events as $event)
+            {
+                if(in_array($event, $values))
+                {
+                    $this->events[] = $event;
+                } else {
+                    $this->error('Invalid events array key value, must be (string) with any key '.array_string($values));
+                }
+            }
+        } else {
+            $this->error('Invalid events type, must be (array) containing any key '.array_string($values));
+        }
+
+        return $this;
+    }
+
+    /**
      * Height of the chart, in pixels.
      *
      * @param int $height
@@ -224,7 +261,7 @@ class Chart
 
         return $this;
     }
-    
+
     /**
      * An object with members to configure various aspects of the legend. To
      * specify properties of this object, create a new legend() object, set the
