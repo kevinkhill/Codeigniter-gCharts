@@ -156,46 +156,6 @@ class LineChart extends Chart
     }
 
     /**
-     * An object with members to configure the placement and size of the chart area
-     * (where the chart itself is drawn, excluding axis and legends).
-     * Two formats are supported: a number, or a number followed by %.
-     * A simple number is a value in pixels; a number followed by % is a percentage.
-     *
-     * @param \chartArea $chartArea
-     * @return \LineChart
-     */
-    public function chartArea(chartArea $chartArea)
-    {
-        if(is_a($chartArea, 'chartArea'))
-        {
-            $this->addOption($chartArea->toArray());
-        } else {
-            $this->error('Invalid chartArea, must be an object type (chartArea).');
-        }
-
-        return $this;
-    }
-
-    /**
-     * The colors to use for the chart elements. An array of strings, where each
-     * element is an HTML color string, for example: colors:['red','#004411'].
-     *
-     * @param array $colorArray
-     * @return \LineChart
-     */
-    public function colors($colorArray)
-    {
-        if(is_array($colorArray))
-        {
-            $this->addOption(array('colors' => $colorArray));
-        } else {
-            $this->error('Invalid colors, must be (array) with valid HTML colors');
-        }
-
-        return $this;
-    }
-
-    /**
      * Controls the curve of the lines when the line width is not zero. Can be one of the following:
      *
      * 'none' - Straight lines without curve.
@@ -270,24 +230,6 @@ class LineChart extends Chart
     }
 
     /**
-     * Height of the chart, in pixels.
-     *
-     * @param int $height
-     * @return \LineChart
-     */
-    public function height($height)
-    {
-        if(is_int($height))
-        {
-            $this->addOption(array('height' => $height));
-        } else {
-            $this->error('Invalid height, must be (int)');
-        }
-
-        return $this;
-    }
-
-    /**
      * If set to true, use HTML-rendered (rather than SVG-rendered) tooltips.
      *
      * @param boolean $isHTML
@@ -320,26 +262,6 @@ class LineChart extends Chart
             $this->addOption(array('interpolateNulls' => $interpolateNulls));
         } else {
            $this->error('Invalid interpolateNulls value, must be type (boolean)');
-        }
-
-        return $this;
-    }
-
-    /**
-     * An object with members to configure various aspects of the legend. To
-     * specify properties of this object, create a new legend() object, set the
-     * values then pass it to this function or to the constructor.
-     *
-     * @param legend $legendObj
-     * @return \LineChart
-     */
-    public function legend(legend $legendObj)
-    {
-        if(is_a($legendObj, 'legend'))
-        {
-            $this->addOption($legendObj->toArray());
-        } else {
-            $this->error('Invalid legend, must be an object type (legend).');
         }
 
         return $this;
@@ -404,134 +326,6 @@ class LineChart extends Chart
 //
 //        return $this;
 //    }
-
-    /**
-     * Text to display above the chart.
-     *
-     * @param string $title
-     * @return \LineChart
-     */
-    public function title($title)
-    {
-        if(is_string($title))
-        {
-            $this->addOption(array('title' => (string) $title));
-        } else {
-            $this->error('Invalid title, must be type (string).');
-        }
-
-        return $this;
-    }
-
-    /**
-     * An object with members to configure various tooltip elements. To specify
-     * properties of this object, create a new tooltip() object, set the values
-     * then pass it to this function or to the constructor.
-     *
-     * @param tooltip $tooltipObj
-     * @return \LineChart
-     */
-    public function tooltip(tooltip $tooltipObj)
-    {
-        if(is_a($tooltipObj, 'tooltip'))
-        {
-            $this->addOption($tooltipObj->toArray());
-        } else {
-            $this->error('Invalid tooltip, must be an object type (tooltip).');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Where to place the chart title, compared to the chart area. Supported values:
-     * 'in' - Draw the title inside the chart area.
-     * 'out' - Draw the title outside the chart area.
-     * 'none' - Omit the title.
-     *
-     * @param string $position
-     * @return \LineChart
-     */
-    public function titlePosition($position)
-    {
-        $values = array(
-            'in',
-            'out',
-            'none'
-        );
-
-        if(in_array($position, $values))
-        {
-            $this->addOption(array('titlePosition' => $position));
-        } else {
-            $this->error('Invalid titlePosition, must be type (string) with a value of '.array_string($values));
-        }
-
-        return $this;
-    }
-
-    /**
-     * An object that specifies the title text style. create a new textStyle()
-     * object, set the values then pass it to this function or to the constructor.
-     *
-     * @param textStyle $textStyleObj
-     * @return \LineChart
-     */
-    public function titleTextStyle(textStyle $textStyleObj)
-    {
-        if(is_a($textStyleObj, 'textStyle'))
-        {
-            $this->addOption(array('titleTextStyle' => $textStyleObj->values()));
-        } else {
-            $this->error('Invalid titleTextStyle, must be an object type (textStyle).');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Width of the chart, in pixels.
-     *
-     * @param int $width
-     * @return \LineChart
-     */
-    public function width($width)
-    {
-        if(is_int($width))
-        {
-            $this->addOption(array('width' => $width));
-        } else {
-            $this->error('Invalid width, must be type (int).');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Outputs the chart javascript into the page
-     *
-     * Pass in a string of the html elementID that you want the chart to be
-     * rendered into. Plus, if the dataTable function was never called on the
-     * chart to assign a DataTable to use, it will automatically attempt to use
-     * a DataTable with the same label as the chart.
-     *
-     * @param string $elementID
-     * @return string Javscript code blocks
-     */
-    public function outputInto($elementID = '')
-    {
-        if($this->dataTable === NULL)
-        {
-            $this->dataTable = $this->chartLabel;
-        }
-
-        if(is_string($elementID) && $elementID != '')
-        {
-            $this->elementID = $elementID;
-        }
-
-        return Gcharts::_build_script_block($this);
-    }
 
 }
 

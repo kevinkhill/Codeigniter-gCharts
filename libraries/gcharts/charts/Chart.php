@@ -111,7 +111,7 @@ class Chart
      * one of the configOptions child objects.
      *
      * @param mixed $option
-     * @return \LineChart
+     * @return \Chart
      */
     public function addOption($option)
     {
@@ -134,8 +134,7 @@ class Chart
      * attempt to use a DataTable with the same label as the LineChart
      *
      * @param mixed dataTableLabel String label or DataTable object
-     * @return \gcharts\DataTable DataTable object
-     * @throws Exception label missing or invalid
+     * @return \configs\DataTable DataTable object
      */
     public function dataTable($data = NULL)
     {
@@ -175,7 +174,7 @@ class Chart
      * A simple number is a value in pixels; a number followed by % is a percentage.
      *
      * @param \configs\chartArea $chartArea
-     * @return \PieChart
+     * @return \Chart
      */
     public function chartArea(chartArea $chartArea)
     {
@@ -194,7 +193,7 @@ class Chart
      * element is an HTML color string, for example: colors:['red','#004411'].
      *
      * @param array $colorArray
-     * @return \PieChart
+     * @return \Chart
      */
     public function colors($colorArray)
     {
@@ -209,10 +208,48 @@ class Chart
     }
 
     /**
+     * Height of the chart, in pixels.
+     *
+     * @param int $height
+     * @return \Chart
+     */
+    public function height($height)
+    {
+        if(is_int($height))
+        {
+            $this->addOption(array('height' => $height));
+        } else {
+            $this->error('Invalid height, must be (int)');
+        }
+
+        return $this;
+    }
+    
+    /**
+     * An object with members to configure various aspects of the legend. To
+     * specify properties of this object, create a new legend() object, set the
+     * values then pass it to this function or to the constructor.
+     *
+     * @param legend $legendObj
+     * @return \AreaChart
+     */
+    public function legend(legend $legendObj)
+    {
+        if(is_a($legendObj, 'legend'))
+        {
+            $this->addOption($legendObj->toArray());
+        } else {
+            $this->error('Invalid legend, must be an object type (legend).');
+        }
+
+        return $this;
+    }
+
+    /**
      * Text to display above the chart.
      *
      * @param string $title
-     * @return \LineChart
+     * @return \Chart
      */
     public function title($title)
     {
@@ -221,6 +258,91 @@ class Chart
             $this->addOption(array('title' => (string) $title));
         } else {
             $this->error('Invalid title, must be type (string).');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Where to place the chart title, compared to the chart area. Supported values:
+     * 'in' - Draw the title inside the chart area.
+     * 'out' - Draw the title outside the chart area.
+     * 'none' - Omit the title.
+     *
+     * @param string $position
+     * @return \Chart
+     */
+    public function titlePosition($position)
+    {
+        $values = array(
+            'in',
+            'out',
+            'none'
+        );
+
+        if(in_array($position, $values))
+        {
+            $this->addOption(array('titlePosition' => $position));
+        } else {
+            $this->error('Invalid axisTitlesPosition, must be type (string) with a value of '.array_string($values));
+        }
+
+        return $this;
+    }
+
+    /**
+     * An object that specifies the title text style. create a new textStyle()
+     * object, set the values then pass it to this function or to the constructor.
+     *
+     * @param \configs\textStyle $textStyleObj
+     * @return \Chart
+     */
+    public function titleTextStyle(textStyle $textStyleObj)
+    {
+        if(is_a($textStyleObj, 'textStyle'))
+        {
+            $this->addOption(array('titleTextStyle' => $textStyleObj->values()));
+        } else {
+            $this->error('Invalid titleTextStyle, must be an object type (textStyle).');
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * An object with members to configure various tooltip elements. To specify
+     * properties of this object, create a new tooltip() object, set the values
+     * then pass it to this function or to the constructor.
+     *
+     * @param \configs\tooltip $tooltipObj
+     * @return \Chart
+     */
+    public function tooltip($tooltipObj)
+    {
+        if(is_a($tooltipObj, 'tooltip'))
+        {
+            $this->addOption($tooltipObj->toArray());
+        } else {
+            $this->error('Invalid tooltip, must be an object type (tooltip).');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Width of the chart, in pixels.
+     *
+     * @param int $width
+     * @return \Chart
+     */
+    public function width($width)
+    {
+        if(is_int($width))
+        {
+            $this->addOption(array('width' => $width));
+        } else {
+            $this->error('Invalid width, must be type (int).');
         }
 
         return $this;
