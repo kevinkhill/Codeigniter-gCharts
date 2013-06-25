@@ -36,6 +36,7 @@ class Chart
 
     var $data = NULL;
     var $options = NULL;
+    var $defaults = NULL;
     var $events = NULL;
     var $elementID = NULL;
 
@@ -44,6 +45,21 @@ class Chart
         $this->chartType = get_class($this);
         $this->chartLabel = $chartLabel;
         $this->options = array();
+        $this->defaults = array(
+            'backgroundColor',
+            'chartArea',
+            'colors',
+            'events',
+            'fontSize',
+            'fontName',
+            'height',
+            'legend',
+            'title',
+            'titlePosition',
+            'titleTextStyle',
+            'tooltip',
+            'width'
+        );
     }
 
     /**
@@ -57,39 +73,11 @@ class Chart
      */
     public function setConfig($options = array())
     {
-        $defaultOptions = array(
-//            'animation',
-            'backgroundColor',
-            'chartArea',
-            'colors',
-            'curveType',
-            'enableInteractivity',
-            'events',
-            'focusTarget',
-            'fontSize',
-            'fontName',
-            'hAxis',
-            'isHtml',
-            'interpolateNulls',
-            'legend',
-            'lineWidth',
-            'pointSize',
-            'reverseCategories',
-            'series',
-            'theme',
-            'title',
-            'titlePosition',
-            'titleTextStyle',
-            'tooltip',
-            'vAxes',
-            'vAxis'
-        );
-
         if(is_array($options) && count($options) > 0)
         {
             foreach($options as $option => $value)
             {
-                if(in_array($option, $defaultOptions))
+                if(in_array($option, $this->defaults))
                 {
                     if(method_exists($this, $option))
                     {
@@ -97,6 +85,8 @@ class Chart
                     } else {
                         $this->addOption($value);
                     }
+                } else {
+                    $this->error('Invalid config value, must be type (array) containing any key '.array_string($this->defaults));
                 }
             }
         }
@@ -213,6 +203,24 @@ class Chart
             $this->addOption(array('colors' => $colorArray));
         } else {
             $this->error('Invalid colors, must be (array) with valid HTML colors');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Text to display above the chart.
+     *
+     * @param string $title
+     * @return \LineChart
+     */
+    public function title($title)
+    {
+        if(is_string($title))
+        {
+            $this->addOption(array('title' => (string) $title));
+        } else {
+            $this->error('Invalid title, must be type (string).');
         }
 
         return $this;

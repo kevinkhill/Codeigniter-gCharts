@@ -34,61 +34,37 @@ class PieChart extends Chart
      * or chaining the functions from the chart objects.
      *
      * @param array $options
-     * @return \LineChart
+     * @return \PieChart
      */
-    public function setConfig($options)
+    public function setConfig($options = array())
     {
-        $this->options = array(
-//            'animation',
-            'backgroundColor',
-            'chartArea',
-            'colors',
-//            'enableInteractivity',
-            'events',
-//            'focusTarget',
-            'fontSize',
-            'fontName',
-            'height',
-            'hAxis',
-            'isHtml',
-            'interpolateNulls',
-            'legend',
-            'lineWidth',
-            'pointSize',
-//            'reverseCategories',
-//            'series',
-//            'theme',
-            'title',
-            'titlePosition',
-            'titleTextStyle',
-            'tooltip',
-            'vAxes',
-            'vAxis',
-            'width'
-        );
+        $this->defaults = array_merge($this->defaults, array(
+            'is3D',
+        ));
 
-        if(is_array($options) && count($options) > 0)
+        return parent::setConfig($options);
+    }
+
+    /**
+     * If set to true, displays a three-dimensional chart.
+     *
+     * @param boolean $is3D
+     * @return \PieChart
+     */
+    public function is3D($is3D)
+    {
+        if(is_bool($is3D))
         {
-            foreach($options as $option => $value)
-            {
-                if(in_array($option, $this->options))
-                {
-                    if(method_exists($this, $option))
-                    {
-                        $this->$option($value);
-                    } else {
-                        $this->addOption($value);
-                    }
-                } else {
-                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
-                }
-            }
+            $this->addOption(array('is3D' => $is3D));
         } else {
-            $this->error('Invalid config value, must be type (array) containing any key '.array_string($this->options));
+            $this->error('Invalid value for is3D, must be type (boolean).');
         }
 
         return $this;
     }
+
+
+
 
     public function hAxisTitle($title = '')
     {
