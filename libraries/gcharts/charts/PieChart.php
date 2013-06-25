@@ -24,6 +24,11 @@ class PieChart extends Chart
 {
     public function __construct($chartLabel)
     {
+        $this->defaults = array_merge($this->defaults, array(
+            'is3D',
+            'reverseCategories'
+        ));
+
         parent::__construct($chartLabel);
     }
 
@@ -38,10 +43,6 @@ class PieChart extends Chart
      */
     public function setConfig($options = array())
     {
-        $this->defaults = array_merge($this->defaults, array(
-            'is3D',
-        ));
-
         return parent::setConfig($options);
     }
 
@@ -63,30 +64,14 @@ class PieChart extends Chart
         return $this;
     }
 
-
-
-
-    public function hAxisTitle($title = '')
+    public function reverseCategories($reverseCategories)
     {
-        $this->addOption(array('hAxisTitle' => $title));
-    }
-
-    public function axisTitlesPosition($position)
-    {
-        $values = array(
-            'in',
-            'out',
-            'none'
-        );
-
-        if(in_array($position, $values))
+        if(is_bool($reverseCategories))
         {
-            $this->addOption(array('axisTitlesPosition' => $position));
+            $this->addOption(array('reverseCategories' => $reverseCategories));
         } else {
-            $this->error('Invalid axisTitlesPosition, must be type (string) with a value of '.array_string($values));
+            $this->error('Invalid value for reverseCategories, must be type (boolean).s');
         }
-
-        return $this;
     }
 
 }

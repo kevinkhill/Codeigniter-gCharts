@@ -69,7 +69,7 @@ class Chart
      * or chaining the functions from the chart objects.
      *
      * @param array $options
-     * @return \LineChart
+     * @return \Chart
      */
     public function setConfig($options = array())
     {
