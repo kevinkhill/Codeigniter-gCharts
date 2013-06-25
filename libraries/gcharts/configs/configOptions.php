@@ -78,22 +78,7 @@ class configOptions
 
         return $this->output;
     }
-
-//    public function _valid_int($val)
-//    {
-//        if(is_int($val) === TRUE)
-//        {
-//            return (int) $val;
-//        } else if(is_string($val) === TRUE) {
-//            if(ctype_digit($val) === TRUE)
-//            {
-//                return (int) $val;
-//            }
-//        } else {
-//            $this->error('"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) representing an int');
-//        }
-//    }
-//
+    
     public function _valid_int_or_percent($val)
     {
         if(is_int($val) === TRUE)
@@ -120,13 +105,13 @@ class configOptions
             $this->error('"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) as percent [ 100 | "50%" ]');
         }
     }
-//
-//    public function _get_caller() {
-//        $trace = debug_backtrace();
-//        $caller = $trace[2];
-//
-//        return $caller['function'].'()';
-//    }
+
+    public function _get_caller() {
+        $trace = debug_backtrace();
+        $caller = $trace[2];
+
+        return $caller['function'].'()';
+    }
 
 }
 

@@ -4,6 +4,8 @@
  *
  * Holds all the configuration for the PieChart
  *
+ * Rows: Each row in the table represents a slice.
+ *
  *
  * NOTICE OF LICENSE
  *
@@ -18,22 +20,74 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
-class PieChart
+class PieChart extends Chart
 {
-    var $chartType = NULL;
-    var $chartLabel = NULL;
-    var $dataTable = NULL;
-
-    var $data = NULL;
-    var $options = NULL;
-    var $events = NULL;
-    var $elementID = NULL;
-
     public function __construct($chartLabel)
     {
-        $this->chartType = get_class($this);
-        $this->chartLabel = $chartLabel;
-        $this->options = array();
+        parent::__construct($chartLabel);
+    }
+
+    /**
+     * Sets configuration options from array of values
+     *
+     * You can set the options all at once instead of passing them individually
+     * or chaining the functions from the chart objects.
+     *
+     * @param array $options
+     * @return \LineChart
+     */
+    public function setConfig($options)
+    {
+        $this->options = array(
+//            'animation',
+            'backgroundColor',
+            'chartArea',
+            'colors',
+//            'enableInteractivity',
+            'events',
+//            'focusTarget',
+            'fontSize',
+            'fontName',
+            'height',
+            'hAxis',
+            'isHtml',
+            'interpolateNulls',
+            'legend',
+            'lineWidth',
+            'pointSize',
+//            'reverseCategories',
+//            'series',
+//            'theme',
+            'title',
+            'titlePosition',
+            'titleTextStyle',
+            'tooltip',
+            'vAxes',
+            'vAxis',
+            'width'
+        );
+
+        if(is_array($options) && count($options) > 0)
+        {
+            foreach($options as $option => $value)
+            {
+                if(in_array($option, $this->options))
+                {
+                    if(method_exists($this, $option))
+                    {
+                        $this->$option($value);
+                    } else {
+                        $this->addOption($value);
+                    }
+                } else {
+                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
+                }
+            }
+        } else {
+            $this->error('Invalid config value, must be type (array) containing any key '.array_string($this->options));
+        }
+
+        return $this;
     }
 
     public function hAxisTitle($title = '')
@@ -43,35 +97,23 @@ class PieChart
 
     public function axisTitlesPosition($position)
     {
-        $values = array('in', 'out', 'none');
+        $values = array(
+            'in',
+            'out',
+            'none'
+        );
 
         if(in_array($position, $values))
         {
-            array('axisTitlesPosition' => $position);
+            $this->addOption(array('axisTitlesPosition' => $position));
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid axisTitlesPosition '.$this->_array_string($values));
+            $this->error('Invalid axisTitlesPosition, must be type (string) with a value of '.array_string($values));
         }
 
         return $this;
     }
 
-
-//////////////////////////////////////////////
-// PRIVATE METHODS
-//////////////////////////////////////////////
-
-    private function _array_string($array)
-    {
-        $tmp = '[';
-
-        foreach ($values as $value)
-        {
-            $tmp .= $value . '|';
-        }
-
-        return rtrim('|', $tmp) . ']';
-    }
 }
 
-/* End of file LineChart.php */
-/* Location: ./application/libraries/gcharts/LineChart.php */
+/* End of file PieChart.php */
+/* Location: ./application/libraries/gcharts/PieChart.php */

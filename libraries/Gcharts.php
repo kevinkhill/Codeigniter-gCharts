@@ -67,7 +67,8 @@ class Gcharts
     private $supportedClasses = array(
         'DataTable',
         'LineChart',
-        'AreaChart'
+        'AreaChart',
+        'PieChart'
     );
 
     private $configClasses = array(
@@ -109,6 +110,7 @@ class Gcharts
         //Autoload Chart Classes
         if(is_array(self::$config->autoloadCharts) && count(self::$config->autoloadCharts) > 0)
         {
+            require_once(self::$chartPath.'Chart.php');
             foreach(self::$config->autoloadCharts as $chart)
             {
                 require_once(self::$chartPath.$chart.'.php');

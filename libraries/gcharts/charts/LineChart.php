@@ -587,7 +587,7 @@ class LineChart
         {
             $this->addOption(array('titlePosition' => $position));
         } else {
-            $this->error('Invalid axisTitlesPosition, must be type (string) with a value of '.array_string($values));
+            $this->error('Invalid titlePosition, must be type (string) with a value of '.array_string($values));
         }
 
         return $this;
