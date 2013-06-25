@@ -18,41 +18,15 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
-class AreaChart
+class AreaChart extends Chart
 {
-    var $chartType = NULL;
-    var $chartLabel = NULL;
-    var $dataTable = NULL;
-
-    var $data = NULL;
-    var $options = NULL;
-    var $events = NULL;
-    var $elementID = NULL;
-
     public function __construct($chartLabel)
     {
-        $this->chartType = get_class($this);
-        $this->chartLabel = $chartLabel;
-        $this->options = array();
-    }
+        parent::__construct($chartLabel);
 
-    /**
-     * Sets configuration options from array of values
-     *
-     * You can set the options all at once instead of passing them individually
-     * or chaining the functions from the chart objects.
-     *
-     * @param array $options
-     * @return \AreaChart
-     */
-    public function setConfig($options = array())
-    {
-        $defaultOptions = array(
+        $this->defaults = array_merge($this->defaults, array(
 //            'animation',
             'areaOpacity',
-            'backgroundColor',
-            'chartArea',
-            'colors',
             'curveType',
 //            'enableInteractivity',
             'events',
@@ -60,111 +34,16 @@ class AreaChart
 //            'fontSize',
 //            'fontName',
             'hAxis',
-            'height',
             'isHtml',
             'interpolateNulls',
-            'legend',
             'lineWidth',
             'pointSize',
 //            'reverseCategories',
 //            'series',
 //            'theme',
-            'title',
-            'titlePosition',
-            'titleTextStyle',
-            'tooltip',
             'vAxes',
-            'vAxis',
-            'width'
-        );
-
-        if(is_array($options) && count($options) > 0)
-        {
-            foreach($options as $option => $value)
-            {
-                if(in_array($option, $defaultOptions))
-                {
-                    if(method_exists($this, $option))
-                    {
-                        $this->$option($value);
-                    } else {
-                        $this->addOption($value);
-                    }
-                } else {
-                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
-                }
-            }
-        } else {
-            $this->error('Invalid config value, must be type (array) containing any key '.array_string($defaultOptions));
-        }
-
-        return $this;
-    }
-
-    /**
-     * Adds the error message to the error log in the gcharts master object.
-     *
-     * @param string $msg
-     */
-    private function error($msg)
-    {
-        Gcharts::_set_error($this->chartType, $msg);
-    }
-
-    /**
-     * Sets a configuration option
-     *
-     * Takes either an array with option => value, or an object created by
-     * one of the configOptions child objects.
-     *
-     * @param mixed $option
-     * @return \AreaChart
-     */
-    public function addOption($option)
-    {
-        if(is_object($option))
-        {
-            $this->options = array_merge($this->options, $option->toArray());
-        }
-
-        if(is_array($option))
-        {
-            $this->options = array_merge($this->options, $option);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Assigns wich DataTable will be used for this AreaChart.
-     *
-     * There are two possible uses of this method:
-     *
-     * If a (string) label is provided then the chart will use the previously
-     * defined and labeled DataTable stored within the gcharts object.
-     *
-     * If a DataTable object is passed, then that is the data table that will be
-     * used for the chart.
-     *
-     * @param mixed $data String label or DataTable object
-     * @return \gcharts\configs\DataTable
-     */
-    public function dataTable($data)
-    {
-        if(is_a($data, 'DataTable'))
-        {
-            $this->data = $data;
-            $this->dataTable = 'local';
-        } else {
-            if(is_string($data) && $data != '')
-            {
-                $this->dataTable = $data;
-            } else {
-                $this->error('Invalid argument, must be a label type (string) or a data table type (DataTable).');
-            }
-        }
-
-        return $this;
+            'vAxis'
+        ));
     }
 
     /**

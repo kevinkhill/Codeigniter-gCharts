@@ -24,12 +24,12 @@ class PieChart extends Chart
 {
     public function __construct($chartLabel)
     {
+        parent::__construct($chartLabel);
+
         $this->defaults = array_merge($this->defaults, array(
             'is3D',
             'reverseCategories'
         ));
-
-        parent::__construct($chartLabel);
     }
 
     /**
@@ -41,10 +41,10 @@ class PieChart extends Chart
      * @param array $options
      * @return \PieChart
      */
-    public function setConfig($options = array())
-    {
-        return parent::setConfig($options);
-    }
+//    public function setConfig($options = array())
+//    {
+//        return parent::setConfig($options);
+//    }
 
     /**
      * If set to true, displays a three-dimensional chart.
