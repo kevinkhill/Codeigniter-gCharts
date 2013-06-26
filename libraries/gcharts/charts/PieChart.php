@@ -30,8 +30,8 @@ class PieChart extends Chart
             'is3D',
 //            'slices',
             'pieSliceBorderColor',
-//            'pieSliceText',
-//            'pieSliceTextStyle',
+            'pieSliceText',
+            'pieSliceTextStyle',
             'reverseCategories',
             'sliceVisibilityThreshold',
             'pieResidueSliceColor',
@@ -43,7 +43,7 @@ class PieChart extends Chart
      * If set to true, displays a three-dimensional chart.
      *
      * @param boolean $is3D
-     * @return \PieChart
+     * @return \charts\PieChart
      */
     public function is3D($is3D)
     {
@@ -66,8 +66,9 @@ class PieChart extends Chart
      * The color of the slice borders. Only applicable when the chart is two-dimensional.
      *
      * @param string $pieSliceBorderColor
+     * @return \charts\PieChart
      */
-    public function pieSliceBorderColor()
+    public function pieSliceBorderColor($pieSliceBorderColor)
     {
         if(is_string($pieSliceBorderColor))
         {
@@ -79,18 +80,62 @@ class PieChart extends Chart
         return $this;
     }
 
-
-    public function pieSliceText()
+    /**
+     * The content of the text displayed on the slice. Can be one of the following:
+     *
+     * 'percentage' - The percentage of the slice size out of the total.
+     * 'value' - The quantitative value of the slice.
+     * 'label' - The name of the slice.
+     * 'none' - No text is displayed.
+     *
+     * @param string $pieSliceText
+     * @return \charts\PieChart
+     */
+    public function pieSliceText($pieSliceText)
     {
+        $values = array(
+            'percentage',
+            'value',
+            'label',
+            'none'
+        );
 
+        if(in_array($pieSliceText, $values))
+        {
+            $this->addOption(array('pieSliceText' => $pieSliceText));
+        } else {
+            $this->error('Invalid value for pieSliceText, must be type (string) '.$this->_array_string($values));
+        }
+
+        return $this;
     }
 
-
-    public function pieSliceTextStyle()
+    /**
+     * An object that specifies the slice text style. create a new textStyle()
+     * object, set the values then pass it to this function or to the constructor.
+     *
+     * @param textStyle $textStyle
+     * @return \charts\PieChart
+     */
+    public function pieSliceTextStyle($textStyle)
     {
+        if(is_a($textStyle, 'textStyle'))
+        {
+            $this->addOption(array('pieSliceTextStyle' => $textStyle));
+        } else {
+            $this->error('Invalid value for textStyle, must be an object type (textStyle).');
+        }
 
+        return $this;
     }
 
+    /**
+     * If set to true, will draw slices counterclockwise. The default is to
+     * draw clockwise.
+     *
+     * @param boolean $reverseCategories
+     * @return \charts\PieChart
+     */
     public function reverseCategories($reverseCategories)
     {
         if(is_bool($reverseCategories))
@@ -108,6 +153,7 @@ class PieChart extends Chart
      * to show individually any slice which is smaller than half a degree.
      *
      * @param numeric $sliceVisibilityThreshold
+     * @return \charts\PieChart
      */
     public function sliceVisibilityThreshold($sliceVisibilityThreshold)
     {
@@ -124,6 +170,7 @@ class PieChart extends Chart
      * sliceVisibilityThreshold.
      *
      * @param type $pieResidueSliceColor
+     * @return \charts\PieChart
      */
     public function pieResidueSliceColor($pieResidueSliceColor)
     {
@@ -140,6 +187,7 @@ class PieChart extends Chart
      * sliceVisibilityThreshold.
      *
      * @param string $pieResidueSliceLabel
+     * @return \charts\PieChart
      */
     public function pieResidueSliceLabel($pieResidueSliceLabel)
     {
