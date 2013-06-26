@@ -24,6 +24,24 @@ class configOptions
     var $output;
     var $options;
 
+    public function __construct($config)
+    {
+        if(is_array($config) && count($config) > 0)
+        {
+            foreach($config as $option => $value)
+            {
+                if(in_array($option, $this->options))
+                {
+                    $this->$option($value);
+                } else {
+                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
+                }
+            }
+        }
+
+        return $this;
+    }
+
     /**
      * Adds the error message to the error log in the gcharts master object.
      *
@@ -78,7 +96,7 @@ class configOptions
 
         return $this->output;
     }
-    
+
     public function _valid_int_or_percent($val)
     {
         if(is_int($val) === TRUE)

@@ -245,6 +245,44 @@ class Chart
     }
 
     /**
+     * The default font size, in pixels, of all text in the chart. You can
+     * override this using properties for specific chart elements.
+     *
+     * @param int $fontSize
+     * @return \Chart
+     */
+    public function fontSize($fontSize)
+    {
+        if(is_int($fontSize))
+        {
+            $this->addOption(array('fontSize' => $fontSize));
+        } else {
+            $this->error('Invalid value for fontSize, must be type (int).');
+        }
+
+        return $this;
+    }
+
+    /**
+     * The default font face for all text in the chart. You can override this
+     * using properties for specific chart elements.
+     *
+     * @param string $fontName
+     * @return \Chart
+     */
+    public function fontName($fontName)
+    {
+        if(is_string($fontName))
+        {
+            $this->addOption(array('fontSize' => $fontName));
+        } else {
+            $this->error('Invalid value for fontName, must be type (string).');
+        }
+
+        return $this;
+    }
+
+    /**
      * Height of the chart, in pixels.
      *
      * @param int $height
@@ -270,13 +308,13 @@ class Chart
      * @param legend $legendObj
      * @return \AreaChart
      */
-    public function legend(legend $legendObj)
+    public function legend($legendObj)
     {
         if(is_a($legendObj, 'legend'))
         {
             $this->addOption($legendObj->toArray());
         } else {
-            $this->error('Invalid legend, must be an object type (legend).');
+            $this->error('Invalid value for legend, must be an object type (legend).');
         }
 
         return $this;

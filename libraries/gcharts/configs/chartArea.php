@@ -26,7 +26,13 @@ class chartArea extends configOptions
     var $width;
     var $height;
 
-    public function __construct($options = array())
+    /**
+     * Builds the chartArea object when passed an array of configuration options.
+     *
+     * @param array $config
+     * @return \configs\chartArea
+     */
+    public function __construct($config = array())
     {
         $this->options = array(
             'left',
@@ -35,20 +41,7 @@ class chartArea extends configOptions
             'height'
         );
 
-        if(is_array($options) && count($options) > 0)
-        {
-            foreach($options as $option => $value)
-            {
-                if(in_array($option, $this->options))
-                {
-                    $this->$option($value);
-                } else {
-                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
-                }
-            }
-        }
-
-        return $this;
+        parent::__construct($config);
     }
 
     public function left($left)

@@ -36,11 +36,11 @@ class hAxis extends Axis
      * created.
      *
      * @param array $options
-     * @return \axis
+     * @return \configs\hAxis
      */
-    public function __construct($options = array())
+    public function __construct($config = array())
     {
-        array_merge($this->options, array(
+        $this->options = array_merge($this->options, array(
             'allowContainerBoundaryTextCutoff',
             'slantedText',
             'slantedTextAngle',
@@ -50,7 +50,7 @@ class hAxis extends Axis
             'showTextEvery',
         ));
 
-        return parent::__construct($options);
+        parent::__construct($config);
     }
 
     /**
@@ -60,7 +60,7 @@ class hAxis extends Axis
      * This option is only supported for a discrete axis.
      *
      * @param boolean $cutoff
-     * @return \axis
+     * @return \configs\hAxis
      */
     public function allowContainerBoundaryTextCutoff($cutoff)
     {
@@ -68,7 +68,7 @@ class hAxis extends Axis
         {
             $this->allowContainerBoundaryTextCutoff = $cutoff;
         } else {
-            $this->allowContainerBoundaryTextCutoff = FALSE;
+            $this->error('Invalid value for allowContainerBoundaryTextCutoff, must be type (boolean).');
         }
 
         return $this;
@@ -84,7 +84,7 @@ class hAxis extends Axis
      * This option is only supported for a discrete axis.
      *
      * @param boolean $slant
-     * @return \axis
+     * @return \configs\hAxis
      */
     public function slantedText($slant)
     {
@@ -92,7 +92,7 @@ class hAxis extends Axis
         {
             $this->slantedText = $slant;
         } else {
-            $this->slantedText = FALSE;
+            $this->error('Invalid value for textPosition, must be type (boolean) and textPosition must be "out".');
         }
 
         return $this;
@@ -106,15 +106,15 @@ class hAxis extends Axis
      * This option is only supported for a discrete axis.
      *
      * @param int $angle
-     * @return \axis
+     * @return \configs\hAxis
      */
     public function slantedTextAngle($angle)
     {
-        if(valid_int($angle) && $angle >= 1 && $angle <= 90)
+        if(is_int($angle) && $angle >= 1 && $angle <= 90)
         {
             $this->slantedTextAngle = $angle;
         } else {
-            $this->slantedTextAngle = 30;
+            $this->error('Invalid value for slantedTextAngle, must be type (int) between 1 - 90.');
         }
 
         return $this;

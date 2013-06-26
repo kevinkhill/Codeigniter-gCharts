@@ -28,9 +28,8 @@ class AreaChart extends Chart
 //            'animation',
             'areaOpacity',
 //            'enableInteractivity',
+            'events',
 //            'focusTarget',
-//            'fontSize',
-//            'fontName',
             'hAxis',
             'isHtml',
             'interpolateNulls',
@@ -143,20 +142,6 @@ class AreaChart extends Chart
 //    }
 //
 //    public function focusTarget($param)
-//    {
-//
-//
-//        return $this;
-//    }
-//
-//    public function fontSize($param)
-//    {
-//
-//
-//        return $this;
-//    }
-//
-//    public function fontName($param)
 //    {
 //
 //

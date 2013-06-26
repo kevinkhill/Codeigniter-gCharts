@@ -30,9 +30,9 @@ class vAxis extends Axis
      * @param array $options
      * @return \axis
      */
-    public function __construct($options = array())
+    public function __construct($config = array())
     {
-        return parent::__construct($options);
+        return parent::__construct($config);
     }
 
 }

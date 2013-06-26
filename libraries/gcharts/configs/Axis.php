@@ -38,7 +38,7 @@ class Axis extends configOptions
     var $viewWindow;
 
     var $options = array();
-    
+
     /**
      * Stores all the information about the axis. All options can be
      * set either by passing an array with associative values for option =>
@@ -46,11 +46,11 @@ class Axis extends configOptions
      * created.
      *
      * @param array $options
-     * @return \axis
+     * @return \configs\Axis
      */
-    public function __construct($options = array())
+    public function __construct($config = array())
     {
-        $this->options = array(
+        $this->options = array_merge($this->options, array(
             'baseline',
             'baselineColor',
             'direction',
@@ -70,20 +70,9 @@ class Axis extends configOptions
             'minValue',
             'viewWindowMode',
             'viewWindow'
-        );
+        ));
 
-        if(is_array($options) && count($options) > 0)
-        {
-            foreach($options as $option => $value)
-            {
-                if(in_array($option, $this->options))
-                {
-                    $this->$option($value);
-                }
-            }
-        }
-
-        return $this;
+        parent::__construct($config);
     }
 
     /**
@@ -92,7 +81,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param mixed $baseline
-     * @return \axis
+     * @return \configs\Axis
      */
     public function baseline($baseline)
     {
@@ -104,7 +93,7 @@ class Axis extends configOptions
             {
                 $this->baseline = $baseline;
             } else {
-                $this->error('Invalid value for baseline, must be (int) if column is "number", must be (jsDate) if column is "date"');
+                $this->error('Invalid value for baseline, must be (int) if column is "number", must be type (jsDate) if column is "date"');
             }
         }
 
@@ -118,7 +107,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param string $color
-     * @return \axis
+     * @return \configs\Axis
      */
     public function baselineColor($color)
     {
@@ -137,7 +126,7 @@ class Axis extends configOptions
      * Specify -1 to reverse the order of the values.
      *
      * @param int $direction
-     * @return \axis
+     * @return \configs\Axis
      */
     public function direction($direction)
     {
@@ -167,7 +156,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param string $format format string for numeric or date axis labels.
-     * @return \axis
+     * @return \configs\Axis
      */
     public function format($format)
     {
@@ -175,7 +164,7 @@ class Axis extends configOptions
         {
             $this->format = $format;
         } else {
-            $this->format = 'auto';
+            $this->error('Invalid value for format, must be type (string).');
         }
 
         return $this;
@@ -190,7 +179,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param array $gridlines
-     * @return \axis
+     * @return \configs\Axis
      */
     public function gridlines($gridlines)
     {
@@ -236,7 +225,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param array $minorGridlines
-     * @return \axis
+     * @return \configs\Axis
      */
     public function minorGridlines($minorGridlines)
     {
@@ -273,7 +262,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param boolean $log
-     * @return \axis
+     * @return \configs\Axis
      */
     public function logScale($log)
     {
@@ -292,7 +281,7 @@ class Axis extends configOptions
      * Supported values: 'out', 'in', 'none'.
      *
      * @param string $position
-     * @return \axis
+     * @return \configs\Axis
      */
     public function textPosition($position)
     {
@@ -316,25 +305,25 @@ class Axis extends configOptions
      * This function takes a textStyle object, created via "new textStyle();"
      *
      * @param textStyle $textStyle
-     * @return \axis
+     * @return \configs\Axis
      */
-    public function textStyle(textStyle $textStyle)
+    public function textStyle($textStyle)
     {
         if(is_a($textStyle, 'textStyle'))
         {
             $this->textStyle = $textStyle->values();
         } else {
-            $this->error('Invalid textStyle, must be an object type (textStyle).');
+            $this->error('Invalid value for textStyle, must be an object type (textStyle).');
         }
 
         return $this;
     }
 
     /**
-     * axis property that specifies the title of the axis.
+     * Axis property that specifies the title of the axis.
      *
      * @param string $title
-     * @return \axis
+     * @return \configs\Axis
      */
     public function title($title)
     {
@@ -342,7 +331,7 @@ class Axis extends configOptions
         {
             $this->title = $title;
         } else {
-            $this->title = NULL;
+            $this->error('Invalid value for title, must be type (string).');
         }
 
         return $this;
@@ -352,7 +341,7 @@ class Axis extends configOptions
      * An object that specifies the axis title text style.
      *
      * @param textStyle $titleTextStyle
-     * @return \axis
+     * @return \configs\Axis
      * @throws Exception
      */
     public function titleTextStyle(textStyle $titleTextStyle)
@@ -361,82 +350,13 @@ class Axis extends configOptions
         {
             $this->titleTextStyle = $titleTextStyle->values();
         } else {
-            Gcharts::_set_error(get_class($this), 'Invalid titleTextStyle, must be (object) type textStyle');
+            $this->error('Invalid value for titleTextStyle, must be an object type (textStyle).');
         }
 
         return $this;
     }
 
     /**
-     * If false, will hide outermost labels rather than allow them to be
-     * cropped by the chart container. If true, will allow label cropping.
-     *
-     * This option is only supported for a discrete axis.
-     *
-     * @param boolean $cutoff
-     * @return \axis
-     */
-    public function allowContainerBoundaryTextCufoff($cutoff)
-    {
-        if(is_bool($cutoff))
-        {
-            $this->allowContainerBoundaryTextCufoff = $cutoff;
-        } else {
-            $this->allowContainerBoundaryTextCufoff = FALSE;
-        }
-
-        return $this;
-    }
-
-    /**
-     * If true, draw the axis text at an angle, to help fit more text
-     * along the axis; if false, draw axis text upright. Default
-     * behavior is to slant text if it cannot all fit when drawn upright.
-     * Notice that this option is available only when the $this->textPosition is
-     * set to 'out' (which is the default).
-     *
-     * This option is only supported for a discrete axis.
-     *
-     * @param boolean $slant
-     * @return \axis
-     */
-    public function slantedText($slant)
-    {
-        if(is_bool($slant) && $this->textPosition == 'out')
-        {
-            $this->slantedText = $slant;
-        } else {
-            $this->slantedText = FALSE;
-        }
-
-        return $this;
-    }
-
-    /**
-     * The angle of the axis text, if it's drawn slanted. Ignored if
-     * axis.slantedText is false, or is in auto mode, and the chart decided to
-     * draw the text horizontally.
-     *
-     * This option is only supported for a discrete axis.
-     *
-     * @param int $angle
-     * @return \axis
-     */
-    public function slantedTextAngle($angle)
-    {
-        if(valid_int($angle) && $angle >= 1 && $angle <= 90)
-        {
-            $this->slantedTextAngle = $angle;
-        } else {
-            $this->slantedTextAngle = 30;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Horizontal Axis Max Alternation
-     *
      * Maximum number of levels of axis text. If axis text labels
      * become too crowded, the server might shift neighboring labels up or down
      * in order to fit labels closer together. This value specifies the most
@@ -446,15 +366,15 @@ class Axis extends configOptions
      * This option is only supported for a discrete axis.
      *
      * @param int $alternation
-     * @return \axis
+     * @return \configs\Axis
      */
     public function maxAlternation($alternation)
     {
-        if(valid_int($alternation))
+        if(is_int($alternation))
         {
             $this->maxAlternation = $alternation;
         } else {
-            $this->maxAlternation = 2;
+            $this->error('Invalid value for maxAlternation, must be type (int).');
         }
 
         return $this;
@@ -468,15 +388,15 @@ class Axis extends configOptions
      * This option is only supported for a discrete axis.
      *
      * @param int $maxTextLines
-     * @return \axis
+     * @return \configs\Axis
      */
     public function maxTextLines($maxTextLines)
     {
-        if(valid_int($maxTextLines))
+        if(is_int($maxTextLines))
         {
             $this->maxTextLines = $maxTextLines;
         } else {
-            $this->maxTextLines = NULL;
+            $this->error('Invalid value for maxTextLines, must be type (int).');
         }
 
         return $this;
@@ -492,11 +412,11 @@ class Axis extends configOptions
      * This option is only supported for a discrete axis.
      *
      * @param int $minTextSpacing
-     * @return \axis
+     * @return \configs\Axis
      */
     public function minTextSpacing($minTextSpacing)
     {
-        if(valid_int($minTextSpacing))
+        if(is_int($minTextSpacing))
         {
             $this->minTextSpacing = $minTextSpacing;
         } else {
@@ -504,7 +424,7 @@ class Axis extends configOptions
             {
                 $this->minTextSpacing = $this->textStyle['fontSize'];
             } else {
-                $this->minTextSpacing = 12;
+                $this->error('Invalid value for minTextSpacing, must be type (int).');
             }
         }
 
@@ -519,15 +439,15 @@ class Axis extends configOptions
      * This option is only supported for a discrete axis.
      *
      * @param int $showTextEvery
-     * @return \axis
+     * @return \configs\Axis
      */
     public function showTextEvery($showTextEvery)
     {
-        if(valid_int($showTextEvery))
+        if(is_int($showTextEvery))
         {
             $this->showTextEvery = $showTextEvery;
         } else {
-            $this->showTextEvery = NULL;
+            $this->error('Invalid value for showTextEvery, must be type (int).');
         }
 
         return $this;
@@ -541,15 +461,15 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param int $max
-     * @return \axis
+     * @return \configs\Axis
      */
     public function maxValue($max)
     {
-        if(valid_int($max))
+        if(is_int($max))
         {
             $this->maxValue = $max;
         } else {
-            $this->maxValue = NULL;
+            $this->error('Invalid value for maxValue, must be type (int).');
         }
 
         return $this;
@@ -563,7 +483,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param int $min
-     * @return \axis
+     * @return \configs\Axis
      */
     public function minValue($min)
     {
@@ -571,7 +491,7 @@ class Axis extends configOptions
         {
             $this->minValue = $min;
         } else {
-            $this->minValue = NULL;
+           $this->error('Invalid value for minValue, must be type (int).');
         }
 
         return $this;
@@ -592,7 +512,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param string $viewMode
-     * @return \axis
+     * @return \configs\Axis
      */
     public function viewWindowMode($viewMode)
     {
@@ -638,7 +558,7 @@ class Axis extends configOptions
      * such that min <= index < max will be displayed.
      *
      * @param array $viewWindow
-     * @return \axis
+     * @return \configs\Axis
      */
     public function viewWindow($viewWindow)
     {

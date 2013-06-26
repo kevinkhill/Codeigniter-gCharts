@@ -28,23 +28,16 @@ class PieChart extends Chart
 
         $this->defaults = array_merge($this->defaults, array(
             'is3D',
-            'reverseCategories'
+//            'slices',
+            'pieSliceBorderColor',
+//            'pieSliceText',
+//            'pieSliceTextStyle',
+            'reverseCategories',
+            'sliceVisibilityThreshold',
+            'pieResidueSliceColor',
+            'pieResidueSliceLabel',
         ));
     }
-
-    /**
-     * Sets configuration options from array of values
-     *
-     * You can set the options all at once instead of passing them individually
-     * or chaining the functions from the chart objects.
-     *
-     * @param array $options
-     * @return \PieChart
-     */
-//    public function setConfig($options = array())
-//    {
-//        return parent::setConfig($options);
-//    }
 
     /**
      * If set to true, displays a three-dimensional chart.
@@ -69,9 +62,21 @@ class PieChart extends Chart
 
     }
 
+    /**
+     * The color of the slice borders. Only applicable when the chart is two-dimensional.
+     *
+     * @param string $pieSliceBorderColor
+     */
     public function pieSliceBorderColor()
     {
+        if(is_string($pieSliceBorderColor))
+        {
+            $this->addOption(array('pieSliceBorderColor' => $pieSliceBorderColor));
+        } else {
+            $this->error('Invalid value for pieSliceBorderColor, must be type (string).');
+        }
 
+        return $this;
     }
 
 
@@ -92,27 +97,61 @@ class PieChart extends Chart
         {
             $this->addOption(array('reverseCategories' => $reverseCategories));
         } else {
-            $this->error('Invalid value for reverseCategories, must be type (boolean).s');
+            $this->error('Invalid value for reverseCategories, must be type (boolean).');
         }
     }
 
-    public function sliceVisibilityThreshold()
+    /**
+     * The slice relative part, below which a slice will not show individually.
+     * All slices that have not passed this threshold will be combined to a
+     * single slice, whose size is the sum of all their sizes. Default is not
+     * to show individually any slice which is smaller than half a degree.
+     *
+     * @param numeric $sliceVisibilityThreshold
+     */
+    public function sliceVisibilityThreshold($sliceVisibilityThreshold)
     {
-
+        if(is_numeric($sliceVisibilityThreshold))
+        {
+            $this->addOption(array('sliceVisibilityThreshold' => $sliceVisibilityThreshold));
+        } else {
+            $this->error('Invalid value for sliceVisibilityThreshold, must be (numeric).');
+        }
     }
 
-    public function pieResidueSliceColor()
+    /**
+     * Color for the combination slice that holds all slices below
+     * sliceVisibilityThreshold.
+     *
+     * @param type $pieResidueSliceColor
+     */
+    public function pieResidueSliceColor($pieResidueSliceColor)
     {
-
+        if(is_string($pieResidueSliceColor))
+        {
+            $this->addOption(array('pieResidueSliceColor' => $pieResidueSliceColor));
+        } else {
+            $this->error('Invalid value for pieResidueSliceColor, must be a valid HTML color type (string).');
+        }
     }
 
-
-    public function pieResidueSliceLabel()
+    /**
+     * A label for the combination slice that holds all slices below
+     * sliceVisibilityThreshold.
+     *
+     * @param string $pieResidueSliceLabel
+     */
+    public function pieResidueSliceLabel($pieResidueSliceLabel)
     {
-
+        if(is_string($pieResidueSliceLabel))
+        {
+            $this->addOption(array('pieResidueSliceLabel' => $pieResidueSliceLabel));
+        } else {
+            $this->error('Invalid value for pieResidueSliceLabel, must be type (string).');
+        }
     }
 
 }
 
 /* End of file PieChart.php */
-/* Location: ./application/libraries/gcharts/PieChart.php */
+/* Location: ./gcharts/charts/PieChart.php */

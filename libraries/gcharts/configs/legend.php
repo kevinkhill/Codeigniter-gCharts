@@ -25,7 +25,13 @@ class legend extends configOptions
     var $alignment;
     var $textStyle;
 
-    public function __construct($options = array())
+    /**
+     * Builds the legend object when passed an array of configuration options.
+     *
+     * @param array $options
+     * @return \configs\tooltip
+     */
+    public function __construct($config)
     {
         $this->options = array(
             'position',
@@ -33,25 +39,10 @@ class legend extends configOptions
             'textStyle'
         );
 
-        if(is_array($options) && count($options) > 0)
-        {
-            foreach($options as $option => $value)
-            {
-                if(in_array($option, $this->options))
-                {
-                    $this->$option($value);
-                } else {
-                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
-                }
-            }
-        }
-
-        return $this;
+        parent::__construct($config);
     }
 
     /**
-     * Legend Position
-     *
      * Position of the legend. Can be one of the following:
      * 'right' - To the right of the chart. Incompatible with the vAxes option.
      * 'top' - Above the chart.
@@ -84,8 +75,6 @@ class legend extends configOptions
     }
 
     /**
-     * Chart Alignment
-     *
      * Alignment of the legend. Can be one of the following:
      * 'start' - Aligned to the start of the area allocated for the legend.
      * 'center' - Centered in the area allocated for the legend.
@@ -121,8 +110,6 @@ class legend extends configOptions
     }
 
     /**
-     * Legend Text Style
-     *
      * An object that specifies the legend text style.
      *
      * @param textStyle $textStyle

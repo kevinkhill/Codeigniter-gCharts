@@ -25,36 +25,30 @@ class textStyle extends configOptions
     var $fontName;
     var $fontSize;
 
-    public function __construct($options = array()) {
-
+    /**
+     * Builds the textStyle object when passed an array of configuration options.
+     *
+     * @param array $config
+     * @return \configs\tooltip
+     */
+    public function __construct($config = array())
+    {
         $this->options = array(
             'color',
             'fontName',
             'fontSize'
         );
 
-        if(is_array($options) && count($options) > 0)
-        {
-            foreach($options as $option => $value)
-            {
-                if(in_array($option, $this->options))
-                {
-                    $this->$option($value);
-                } else {
-                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
-                }
-            }
-        }
-
-        return $this;
+        parent::__construct($config);
     }
 
     /**
-     * Assign a color for the text element that this textStyle will be applied to
-     * in the format of a valid HTML color string, for example: colors:['red','#004411'].
+     * Assign a color for the text element that this textStyle will be applied
+     * to in the format of a valid HTML color string, for example:
+     * red OR #004411
      *
      * @param string $color
-     * @return \textStyle
+     * @return \configs\textStyle
      */
     public function color($color)
     {
@@ -69,8 +63,8 @@ class textStyle extends configOptions
     /**
      * Assigns a font to the textStyle object, must be a valid font name
      *
-     * @param sting $fontName
-     * @return \textStyle
+     * @param string $fontName
+     * @return \configs\textStyle
      */
     public function fontName($fontName)
     {
@@ -86,8 +80,8 @@ class textStyle extends configOptions
      * Assigns a font size to the textStyle, must be a valid int or a string
      * representing an int.
      *
-     * @param mixed $fontSize
-     * @return \textStyle
+     * @param int $fontSize
+     * @return \configs\textStyle
      */
     public function fontSize($fontSize)
     {
