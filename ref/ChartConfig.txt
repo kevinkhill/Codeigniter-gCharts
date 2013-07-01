@@ -15,3 +15,7 @@ width
 
 ([a-zA-Z]+)
     public function $1()\n    {\n\treturn \$this;\n    }\n\n
+
+
+
+^[a-zA-Z]+\.?[a-zA-Z]+\.?[a-zA-Z]+\.?
