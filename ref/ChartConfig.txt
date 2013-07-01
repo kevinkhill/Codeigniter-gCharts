@@ -11,3 +11,7 @@ titlePosition
 titleTextStyle
 tooltip
 width
+
+
+([a-zA-Z]+)
+    public function $1()\n    {\n\treturn \$this;\n    }\n\n

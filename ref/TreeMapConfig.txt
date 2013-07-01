@@ -1,0 +1,22 @@
+TreeMap Configuration Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/treemap
+
+headerColor
+headerHeight
+headerHighlightColor
+maxColor
+maxDepth
+maxHighlightColor
+maxPostDepth
+maxColorValue
+midColor
+midHighlightColor
+minColor
+minHighlightColor
+minColorValue
+noColor
+noHighlightColor
+showScale
+showTooltips
+fontColor
+fontFamily
+fontSize
