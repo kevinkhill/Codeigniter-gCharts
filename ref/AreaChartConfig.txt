@@ -1,4 +1,4 @@
-AreaChart Config Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/areachart
+AreaChart Config Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/areachart#Configuration_Options
 
 animation.duration
 animation.easing

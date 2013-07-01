@@ -1,4 +1,4 @@
-PieChart Config Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/piechart
+PieChart Config Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/piechart#Configuration_Options
 
 backgroundColor
 backgroundColor.stroke

@@ -1,11 +1,21 @@
-LineChart Config Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/linechart#Configuration_Options
+ComboChart Config Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/combochart
 
 animation.duration
 animation.easing
+areaOpacity
+axisTitlesPosition
 backgroundColor
 backgroundColor.stroke
 backgroundColor.strokeWidth
 backgroundColor.fill
+bar.groupWidth
+candlestick.hollowIsRising
+candlestick.fallingColor.fill
+candlestick.fallingColor.stroke
+candlestick.fallingColor.strokeWidth
+candlestick.risingColor.fill
+candlestick.risingColor.stroke
+candlestick.risingColor.strokeWidth
 chartArea
 chartArea.left
 chartArea.top
@@ -17,6 +27,7 @@ enableInteractivity
 focusTarget
 fontSize
 fontName
+hAxis
 hAxis.baseline
 hAxis.baselineColor
 hAxis.direction
@@ -46,8 +57,9 @@ hAxis.viewWindow
 hAxis.viewWindow.max
 hAxis.viewWindow.min
 height
-isHtml
 interpolateNulls
+isHtml
+isStacked
 legend
 legend.position
 legend.alignment
@@ -56,6 +68,7 @@ lineWidth
 pointSize
 reverseCategories
 series
+seriesType
 theme
 title
 titlePosition
@@ -70,6 +83,7 @@ vAxis.baseline
 vAxis.baselineColor
 vAxis.direction
 vAxis.format
+vAxis.gridlines
 vAxis.gridlines.color
 vAxis.gridlines.count
 vAxis.minorGridlines

@@ -1,7 +1,8 @@
-LineChart Config Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/linechart#Configuration_Options
+ScatterChart Config Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/scatterchart#Configuration_Options
 
 animation.duration
 animation.easing
+axisTitlesPosition
 backgroundColor
 backgroundColor.stroke
 backgroundColor.strokeWidth
@@ -14,9 +15,9 @@ chartArea.height
 colors
 curveType
 enableInteractivity
-focusTarget
 fontSize
 fontName
+hAxis
 hAxis.baseline
 hAxis.baselineColor
 hAxis.direction
@@ -32,13 +33,6 @@ hAxis.textPosition
 hAxis.textStyle
 hAxis.title
 hAxis.titleTextStyle
-hAxis.allowContainerBoundaryTextCufoff
-hAxis.slantedText
-hAxis.slantedTextAngle
-hAxis.maxAlternation
-hAxis.maxTextLines
-hAxis.minTextSpacing
-hAxis.showTextEvery
 hAxis.maxValue
 hAxis.minValue
 hAxis.viewWindowMode
@@ -47,14 +41,12 @@ hAxis.viewWindow.max
 hAxis.viewWindow.min
 height
 isHtml
-interpolateNulls
 legend
 legend.position
 legend.alignment
 legend.textStyle
 lineWidth
 pointSize
-reverseCategories
 series
 theme
 title
@@ -64,12 +56,12 @@ tooltip
 tooltip.showColorCode
 tooltip.textStyle
 tooltip.trigger
-vAxes
 vAxis
 vAxis.baseline
 vAxis.baselineColor
 vAxis.direction
 vAxis.format
+vAxis.gridlines
 vAxis.gridlines.color
 vAxis.gridlines.count
 vAxis.minorGridlines

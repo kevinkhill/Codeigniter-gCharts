@@ -17,5 +17,8 @@ width
     public function $1()\n    {\n\treturn \$this;\n    }\n\n
 
 
-
-^[a-zA-Z]+\.?[a-zA-Z]+\.?[a-zA-Z]+\.?
+$('table:eq(1) tbody tr td:first-child').each(
+    function(){
+        window.console.log($(this).text());
+    }
+);

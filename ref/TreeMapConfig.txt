@@ -1,4 +1,4 @@
-TreeMap Configuration Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/treemap
+TreeMap Configuration Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/treemap#Configuration_Options
 
 headerColor
 headerHeight

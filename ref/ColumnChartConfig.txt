@@ -1,4 +1,4 @@
-ColumnChart Config Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/columnchart
+ColumnChart Config Options - https://google-developers.appspot.com/chart/interactive/docs/gallery/columnchart#Configuration_Options
 
 animation.duration
 animation.easing
