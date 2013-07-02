@@ -1,8 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Line Chart Object
+ * AnnotatedTimeLine Chart Class
  *
- * Holds all the configuration for the LineChart
+ * An interactive time series line chart with optional annotations. The chart
+ * is rendered within the browser using Flash.
  *
  *
  * NOTICE OF LICENSE

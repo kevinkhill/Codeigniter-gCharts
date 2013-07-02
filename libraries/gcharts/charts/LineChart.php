@@ -1,8 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * LineChart Object
+ * LineChart Class
  *
- * Holds all the configuration for the LineChart
+ * A line chart that is rendered within the browser using SVG or VML. Displays
+ * tips when hovering over points.
  *
  *
  * NOTICE OF LICENSE

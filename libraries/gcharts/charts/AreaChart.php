@@ -1,8 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * AreaChart Object
+ * AreaChart Class
  *
- * Holds all the configuration for the AreaChart
+ * An area chart that is rendered within the browser using SVG or VML. Displays
+ * tips when hovering over points.
  *
  *
  * NOTICE OF LICENSE

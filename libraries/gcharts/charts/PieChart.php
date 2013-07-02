@@ -1,12 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * PieChart Object
+ * PieChart Class
  *
- * Holds all the configuration for the PieChart
+ * A pie chart that is rendered within the browser using SVG or VML. Displays
+ * tooltips when hovering over slices.
  *
- * Rows: Each row in the table represents a slice.
- *
- *
+ * 
  * NOTICE OF LICENSE
  *
  * You should have received a copy of the MIT License along with this project.
