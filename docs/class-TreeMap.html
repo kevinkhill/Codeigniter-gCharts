@@ -7,7 +7,7 @@
 	<title>Class TreeMap | Codeigniter-gCharts</title>
 
 	<script type="text/javascript" src="resources/combined.js?3715972085"></script>
-	<script type="text/javascript" src="elementlist.js?1149794983"></script>
+	<script type="text/javascript" src="elementlist.js?3650041514"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -56,7 +56,6 @@
 			<ul>
 				<li><a href="function-array_is_multi.html">array_is_multi</a></li>
 				<li><a href="function-array_string.html">array_string</a></li>
-				<li><a href="function-valid_int.html">valid_int</a></li>
 			</ul>
 		</div>
 	</div>
@@ -96,11 +95,22 @@
 
 	<div class="description">
 	
-<p>PieChart Object</p>
+<p>TreeMap Chart Class</p>
 
-<p>Holds all the configuration for the PieChart</p>
+<p>A visual representation of a data tree, where each node can have zero or more
+children, and one parent (except for the root, which has no parents). Each node
+is displayed as a rectangle, sized and colored according to values that you
+assign. Sizes and colors are valued relative to all other nodes in the graph.
+You can specify how many levels to display simultaneously, and optionally to
+display deeper levels in a hinted fashion. If a node is a leaf node, you can
+specify a size and color; if it is not a leaf, it will be displayed as a
+bounding box for leaf nodes. The default behavior is to move down the tree when
+a user left-clicks a node, and to move back up the tree when a user right-clicks
+the graph.</p>
 
-<p>Rows: Each row in the table represents a slice.</p>
+<p>The total size of the graph is determined by the size of the containing
+element that you insert in your page. If you have leaf nodes with names too long
+to show, the name will be truncated with an ellipsis (...).</p>
 
 <p>NOTICE OF LICENSE</p>
 
@@ -149,7 +159,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">GitHub Repository Page</a><br />
 				<b>Link:</b>
 				<a href="http://kevinkhill.github.io/Codeigniter-gCharts/">GitHub Project Page</a><br />
-		<b>Located at</b> <a href="source-class-TreeMap.html#3-300" title="Go to source code">libraries/gcharts/charts/TreeMap.php</a><br />
+		<b>Located at</b> <a href="source-class-TreeMap.html#3-311" title="Go to source code">libraries/gcharts/charts/TreeMap.php</a><br />
 	</div>
 
 
@@ -167,7 +177,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-TreeMap.html#25-51" title="Go to source code">__construct</a>( <span>mixed <var>$chartLabel</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#36-62" title="Go to source code">__construct</a>( <span>mixed <var>$chartLabel</var></span> )</code>
 
 		<div class="description short">
 			
@@ -198,7 +208,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_headerColor">#</a>
-		<code><a href="source-class-TreeMap.html#53-62" title="Go to source code">headerColor</a>( <span>string <var>$headerColor</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#64-73" title="Go to source code">headerColor</a>( <span>string <var>$headerColor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -242,7 +252,7 @@ value.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_headerHeight">#</a>
-		<code><a href="source-class-TreeMap.html#64-73" title="Go to source code">headerHeight</a>( <span>integer <var>$headerHeight</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#75-84" title="Go to source code">headerHeight</a>( <span>integer <var>$headerHeight</var></span> )</code>
 
 		<div class="description short">
 			
@@ -284,7 +294,7 @@ value.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_headerHighlightColor">#</a>
-		<code><a href="source-class-TreeMap.html#75-86" title="Go to source code">headerHighlightColor</a>( <span>string <var>$headerHighlightColor</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#86-97" title="Go to source code">headerHighlightColor</a>( <span>string <var>$headerHighlightColor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -328,7 +338,7 @@ value or null; if null this value will be headerColor lightened by 35%</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxColor">#</a>
-		<code><a href="source-class-TreeMap.html#88-98" title="Go to source code">maxColor</a>( <span>string <var>$maxColor</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#99-109" title="Go to source code">maxColor</a>( <span>string <var>$maxColor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -372,7 +382,7 @@ HTML color value.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxDepth">#</a>
-		<code><a href="source-class-TreeMap.html#100-113" title="Go to source code">maxDepth</a>( <span>integer <var>$maxDepth</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#111-124" title="Go to source code">maxDepth</a>( <span>integer <var>$maxDepth</var></span> )</code>
 
 		<div class="description short">
 			
@@ -420,7 +430,7 @@ levels below this as shaded rectangles within these nodes.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxHighlightColor">#</a>
-		<code><a href="source-class-TreeMap.html#115-126" title="Go to source code">maxHighlightColor</a>( <span>string <var>$maxHighlightColor</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#126-137" title="Go to source code">maxHighlightColor</a>( <span>string <var>$maxHighlightColor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -466,7 +476,7 @@ maxColor lightened by 35%.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxPostDepth">#</a>
-		<code><a href="source-class-TreeMap.html#128-139" title="Go to source code">maxPostDepth</a>( <span>integer <var>$maxPostDepth</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#139-150" title="Go to source code">maxPostDepth</a>( <span>integer <var>$maxPostDepth</var></span> )</code>
 
 		<div class="description short">
 			
@@ -512,7 +522,7 @@ limit.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxColorValue">#</a>
-		<code><a href="source-class-TreeMap.html#141-152" title="Go to source code">maxColorValue</a>( <span>integer <var>$maxColorValue</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#152-163" title="Go to source code">maxColorValue</a>( <span>integer <var>$maxColorValue</var></span> )</code>
 
 		<div class="description short">
 			
@@ -558,7 +568,7 @@ column.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_midColor">#</a>
-		<code><a href="source-class-TreeMap.html#154-164" title="Go to source code">midColor</a>( <span>string <var>$midColor</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#165-175" title="Go to source code">midColor</a>( <span>string <var>$midColor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -602,7 +612,7 @@ and minColorValue. Specify an HTML color value.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_midHighlightColor">#</a>
-		<code><a href="source-class-TreeMap.html#166-178" title="Go to source code">midHighlightColor</a>( <span>string <var>$midHighlightColor</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#177-189" title="Go to source code">midHighlightColor</a>( <span>string <var>$midHighlightColor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -648,7 +658,7 @@ null, this value will be the value of midColor lightened by 35%.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_minColor">#</a>
-		<code><a href="source-class-TreeMap.html#180-190" title="Go to source code">minColor</a>( <span>string <var>$minColor</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#191-201" title="Go to source code">minColor</a>( <span>string <var>$minColor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -692,7 +702,7 @@ an HTML color value.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_minHighlightColor">#</a>
-		<code><a href="source-class-TreeMap.html#192-203" title="Go to source code">minHighlightColor</a>( <span>string <var>$minHighlightColor</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#203-214" title="Go to source code">minHighlightColor</a>( <span>string <var>$minHighlightColor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -738,7 +748,7 @@ the value of minColor lightened by 35%.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_minColorValue">#</a>
-		<code><a href="source-class-TreeMap.html#205-216" title="Go to source code">minColorValue</a>( <span>integer <var>$minColorValue</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#216-227" title="Go to source code">minColorValue</a>( <span>integer <var>$minColorValue</var></span> )</code>
 
 		<div class="description short">
 			
@@ -784,7 +794,7 @@ value in the column.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_noColor">#</a>
-		<code><a href="source-class-TreeMap.html#218-229" title="Go to source code">noColor</a>( <span>string <var>$noColor</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#229-240" title="Go to source code">noColor</a>( <span>string <var>$noColor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -828,7 +838,7 @@ that node is a leaf (or contains only leaves). Specify an HTML color value.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_noHighlightColor">#</a>
-		<code><a href="source-class-TreeMap.html#231-242" title="Go to source code">noHighlightColor</a>( <span>string <var>$noHighlightColor</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#242-253" title="Go to source code">noHighlightColor</a>( <span>string <var>$noHighlightColor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -874,7 +884,7 @@ by 35%.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_showScale">#</a>
-		<code><a href="source-class-TreeMap.html#244-254" title="Go to source code">showScale</a>( <span>boolean <var>$showScale</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#255-265" title="Go to source code">showScale</a>( <span>boolean <var>$showScale</var></span> )</code>
 
 		<div class="description short">
 			
@@ -918,7 +928,7 @@ the top of the chart. Specify true to show the scale.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_showTooltips">#</a>
-		<code><a href="source-class-TreeMap.html#256-265" title="Go to source code">showTooltips</a>( <span>boolean <var>$showTooltips</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#267-276" title="Go to source code">showTooltips</a>( <span>boolean <var>$showTooltips</var></span> )</code>
 
 		<div class="description short">
 			
@@ -960,7 +970,7 @@ the top of the chart. Specify true to show the scale.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fontColor">#</a>
-		<code><a href="source-class-TreeMap.html#267-276" title="Go to source code">fontColor</a>( <span>string <var>$fontColor</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#278-287" title="Go to source code">fontColor</a>( <span>string <var>$fontColor</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1002,7 +1012,7 @@ the top of the chart. Specify true to show the scale.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fontFamily">#</a>
-		<code><a href="source-class-TreeMap.html#278-287" title="Go to source code">fontFamily</a>( <span>string <var>$fontFamily</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#289-298" title="Go to source code">fontFamily</a>( <span>string <var>$fontFamily</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1044,7 +1054,7 @@ the top of the chart. Specify true to show the scale.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fontSize">#</a>
-		<code><a href="source-class-TreeMap.html#289-298" title="Go to source code">fontSize</a>( <span>integer <var>$fontSize</var></span> )</code>
+		<code><a href="source-class-TreeMap.html#300-309" title="Go to source code">fontSize</a>( <span>integer <var>$fontSize</var></span> )</code>
 
 		<div class="description short">
 			
