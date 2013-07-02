@@ -132,15 +132,15 @@ class hAxis extends Axis
      * This option is only supported for a discrete axis.
      *
      * @param int $alternation
-     * @return \axis
+     * @return \configs\hAxis
      */
     public function maxAlternation($alternation)
     {
-        if(valid_int($alternation))
+        if(is_int($alternation))
         {
             $this->maxAlternation = $alternation;
         } else {
-            $this->maxAlternation = 2;
+            $this->error('Invalid value for maxAlternation, must be type (int).');
         }
 
         return $this;
@@ -154,15 +154,15 @@ class hAxis extends Axis
      * This option is only supported for a discrete axis.
      *
      * @param int $maxTextLines
-     * @return \axis
+     * @return \configs\hAxis
      */
     public function maxTextLines($maxTextLines)
     {
-        if(valid_int($maxTextLines))
+        if(is_int($maxTextLines))
         {
             $this->maxTextLines = $maxTextLines;
         } else {
-            $this->maxTextLines = NULL;
+            $this->error('Invalid value for maxTextLines, must be type (int).');
         }
 
         return $this;
@@ -178,11 +178,11 @@ class hAxis extends Axis
      * This option is only supported for a discrete axis.
      *
      * @param int $minTextSpacing
-     * @return \axis
+     * @return \configs\hAxis
      */
     public function minTextSpacing($minTextSpacing)
     {
-        if(valid_int($minTextSpacing))
+        if(is_int($minTextSpacing))
         {
             $this->minTextSpacing = $minTextSpacing;
         } else {
@@ -190,7 +190,7 @@ class hAxis extends Axis
             {
                 $this->minTextSpacing = $this->textStyle['fontSize'];
             } else {
-                $this->minTextSpacing = 12;
+                $this->error('Invalid value for maxTextLines, must be type (int) or set via textStyle[\'fontSize\'].');
             }
         }
 
@@ -205,15 +205,15 @@ class hAxis extends Axis
      * This option is only supported for a discrete axis.
      *
      * @param int $showTextEvery
-     * @return \axis
+     * @return \configs\hAxis
      */
     public function showTextEvery($showTextEvery)
     {
-        if(valid_int($showTextEvery))
+        if(is_int($showTextEvery))
         {
             $this->showTextEvery = $showTextEvery;
         } else {
-            $this->showTextEvery = NULL;
+            $this->error('Invalid value for showTextEvery, must be type (int).');
         }
 
         return $this;

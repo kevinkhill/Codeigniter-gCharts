@@ -1,13 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Converts array to string
- *
  * Takes an array of values and ouputs them as a string between
  * brackets and separated by a pipe.
  *
  * @param array $defaultValues
- * @return string contains array values in readable form
+ * @return string
  */
 function array_string($defaultValues)
 {
@@ -21,6 +19,12 @@ function array_string($defaultValues)
     return substr_replace($tmp, "", -2) . ']';
 }
 
+/**
+ * Simple test to see if array is multi-dimensional.
+ *
+ * @param array $arr
+ * @return boolean
+ */
 function array_is_multi($arr)
 {
     $rv = array_filter($arr, 'is_array');
@@ -28,21 +32,6 @@ function array_is_multi($arr)
     if(count($rv) > 0)
     {
         return TRUE;
-    } else {
-        return FALSE;
-    }
-}
-
-function valid_int($val)
-{
-    if(is_int($val) === TRUE)
-    {
-        return TRUE;
-    } else if(is_string($val) === TRUE) {
-        if(ctype_digit($val) === TRUE)
-        {
-            return TRUE;
-        }
     } else {
         return FALSE;
     }
