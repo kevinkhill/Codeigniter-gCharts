@@ -44,8 +44,7 @@ class AnnotatedTimeLine
      * associated to a respective pre-defined javascript function as the callback.
      *
      * @param array $events Array of events associated to a callback
-     * @return \LineChart
-     * @throws Exception Invalid event
+     * @return \charts\AnnotatedTimeLine
      */
     public function events($events)
     {
@@ -87,8 +86,7 @@ class AnnotatedTimeLine
      * 'inAndOut' - Ease in and out - Start slow, speed up, then slow down.
      *
      * @param string $easing
-     * @return \LineChart
-     * @throws Exception Invalid animationEasing
+     * @return \charts\AnnotatedTimeLine
      */
     public function animationEasing($easing = 'linear')
     {
@@ -111,7 +109,7 @@ class AnnotatedTimeLine
      * The duration of the animation, in milliseconds.
      *
      * @param mixed $duration
-     * @return \LineChart
+     * @return \charts\AnnotatedTimeLine
      */
     public function animationDuration($duration)
     {
@@ -132,8 +130,7 @@ class AnnotatedTimeLine
      * none - Omit the axis titles.
      *
      * @param string $position
-     * @return \LineChart
-     * @throws Exception Invalid axisTitlesPosition
+     * @return \charts\AnnotatedTimeLine
      */
     public function axisTitlesPosition($position)
     {
@@ -157,8 +154,7 @@ class AnnotatedTimeLine
      * A simple number is a value in pixels; a number followed by % is a percentage.
      *
      * @param \chartArea $chartArea
-     * @return \LineChart
-     * @throws Exception Invalid chartArea
+     * @return \charts\AnnotatedTimeLine
      */
     public function chartArea(chartArea $chartArea)
     {
@@ -178,8 +174,7 @@ class AnnotatedTimeLine
      * element is an HTML color string, for example: colors:['red','#004411'].
      *
      * @param array $colorArray
-     * @return \LineChart
-     * @throws Exception Invalid colors
+     * @return \charts\AnnotatedTimeLine
      */
     public function colors($colorArray)
     {
@@ -198,8 +193,7 @@ class AnnotatedTimeLine
      * 'function' - The angles of the line will be smoothed.
      *
      * @param string $curveType
-     * @return \LineChart
-     * @throws Exception Invalid curveType
+     * @return \charts\AnnotatedTimeLine
      */
     public function curveType($curveType = 'none')
     {

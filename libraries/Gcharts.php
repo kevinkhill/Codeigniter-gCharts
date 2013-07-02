@@ -334,7 +334,6 @@ class Gcharts
      * Builds the javascript object for the event callbacks
      *
      * @return string Javascript code block
-     * @throws Exception file not found
      */
     static function _build_event_callbacks($chartType, $chartEvents)
     {
@@ -351,7 +350,7 @@ class Gcharts
              {
                 $script .= $callbackScript.PHP_EOL;
              } else {
-                 throw new Exception('Error loading javascript file, in '.$callback.'.js');
+                 self::_set_error(get_class($this), 'Error loading javascript file, in '.$callback.'.js');
              }
 
              $script .= "};".PHP_EOL;

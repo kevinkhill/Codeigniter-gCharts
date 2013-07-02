@@ -342,7 +342,6 @@ class Axis extends configOptions
      *
      * @param textStyle $titleTextStyle
      * @return \configs\Axis
-     * @throws Exception
      */
     public function titleTextStyle(textStyle $titleTextStyle)
     {

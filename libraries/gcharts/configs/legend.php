@@ -114,7 +114,6 @@ class legend extends configOptions
      *
      * @param textStyle $textStyle
      * @return \legend
-     * @throws Exception Invalid textStyle
      */
     public function textStyle(textStyle $textStyle)
     {
