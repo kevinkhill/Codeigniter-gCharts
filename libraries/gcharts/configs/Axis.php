@@ -89,7 +89,7 @@ class Axis extends configOptions
         {
             $this->baseline = $baseline->toString();
         } else {
-            if(valid_int($baseline))
+            if(is_int($baseline))
             {
                 $this->baseline = $baseline;
             } else {
@@ -486,7 +486,7 @@ class Axis extends configOptions
      */
     public function minValue($min)
     {
-        if(valid_int($min))
+        if(is_int($min))
         {
             $this->minValue = $min;
         } else {
