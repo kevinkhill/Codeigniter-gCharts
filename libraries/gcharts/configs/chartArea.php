@@ -47,7 +47,7 @@ class chartArea extends configOptions
 
     public function left($left)
     {
-        if(valid_int_or_percent($left))
+        if(is_int_or_percent($left))
         {
             $this->left = $left;
         } else {
@@ -59,7 +59,7 @@ class chartArea extends configOptions
 
     public function top($top)
     {
-        if(valid_int_or_percent($top))
+        if(is_int_or_percent($top))
         {
             $this->top = $top;
         } else {
@@ -71,7 +71,7 @@ class chartArea extends configOptions
 
     public function width($width)
     {
-        if(valid_int_or_percent($width))
+        if(is_int_or_percent($width))
         {
             $this->width = $width;
         } else {
@@ -83,7 +83,7 @@ class chartArea extends configOptions
 
     public function height($height)
     {
-        if(valid_int_or_percent($height))
+        if(is_int_or_percent($height))
         {
             $this->height = $height;
         } else {
