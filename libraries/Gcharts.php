@@ -44,31 +44,137 @@ class Gcharts
     /**
      * Holds the configuration values from /config/gcharts.php
      *
-     * @var object
+     * @var array
      */
-    static $config = stdClass;
-    static $ignited;
+    static $config = array();
 
-    static $output;
-    static $elementID;
-    static $masterPath;
-    static $configPath;
-    static $chartPath;
-    static $callbackPath;
+    /**
+     * Property defining if the library is being ran within CodeIgniter or not.
+     *
+     * @todo Will implement this feature in the future.
+     * @var boolean
+     */
+    static $ignited = TRUE;
 
+    /**
+     * Holds all the html and javscript to be output into the browser.
+     *
+     * @var string
+     */
+    static $output = NULL;
+
+    /**
+     * The ID of the HTML element that will be receiving the chart.
+     *
+     * @var string
+     */
+    static $elementID = NULL;
+
+    /**
+     * The base path where the library is installed.
+     *
+     * @var string
+     */
+    static $masterPath = NULL;
+
+    /**
+     * The path where the config files are located, relative to the masterPath.
+     *
+     * @var string
+     */
+    static $configPath = NULL;
+
+    /**
+     * The path where the chart files are located, relative to the masterPath.
+     *
+     * @var string
+     */
+    static $chartPath = NULL;
+
+    /**
+     * The path where the callback javascript files are located, relative to
+     * the masterPath.
+     *
+     * @var string
+     */
+    static $callbackPath = NULL;
+
+    /**
+     * Version of Google's DataTable.
+     *
+     * @var string
+     */
     static $dataTableVersion = '0.6';
+
+    /**
+     * Opening Javascript tag.
+     *
+     * @var string
+     */
     static $jsOpen = '<script type="text/javascript">';
+
+    /**
+     * Closing Javascript tag.
+     *
+     * @var string
+     */
     static $jsClose = '</script>';
+
+    /**
+     * Javscript block with a link to Google's Chart API.
+     *
+     * @var string
+     */
     static $googleAPI = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>';
 
+    /**
+     * Holds all of the defined DataTables.
+     *
+     * @var array
+     */
     static $dataTables = array();
+
+    /**
+     * Holds all of the defined LineCharts.
+     *
+     * @var array
+     */
     static $lineCharts = array();
+
+    /**
+     * Holds all of the defined AreaCharts.
+     *
+     * @var array
+     */
     static $areaCharts = array();
+
+    /**
+     * Holds all of the defined PieCharts.
+     *
+     * @var array
+     */
     static $pieCharts = array();
 
+    /**
+     * Property defining if the generation of charts occured any errors.
+     *
+     * @var boolean
+     */
     static $hasError = FALSE;
+
+    /**
+     * Array containing the list of errors.
+     *
+     * @var array
+     */
     static $errorLog = array();
 
+    /**
+     * Currently supported types of charts that can be created. Used by the magic
+     * __call function to prevent errors.
+     *
+     * @var array
+     */
     private $supportedClasses = array(
         'DataTable',
         'LineChart',
@@ -76,6 +182,11 @@ class Gcharts
         'PieChart'
     );
 
+    /**
+     * Holds all of the defined configuration class names.
+     *
+     * @var array
+     */
     private $configClasses = array(
         'configOptions',
         'Axis',
@@ -101,22 +212,24 @@ class Gcharts
         self::$configPath = self::$masterPath.'configs/';
         self::$chartPath = self::$masterPath.'charts/';
         self::$callbackPath = self::$masterPath.'callbacks/';
-        self::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
 
-//        self::$config = new stdClass();
-        self::$config->autoloadCharts = config_item('autoloadCharts');
-        self::$config->errorPrepend = config_item('errorPrepend');
-        self::$config->errorAppend = config_item('errorAppend');
 // @TODO: build this functionality
-//        self::$config->useGlobalTextStyle = config_item('useGlobalTextStyle');
-//        self::$config->globalTextStyle = config_item('globalTextStyle');
+//        self::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
+
+        self::$config['autoloadCharts'] = config_item('autoloadCharts');
+        self::$config['errorPrepend'] = config_item('errorPrepend');
+        self::$config['errorAppend'] = config_item('errorAppend');
+
+// @TODO: build this functionality
+//        self::$config['useGlobalTextStyle'] = config_item('useGlobalTextStyle');
+//        self::$config['globalTextStyle'] = config_item('globalTextStyle');
 
 
         //Autoload Chart Classes
-        if(is_array(self::$config->autoloadCharts) && count(self::$config->autoloadCharts) > 0)
+        if(is_array(self::$config['autoloadCharts']) && count(self::$config['autoloadCharts']) > 0)
         {
             require_once(self::$chartPath.'Chart.php');
-            foreach(self::$config->autoloadCharts as $chart)
+            foreach(self::$config['autoloadCharts'] as $chart)
             {
                 require_once(self::$chartPath.$chart.'.php');
             }
@@ -277,9 +390,9 @@ class Gcharts
 
             foreach(self::$errorLog as $where => $error)
             {
-                $errors .= self::$config->errorPrepend;
+                $errors .= self::$config['errorPrepend'];
                 $errors .= '['.$where.'] -> '.$error;
-                $errors .= self::$config->errorAppend;
+                $errors .= self::$config['errorAppend'];
             }
 
             return $errors;
