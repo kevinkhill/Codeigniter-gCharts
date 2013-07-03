@@ -21,9 +21,31 @@
 
 class configOptions
 {
-    var $output;
-    var $options;
+    /**
+     * Holds the output of the configOptions object.
+     *
+     * @var string
+     */
+    var $output = NULL;
 
+    /**
+     * Holds the array of allowed key values for the configOptions child
+     * objects.
+     *
+     * @var array
+     */
+    var $options = NULL;
+
+
+    /**
+     * Builds the configOptions object.
+     *
+     * Passing an array of key value pairs will set the configuration for each
+     * child object created from this master object.
+     *
+     * @param array Array of options.
+     * @return \configOptions
+     */
     public function __construct($config)
     {
         if(is_array($config) && count($config) > 0)
@@ -43,7 +65,7 @@ class configOptions
     }
 
     /**
-     * Adds the error message to the error log in the gcharts master object.
+     * Adds an error message to the error log in the gcharts object.
      *
      * @param string $msg
      */
@@ -53,7 +75,7 @@ class configOptions
     }
 
     /**
-     * Adds the error message to the error log in the gcharts master object.
+     * Adds an function/type error message to the error log in the gcharts object.
      *
      * @param string $msg
      */
@@ -113,41 +135,7 @@ class configOptions
 
         return $this->output;
     }
-
-    public function _valid_int_or_percent($val)
-    {
-        if(is_int($val) === TRUE)
-        {
-            return (int) $val;
-        } else if(is_string($val) === TRUE) {
-            if(ctype_digit($val) === TRUE)
-            {
-                return (int) $val;
-            }
-
-            if($val[strlen($val) - 1] == '%')
-            {
-                $tmp = str_replace('%', '', $val);
-
-                if(ctype_digit((string) $tmp) === TRUE)
-                {
-                    return $tmp.'%';
-                }
-            } else {
-                $this->error('"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) as percent [ 100 | "50%" ]');
-            }
-        } else {
-            $this->error('"'.$val.'" is an invalid value for '.$this->_get_caller().', must be (int) or (string) as percent [ 100 | "50%" ]');
-        }
-    }
-
-    public function _get_caller() {
-        $trace = debug_backtrace();
-        $caller = $trace[2];
-
-        return $caller['function'].'()';
-    }
-
+    
 }
 
 /* End of file configOptions.php */

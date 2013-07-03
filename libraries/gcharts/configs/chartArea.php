@@ -19,18 +19,19 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
+//@TODO: Add in documentation for vars and functions.
 class chartArea extends configOptions
 {
-    var $left;
-    var $top;
-    var $width;
-    var $height;
+    var $left = NULL;
+    var $top = NULL;
+    var $width = NULL;
+    var $height = NULL;
 
     /**
      * Builds the chartArea object when passed an array of configuration options.
      *
      * @param array $config
-     * @return \configs\chartArea
+     * @return \chartArea
      */
     public function __construct($config = array())
     {
@@ -46,11 +47,11 @@ class chartArea extends configOptions
 
     public function left($left)
     {
-        if(is_int($left) || is_string($left))
+        if(valid_int_or_percent($left))
         {
-            $this->left = $this->_valid_int_or_percent($left);
+            $this->left = $left;
         } else {
-            $this->left = 'auto';
+            $this->type_error(__FUNCTION__, 'int | string', 'representing a percent.');
         }
 
         return $this;
@@ -58,11 +59,11 @@ class chartArea extends configOptions
 
     public function top($top)
     {
-        if(is_int($top) || is_string($top))
+        if(valid_int_or_percent($top))
         {
-            $this->top = $this->_valid_int_or_percent($top);
+            $this->top = $top;
         } else {
-            $this->top = 'auto';
+            $this->type_error(__FUNCTION__, 'int | string', 'representing a percent.');
         }
 
         return $this;
@@ -70,11 +71,11 @@ class chartArea extends configOptions
 
     public function width($width)
     {
-        if(is_int($width) || is_string($width))
+        if(valid_int_or_percent($width))
         {
-            $this->width = $this->_valid_int_or_percent($width);
+            $this->width = $width;
         } else {
-            $this->width = 'auto';
+            $this->type_error(__FUNCTION__, 'int | string', 'representing a percent.');
         }
 
         return $this;
@@ -82,11 +83,11 @@ class chartArea extends configOptions
 
     public function height($height)
     {
-        if(is_int($height) || is_string($height))
+        if(valid_int_or_percent($height))
         {
-            $this->height = $this->_valid_int_or_percent($height);
+            $this->height = $height;
         } else {
-            $this->height = 'auto';
+            $this->type_error(__FUNCTION__, 'int | string', 'representing a percent.');
         }
 
         return $this;
