@@ -57,18 +57,16 @@ class configOptions
      *
      * @param string $msg
      */
-    public function formated_error($val, $type, $extra = '')
+    public function type_error($val, $type, $extra = '')
     {
-        $class = get_class($this);
-
         if($extra != '')
         {
             $msg = sprintf('Invalid value for "%s", must be type (%s) ', $val, $type, $extra);
-            Gcharts::_set_error($class, $msg);
         } else {
             $msg = sprintf('Invalid value for "%s", must be type (%s).', $val, $type);
-            Gcharts::_set_error($class, $msg);
         }
+
+        $this->error($msg);
     }
 
     public function toJSON()
