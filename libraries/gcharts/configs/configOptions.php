@@ -47,7 +47,7 @@ class configOptions
      *
      * @param string $msg
      */
-    private function error($msg)
+    public function error($msg)
     {
         Gcharts::_set_error(get_class($this), $msg);
     }
@@ -57,7 +57,7 @@ class configOptions
      *
      * @param string $msg
      */
-    private function formated_error($val, $type, $extra = '')
+    public function formated_error($val, $type, $extra = '')
     {
         $class = get_class($this);
 

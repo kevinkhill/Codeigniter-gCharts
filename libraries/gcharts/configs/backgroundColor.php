@@ -74,7 +74,7 @@ class backgroundColor extends configOptions
                 {
                     $this->$option($value);
                 } else {
-                    $this->error('Ignoring "'.$option.'", not a valid configuration option.');
+                    $this->error(sprintf('Ignoring "%s", not a valid configuration option.', $option));
                 }
             }
         }
@@ -95,7 +95,7 @@ class backgroundColor extends configOptions
         {
             $this->stroke = $stroke;
         } else {
-            $this->error(__FUNCTION__, 'string');
+            $this->type_error(__FUNCTION__, 'string');
         }
 
         return $this;
@@ -114,7 +114,7 @@ class backgroundColor extends configOptions
         {
             $this->strokeWidth = $strokeWidth;
         } else {
-            $this->formatted_error(__FUNCTION__, 'int');
+            $this->type_error(__FUNCTION__, 'int');
         }
 
         return $this;
