@@ -95,10 +95,10 @@
 
 	<div class="description">
 	
-<p>Background Color Properties Object</p>
+<p>backgroundColor Object</p>
 
-<p>An object containing all the values for the backgroundColor which can be
-passed into the chart's options</p>
+<p>An object containing all the values for the backgroundColor object which can
+be passed into the chart's options</p>
 
 <p>NOTICE OF LICENSE</p>
 
@@ -147,7 +147,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">GitHub Repository Page</a><br />
 				<b>Link:</b>
 				<a href="http://kevinkhill.github.io/Codeigniter-gCharts/">GitHub Project Page</a><br />
-		<b>Located at</b> <a href="source-class-backgroundColor.html#3-119" title="Go to source code">libraries/gcharts/configs/backgroundColor.php</a><br />
+		<b>Located at</b> <a href="source-class-backgroundColor.html#3-138" title="Go to source code">libraries/gcharts/configs/backgroundColor.php</a><br />
 	</div>
 
 
@@ -165,7 +165,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-backgroundColor.html#28-59" title="Go to source code">__construct</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-backgroundColor.html#52-83" title="Go to source code">__construct</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -185,7 +185,7 @@ fill ]</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options</dd>
+					<dd><code>array</code><br>$options array('stroke' =&gt; 'red', 'stokeWidth' =&gt; 3, 'fill' =&gt; 'blue');</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -212,27 +212,24 @@ fill ]</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_stroke">#</a>
-		<code><a href="source-class-backgroundColor.html#61-78" title="Go to source code">stroke</a>( <span>string <var>$stroke</var></span> )</code>
+		<code><a href="source-class-backgroundColor.html#85-100" title="Go to source code">stroke</a>( <span>string <var>$stroke</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Chart Border Color</p>
+<p>Sets the chart border color.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Chart Border Color</p>
-
-<p>The color of the chart border, as an HTML color string. Acceptable values [
-'red' | '#A2A2A2' ]</p>
+<p>Sets the chart border color.</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$stroke</var></dt>
-					<dd><code>string</code><br>$stroke</dd>
+					<dd><code>string</code><br>$stroke Valid HTML color string.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -241,6 +238,10 @@ fill ]</p>
 				</div>
 
 
+				<h4>Example</h4>
+				<div class="list">
+						'red' or '#A2A2A2'<br />
+				</div>
 
 
 		</div>
@@ -257,19 +258,17 @@ fill ]</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_strokeWidth">#</a>
-		<code><a href="source-class-backgroundColor.html#80-98" title="Go to source code">strokeWidth</a>( <span>integer <var>$strokeWidth</var></span> )</code>
+		<code><a href="source-class-backgroundColor.html#102-119" title="Go to source code">strokeWidth</a>( <span>integer <var>$strokeWidth</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Chart Border Width</p>
+<p>Sets the chart border width.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Chart Border Width</p>
-
-<p>The border width, in pixels. Accepts any integer or integer as a string</p>
+<p>Sets the chart border width.</p>
 
 
 
@@ -285,6 +284,10 @@ fill ]</p>
 				</div>
 
 
+				<h4>Example</h4>
+				<div class="list">
+						5<br />
+				</div>
 
 
 		</div>
@@ -301,20 +304,17 @@ fill ]</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fill">#</a>
-		<code><a href="source-class-backgroundColor.html#100-117" title="Go to source code">fill</a>( <span>string <var>$fill</var></span> )</code>
+		<code><a href="source-class-backgroundColor.html#121-136" title="Go to source code">fill</a>( <span>string <var>$fill</var></span> )</code>
 
 		<div class="description short">
 			
-<p>Chart Color Fill</p>
+<p>Sets the chart color fill.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Chart Color Fill</p>
-
-<p>The chart fill color, as an HTML color string. Acceptable values [ 'blue' |
-'#C5C5C5' ]</p>
+<p>Sets the chart color fill.</p>
 
 
 
@@ -330,6 +330,10 @@ fill ]</p>
 				</div>
 
 
+				<h4>Example</h4>
+				<div class="list">
+						'blue' or '#C5C5C5'<br />
+				</div>
 
 
 		</div>
@@ -365,22 +369,28 @@ fill ]</p>
 	<tr data-order="stroke" id="$stroke">
 		<td class="attributes"><code>
 			public  
-			mixed
+			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-backgroundColor.html#24" title="Go to source code"><var>$stroke</var></a>
+				<a href="source-class-backgroundColor.html#24-31" title="Go to source code"><var>$stroke</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$stroke" class="anchor">#</a>
 
 			<div class="description short">
 				
+<p>Chart Border Color</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Chart Border Color</p>
+
+<p>The color of the chart border, as an HTML color string.</p>
+
 
 			</div>
 		</div></td>
@@ -388,22 +398,28 @@ fill ]</p>
 	<tr data-order="strokeWidth" id="$strokeWidth">
 		<td class="attributes"><code>
 			public  
-			mixed
+			integer
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-backgroundColor.html#25" title="Go to source code"><var>$strokeWidth</var></a>
+				<a href="source-class-backgroundColor.html#33-40" title="Go to source code"><var>$strokeWidth</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$strokeWidth" class="anchor">#</a>
 
 			<div class="description short">
 				
+<p>Chart Border Width</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Chart Border Width</p>
+
+<p>The border width, in pixels.</p>
+
 
 			</div>
 		</div></td>
@@ -411,22 +427,28 @@ fill ]</p>
 	<tr data-order="fill" id="$fill">
 		<td class="attributes"><code>
 			public  
-			mixed
+			type
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-backgroundColor.html#26" title="Go to source code"><var>$fill</var></a>
+				<a href="source-class-backgroundColor.html#42-49" title="Go to source code"><var>$fill</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$fill" class="anchor">#</a>
 
 			<div class="description short">
 				
+<p>Chart Color Fill</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Chart Color Fill</p>
+
+<p>The chart fill color, as an HTML color string.</p>
+
 
 			</div>
 		</div></td>

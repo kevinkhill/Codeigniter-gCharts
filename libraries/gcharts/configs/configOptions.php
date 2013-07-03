@@ -52,6 +52,25 @@ class configOptions
         Gcharts::_set_error(get_class($this), $msg);
     }
 
+    /**
+     * Adds the error message to the error log in the gcharts master object.
+     *
+     * @param string $msg
+     */
+    private function formated_error($val, $type, $extra = '')
+    {
+        $class = get_class($this);
+
+        if($extra != '')
+        {
+            $msg = sprintf('Invalid value for "%s", must be type (%s) ', $val, $type, $extra);
+            Gcharts::_set_error($class, $msg);
+        } else {
+            $msg = sprintf('Invalid value for "%s", must be type (%s).', $val, $type);
+            Gcharts::_set_error($class, $msg);
+        }
+    }
+
     public function toJSON()
     {
         $this->output = array();

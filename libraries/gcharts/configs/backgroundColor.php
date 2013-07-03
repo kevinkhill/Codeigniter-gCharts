@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Background Color Properties Object
+ * backgroundColor Object
  *
- * An object containing all the values for the backgroundColor which can be
- * passed into the chart's options
+ * An object containing all the values for the backgroundColor object which can
+ * be passed into the chart's options
  *
  *
  * NOTICE OF LICENSE
@@ -21,17 +21,41 @@
 
 class backgroundColor extends configOptions
 {
-    var $stroke;
-    var $strokeWidth;
-    var $fill;
+    /**
+     * Chart Border Color
+     *
+     * The color of the chart border, as an HTML color string.
+     *
+     * @var string Valid HTML color.
+     */
+    var $stroke = NULL;
 
     /**
-     * Builds the options for the backgrounColor object
+     * Chart Border Width
+     *
+     * The border width, in pixels.
+     *
+     * @var int Width in number of pixels.
+     */
+    var $strokeWidth = NULL;
+
+    /**
+     * Chart Color Fill
+     *
+     * The chart fill color, as an HTML color string.
+     *
+     * @var type Valid HTML color.
+     */
+    var $fill = NULL;
+
+
+    /**
+     * Builds the options for the backgroundColor object
      *
      * Pass an associative array with values for the keys
      * [ stroke | strokeWidth | fill ]
      *
-     * @param array $options
+     * @param array $options array('stroke' => 'red', 'stokeWidth' => 3, 'fill' => 'blue');
      * @return \backgroundColor
      */
     public function __construct($options = array()) {
@@ -59,12 +83,10 @@ class backgroundColor extends configOptions
     }
 
     /**
-     * Chart Border Color
+     * Sets the chart border color.
      *
-     * The color of the chart border, as an HTML color string.
-     * Acceptable values [ 'red' | '#A2A2A2' ]
-     *
-     * @param string $stroke
+     * @example 'red' or '#A2A2A2'
+     * @param string Valid HTML color string.
      * @return \backgroundColor
      */
     public function stroke($stroke)
@@ -72,17 +94,18 @@ class backgroundColor extends configOptions
         if(is_string($stroke))
         {
             $this->stroke = $stroke;
+        } else {
+            $this->error(__FUNCTION__, 'string');
         }
 
         return $this;
     }
 
     /**
-     * Chart Border Width
+     * Sets the chart border width.
      *
-     * The border width, in pixels. Accepts any integer or integer as a string
-     *
-     * @param int $strokeWidth
+     * @example 5
+     * @param int Border width, in pixels.
      * @return \backgroundColor
      */
     public function strokeWidth($strokeWidth)
@@ -91,19 +114,17 @@ class backgroundColor extends configOptions
         {
             $this->strokeWidth = $strokeWidth;
         } else {
-            $this->error('Invalid strokeWidth, must be type (int).');
+            $this->formatted_error(__FUNCTION__, 'int');
         }
 
         return $this;
     }
 
     /**
-     * Chart Color Fill
+     * Sets the chart color fill.
      *
-     * The chart fill color, as an HTML color string.
-     * Acceptable values [ 'blue' | '#C5C5C5' ]
-     *
-     * @param string HTML color string
+     * @example 'blue' or '#C5C5C5'
+     * @param string Valid HTML color string.
      * @return \backgroundColor
      */
     public function fill($fill)
@@ -111,6 +132,8 @@ class backgroundColor extends configOptions
         if(is_string($fill))
         {
             $this->fill = $fill;
+        } else {
+            $this->formated_error(__FUNCTION__, 'string');
         }
 
         return $this;

@@ -46,7 +46,7 @@ class Axis extends configOptions
      * created.
      *
      * @param array $options
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function __construct($config = array())
     {
@@ -81,7 +81,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param mixed $baseline
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function baseline($baseline)
     {
@@ -107,7 +107,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param string $color
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function baselineColor($color)
     {
@@ -126,7 +126,7 @@ class Axis extends configOptions
      * Specify -1 to reverse the order of the values.
      *
      * @param int $direction
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function direction($direction)
     {
@@ -156,7 +156,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param string $format format string for numeric or date axis labels.
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function format($format)
     {
@@ -179,7 +179,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param array $gridlines
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function gridlines($gridlines)
     {
@@ -225,7 +225,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param array $minorGridlines
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function minorGridlines($minorGridlines)
     {
@@ -262,7 +262,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param boolean $log
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function logScale($log)
     {
@@ -281,7 +281,7 @@ class Axis extends configOptions
      * Supported values: 'out', 'in', 'none'.
      *
      * @param string $position
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function textPosition($position)
     {
@@ -305,7 +305,7 @@ class Axis extends configOptions
      * This function takes a textStyle object, created via "new textStyle();"
      *
      * @param textStyle $textStyle
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function textStyle($textStyle)
     {
@@ -323,7 +323,7 @@ class Axis extends configOptions
      * Axis property that specifies the title of the axis.
      *
      * @param string $title
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function title($title)
     {
@@ -341,7 +341,7 @@ class Axis extends configOptions
      * An object that specifies the axis title text style.
      *
      * @param textStyle $titleTextStyle
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function titleTextStyle(textStyle $titleTextStyle)
     {
@@ -365,7 +365,7 @@ class Axis extends configOptions
      * This option is only supported for a discrete axis.
      *
      * @param int $alternation
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function maxAlternation($alternation)
     {
@@ -387,7 +387,7 @@ class Axis extends configOptions
      * This option is only supported for a discrete axis.
      *
      * @param int $maxTextLines
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function maxTextLines($maxTextLines)
     {
@@ -411,7 +411,7 @@ class Axis extends configOptions
      * This option is only supported for a discrete axis.
      *
      * @param int $minTextSpacing
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function minTextSpacing($minTextSpacing)
     {
@@ -438,7 +438,7 @@ class Axis extends configOptions
      * This option is only supported for a discrete axis.
      *
      * @param int $showTextEvery
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function showTextEvery($showTextEvery)
     {
@@ -460,7 +460,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param int $max
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function maxValue($max)
     {
@@ -482,7 +482,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param int $min
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function minValue($min)
     {
@@ -511,7 +511,7 @@ class Axis extends configOptions
      * This option is only supported for a continuous axis.
      *
      * @param string $viewMode
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function viewWindowMode($viewMode)
     {
@@ -557,7 +557,7 @@ class Axis extends configOptions
      * such that min <= index < max will be displayed.
      *
      * @param array $viewWindow
-     * @return \configs\Axis
+     * @return \Axis
      */
     public function viewWindow($viewWindow)
     {

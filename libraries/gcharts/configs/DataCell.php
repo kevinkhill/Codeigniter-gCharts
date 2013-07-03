@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Data Cell Object
+ * DataCell Object
  *
  * Holds the information for a data point
  *
@@ -25,11 +25,23 @@ class DataCell
     var $p;
 
     /**
-     * Defines a DataCell
+     * Defines a DataCell for a DataTable
      *
-     * @param type $v The cell value
-     * @param type $f A string version of the v value
-     * @param type $p An object that is a map of custom values applied to the cell
+     * Each cell in the table holds a value. Cells can have a null value, or a
+     * value of the type specified by its column. Cells optionally can take a
+     * "formatted" version of the data; this is a string version of the data,
+     * formatted for display by a visualization. A visualization can (but is
+     * not required to) use the formatted version for display, but will always
+     * use the data itself for any sorting or calculations that it makes (such
+     * as determining where on a graph to place a point). An example might be
+     * assigning the values "low" "medium", and "high" as formatted values to
+     * numeric cell values of 1, 2, and 3.
+     *
+     * @see DataTable
+     * @param string $v The cell value
+     * @param string $f A string version of the v value
+     * @param string $p An object that is a map of custom values applied to the cell
+     * @return \DataCell DetaCell Object
      */
     public function __construct($v = NULL, $f = NULL, $p = NULL)
     {
@@ -51,6 +63,11 @@ class DataCell
         return $this;
     }
 
+    /**
+     * Converts the DataCell object to JSON notation.
+     *
+     * @return string JSON string representation of the data cell
+     */
     public function toJSON()
     {
         $output = array();

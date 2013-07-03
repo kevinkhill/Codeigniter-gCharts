@@ -1,9 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Data Table Object
+ * DataTable Object
  *
- * Holds all the data for charts
- *
+ * Holds all of the information about the data in the chart to be plotted.
  *
  * NOTICE OF LICENSE
  *
@@ -18,20 +17,22 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
+/**
+ * The DataTable object is used to hold the data passed into a visualization.
+ * A DataTable is a basic two-dimensional table. All data in each column must
+ * have the same data type. Each column has a descriptor that includes its data
+ * type, a label for that column (which might be displayed by a visualization),
+ * and an ID, which can be used to refer to a specific column (as an alternative
+ * to using column indexes). The DataTable object also supports a map of
+ * arbitrary properties assigned to a specific value, a row, a column, or the
+ * whole DataTable. Visualizations can use these to support additional features;
+ * for example, the Table visualization uses custom properties to let you assign
+ * arbitrary class names or styles to individual cells.
+ */
 class DataTable
 {
     var $cols = array();
     var $rows = array();
-
-    /**
-     * Adds the error message to the error log in the gcharts master object.
-     *
-     * @param string $msg
-     */
-    private function error($msg)
-    {
-        Gcharts::_set_error(get_class($this), $msg);
-    }
 
     /**
      * Adds a column to the DataTable
@@ -40,6 +41,7 @@ class DataTable
      * type - A string with the data type of the values of the column.
      * The type can be one of the following: 'string' 'number' 'boolean' 'date'
      * 'datetime' 'timeofday'.
+     *
      * opt_label - [Optional] A string with the label of the column. The column
      * label is typically displayed as part of the visualization, for example as
      *  a column header in a table, or as a legend label in a pie chart. If not
@@ -156,24 +158,28 @@ class DataTable
      *
      * v [Optional] The cell value. The data type should match the column data type.
      * If null, the whole object should be empty and have neither v nor f properties.
+     *
      * f [Optional] A string version of the v value, formatted for display. The
      * values should match, so if you specify Date(2008, 0, 1) for v, you should
      * specify "January 1, 2008" or some such string for this property. This value
      * is not checked against the v value. The visualization will not use this value
      * for calculation, only as a label for display. If omitted, a string version
      * of v will be used.
+     *
      * p [Optional] An object that is a map of custom values applied to the cell.
      * These values can be of any JavaScript type. If your visualization supports
      * any cell-level properties, it will describe them; otherwise, this property
      * will be ignored. Example: p:{style: 'border: 1px solid green;'}.
+     *
      *
      * Cells in the row array should be in the same order as their column descriptions
      * in cols. To indicate a null cell, you can specify null, leave a blank for
      * a cell in an array, or omit trailing array members. So, to indicate a row
      * with null for the first two cells, you would specify [null, null, {cell_val}].
      *
-     *
-     * @param type $opt_cellArray
+     * @see \DataCell
+     * @param mixed $opt_cell Array of values or DataCells.
+     * @return \DataTable DataTable Object.
      */
     public function addRow($opt_cellArray = NULL)
     {
@@ -443,6 +449,15 @@ class DataTable
         return json_encode($this);
     }
 
+    /**
+     * Adds the error message to the error log in the gcharts master object.
+     *
+     * @param string $msg error message.
+     */
+    private function error($msg)
+    {
+        Gcharts::_set_error(get_class($this), $msg);
+    }
 }
 
 /* End of file DataTable.php */
