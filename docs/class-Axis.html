@@ -96,10 +96,10 @@
 
 	<div class="description">
 	
-<p>Axis Properties Parent Object</p>
+<p>configOptions Parent Object</p>
 
-<p>An object containing all the values for the axis which can be passed into the
-chart's options</p>
+<p>The base class for the individual configuration objects, providing common
+functions to the child objects.</p>
 
 <p>NOTICE OF LICENSE</p>
 
@@ -153,7 +153,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">GitHub Repository Page</a><br />
 				<b>Link:</b>
 				<a href="http://kevinkhill.github.io/Codeigniter-gCharts/">GitHub Project Page</a><br />
-		<b>Located at</b> <a href="source-class-Axis.html#3-585" title="Go to source code">libraries/gcharts/configs/Axis.php</a><br />
+		<b>Located at</b> <a href="source-class-Axis.html#23-598" title="Go to source code">libraries/gcharts/configs/Axis.php</a><br />
 	</div>
 
 
@@ -171,28 +171,28 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Axis.html#42-76" title="Go to source code">__construct</a>( <span>array <var>$config</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Axis.html#54-89" title="Go to source code">__construct</a>( <span>array <var>$config</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
-<p>Stores all the information about the axis. All options can be set either by
-passing an array with associative values for option =&gt; value, or by chaining
-together the functions once an object has been created.</p>
+<p>Stores all the information about the axis.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Stores all the information about the axis. All options can be set either by
-passing an array with associative values for option =&gt; value, or by chaining
-together the functions once an object has been created.</p>
+<p>Stores all the information about the axis.</p>
+
+<p>All options can be set by either passing an array with associative values for
+option =&gt; value, or by chaining together the functions once an object has
+been created.</p>
 
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$config</var></dt>
-					<dd><code>array</code><br>$options</dd>
+					<dd><code>array</code><br>Array containing values for the various configuration options.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -219,17 +219,17 @@ together the functions once an object has been created.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_baseline">#</a>
-		<code><a href="source-class-Axis.html#78-101" title="Go to source code">baseline</a>( <span>mixed <var>$baseline</var></span> )</code>
+		<code><a href="source-class-Axis.html#91-114" title="Go to source code">baseline</a>( <span>mixed <var>$baseline</var></span> )</code>
 
 		<div class="description short">
 			
-<p>The baseline for the axis.</p>
+<p>Sets the baseline for the axis.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>The baseline for the axis.</p>
+<p>Sets the baseline for the axis.</p>
 
 <p>This option is only supported for a continuous axis.</p>
 
@@ -238,7 +238,7 @@ together the functions once an object has been created.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$baseline</var></dt>
-					<dd><code>mixed</code><br>$baseline</dd>
+					<dd><code>mixed</code><br>Must match type defined for the column, [ number | jsDate ].</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -263,17 +263,17 @@ together the functions once an object has been created.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_baselineColor">#</a>
-		<code><a href="source-class-Axis.html#103-122" title="Go to source code">baselineColor</a>( <span>string <var>$color</var></span> )</code>
+		<code><a href="source-class-Axis.html#116-135" title="Go to source code">baselineColor</a>( <span>string <var>$color</var></span> )</code>
 
 		<div class="description short">
 			
-<p>The color of the baseline for the axis.</p>
+<p>Sets the color of the baseline for the axis.</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>The color of the baseline for the axis.</p>
+<p>Sets the color of the baseline for the axis.</p>
 
 <p>Can be any HTML color string, for example: 'red' or '#00cc00'. This option is
 only supported for a continuous axis.</p>
@@ -283,7 +283,7 @@ only supported for a continuous axis.</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$color</var></dt>
-					<dd><code>string</code><br>$color</dd>
+					<dd><code>string</code><br>Valid HTML color.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -308,7 +308,7 @@ only supported for a continuous axis.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_direction">#</a>
-		<code><a href="source-class-Axis.html#124-141" title="Go to source code">direction</a>( <span>integer <var>$direction</var></span> )</code>
+		<code><a href="source-class-Axis.html#137-154" title="Go to source code">direction</a>( <span>integer <var>$direction</var></span> )</code>
 
 		<div class="description short">
 			
@@ -352,7 +352,7 @@ the order of the values.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_format">#</a>
-		<code><a href="source-class-Axis.html#143-171" title="Go to source code">format</a>( <span>string <var>$format</var></span> )</code>
+		<code><a href="source-class-Axis.html#156-184" title="Go to source code">format</a>( <span>string <var>$format</var></span> )</code>
 
 		<div class="description short">
 			
@@ -408,7 +408,7 @@ locale.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_gridlines">#</a>
-		<code><a href="source-class-Axis.html#173-215" title="Go to source code">gridlines</a>( <span>array <var>$gridlines</var></span> )</code>
+		<code><a href="source-class-Axis.html#186-228" title="Go to source code">gridlines</a>( <span>array <var>$gridlines</var></span> )</code>
 
 		<div class="description short">
 			
@@ -456,7 +456,7 @@ properties of this option, use an array, as shown here:</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_minorGridlines">#</a>
-		<code><a href="source-class-Axis.html#217-256" title="Go to source code">minorGridlines</a>( <span>array <var>$minorGridlines</var></span> )</code>
+		<code><a href="source-class-Axis.html#230-269" title="Go to source code">minorGridlines</a>( <span>array <var>$minorGridlines</var></span> )</code>
 
 		<div class="description short">
 			
@@ -506,7 +506,7 @@ regular gridlines.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_logScale">#</a>
-		<code><a href="source-class-Axis.html#258-277" title="Go to source code">logScale</a>( <span>boolean <var>$log</var></span> )</code>
+		<code><a href="source-class-Axis.html#271-290" title="Go to source code">logScale</a>( <span>boolean <var>$log</var></span> )</code>
 
 		<div class="description short">
 			
@@ -552,7 +552,7 @@ be positive). Set to [ TRUE | FALSE ].</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_textPosition">#</a>
-		<code><a href="source-class-Axis.html#279-302" title="Go to source code">textPosition</a>( <span>string <var>$position</var></span> )</code>
+		<code><a href="source-class-Axis.html#292-315" title="Go to source code">textPosition</a>( <span>string <var>$position</var></span> )</code>
 
 		<div class="description short">
 			
@@ -596,7 +596,7 @@ be positive). Set to [ TRUE | FALSE ].</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_textStyle">#</a>
-		<code><a href="source-class-Axis.html#304-320" title="Go to source code">textStyle</a>( <span><code><a href="class-textStyle.html">textStyle</a></code> <var>$textStyle</var></span> )</code>
+		<code><a href="source-class-Axis.html#317-333" title="Go to source code">textStyle</a>( <span><code><a href="class-textStyle.html">textStyle</a></code> <var>$textStyle</var></span> )</code>
 
 		<div class="description short">
 			
@@ -638,7 +638,7 @@ be positive). Set to [ TRUE | FALSE ].</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_title">#</a>
-		<code><a href="source-class-Axis.html#322-338" title="Go to source code">title</a>( <span>string <var>$title</var></span> )</code>
+		<code><a href="source-class-Axis.html#335-351" title="Go to source code">title</a>( <span>string <var>$title</var></span> )</code>
 
 		<div class="description short">
 			
@@ -680,7 +680,7 @@ be positive). Set to [ TRUE | FALSE ].</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_titleTextStyle">#</a>
-		<code><a href="source-class-Axis.html#340-356" title="Go to source code">titleTextStyle</a>( <span><code><a href="class-textStyle.html">textStyle</a></code> <var>$titleTextStyle</var></span> )</code>
+		<code><a href="source-class-Axis.html#353-369" title="Go to source code">titleTextStyle</a>( <span><code><a href="class-textStyle.html">textStyle</a></code> <var>$titleTextStyle</var></span> )</code>
 
 		<div class="description short">
 			
@@ -722,7 +722,7 @@ be positive). Set to [ TRUE | FALSE ].</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxAlternation">#</a>
-		<code><a href="source-class-Axis.html#358-380" title="Go to source code">maxAlternation</a>( <span>integer <var>$alternation</var></span> )</code>
+		<code><a href="source-class-Axis.html#371-393" title="Go to source code">maxAlternation</a>( <span>integer <var>$alternation</var></span> )</code>
 
 		<div class="description short">
 			
@@ -772,7 +772,7 @@ the server can use fewer levels, if labels can fit without overlapping.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxTextLines">#</a>
-		<code><a href="source-class-Axis.html#382-402" title="Go to source code">maxTextLines</a>( <span>integer <var>$maxTextLines</var></span> )</code>
+		<code><a href="source-class-Axis.html#395-415" title="Go to source code">maxTextLines</a>( <span>integer <var>$maxTextLines</var></span> )</code>
 
 		<div class="description short">
 			
@@ -820,7 +820,7 @@ the height of the available space.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_minTextSpacing">#</a>
-		<code><a href="source-class-Axis.html#404-431" title="Go to source code">minTextSpacing</a>( <span>integer <var>$minTextSpacing</var></span> )</code>
+		<code><a href="source-class-Axis.html#417-444" title="Go to source code">minTextSpacing</a>( <span>integer <var>$minTextSpacing</var></span> )</code>
 
 		<div class="description short">
 			
@@ -870,7 +870,7 @@ applied (e.g, truncating the lables or dropping some of them).</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_showTextEvery">#</a>
-		<code><a href="source-class-Axis.html#433-453" title="Go to source code">showTextEvery</a>( <span>integer <var>$showTextEvery</var></span> )</code>
+		<code><a href="source-class-Axis.html#446-466" title="Go to source code">showTextEvery</a>( <span>integer <var>$showTextEvery</var></span> )</code>
 
 		<div class="description short">
 			
@@ -918,7 +918,7 @@ possible without overlapping.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_maxValue">#</a>
-		<code><a href="source-class-Axis.html#455-475" title="Go to source code">maxValue</a>( <span>integer <var>$max</var></span> )</code>
+		<code><a href="source-class-Axis.html#468-488" title="Go to source code">maxValue</a>( <span>integer <var>$max</var></span> )</code>
 
 		<div class="description short">
 			
@@ -966,7 +966,7 @@ data value, rounded up to the next higher grid mark.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_minValue">#</a>
-		<code><a href="source-class-Axis.html#477-497" title="Go to source code">minValue</a>( <span>integer <var>$min</var></span> )</code>
+		<code><a href="source-class-Axis.html#490-510" title="Go to source code">minValue</a>( <span>integer <var>$min</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1014,7 +1014,7 @@ value, rounded down to the next lower grid mark.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_viewWindowMode">#</a>
-		<code><a href="source-class-Axis.html#499-537" title="Go to source code">viewWindowMode</a>( <span>string <var>$viewMode</var></span> )</code>
+		<code><a href="source-class-Axis.html#512-550" title="Go to source code">viewWindowMode</a>( <span>string <var>$viewMode</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1067,7 +1067,7 @@ an axis.viewWindow array describing the maximum and minimum values to show.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_viewWindow">#</a>
-		<code><a href="source-class-Axis.html#539-583" title="Go to source code">viewWindow</a>( <span>array <var>$viewWindow</var></span> )</code>
+		<code><a href="source-class-Axis.html#552-596" title="Go to source code">viewWindow</a>( <span>array <var>$viewWindow</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1147,18 +1147,22 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#24" title="Go to source code"><var>$baseline</var></a>
+				<a href="source-class-Axis.html#25-30" title="Go to source code"><var>$baseline</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$baseline" class="anchor">#</a>
 
 			<div class="description short">
 				
+<p>The baseline for the axis.</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>The baseline for the axis.</p>
+
 
 			</div>
 		</div></td>
@@ -1166,22 +1170,26 @@ min &lt;= index &lt; max will be displayed.</p>
 	<tr data-order="baselineColor" id="$baselineColor">
 		<td class="attributes"><code>
 			public  
-			mixed
+			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#25" title="Go to source code"><var>$baselineColor</var></a>
+				<a href="source-class-Axis.html#32-37" title="Go to source code"><var>$baselineColor</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$baselineColor" class="anchor">#</a>
 
 			<div class="description short">
 				
+<p>The color of the baseline for the axis.</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>The color of the baseline for the axis.</p>
+
 
 			</div>
 		</div></td>
@@ -1193,9 +1201,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#26" title="Go to source code"><var>$direction</var></a>
+				<a href="source-class-Axis.html#38" title="Go to source code"><var>$direction</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$direction" class="anchor">#</a>
 
@@ -1216,9 +1224,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#27" title="Go to source code"><var>$format</var></a>
+				<a href="source-class-Axis.html#39" title="Go to source code"><var>$format</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$format" class="anchor">#</a>
 
@@ -1239,9 +1247,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#28" title="Go to source code"><var>$gridlines</var></a>
+				<a href="source-class-Axis.html#40" title="Go to source code"><var>$gridlines</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$gridlines" class="anchor">#</a>
 
@@ -1262,9 +1270,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#29" title="Go to source code"><var>$minorGridlines</var></a>
+				<a href="source-class-Axis.html#41" title="Go to source code"><var>$minorGridlines</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$minorGridlines" class="anchor">#</a>
 
@@ -1285,9 +1293,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#30" title="Go to source code"><var>$logScale</var></a>
+				<a href="source-class-Axis.html#42" title="Go to source code"><var>$logScale</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$logScale" class="anchor">#</a>
 
@@ -1308,9 +1316,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#31" title="Go to source code"><var>$textPosition</var></a>
+				<a href="source-class-Axis.html#43" title="Go to source code"><var>$textPosition</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$textPosition" class="anchor">#</a>
 
@@ -1331,9 +1339,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#32" title="Go to source code"><var>$textStyle</var></a>
+				<a href="source-class-Axis.html#44" title="Go to source code"><var>$textStyle</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$textStyle" class="anchor">#</a>
 
@@ -1354,9 +1362,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#33" title="Go to source code"><var>$title</var></a>
+				<a href="source-class-Axis.html#45" title="Go to source code"><var>$title</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$title" class="anchor">#</a>
 
@@ -1377,9 +1385,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#34" title="Go to source code"><var>$titleTextStyle</var></a>
+				<a href="source-class-Axis.html#46" title="Go to source code"><var>$titleTextStyle</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$titleTextStyle" class="anchor">#</a>
 
@@ -1400,9 +1408,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#35" title="Go to source code"><var>$maxValue</var></a>
+				<a href="source-class-Axis.html#47" title="Go to source code"><var>$maxValue</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$maxValue" class="anchor">#</a>
 
@@ -1423,9 +1431,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#36" title="Go to source code"><var>$minValue</var></a>
+				<a href="source-class-Axis.html#48" title="Go to source code"><var>$minValue</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$minValue" class="anchor">#</a>
 
@@ -1446,9 +1454,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#37" title="Go to source code"><var>$viewWindowMode</var></a>
+				<a href="source-class-Axis.html#49" title="Go to source code"><var>$viewWindowMode</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$viewWindowMode" class="anchor">#</a>
 
@@ -1469,9 +1477,9 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#38" title="Go to source code"><var>$viewWindow</var></a>
+				<a href="source-class-Axis.html#50" title="Go to source code"><var>$viewWindow</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$viewWindow" class="anchor">#</a>
 
@@ -1492,7 +1500,7 @@ min &lt;= index &lt; max will be displayed.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Axis.html#40" title="Go to source code"><var>$options</var></a>
+				<a href="source-class-Axis.html#52" title="Go to source code"><var>$options</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

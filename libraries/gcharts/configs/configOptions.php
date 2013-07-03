@@ -1,9 +1,9 @@
 <?php //if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * configOptions Base Object
+ * configOptions Parent Object
  *
  * The base class for the individual configuration objects, providing common
- * functions to the child classes
+ * functions to the child objects.
  *
  *
  * NOTICE OF LICENSE
@@ -91,6 +91,11 @@ class configOptions
         $this->error($msg);
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return string JSON string.
+     */
     public function toJSON()
     {
         $this->output = array();
@@ -106,6 +111,11 @@ class configOptions
         return '"'.get_class($this).'":'.json_encode($this->output);
     }
 
+    /**
+     * Returns an array representation of the object.
+     *
+     * @return array Multi-Dimensional array as CLASS_NAME => array(CONFIGURATION).
+     */
     public function toArray()
     {
         $this->output = array();
@@ -121,6 +131,11 @@ class configOptions
         return array(get_class($this) => $this->output);
     }
 
+    /**
+     * Same as toArray, but without the class name as a key to being multi-dimension.
+     *
+     * @return array Array of the options of the object.
+     */
     public function values()
     {
         $this->output = array();
@@ -135,7 +150,7 @@ class configOptions
 
         return $this->output;
     }
-    
+
 }
 
 /* End of file configOptions.php */

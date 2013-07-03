@@ -2,8 +2,8 @@
 /**
  * CodeIgniter gCharts Library
  *
- * An open source library to extend the power of google charts into CodeIgniter
- * for PHP 5.3 or newer
+ * An open source library to extend the power of Google Charts into CodeIgniter
+ * for PHP 5.3+
  *
  *
  * NOTICE OF LICENSE
@@ -41,7 +41,12 @@
 
 class Gcharts
 {
-    static $config;
+    /**
+     * Holds the configuration values from /config/gcharts.php
+     *
+     * @var object
+     */
+    static $config = stdClass;
     static $ignited;
 
     static $output;
@@ -88,7 +93,7 @@ class Gcharts
 
 
     /**
-     * Loads the required classes for the library to work.
+     * Loads everything needed for the library to work.
      */
     public function __construct()
     {
@@ -98,7 +103,7 @@ class Gcharts
         self::$callbackPath = self::$masterPath.'callbacks/';
         self::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
 
-        self::$config = new stdClass();
+//        self::$config = new stdClass();
         self::$config->autoloadCharts = config_item('autoloadCharts');
         self::$config->errorPrepend = config_item('errorPrepend');
         self::$config->errorAppend = config_item('errorAppend');
@@ -124,6 +129,15 @@ class Gcharts
         }
     }
 
+    /**
+     * Magic function to reduce repetitive coding.
+     *
+     * This is never called directly.
+     *
+     * @param string Name of method.
+     * @param array Passed arguments
+     * @return object Returns Charts and DataTtables.
+     */
     public function __call($member, $arguments)
     {
         if(in_array($member, $this->supportedClasses))
@@ -134,6 +148,18 @@ class Gcharts
         }
     }
 
+    /**
+     * Creates and stores Chart/DataTable
+     *
+     * If there is no label, then the Chart/DataTable is just returned.
+     * If there is a label, the Chart/DataTable is stored within the Gcharts
+     * objects in an array, accessable via a call to the type of object, with
+     * the label as the paramater.
+     *
+     * @param string Which type of object to generate.
+     * @param string Label applied to generated object.
+     * @return mixed Returns Charts or DataTables
+     */
     private function _generator($objType, $objLabel)
     {
         if(is_string($objLabel) && $objLabel != '')
@@ -153,9 +179,9 @@ class Gcharts
     }
 
     /**
-     * Loads a specified chart manually
+     * Loads a specified chart manually.
      *
-     * @param string $chartName
+     * @param string Name of chart to load.
      */
     public function load($chartName)
     {
@@ -168,9 +194,9 @@ class Gcharts
     }
 
     /**
-     * Returns the Javascript block to place in the page
+     * Returns the Javascript block to place in the page manually.
      *
-     * @return string javascript blocks
+     * @return string Javascript code blocks.
      */
     public function getOutput()
     {
@@ -193,9 +219,9 @@ class Gcharts
      * The other charts do not require height and width, but do require an ID of
      * the div that will be receiving the chart.
      *
-     * @param int $width
-     * @param int $height
-     * @return string HTML div element
+     * @param int Width of the containing div (optional).
+     * @param int Height of the containing div (optional).
+     * @return string HTML div element.
      */
     public function div($width = 0, $height = 0)
     {
@@ -223,11 +249,26 @@ class Gcharts
         }
     }
 
+    /**
+     * Checks if any errors have occured.
+     *
+     * @return boolean TRUE if any errors we created while building charts,
+     * otherwise FALSE.
+     */
     static function hasErrors()
     {
         return self::$hasError;
     }
 
+    /**
+     * Gets the error messages.
+     *
+     * Each error message is wrapped in the HTML element defined within the
+     * configuration for gcharts.
+     *
+     * @return mixed NULL if there are no errors, otherwise a string with the
+     * errors
+     */
     static function getErrors()
     {
         if(count(self::$errorLog) > 0 && self::$hasError === TRUE)
@@ -247,6 +288,12 @@ class Gcharts
         }
     }
 
+    /**
+     * Sets an error message.
+     *
+     * @param string Where the error occured.
+     * @param string What the error was.
+     */
     static function _set_error($where, $what)
     {
         self::$hasError = TRUE;
@@ -261,8 +308,8 @@ class Gcharts
      * events defined, they will be automatically be attached to the chart and
      * pulled from the callbacks folder.
      *
-     * @param string $className Passed from the calling chart
-     * @return string javascript code block
+     * @param string Passed from the calling chart.
+     * @return string Javascript code block.
      */
     static function _build_script_block($chart)
     {
@@ -305,7 +352,6 @@ class Gcharts
             $format = 'var data = new google.visualization.DataTable(%s, %s);';
             $out .= sprintf($format, $data->toJSON(), self::$dataTableVersion).PHP_EOL;
         }
-//$out .= "var data = new google.visualization.arrayToDataTable(".$this->jsonData.");".PHP_EOL;
 
         $out .= "var options = ".json_encode($chart->options).";".PHP_EOL;
         $out .= "var chart = new google.visualization.".$chart->chartType;
@@ -331,9 +377,11 @@ class Gcharts
     }
 
     /**
-     * Builds the javascript object for the event callbacks
+     * Builds the javascript object for the event callbacks.
      *
-     * @return string Javascript code block
+     * @param string Chart type.
+     * @param array Array of events to apply to the chart.
+     * @return string Javascript code block.
      */
     static function _build_event_callbacks($chartType, $chartEvents)
     {
@@ -355,7 +403,7 @@ class Gcharts
 
              $script .= "};".PHP_EOL;
         }
-//var_dump($script);
+
         $tmp = self::$jsOpen.PHP_EOL;
         $tmp .= $script;
         $tmp .= self::$jsClose.PHP_EOL;
@@ -363,10 +411,6 @@ class Gcharts
         return $tmp;
     }
 
-    private function _init_config()
-    {
-
-    }
 }
 
 /* End of file Gcharts.php */

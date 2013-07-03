@@ -96,10 +96,10 @@
 
 	<div class="description">
 	
-<p>configOptions Base Object</p>
+<p>configOptions Parent Object</p>
 
 <p>The base class for the individual configuration objects, providing common
-functions to the child classes</p>
+functions to the child objects.</p>
 
 <p>NOTICE OF LICENSE</p>
 
@@ -148,7 +148,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">GitHub Repository Page</a><br />
 				<b>Link:</b>
 				<a href="http://kevinkhill.github.io/Codeigniter-gCharts/">GitHub Project Page</a><br />
-		<b>Located at</b> <a href="source-class-configOptions.html#3-139" title="Go to source code">libraries/gcharts/configs/configOptions.php</a><br />
+		<b>Located at</b> <a href="source-class-configOptions.html#3-154" title="Go to source code">libraries/gcharts/configs/configOptions.php</a><br />
 	</div>
 
 
@@ -286,24 +286,32 @@ object.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_toJSON">#</a>
-		<code><a href="source-class-configOptions.html#94-107" title="Go to source code">toJSON</a>( )</code>
+		<code><a href="source-class-configOptions.html#94-112" title="Go to source code">toJSON</a>( )</code>
 
 		<div class="description short">
 			
+<p>Returns a string representation of the object.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Returns a string representation of the object.</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>JSON string.<br />
+				</div>
 
 
 
@@ -315,24 +323,32 @@ object.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_toArray">#</a>
-		<code><a href="source-class-configOptions.html#109-122" title="Go to source code">toArray</a>( )</code>
+		<code><a href="source-class-configOptions.html#114-132" title="Go to source code">toArray</a>( )</code>
 
 		<div class="description short">
 			
+<p>Returns an array representation of the object.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Returns an array representation of the object.</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>Multi-Dimensional array as CLASS_NAME =&gt; array(CONFIGURATION).<br />
+				</div>
 
 
 
@@ -344,24 +360,34 @@ object.</p>
 
 		<td class="attributes"><code>
 			 public 
-			
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_values">#</a>
-		<code><a href="source-class-configOptions.html#124-137" title="Go to source code">values</a>( )</code>
+		<code><a href="source-class-configOptions.html#134-152" title="Go to source code">values</a>( )</code>
 
 		<div class="description short">
 			
+<p>Same as toArray, but without the class name as a key to being
+multi-dimension.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Same as toArray, but without the class name as a key to being
+multi-dimension.</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>Array of the options of the object.<br />
+				</div>
 
 
 

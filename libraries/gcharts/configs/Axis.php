@@ -3,7 +3,7 @@
  * Axis Properties Parent Object
  *
  * An object containing all the values for the axis which can be
- * passed into the chart's options
+ * passed into the chart's options.
  *
  *
  * NOTICE OF LICENSE
@@ -19,33 +19,46 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
+//@TODO: Finish Documentation.
 class Axis extends configOptions
 {
-    var $baseline;
-    var $baselineColor;
-    var $direction;
-    var $format;
-    var $gridlines;
-    var $minorGridlines;
-    var $logScale;
-    var $textPosition;
-    var $textStyle;
-    var $title;
-    var $titleTextStyle;
-    var $maxValue;
-    var $minValue;
-    var $viewWindowMode;
-    var $viewWindow;
+    /**
+     * The baseline for the axis.
+     *
+     * @var mixed Number or jsDate.
+     */
+    var $baseline = NULL;
+
+    /**
+     * The color of the baseline for the axis.
+     *
+     * @var string Valid HTML color.
+     */
+    var $baselineColor = NULL;
+    var $direction = NULL;
+    var $format = NULL;
+    var $gridlines = NULL;
+    var $minorGridlines = NULL;
+    var $logScale = NULL;
+    var $textPosition = NULL;
+    var $textStyle = NULL;
+    var $title = NULL;
+    var $titleTextStyle = NULL;
+    var $maxValue = NULL;
+    var $minValue = NULL;
+    var $viewWindowMode = NULL;
+    var $viewWindow = NULL;
 
     var $options = array();
 
     /**
-     * Stores all the information about the axis. All options can be
-     * set either by passing an array with associative values for option =>
-     * value, or by chaining together the functions once an object has been
-     * created.
+     * Stores all the information about the axis.
      *
-     * @param array $options
+     * All options can be set by either passing an array with associative
+     * values for option => value, or by chaining together the functions once
+     * an object has been created.
+     *
+     * @param array Array containing values for the various configuration options.
      * @return \Axis
      */
     public function __construct($config = array())
@@ -76,11 +89,11 @@ class Axis extends configOptions
     }
 
     /**
-     * The baseline for the axis.
+     * Sets the baseline for the axis.
      *
      * This option is only supported for a continuous axis.
      *
-     * @param mixed $baseline
+     * @param mixed Must match type defined for the column, [ number | jsDate ].
      * @return \Axis
      */
     public function baseline($baseline)
@@ -101,12 +114,12 @@ class Axis extends configOptions
     }
 
     /**
-     * The color of the baseline for the axis.
+     * Sets the color of the baseline for the axis.
      *
      * Can be any HTML color string, for example: 'red' or '#00cc00'.
      * This option is only supported for a continuous axis.
      *
-     * @param string $color
+     * @param string Valid HTML color.
      * @return \Axis
      */
     public function baselineColor($color)
