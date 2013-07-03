@@ -7,7 +7,7 @@
 	<title>Class chartArea | Codeigniter-gCharts</title>
 
 	<script type="text/javascript" src="resources/combined.js?3715972085"></script>
-	<script type="text/javascript" src="elementlist.js?3650041514"></script>
+	<script type="text/javascript" src="elementlist.js?3095847048"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -56,6 +56,7 @@
 			<ul>
 				<li><a href="function-array_is_multi.html">array_is_multi</a></li>
 				<li><a href="function-array_string.html">array_string</a></li>
+				<li><a href="function-is_int_or_percent.html">is_int_or_percent</a></li>
 			</ul>
 		</div>
 	</div>
@@ -95,10 +96,10 @@
 
 	<div class="description">
 	
-<p>Chart Area Properties Object</p>
+<p>configOptions Base Object</p>
 
-<p>An object containing all the values for the chartArea which can be passed
-into the chart's options</p>
+<p>The base class for the individual configuration objects, providing common
+functions to the child classes</p>
 
 <p>NOTICE OF LICENSE</p>
 
@@ -147,7 +148,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">GitHub Repository Page</a><br />
 				<b>Link:</b>
 				<a href="http://kevinkhill.github.io/Codeigniter-gCharts/">GitHub Project Page</a><br />
-		<b>Located at</b> <a href="source-class-chartArea.html#3-95" title="Go to source code">libraries/gcharts/configs/chartArea.php</a><br />
+		<b>Located at</b> <a href="source-class-chartArea.html#23-96" title="Go to source code">libraries/gcharts/configs/chartArea.php</a><br />
 	</div>
 
 
@@ -158,14 +159,14 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			configs\chartArea
+			<code><a href="class-chartArea.html">chartArea</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-chartArea.html#29-45" title="Go to source code">__construct</a>( <span>array <var>$config</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-chartArea.html#30-46" title="Go to source code">__construct</a>( <span>array <var>$config</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -189,7 +190,7 @@ options.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>configs\chartArea</code><br />
+					<code><code><a href="class-chartArea.html">chartArea</a></code></code><br />
 				</div>
 
 
@@ -211,7 +212,7 @@ options.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_left">#</a>
-		<code><a href="source-class-chartArea.html#47-57" title="Go to source code">left</a>( <span>mixed <var>$left</var></span> )</code>
+		<code><a href="source-class-chartArea.html#48-58" title="Go to source code">left</a>( <span>mixed <var>$left</var></span> )</code>
 
 		<div class="description short">
 			
@@ -240,7 +241,7 @@ options.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_top">#</a>
-		<code><a href="source-class-chartArea.html#59-69" title="Go to source code">top</a>( <span>mixed <var>$top</var></span> )</code>
+		<code><a href="source-class-chartArea.html#60-70" title="Go to source code">top</a>( <span>mixed <var>$top</var></span> )</code>
 
 		<div class="description short">
 			
@@ -269,7 +270,7 @@ options.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_width">#</a>
-		<code><a href="source-class-chartArea.html#71-81" title="Go to source code">width</a>( <span>mixed <var>$width</var></span> )</code>
+		<code><a href="source-class-chartArea.html#72-82" title="Go to source code">width</a>( <span>mixed <var>$width</var></span> )</code>
 
 		<div class="description short">
 			
@@ -298,7 +299,7 @@ options.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_height">#</a>
-		<code><a href="source-class-chartArea.html#83-93" title="Go to source code">height</a>( <span>mixed <var>$height</var></span> )</code>
+		<code><a href="source-class-chartArea.html#84-94" title="Go to source code">height</a>( <span>mixed <var>$height</var></span> )</code>
 
 		<div class="description short">
 			
@@ -322,10 +323,10 @@ options.</p>
 	<caption>Methods inherited from <a href="class-configOptions.html#methods">configOptions</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-configOptions.html#__get_caller">_get_caller()</a>, 
-			<a href="class-configOptions.html#__valid_int_or_percent">_valid_int_or_percent()</a>, 
+			<a href="class-configOptions.html#_error">error()</a>, 
 			<a href="class-configOptions.html#_toArray">toArray()</a>, 
 			<a href="class-configOptions.html#_toJSON">toJSON()</a>, 
+			<a href="class-configOptions.html#_type_error">type_error()</a>, 
 			<a href="class-configOptions.html#_values">values()</a>
 		</code></td>
 	</tr>
@@ -350,9 +351,9 @@ options.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-chartArea.html#24" title="Go to source code"><var>$left</var></a>
+				<a href="source-class-chartArea.html#25" title="Go to source code"><var>$left</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$left" class="anchor">#</a>
 
@@ -373,9 +374,9 @@ options.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-chartArea.html#25" title="Go to source code"><var>$top</var></a>
+				<a href="source-class-chartArea.html#26" title="Go to source code"><var>$top</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$top" class="anchor">#</a>
 
@@ -396,9 +397,9 @@ options.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-chartArea.html#26" title="Go to source code"><var>$width</var></a>
+				<a href="source-class-chartArea.html#27" title="Go to source code"><var>$width</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$width" class="anchor">#</a>
 
@@ -419,9 +420,9 @@ options.</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-chartArea.html#27" title="Go to source code"><var>$height</var></a>
+				<a href="source-class-chartArea.html#28" title="Go to source code"><var>$height</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$height" class="anchor">#</a>
 

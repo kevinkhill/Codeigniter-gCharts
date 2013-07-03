@@ -7,7 +7,7 @@
 	<title>Class configOptions | Codeigniter-gCharts</title>
 
 	<script type="text/javascript" src="resources/combined.js?3715972085"></script>
-	<script type="text/javascript" src="elementlist.js?3650041514"></script>
+	<script type="text/javascript" src="elementlist.js?3095847048"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -56,6 +56,7 @@
 			<ul>
 				<li><a href="function-array_is_multi.html">array_is_multi</a></li>
 				<li><a href="function-array_string.html">array_string</a></li>
+				<li><a href="function-is_int_or_percent.html">is_int_or_percent</a></li>
 			</ul>
 		</div>
 	</div>
@@ -147,7 +148,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">GitHub Repository Page</a><br />
 				<b>Link:</b>
 				<a href="http://kevinkhill.github.io/Codeigniter-gCharts/">GitHub Project Page</a><br />
-		<b>Located at</b> <a href="source-class-configOptions.html#3-134" title="Go to source code">libraries/gcharts/configs/configOptions.php</a><br />
+		<b>Located at</b> <a href="source-class-configOptions.html#3-139" title="Go to source code">libraries/gcharts/configs/configOptions.php</a><br />
 	</div>
 
 
@@ -158,23 +159,121 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-configOptions.html">configOptions</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-configOptions.html#27-43" title="Go to source code">__construct</a>( <span>mixed <var>$config</var></span> )</code>
+		<code><a href="source-class-configOptions.html#40-65" title="Go to source code">__construct</a>( <span>array <var>$config</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Builds the configOptions object.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Builds the configOptions object.</p>
+
+<p>Passing an array of key value pairs will set the configuration for each child
+object created from this master object.</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>Array of options.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-configOptions.html">configOptions</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="error" id="_error">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_error">#</a>
+		<code><a href="source-class-configOptions.html#67-75" title="Go to source code">error</a>( <span>string <var>$msg</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Adds an error message to the error log in the gcharts object.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Adds an error message to the error log in the gcharts object.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$msg</var></dt>
+					<dd><code>string</code><br>$msg</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="type_error" id="_type_error">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_type_error">#</a>
+		<code><a href="source-class-configOptions.html#77-92" title="Go to source code">type_error</a>( <span>string <var>$val</var></span>, <span>mixed <var>$type</var></span>, <span>mixed <var>$extra</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Adds an function/type error message to the error log in the gcharts
+object.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Adds an function/type error message to the error log in the gcharts
+object.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$val</var></dt>
+					<dd><code>string</code><br>$msg</dd>
+					<dt><var>$type</var></dt>
+					<dd></dd>
+					<dt><var>$extra</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -194,7 +293,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_toJSON">#</a>
-		<code><a href="source-class-configOptions.html#55-68" title="Go to source code">toJSON</a>( )</code>
+		<code><a href="source-class-configOptions.html#94-107" title="Go to source code">toJSON</a>( )</code>
 
 		<div class="description short">
 			
@@ -223,7 +322,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_toArray">#</a>
-		<code><a href="source-class-configOptions.html#70-83" title="Go to source code">toArray</a>( )</code>
+		<code><a href="source-class-configOptions.html#109-122" title="Go to source code">toArray</a>( )</code>
 
 		<div class="description short">
 			
@@ -252,65 +351,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="name"><div>
 		<a class="anchor" href="#_values">#</a>
-		<code><a href="source-class-configOptions.html#85-98" title="Go to source code">values</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_valid_int_or_percent" id="__valid_int_or_percent">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__valid_int_or_percent">#</a>
-		<code><a href="source-class-configOptions.html#100-125" title="Go to source code">_valid_int_or_percent</a>( <span>mixed <var>$val</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_get_caller" id="__get_caller">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__get_caller">#</a>
-		<code><a href="source-class-configOptions.html#127-132" title="Go to source code">_get_caller</a>( )</code>
+		<code><a href="source-class-configOptions.html#124-137" title="Go to source code">values</a>( )</code>
 
 		<div class="description short">
 			
@@ -346,22 +387,26 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 	<tr data-order="output" id="$output">
 		<td class="attributes"><code>
 			public  
-			mixed
+			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-configOptions.html#24" title="Go to source code"><var>$output</var></a>
+				<a href="source-class-configOptions.html#24-29" title="Go to source code"><var>$output</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$output" class="anchor">#</a>
 
 			<div class="description short">
 				
+<p>Holds the output of the configOptions object.</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Holds the output of the configOptions object.</p>
+
 
 			</div>
 		</div></td>
@@ -369,22 +414,28 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 	<tr data-order="options" id="$options">
 		<td class="attributes"><code>
 			public  
-			mixed
+			array
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-configOptions.html#25" title="Go to source code"><var>$options</var></a>
+				<a href="source-class-configOptions.html#31-37" title="Go to source code"><var>$options</var></a>
 		</td>
-		<td class="value"><code></code></td>
+		<td class="value"><code><span class="php-keyword1">NULL</span></code></td>
 		<td class="description"><div>
 			<a href="#$options" class="anchor">#</a>
 
 			<div class="description short">
 				
+<p>Holds the array of allowed key values for the configOptions child
+objects.</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Holds the array of allowed key values for the configOptions child
+objects.</p>
+
 
 			</div>
 		</div></td>

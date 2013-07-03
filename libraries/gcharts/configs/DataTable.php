@@ -2,7 +2,17 @@
 /**
  * DataTable Object
  *
- * Holds all of the information about the data in the chart to be plotted.
+ * The DataTable object is used to hold the data passed into a visualization.
+ * A DataTable is a basic two-dimensional table. All data in each column must
+ * have the same data type. Each column has a descriptor that includes its data
+ * type, a label for that column (which might be displayed by a visualization),
+ * and an ID, which can be used to refer to a specific column (as an alternative
+ * to using column indexes). The DataTable object also supports a map of
+ * arbitrary properties assigned to a specific value, a row, a column, or the
+ * whole DataTable. Visualizations can use these to support additional features;
+ * for example, the Table visualization uses custom properties to let you assign
+ * arbitrary class names or styles to individual cells.
+ *
  *
  * NOTICE OF LICENSE
  *
@@ -17,18 +27,6 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
-/**
- * The DataTable object is used to hold the data passed into a visualization.
- * A DataTable is a basic two-dimensional table. All data in each column must
- * have the same data type. Each column has a descriptor that includes its data
- * type, a label for that column (which might be displayed by a visualization),
- * and an ID, which can be used to refer to a specific column (as an alternative
- * to using column indexes). The DataTable object also supports a map of
- * arbitrary properties assigned to a specific value, a row, a column, or the
- * whole DataTable. Visualizations can use these to support additional features;
- * for example, the Table visualization uses custom properties to let you assign
- * arbitrary class names or styles to individual cells.
- */
 class DataTable
 {
     var $cols = array();
@@ -243,7 +241,7 @@ class DataTable
 
         return $this;
     }
-
+/*
     public function addRows($numOrArray)
     {
 
@@ -443,7 +441,7 @@ class DataTable
     {
 
     }
-
+*/
     public function toJSON()
     {
         return json_encode($this);
