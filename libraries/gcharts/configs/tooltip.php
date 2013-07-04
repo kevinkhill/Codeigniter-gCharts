@@ -21,15 +21,46 @@
 
 class tooltip extends configOptions
 {
-    var $showColorCode;
-    var $textStyle;
-    var $trigger;
-
     /**
-     * Builds the tooltip object when passed an array of configuration options.
+     * Show Color Code
+     * 
+     * If true, show colored squares next to the series information in the tooltip.
+     * The default is true when focusTarget is set to 'category', otherwise the 
+     * default is false.
+     * 
+     * @var boolean
+     */
+    var $showColorCode = NULL;
+    
+    /**
+     * Text Style
+     * 
+     * An object that specifies the tooltip text style.
+     * 
+     * @var textStyle
+     */
+    var $textStyle = NULL;
+    
+    /**
+     * Trigger Action
+     * 
+     * The user interaction that causes the tooltip to be displayed:
+     * 'focus' - The tooltip will be displayed when the user hovers over an element.
+     * 'none' - The tooltip will not be displayed.
+     * 
+     * @var string
+     */
+    var $trigger = NULL;
+
+    
+    /**
+     * Builds the tooltip object with specified options
+     * 
+     * Pass an associative array with values for the keys
+     * [ showColorCode | textStyle | trigger ]
      *
-     * @param array $options
-     * @return \configs\tooltip
+     * @param array Configuration options
+     * @return \tooltip
      */
     public function __construct($config = array())
     {
@@ -43,11 +74,10 @@ class tooltip extends configOptions
     }
 
     /**
-     * If true, show colored squares next to the series information in the tooltip.
-     * The default is true when focusTarget is set to 'category', otherwise the default is false.
+     * Sets whether to show the color code.
      *
-     * @param boolean $showColorCode
-     * @return \configs\tooltip
+     * @param boolean State of showing the color code.
+     * @return \tooltip
      */
     public function showColorCode($showColorCode)
     {
@@ -62,10 +92,10 @@ class tooltip extends configOptions
     }
 
     /**
-     * An object that specifies the tooltip text style.
+     * Sets the text style of the tooltip.
      *
-     * @param textStyle $textStyle
-     * @return \configs\tooltip
+     * @param textStyle Valid textStyle object.
+     * @return \tooltip
      */
     public function textStyle($textStyle)
     {
@@ -80,12 +110,13 @@ class tooltip extends configOptions
     }
 
     /**
-     * The user interaction that causes the tooltip to be displayed:
-     * 'focus' - The tooltip will be displayed when the user hovers over an element.
+     * Sets The user interaction that causes the tooltip to be displayed.
+     * 
+     * 'focus' - The tooltip will be displayed when the user hovers over an element.  
      * 'none' - The tooltip will not be displayed.
      *
-     * @param type $trigger
-     * @return \configs\tooltip
+     * @param string Type of trigger, [ focus | none ].
+     * @return \tooltip
      */
     public function trigger($trigger)
     {

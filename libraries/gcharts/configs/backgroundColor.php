@@ -50,12 +50,13 @@ class backgroundColor extends configOptions
 
 
     /**
-     * Builds the options for the backgroundColor object
+     * Builds the backgroundColor object with specified options
      *
      * Pass an associative array with values for the keys
      * [ stroke | strokeWidth | fill ]
      *
-     * @param array $options array('stroke' => 'red', 'stokeWidth' => 3, 'fill' => 'blue');
+     * @example array('stroke' => 'red', 'stokeWidth' => 3, 'fill' => 'blue');
+     * @param array Configuration options
      * @return \backgroundColor
      */
     public function __construct($options = array()) {
