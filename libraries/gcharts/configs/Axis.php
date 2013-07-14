@@ -35,8 +35,32 @@ class Axis extends configOptions
      * @var string Valid HTML color.
      */
     var $baselineColor = NULL;
+    
+    /**
+     * The direction in which the values along the axis grow.
+     * Specify -1 to reverse the order of the values.
+     * 
+     * @var int 1 for natural, -1 for reverse.
+     */
     var $direction = NULL;
+    
+    /**
+     * A format string for numeric axis labels. This is a subset of the ICU 
+     * pattern set. For instance, '#,###%' will display values 
+     * "1,000%", "750%", and "50%" for values 10, 7.5, and 0.5.
+     * 
+     * For date axis labels, this is a subset of the date formatting ICU pattern
+     * set. For instance, "MMM d, y" will display the value
+     * "Jul 1, 2011" for the date of July first in 2011.
+     * 
+     * @var string A string representing how data should be formatted.
+     */
     var $format = NULL;
+    
+    /**
+     *
+     * @var array Array with keys color and/or count.
+     */
     var $gridlines = NULL;
     var $minorGridlines = NULL;
     var $logScale = NULL;
@@ -106,7 +130,7 @@ class Axis extends configOptions
             {
                 $this->baseline = $baseline;
             } else {
-                $this->error('Invalid value for baseline, must be (int) if column is "number", must be type (jsDate) if column is "date"');
+                $this->type_error('baseline', 'int | jsDate', '; int if column is "number", jsDate if column is "date"');
             }
         }
 
@@ -117,6 +141,7 @@ class Axis extends configOptions
      * Sets the color of the baseline for the axis.
      *
      * Can be any HTML color string, for example: 'red' or '#00cc00'.
+     * 
      * This option is only supported for a continuous axis.
      *
      * @param string Valid HTML color.
@@ -128,44 +153,33 @@ class Axis extends configOptions
         {
             $this->baselineColor = $color;
         } else {
-            $this->error('Invalid value for baselineColor, must be a valid HTML color type (string)');
+            $this->type_error('baselineColor', 'string', 'representing a valid HTML color');
         }
 
         return $this;
     }
 
     /**
-     * The direction in which the values along the axis grow.
-     * Specify -1 to reverse the order of the values.
+     * Sets the direction of the axis values.
      *
      * @param int $direction
      * @return \Axis
      */
     public function direction($direction)
     {
-        if($direction == 1 || $direction == -1)
+        if(is_int($direction) && ($direction == 1 || $direction == -1))
         {
             $this->direction = $direction;
         } else {
-            $this->error('Invalid direction value, must be (int) 1 or (int) -1');
+            $this->type_error('direction', 'int', '1 || -1');
         }
 
         return $this;
     }
 
     /**
-     * For number axis labels, this is a subset of the decimal formatting ICU
-     * pattern set. For instance, "#,###%" will display values
-     * "1,000%", "750%", and "50%" for values 10, 7.5, and 0.5.
-     *
-     * For date axis labels, this is a subset of the date formatting ICU pattern
-     * set. For instance, "MMM d, y" will display the value
-     * "Jul 1, 2011" for the date of July first in 2011.
-     *
-     * The actual formatting applied to the label is derived from the locale the
-     * API has been loaded with. For more details, see loading charts with a
-     * specific locale.
-     *
+     * Sets the formatting applied to the axis label.
+     * 
      * This option is only supported for a continuous axis.
      *
      * @param string $format format string for numeric or date axis labels.
@@ -177,7 +191,7 @@ class Axis extends configOptions
         {
             $this->format = $format;
         } else {
-            $this->error('Invalid value for format, must be type (string).');
+            $this->type_error('format', 'string');
         }
 
         return $this;
@@ -221,7 +235,7 @@ class Axis extends configOptions
 
             $this->gridlines = $tmp;
         } else {
-            $this->error('Invalid value for gridlines, must be type (array) with keys for count & color');
+            $this->type_error('gridlines', 'array', 'with keys for count & color');
         }
 
         return $this;
@@ -252,7 +266,7 @@ class Axis extends configOptions
             ) {
                 $tmp['count'] = $minorGridlines['count'];
             } else {
-                $this->error('Invalid minorGridlines[count] value, must be type (int) >= 2 or -1 for auto');
+                $this->type_error('minorGridlines[count]',  'int', '>= 2 or -1 for auto');
             }
 
             if(array_key_exists('color', $minorGridlines))
@@ -262,7 +276,7 @@ class Axis extends configOptions
 
             $this->minorGridlines = $tmp;
         } else {
-            $this->error('Invalid value for minorGridlines, must be type (array) with keys count & color');
+            $this->type_error('minorGridlines', 'array', 'with keys count & color');
         }
 
         return $this;
@@ -283,7 +297,7 @@ class Axis extends configOptions
         {
             $this->logScale = $log;
         } else {
-            $this->error('Invalid value for logScale, must be type (boolean).');
+            $this->type_error('logScale', 'boolean');
         }
 
         return $this;
@@ -308,7 +322,7 @@ class Axis extends configOptions
         {
             $this->textPosition = $position;
         } else {
-            $this->error('Invalid value for textPosition, must be type string with a value of '.array_string($values));
+            $this->type_error('textPosition', 'string', 'with a value of '.array_string($values));
         }
 
         return $this;
@@ -326,7 +340,7 @@ class Axis extends configOptions
         {
             $this->textStyle = $textStyle->values();
         } else {
-            $this->error('Invalid value for textStyle, must be an object type (textStyle).');
+            $this->type_error('textStyle', 'object', 'class textStyle');
         }
 
         return $this;
@@ -344,7 +358,7 @@ class Axis extends configOptions
         {
             $this->title = $title;
         } else {
-            $this->error('Invalid value for title, must be type (string).');
+            $this->type_error('title', 'string');
         }
 
         return $this;
@@ -362,7 +376,7 @@ class Axis extends configOptions
         {
             $this->titleTextStyle = $titleTextStyle->values();
         } else {
-            $this->error('Invalid value for titleTextStyle, must be an object type (textStyle).');
+            $this->type_error('titleTextStyle', 'object', 'class textStyle');
         }
 
         return $this;
@@ -386,7 +400,7 @@ class Axis extends configOptions
         {
             $this->maxAlternation = $alternation;
         } else {
-            $this->error('Invalid value for maxAlternation, must be type (int).');
+            $this->type_error('maxAlternation', 'int');
         }
 
         return $this;
@@ -408,7 +422,7 @@ class Axis extends configOptions
         {
             $this->maxTextLines = $maxTextLines;
         } else {
-            $this->error('Invalid value for maxTextLines, must be type (int).');
+            $this->type_error('maxTextLines', 'int');
         }
 
         return $this;
@@ -436,7 +450,7 @@ class Axis extends configOptions
             {
                 $this->minTextSpacing = $this->textStyle['fontSize'];
             } else {
-                $this->error('Invalid value for minTextSpacing, must be type (int).');
+                $this->type_error('minTextSpacing', 'int');
             }
         }
 
@@ -459,7 +473,7 @@ class Axis extends configOptions
         {
             $this->showTextEvery = $showTextEvery;
         } else {
-            $this->error('Invalid value for showTextEvery, must be type (int).');
+            $this->type_error('showTextEvery', 'int');
         }
 
         return $this;
@@ -481,7 +495,7 @@ class Axis extends configOptions
         {
             $this->maxValue = $max;
         } else {
-            $this->error('Invalid value for maxValue, must be type (int).');
+            $this->type_error('maxValue', 'int');
         }
 
         return $this;
@@ -503,7 +517,7 @@ class Axis extends configOptions
         {
             $this->minValue = $min;
         } else {
-           $this->error('Invalid value for minValue, must be type (int).');
+           $this->type_error('minValue', 'int');
         }
 
         return $this;

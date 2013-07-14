@@ -81,12 +81,12 @@ class configOptions
      */
     public function type_error($val, $type, $extra = '')
     {
-        if($extra != '')
-        {
-            $msg = sprintf('Invalid value for "%s", must be type (%s) ', $val, $type, $extra);
-        } else {
-            $msg = sprintf('Invalid value for "%s", must be type (%s).', $val, $type);
-        }
+        $msg = sprintf(
+            'Invalid value for %s, must be type (%s) ',
+            $val,
+            $type,
+            ($extra != '' ? $extra.'.' : '.')
+        );
 
         $this->error($msg);
     }
