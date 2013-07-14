@@ -23,8 +23,21 @@
 
 class DataTable
 {
+    /**
+     * Holds the information defining the columns.
+     * 
+     * @var array
+     */
     var $cols = array();
+    
+    /**
+     * Holds the information defining each row.
+     * 
+     * @var array
+     */
     var $rows = array();
+
+    private $_row_count;
 
     /**
      * Adds a column to the DataTable
@@ -171,7 +184,7 @@ class DataTable
      *
      * @see \DataCell
      * @param mixed $opt_cell Array of values or DataCells.
-     * @return \DataTable DataTable Object.
+     * @return \DataTable
      */
     public function addRow($opt_cellArray = NULL)
     {
@@ -181,7 +194,7 @@ class DataTable
             'p'
         );
 
-        if($opt_cellArray == NULL)
+        if(is_null($opt_cellArray))
         {
             for($a = 0; $a < count($this->cols); $a++)
             {
@@ -189,7 +202,7 @@ class DataTable
             }
             $this->rows[] = array('c' => $tmp);
         } else {
-            if(gettype($opt_cellArray) == 'array')
+            if(is_array($opt_cellArray))
             {
                 if(array_is_multi($opt_cellArray))
                 {
@@ -235,12 +248,26 @@ class DataTable
 
         return $this;
     }
-/*
-    public function addRows($numOrArray)
+
+    /**
+     * Adds multiple rows to the DataTable.
+     *
+     * @see addRow()
+     * @param array Multi-dimensional array of rows.
+     */
+    public function addRows($arrayOfRows)
     {
-
+        if(is_array($arrayOfRows))
+        {
+            foreach($arrayOfRows as $row)
+            {
+                $this->addRow($row);
+            }
+        } else {
+            $this->error('Invalid value for addRows, must be type (array), multi-dimensional.');
+        }
     }
-
+/*
     public function getColumnId($columnIndex)
     {
 
