@@ -1,14 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Date Object
+ * jsDate Object
  *
- * Used as a PHP wrapper around how javascript creates date objects
- *
- *
- * NOTICE OF LICENSE
- *
- * You should have received a copy of the MIT License along with this project.
- * If not, see <http://opensource.org/licenses/MIT>.
+ * PHP wrapper class used to create a date object the same way the javascript 
+ * creates date objects.
  *
  *
  * @author Kevin Hill <kevinkhill@gmail.com>

@@ -18,12 +18,6 @@
  * long to show, the name will be truncated with an ellipsis (...).
  *
  *
- * NOTICE OF LICENSE
- *
- * You should have received a copy of the MIT License along with this project.
- * If not, see <http://opensource.org/licenses/MIT>.
- *
- *
  * @author Kevin Hill <kevinkhill@gmail.com>
  * @copyright (c) 2013, KHill Designs
  * @link https://github.com/kevinkhill/Codeigniter-gCharts GitHub Repository Page

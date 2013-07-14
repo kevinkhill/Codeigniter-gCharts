@@ -5,13 +5,7 @@
  * An object containing all the values for the axis which can be
  * passed into the chart's options.
  *
- *
- * NOTICE OF LICENSE
- *
- * You should have received a copy of the MIT License along with this project.
- * If not, see <http://opensource.org/licenses/MIT>.
- *
- *
+ * 
  * @author Kevin Hill <kevinkhill@gmail.com>
  * @copyright (c) 2013, KHill Designs
  * @link https://github.com/kevinkhill/Codeigniter-gCharts GitHub Repository Page
@@ -56,33 +50,90 @@ class Axis extends configOptions
      * @var string A string representing how data should be formatted.
      */
     var $format = NULL;
-    
+    //@TODO: finish documentation
     /**
      *
      * @var array Array with keys color and/or count.
      */
     var $gridlines = NULL;
+    
+    /**
+     *
+     * @var type 
+     */
     var $minorGridlines = NULL;
+    
+    /**
+     *
+     * @var type 
+     */
     var $logScale = NULL;
+    
+    /**
+     *
+     * @var type 
+     */
     var $textPosition = NULL;
+    
+    /**
+     *
+     * @var type 
+     */
     var $textStyle = NULL;
+    
+    /**
+     *
+     * @var type 
+     */
     var $title = NULL;
+    
+    /**
+     *
+     * @var type 
+     */
     var $titleTextStyle = NULL;
+    
+    /**
+     *
+     * @var type 
+     */
     var $maxValue = NULL;
+    
+    /**
+     *
+     * @var type 
+     */
     var $minValue = NULL;
+    
+    /**
+     *
+     * @var type 
+     */
     var $viewWindowMode = NULL;
+    
+    /**
+     *
+     * @var type 
+     */
     var $viewWindow = NULL;
 
+    /**
+     * Stores all the configuration for the axis.
+     * 
+     * @var array
+     */
     var $options = array();
 
+    
     /**
-     * Stores all the information about the axis.
+     * Builds the configuration when passed an array of options.
      *
      * All options can be set by either passing an array with associative
      * values for option => value, or by chaining together the functions once
      * an object has been created.
      *
-     * @param array Array containing values for the various configuration options.
+     * @param array Associative array containing key => value pairs for the 
+     * various configuration options.
      * @return \Axis
      */
     public function __construct($config = array())

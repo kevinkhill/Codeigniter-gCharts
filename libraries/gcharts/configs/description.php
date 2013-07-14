@@ -2,13 +2,7 @@
 /**
  * Description Object
  *
- * Holds all the data for charts
- *
- *
- * NOTICE OF LICENSE
- *
- * You should have received a copy of the MIT License along with this project.
- * If not, see <http://opensource.org/licenses/MIT>.
+ * Defines the specifics for columns of data in a DataTable.
  *
  *
  * @author Kevin Hill <kevinkhill@gmail.com>

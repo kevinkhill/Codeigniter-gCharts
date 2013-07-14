@@ -5,12 +5,6 @@
  * Has common properties and methods used between all the different charts.
  *
  *
- * NOTICE OF LICENSE
- *
- * You should have received a copy of the MIT License along with this project.
- * If not, see <http://opensource.org/licenses/MIT>.
- *
- *
  * @author Kevin Hill <kevinkhill@gmail.com>
  * @copyright (c) 2013, KHill Designs
  * @link https://github.com/kevinkhill/Codeigniter-gCharts Github Page

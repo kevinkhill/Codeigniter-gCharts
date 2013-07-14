@@ -3,13 +3,7 @@
  * backgroundColor Object
  *
  * An object containing all the values for the backgroundColor object which can
- * be passed into the chart's options
- *
- *
- * NOTICE OF LICENSE
- *
- * You should have received a copy of the MIT License along with this project.
- * If not, see <http://opensource.org/licenses/MIT>.
+ * be passed into the chart's options.
  *
  *
  * @author Kevin Hill <kevinkhill@gmail.com>
