@@ -20,20 +20,20 @@ the version number)
 Here is an example of how to create a line chart with two lines of data
 
 ###First, the Controller
-1. Load the spark in the controller you will use to define the chart. Or add it to your autoload config file.
-```php
-//In controller
-$this->load->spark('gcharts/0.0.1');
+1. Load the spark in the controller you will use to define the chart, or add it to your autoload config file.
+
 ```
-OR
-```php
+//In controller
+   $this->load->spark('gcharts/0.0.1');  
+// - OR -
 //In autoload config
-$autoload['sparks'] = array('gcharts/0.0.1');
+   $autoload['sparks'] = array('gcharts/0.0.1');
 ```
 2. Now we can use the gcharts spark to create a DataTable. Pass a string to the DataTable function to assign a label for the table.
 3. Then add your columns, defining what the chart's data will consist of. In this example, the first column is the horizontal axis, 
-then then next two columns are the two sets of data. The order of arguments are as follows: [data type, label, id]
-```php
+then then next two columns are the two sets of data. The order of arguments are as follows: [data type, label, id]  
+
+```
 $dt = $this->gcharts->DataTable('Stocks');
 
 $dt->addColumn('number', 'Count', 'count');
@@ -42,7 +42,8 @@ $dt->addColumn('number', 'Official', 'official');
 ```
 4. Next add some data! (For this example, it is filled with randomness). The add row function argument order, follows the order in which the columns were added.
 So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is for 'official'
-```php
+
+```
 for($a = 1; $a < 25; $a++)
 {
     $line1 = rand(800,1000);
@@ -50,14 +51,17 @@ for($a = 1; $a < 25; $a++)
     $dt->addRow(array($a, $line1, $line2));
 }
 ```
+
 5. Now lets configure some options for the chart. There are many ways to customize the chart, but we'll keep it simple. (Refer to the documentation for the list of configuration options.)
-```php
+
+```
 $config = array(
     'title' => 'Stocks'
 );
 ```
 6. Finally, pass the configuration to the chart of choice, LineChart in this example, making sure that the Chart label matches the DataTable.
-```php
+
+```
 $this->gcharts->LineChart('Stocks')->setConfig($config);
 ```
 
@@ -67,19 +71,18 @@ $this->gcharts->LineChart('Stocks')->setConfig($config);
 1. Within your view, use these functions to get your chart onto the page.
 	* If you want everything generated automatically, use the outputInto function. Pass a string label which will be used when creating the div.
 	* Then use the div() function to create a div with the corresponding label. Here you can also pass [width, height] to the div() function and it will be applied to the div.
-2. If you already have a <div id="SOME-ID"> on the page, then ommit the div() function and just pass the div's ID into the outputInto() function.
+2. If you already have a ```<div id="SOME-ID">``` on the page, then ommit the div() function and just pass the div's ID into the outputInto() function.
 
-```php
+```
 //Example #1
 echo $this->gcharts->LineChart('Stocks')->outputInto('stock_div');
-
 echo $this->gcharts->div();
-
 //Example #2
 echo $this->gcharts->LineChart('Stocks')->outputInto('SOME-ID');
 ```
 3. You can also setup a way of viewing errors in the creation of the chart by using this method.
-```php
+
+```
 if($this->gcharts->hasErrors())
 {
     echo $this->gcharts->getErrors();
