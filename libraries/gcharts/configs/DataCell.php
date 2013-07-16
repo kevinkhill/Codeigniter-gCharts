@@ -14,10 +14,28 @@
 
 class DataCell
 {
+    /**
+     * The cell value.
+     * 
+     * @var string
+     */
     var $v;
+    
+    /**
+     * A string version of the v value. (Optional)
+     * 
+     * @var string
+     */
     var $f;
+    
+    /**
+     * An object that is a map of custom values applied to the cell. (Optional)
+     * 
+     * @var string
+     */
     var $p;
 
+    
     /**
      * Defines a DataCell for a DataTable
      *
@@ -35,7 +53,7 @@ class DataCell
      * @param string $v The cell value
      * @param string $f A string version of the v value
      * @param string $p An object that is a map of custom values applied to the cell
-     * @return \DataCell DetaCell Object
+     * @return \DataCell
      */
     public function __construct($v = NULL, $f = NULL, $p = NULL)
     {
