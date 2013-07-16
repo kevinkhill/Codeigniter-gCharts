@@ -16,31 +16,21 @@
 class tooltip extends configOptions
 {
     /**
-     * Show Color Code
-     * 
-     * If true, show colored squares next to the series information in the tooltip.
-     * The default is true when focusTarget is set to 'category', otherwise the 
-     * default is false.
+     * Show color code for the tooltip
      * 
      * @var boolean
      */
     var $showColorCode = NULL;
     
     /**
-     * Text Style
-     * 
-     * An object that specifies the tooltip text style.
+     * Tooltip text style
      * 
      * @var textStyle
      */
     var $textStyle = NULL;
     
     /**
-     * Trigger Action
-     * 
-     * The user interaction that causes the tooltip to be displayed:
-     * 'focus' - The tooltip will be displayed when the user hovers over an element.
-     * 'none' - The tooltip will not be displayed.
+     * Trigger Action of the tooltip.
      * 
      * @var string
      */
@@ -48,12 +38,9 @@ class tooltip extends configOptions
 
     
     /**
-     * Builds the tooltip object with specified options
-     * 
-     * Pass an associative array with values for the keys
-     * [ showColorCode | textStyle | trigger ]
+     * Builds the tooltip object with specified options.
      *
-     * @param array Configuration options
+     * @param array Configuration options for the tooltip
      * @return \tooltip
      */
     public function __construct($config = array())
@@ -79,7 +66,7 @@ class tooltip extends configOptions
         {
             $this->showColorCode = $showColorCode;
         } else {
-            $this->error('Invalid value for showColorCode, must be type (boolean).');
+            $this->type_error('showColorCode', 'boolean');
         }
 
         return $this;
@@ -97,7 +84,7 @@ class tooltip extends configOptions
         {
             $this->textStyle = $textStyle->values();
         } else {
-            $this->error('Invalid value for textStyle, must be an object type (textStyle).');
+            $this->type_error('textStyle', 'object', 'type (textStyle)');
         }
 
         return $this;
@@ -123,7 +110,7 @@ class tooltip extends configOptions
         {
             $this->trigger = $trigger;
         } else {
-            $this->error('Invalid trigger value, must be (string) '.$this->_array_string($values));
+            $this->type_error('trigger', 'string', 'with a value of'.$this->_array_string($values));
         }
 
         return $this;
