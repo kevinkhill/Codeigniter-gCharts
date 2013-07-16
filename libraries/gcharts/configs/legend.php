@@ -15,15 +15,33 @@
 
 class legend extends configOptions
 {
+    /**
+     * Position of the legend.
+     * 
+     * @var string
+     */
     var $position;
+    
+    /**
+     * Alignment of the legend.
+     * 
+     * @var type 
+     */
     var $alignment;
+    
+    /**
+     * Text style of the legend.
+     * 
+     * @var textStyle
+     */
     var $textStyle;
 
+    
     /**
      * Builds the legend object when passed an array of configuration options.
      *
-     * @param array $options
-     * @return \configs\tooltip
+     * @param array Options for the legend
+     * @return \tooltip
      */
     public function __construct($config)
     {
@@ -37,14 +55,16 @@ class legend extends configOptions
     }
 
     /**
-     * Position of the legend. Can be one of the following:
+     * Sets the position of the legend.
+     * 
+     * Can be one of the following:
      * 'right' - To the right of the chart. Incompatible with the vAxes option.
      * 'top' - Above the chart.
      * 'bottom' - Below the chart.
      * 'in' - Inside the chart, by the top left corner.
      * 'none' - No legend is displayed.
      *
-     * @param type $position
+     * @param string Location of legend
      * @return \legend
      */
     public function position($position)
@@ -62,14 +82,16 @@ class legend extends configOptions
             $this->position = $position;
             return $this;
         } else {
-            $this->error('Invalid position value, must be (string) with a value of '.array_string($values));
+            $this->type_error('position', 'string', 'with a value of '.array_string($values));
         }
 
         return $this;
     }
 
     /**
-     * Alignment of the legend. Can be one of the following:
+     * Sets the alignment of the legend. 
+     * 
+     * Can be one of the following:
      * 'start' - Aligned to the start of the area allocated for the legend.
      * 'center' - Centered in the area allocated for the legend.
      * 'end' - Aligned to the end of the area allocated for the legend.
@@ -81,7 +103,7 @@ class legend extends configOptions
      * The default value depends on the legend's position. For 'bottom' legends,
      * the default is 'center'; other legends default to 'start'.
      *
-     * @param type $alignment
+     * @param string Alignment of the legend
      * @return \legend
      */
     public function alignment($alignment)
@@ -97,7 +119,7 @@ class legend extends configOptions
             $this->alignment = $alignment;
             return $this;
         } else {
-            $this->error('Invalid alignment value, must be (string) with a value of '.array_string($values));
+            $this->type_error('alignment', 'string', 'with a value of '.array_string($values));
         }
 
         return $this;
@@ -106,7 +128,7 @@ class legend extends configOptions
     /**
      * An object that specifies the legend text style.
      *
-     * @param textStyle $textStyle
+     * @param textStyle Style of the legend
      * @return \legend
      */
     public function textStyle(textStyle $textStyle)
@@ -115,7 +137,7 @@ class legend extends configOptions
         {
             $this->textStyle = $textStyle->values();
         } else {
-            $this->error('Invalid textStyle, must be (object) type textStyle');
+            $this->type_error('textStyle', 'object', 'type textStyle');
         }
 
         return $this;
