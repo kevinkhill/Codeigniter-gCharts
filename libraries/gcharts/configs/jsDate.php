@@ -15,8 +15,27 @@
 
 class jsDate
 {
+    /**
+     * Holds the output of the jsDate object.
+     * 
+     * @var string
+     */
     var $output;
 
+    /**
+     * Builds the jsDate object.
+     * 
+     * Designed to work the same way the javascript date object works.
+     * 
+     * @param int Year
+     * @param int Month (starting with 0 = Jan, 1 = Feb, etc.)
+     * @param int Day
+     * @param int Hour
+     * @param int Minute
+     * @param int Second
+     * @param int Millisecond
+     * @return \jsDate
+     */
     public function __construct(
         $year,
         $month,
@@ -38,6 +57,11 @@ class jsDate
         return $this;
     }
 
+    /**
+     * Outputs the object as a valide javascript string.
+     * 
+     * @return sting Javscript date declaration
+     */
     public function toString()
     {
         if($this->hour !== NULL && is_int($this->hour))
