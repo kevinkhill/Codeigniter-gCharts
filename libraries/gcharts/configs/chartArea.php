@@ -16,11 +16,35 @@
 //@TODO: Add in documentation for vars and functions.
 class chartArea extends configOptions
 {
+    /**
+     * How far to draw the chart from the left border.
+     * 
+     * @var int Amount in pixels
+     */
     var $left = NULL;
+    
+    /**
+     * How far to draw the chart from the top border.
+     * 
+     * @var int Amount in pixels
+     */
     var $top = NULL;
+    
+    /**
+     * Width of the chart.
+     * 
+     * @var int Amount in pixels
+     */
     var $width = NULL;
+    
+    /**
+     * Height of the chart.
+     * 
+     * @var int Amount in pixels
+     */
     var $height = NULL;
 
+    
     /**
      * Builds the chartArea object when passed an array of configuration options.
      *
@@ -39,6 +63,12 @@ class chartArea extends configOptions
         parent::__construct($config);
     }
 
+    /**
+     * Sets the left padding of the chart in the container.
+     * 
+     * @param int Amount in pixels
+     * @return \chartArea
+     */
     public function left($left)
     {
         if(is_int_or_percent($left))
@@ -51,6 +81,12 @@ class chartArea extends configOptions
         return $this;
     }
 
+    /**
+     * Sets the top padding of the chart in the container.
+     * 
+     * @param int Amount in pixels
+     * @return \chartArea
+     */
     public function top($top)
     {
         if(is_int_or_percent($top))
@@ -62,7 +98,13 @@ class chartArea extends configOptions
 
         return $this;
     }
-
+    
+    /**
+     * Sets the width of the chart in the container.
+     * 
+     * @param int Amount in pixels
+     * @return \chartArea
+     */
     public function width($width)
     {
         if(is_int_or_percent($width))
@@ -75,6 +117,12 @@ class chartArea extends configOptions
         return $this;
     }
 
+    /**
+     * Sets the height of the chart in the container.
+     * 
+     * @param int Amount in pixels
+     * @return \chartArea
+     */
     public function height($height)
     {
         if(is_int_or_percent($height))
