@@ -16,8 +16,6 @@
 class backgroundColor extends configOptions
 {
     /**
-     * Chart Border Color
-     *
      * The color of the chart border, as an HTML color string.
      *
      * @var string Valid HTML color.
@@ -25,8 +23,6 @@ class backgroundColor extends configOptions
     var $stroke = NULL;
 
     /**
-     * Chart Border Width
-     *
      * The border width, in pixels.
      *
      * @var int Width in number of pixels.
@@ -34,8 +30,6 @@ class backgroundColor extends configOptions
     var $strokeWidth = NULL;
 
     /**
-     * Chart Color Fill
-     *
      * The chart fill color, as an HTML color string.
      *
      * @var type Valid HTML color.
@@ -78,9 +72,8 @@ class backgroundColor extends configOptions
     }
 
     /**
-     * Sets the chart border color.
-     *
-     * @example 'red' or '#A2A2A2'
+     * Sets the chart border color. Example: 'red' or '#A2A2A2'
+     * 
      * @param string Valid HTML color string.
      * @return \backgroundColor
      */
@@ -90,7 +83,7 @@ class backgroundColor extends configOptions
         {
             $this->stroke = $stroke;
         } else {
-            $this->type_error(__FUNCTION__, 'string');
+            $this->type_error(__FUNCTION__, 'string'); //@TODO: Test this
         }
 
         return $this;
@@ -99,7 +92,6 @@ class backgroundColor extends configOptions
     /**
      * Sets the chart border width.
      *
-     * @example 5
      * @param int Border width, in pixels.
      * @return \backgroundColor
      */
@@ -116,9 +108,8 @@ class backgroundColor extends configOptions
     }
 
     /**
-     * Sets the chart color fill.
-     *
-     * @example 'blue' or '#C5C5C5'
+     * Sets the chart color fill, Example: 'blue' or '#C5C5C5'
+     * 
      * @param string Valid HTML color string.
      * @return \backgroundColor
      */
@@ -128,7 +119,7 @@ class backgroundColor extends configOptions
         {
             $this->fill = $fill;
         } else {
-            $this->formated_error(__FUNCTION__, 'string');
+            $this->type_error(__FUNCTION__, 'string');
         }
 
         return $this;
