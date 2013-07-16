@@ -37,8 +37,9 @@ class DataTable
      */
     var $rows = array();
 
-    private $_row_count;
+    //@TODO: private $_row_count;
 
+    
     /**
      * Adds a column to the DataTable
      *
@@ -55,17 +56,9 @@ class DataTable
      * not value is specified, an empty string is assigned.
      *
      *
-     * Second signature has a single array parameter with the following members:
-     *
-     * type - A string describing the column data type. Same values as type above.
-     * label - [Optional, string] A label for the column.
-     * id - [Optional, string] An ID for the column.
-     * role - [Optional, string] A role for the column.
-     * pattern - [Optional, string] A number (or date) format string specifying how to display the column value.
-     *
-     * @param type $typeOrDescriptionArray
-     * @param type $opt_label
-     * @param type $opt_id
+     * @param string Describing the column data type
+     * @param string A label for the column. (Optional) 
+     * @param string An ID for the column. (Optinal)
      * @return \DataTable
      */
     public function addColumn($typeOrDescriptionArray, $opt_label = '', $opt_id = '')
@@ -254,10 +247,11 @@ class DataTable
      *
      * @see addRow()
      * @param array Multi-dimensional array of rows.
+     * @return \DataTable
      */
     public function addRows($arrayOfRows)
     {
-        if(is_array($arrayOfRows))
+        if(array_is_multi($arrayOfRows))
         {
             foreach($arrayOfRows as $row)
             {
@@ -266,6 +260,8 @@ class DataTable
         } else {
             $this->error('Invalid value for addRows, must be type (array), multi-dimensional.');
         }
+        
+        return $this;
     }
 /*
     public function getColumnId($columnIndex)
