@@ -21,7 +21,7 @@ class vAxis extends Axis
      * value, or by chaining together the functions once an object has been
      * created.
      *
-     * @param array $options
+     * @param array Configuration options for the vAxis
      * @return \axis
      */
     public function __construct($config = array())
