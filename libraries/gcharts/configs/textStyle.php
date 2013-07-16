@@ -15,15 +15,33 @@
 
 class textStyle extends configOptions
 {
+    /**
+     * Color of the text.
+     * 
+     * @var string
+     */
     var $color;
+    
+    /**
+     * Font name.
+     * 
+     * @var string
+     */
     var $fontName;
+    
+    /**
+     * Size of font, in pixels.
+     * 
+     * @var int
+     */
     var $fontSize;
 
+    
     /**
      * Builds the textStyle object when passed an array of configuration options.
      *
-     * @param array $config
-     * @return \configs\tooltip
+     * @param array Options for the textStyle
+     * @return \tooltip
      */
     public function __construct($config = array())
     {
@@ -37,12 +55,12 @@ class textStyle extends configOptions
     }
 
     /**
-     * Assign a color for the text element that this textStyle will be applied
-     * to in the format of a valid HTML color string, for example:
-     * red OR #004411
+     * Set the color for the text element. 
+     * 
+     * valid HTML color string, for example: 'red' OR '#004411'
      *
-     * @param string $color
-     * @return \configs\textStyle
+     * @param string Valid HTML color
+     * @return \textStyle
      */
     public function color($color)
     {
@@ -55,10 +73,12 @@ class textStyle extends configOptions
     }
 
     /**
-     * Assigns a font to the textStyle object, must be a valid font name
+     * Sets the font to the textStyle object.
+     * 
+     * Must be a valid font name.
      *
-     * @param string $fontName
-     * @return \configs\textStyle
+     * @param string Valid font name
+     * @return \textStyle
      */
     public function fontName($fontName)
     {
@@ -71,11 +91,12 @@ class textStyle extends configOptions
     }
 
     /**
-     * Assigns a font size to the textStyle, must be a valid int or a string
-     * representing an int.
+     * Sets the font size to the textStyle.
+     * 
+     * Must be a valid int for size in pixels.
      *
-     * @param int $fontSize
-     * @return \configs\textStyle
+     * @param int Font size in pixels
+     * @return \textStyle
      */
     public function fontSize($fontSize)
     {
@@ -83,7 +104,7 @@ class textStyle extends configOptions
         {
             $this->fontSize = $fontSize;
         } else {
-            $this->error('Invalid fontSize, must be type (int).');
+            $this->type_error('fontSize', 'int');
         }
 
         return $this;

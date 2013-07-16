@@ -71,7 +71,9 @@ class configOptions
     /**
      * Adds an function/type error message to the error log in the gcharts object.
      *
-     * @param string $msg
+     * @param string Property in error
+     * @param string Variable type
+     * @param string Extra message to append to error
      */
     public function type_error($val, $type, $extra = '')
     {

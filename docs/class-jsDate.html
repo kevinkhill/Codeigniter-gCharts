@@ -7,7 +7,7 @@
 	<title>Class jsDate | Codeigniter-gCharts</title>
 
 	<script type="text/javascript" src="resources/combined.js?2248719689"></script>
-	<script type="text/javascript" src="elementlist.js?3303842265"></script>
+	<script type="text/javascript" src="elementlist.js?3490826646"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -35,7 +35,6 @@
 				<li><a href="class-configOptions.html">configOptions</a></li>
 				<li><a href="class-DataCell.html">DataCell</a></li>
 				<li><a href="class-DataTable.html">DataTable</a></li>
-				<li><a href="class-description.html">description</a></li>
 				<li><a href="class-Gcharts.html">Gcharts</a></li>
 				<li><a href="class-hAxis.html">hAxis</a></li>
 				<li class="active"><a href="class-jsDate.html">jsDate</a></li>
@@ -107,9 +106,6 @@
 			<li>
 				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
 			</li>
-			<li>
-				<a href="todo.html" title="Todo list"><span>Todo</span></a>
-			</li>
 		</ul>
 		<ul>
 			<li>
@@ -156,7 +152,7 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 				<a href="https://github.com/kevinkhill/Codeigniter-gCharts">GitHub Repository Page</a><br />
 				<b>Link:</b>
 				<a href="http://kevinkhill.github.io/Codeigniter-gCharts/">GitHub Project Page</a><br />
-		<b>Located at</b> <a href="source-class-jsDate.html#3-72" title="Go to source code">libraries/gcharts/configs/jsDate.php</a><br />
+		<b>Located at</b> <a href="source-class-jsDate.html#3-96" title="Go to source code">libraries/gcharts/configs/jsDate.php</a><br />
 	</div>
 
 
@@ -167,24 +163,51 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-jsDate.html">jsDate</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-jsDate.html#20-39" title="Go to source code">__construct</a>( <span>mixed <var>$year</var></span>, <span>mixed <var>$month</var></span>, <span>mixed <var>$day</var></span>, <span>mixed <var>$hour</var> = <span class="php-keyword1">NULL</span></span>, <span>mixed <var>$minute</var> = <span class="php-keyword1">NULL</span></span>, <span>mixed <var>$second</var> = <span class="php-keyword1">NULL</span></span>, <span>mixed <var>$millisecond</var> = <span class="php-keyword1">NULL</span> </span> )</code>
+		<code><a href="source-class-jsDate.html#25-58" title="Go to source code">__construct</a>( <span>integer <var>$year</var></span>, <span>integer <var>$month</var></span>, <span>integer <var>$day</var></span>, <span>integer <var>$hour</var> = <span class="php-keyword1">NULL</span></span>, <span>integer <var>$minute</var> = <span class="php-keyword1">NULL</span></span>, <span>integer <var>$second</var> = <span class="php-keyword1">NULL</span></span>, <span>integer <var>$millisecond</var> = <span class="php-keyword1">NULL</span> </span> )</code>
 
 		<div class="description short">
 			
+<p>Builds the jsDate object.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Builds the jsDate object.</p>
+
+<p>Designed to work the same way the javascript date object works.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$year</var></dt>
+					<dd><code>integer</code><br>Year</dd>
+					<dt><var>$month</var></dt>
+					<dd><code>integer</code><br>Month (starting with 0 = Jan, 1 = Feb, etc.)</dd>
+					<dt><var>$day</var></dt>
+					<dd><code>integer</code><br>Day</dd>
+					<dt><var>$hour</var></dt>
+					<dd><code>integer</code><br>Hour</dd>
+					<dt><var>$minute</var></dt>
+					<dd><code>integer</code><br>Minute</dd>
+					<dt><var>$second</var></dt>
+					<dd><code>integer</code><br>Second</dd>
+					<dt><var>$millisecond</var></dt>
+					<dd><code>integer</code><br>Millisecond</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-jsDate.html">jsDate</a></code></code><br />
+				</div>
 
 
 
@@ -196,24 +219,32 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 		<td class="attributes"><code>
 			 public 
-			
+			sting
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_toString">#</a>
-		<code><a href="source-class-jsDate.html#41-71" title="Go to source code">toString</a>( )</code>
+		<code><a href="source-class-jsDate.html#60-95" title="Go to source code">toString</a>( )</code>
 
 		<div class="description short">
 			
+<p>Outputs the object as a valide javascript string.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Outputs the object as a valide javascript string.</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>sting</code><br>Javscript date declaration<br />
+				</div>
 
 
 
@@ -239,11 +270,11 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 	<tr data-order="output" id="$output">
 		<td class="attributes"><code>
 			public  
-			mixed
+			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-jsDate.html#18" title="Go to source code"><var>$output</var></a>
+				<a href="source-class-jsDate.html#18-23" title="Go to source code"><var>$output</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -251,10 +282,14 @@ href="mailto:kevinkhill&#64;gmail.com">kevinkhill&#64;<!---->gmail.com</a>&gt;<b
 
 			<div class="description short">
 				
+<p>Holds the output of the jsDate object.</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>Holds the output of the jsDate object.</p>
+
 
 			</div>
 		</div></td>
