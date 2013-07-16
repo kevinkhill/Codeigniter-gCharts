@@ -15,14 +15,56 @@
 
 class hAxis extends Axis
 {
+    /**
+     * Allow container to cutoff labels.
+     * 
+     * @var boolean
+     */
     var $allowContainerBoundaryTextCutoff;
+    
+    /**
+     * Slanted or normal labels.
+     * 
+     * @var boolean
+     */
     var $slantedText;
+    
+    /**
+     * Angle of labels.
+     * 
+     * @var int
+     */
     var $slantedTextAngle;
+    
+    /**
+     * Number of levels of alternation.
+     * 
+     * @var int
+     */
     var $maxAlternation;
+    
+    /**
+     * Maximum number of labels.
+     * 
+     * @var int
+     */
     var $maxTextLines;
+    
+    /**
+     * Minimum amount in pixels of space between labels.
+     * 
+     * @var int
+     */
     var $minTextSpacing;
+    
+    /**
+     * Amount of labels to show.
+     * 
+     * @var int
+     */
     var $showTextEvery;
 
+    
     /**
      * Stores all the information about the horizontal axis. All options can be
      * set either by passing an array with associative values for option =>
@@ -30,7 +72,7 @@ class hAxis extends Axis
      * created.
      *
      * @param array $options
-     * @return \configs\hAxis
+     * @return \hAxis
      */
     public function __construct($config = array())
     {
@@ -48,13 +90,15 @@ class hAxis extends Axis
     }
 
     /**
+     * Sets whether the container can cutoff the labels or not.
+     * 
      * If false, will hide outermost labels rather than allow them to be
      * cropped by the chart container. If true, will allow label cropping.
      *
      * This option is only supported for a discrete axis.
      *
-     * @param boolean $cutoff
-     * @return \configs\hAxis
+     * @param boolean Status of allowing label cutoff
+     * @return \hAxis
      */
     public function allowContainerBoundaryTextCutoff($cutoff)
     {
@@ -62,13 +106,15 @@ class hAxis extends Axis
         {
             $this->allowContainerBoundaryTextCutoff = $cutoff;
         } else {
-            $this->error('Invalid value for allowContainerBoundaryTextCutoff, must be type (boolean).');
+            $this->type_error('allowContainerBoundaryTextCutoff', 'boolean');
         }
 
         return $this;
     }
 
     /**
+     * Sets whether the labels are slanted or not.
+     * 
      * If true, draw the axis text at an angle, to help fit more text
      * along the axis; if false, draw axis text upright. Default
      * behavior is to slant text if it cannot all fit when drawn upright.
@@ -77,8 +123,8 @@ class hAxis extends Axis
      *
      * This option is only supported for a discrete axis.
      *
-     * @param boolean $slant
-     * @return \configs\hAxis
+     * @param boolean Status of label slant
+     * @return \hAxis
      */
     public function slantedText($slant)
     {
@@ -86,21 +132,21 @@ class hAxis extends Axis
         {
             $this->slantedText = $slant;
         } else {
-            $this->error('Invalid value for textPosition, must be type (boolean) and textPosition must be "out".');
+            $this->type_error('textPosition', 'boolean', 'and textPosition must be "out"');
         }
 
         return $this;
     }
 
     /**
-     * The angle of the axis text, if it's drawn slanted. Ignored if
+     * Sets the angle of the axis text, if it's drawn slanted. Ignored if
      * axis.slantedText is false, or is in auto mode, and the chart decided to
      * draw the text horizontally.
      *
      * This option is only supported for a discrete axis.
      *
-     * @param int $angle
-     * @return \configs\hAxis
+     * @param int Angle of labels
+     * @return \hAxis
      */
     public function slantedTextAngle($angle)
     {
@@ -108,14 +154,14 @@ class hAxis extends Axis
         {
             $this->slantedTextAngle = $angle;
         } else {
-            $this->error('Invalid value for slantedTextAngle, must be type (int) between 1 - 90.');
+            $this->type_error('slantedTextAngle', 'int', 'between 1 - 90');
         }
 
         return $this;
     }
 
     /**
-     * Horizontal Axis Max Alternation
+     * Sets the horizontal axis maximum alternation.
      *
      * Maximum number of levels of axis text. If axis text labels
      * become too crowded, the server might shift neighboring labels up or down
@@ -125,8 +171,8 @@ class hAxis extends Axis
      *
      * This option is only supported for a discrete axis.
      *
-     * @param int $alternation
-     * @return \configs\hAxis
+     * @param int Number of levels
+     * @return \hAxis
      */
     public function maxAlternation($alternation)
     {
@@ -134,21 +180,22 @@ class hAxis extends Axis
         {
             $this->maxAlternation = $alternation;
         } else {
-            $this->error('Invalid value for maxAlternation, must be type (int).');
+            $this->type_error('maxAlternation', 'int');
         }
 
         return $this;
     }
 
     /**
-     * Maximum number of lines allowed for the text labels. Labels can span
-     * multiple lines if they are too long, and the nuber of lines is, by
-     * default, limited by the height of the available space.
+     * Sets the maximum number of lines allowed for the text labels.
+     * 
+     * Labels can span multiple lines if they are too long, and the nuber of 
+     * lines is, by default, limited by the height of the available space.
      *
      * This option is only supported for a discrete axis.
      *
-     * @param int $maxTextLines
-     * @return \configs\hAxis
+     * @param int Number of lines
+     * @return \hAxis
      */
     public function maxTextLines($maxTextLines)
     {
@@ -156,23 +203,25 @@ class hAxis extends Axis
         {
             $this->maxTextLines = $maxTextLines;
         } else {
-            $this->error('Invalid value for maxTextLines, must be type (int).');
+            $this->type_error('maxTextLines', 'int');
         }
 
         return $this;
     }
 
     /**
-     * Minimum spacing, in pixels, allowed between two adjacent text
-     * labels. If the labels are spaced too densely, or they are too long,
+     * Sets the minimum spacing, in pixels, allowed between two adjacent text
+     * labels.
+     * 
+     * If the labels are spaced too densely, or they are too long,
      * the spacing can drop below this threshold, and in this case one of the
      * label-unclutter measures will be applied (e.g, truncating the lables or
      * dropping some of them).
      *
      * This option is only supported for a discrete axis.
      *
-     * @param int $minTextSpacing
-     * @return \configs\hAxis
+     * @param int Amount in pixels
+     * @return \hAxis
      */
     public function minTextSpacing($minTextSpacing)
     {
@@ -184,7 +233,7 @@ class hAxis extends Axis
             {
                 $this->minTextSpacing = $this->textStyle['fontSize'];
             } else {
-                $this->error('Invalid value for maxTextLines, must be type (int) or set via textStyle[\'fontSize\'].');
+                $this->type_error('maxTextLines', 'int', 'or set via textStyle[\'fontSize\']');
             }
         }
 
@@ -192,14 +241,15 @@ class hAxis extends Axis
     }
 
     /**
-     * How many axis labels to show, where 1 means show every label,
-     * 2 means show every other label, and so on. Default is to try to show as
-     * many labels as possible without overlapping.
+     * Sets how many axis labels to show.
+     * 
+     * 1 means show every label, 2 means show every other label, and so on.
+     * Default is to try to show as many labels as possible without overlapping.
      *
      * This option is only supported for a discrete axis.
      *
-     * @param int $showTextEvery
-     * @return \configs\hAxis
+     * @param int Number of labels
+     * @return \hAxis
      */
     public function showTextEvery($showTextEvery)
     {
@@ -207,7 +257,7 @@ class hAxis extends Axis
         {
             $this->showTextEvery = $showTextEvery;
         } else {
-            $this->error('Invalid value for showTextEvery, must be type (int).');
+            $this->type_error('showTextEvery', 'int');
         }
 
         return $this;
