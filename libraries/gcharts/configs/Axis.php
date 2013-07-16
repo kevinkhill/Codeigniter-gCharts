@@ -32,88 +32,92 @@ class Axis extends configOptions
     
     /**
      * The direction in which the values along the axis grow.
-     * Specify -1 to reverse the order of the values.
      * 
      * @var int 1 for natural, -1 for reverse.
      */
     var $direction = NULL;
     
     /**
-     * A format string for numeric axis labels. This is a subset of the ICU 
-     * pattern set. For instance, '#,###%' will display values 
-     * "1,000%", "750%", and "50%" for values 10, 7.5, and 0.5.
-     * 
-     * For date axis labels, this is a subset of the date formatting ICU pattern
-     * set. For instance, "MMM d, y" will display the value
-     * "Jul 1, 2011" for the date of July first in 2011.
+     * A format string for numeric axis labels.
      * 
      * @var string A string representing how data should be formatted.
      */
     var $format = NULL;
-    //@TODO: finish documentation
+    
     /**
-     *
-     * @var array Array with keys color and/or count.
+     * An array with key => value pairs to configure the gridlines.
+     * 
+     * @var array Accepted array keys [ color | count ].
      */
     var $gridlines = NULL;
     
     /**
-     *
-     * @var type 
+     * An array with key => value pairs to configure the minorGridlines.
+     * 
+     * @var array Accepted array keys [ color | count ].
      */
     var $minorGridlines = NULL;
     
     /**
-     *
-     * @var type 
+     * Linear or Logarithmic scaled axis.
+     * 
+     * @var boolean If TRUE, axis will be scaled; If FALSE, linear.
      */
     var $logScale = NULL;
     
     /**
-     *
-     * @var type 
+     * Position of the vertical axis text, relative to the chart area.
+     * 
+     * @var string Accepted values [ out | in | none ].
      */
     var $textPosition = NULL;
     
     /**
-     *
-     * @var type 
+     * An object that specifies the axis text style.
+     * 
+     * @var textStyle
      */
     var $textStyle = NULL;
     
     /**
-     *
-     * @var type 
+     * Property that specifies a title for the axis.
+     * 
+     * @var string Axis title. 
      */
     var $title = NULL;
     
     /**
-     *
-     * @var type 
+     * An object that specifies the text style of the chart title.
+     * 
+     * @var textStyle 
      */
     var $titleTextStyle = NULL;
     
     /**
-     *
-     * @var type 
+     * Moves the max value of the axis to the specified value.
+     * 
+     * @var int 
      */
     var $maxValue = NULL;
     
     /**
-     *
-     * @var type 
+     * Moves the min value of the axis to the specified value.
+     * 
+     * @var int 
      */
     var $minValue = NULL;
     
     /**
-     *
-     * @var type 
+     * Specifies how to scale the axis to render the values within the chart area.
+     * 
+     * @var string Accepted values [ pretty | maximized | explicit ]. 
      */
     var $viewWindowMode = NULL;
     
     /**
-     *
-     * @var type 
+     * Specifies the cropping range of the vertical axis.
+     * 
+     * @var array Accepted array keys [ min | max ]. 
      */
     var $viewWindow = NULL;
 
@@ -213,6 +217,8 @@ class Axis extends configOptions
     /**
      * Sets the direction of the axis values.
      *
+     * Specify -1 to reverse the order of the values.
+     * 
      * @param int $direction
      * @return \Axis
      */
@@ -229,7 +235,13 @@ class Axis extends configOptions
     }
 
     /**
-     * Sets the formatting applied to the axis label.
+     * Sets the formatting applied to the axis label. This is a subset of the ICU 
+     * pattern set. For instance, '#,###%' will display values 
+     * "1,000%", "750%", and "50%" for values 10, 7.5, and 0.5.
+     * 
+     * For date axis labels, this is a subset of the date formatting ICU pattern
+     * set. For instance, "MMM d, y" will display the value
+     * "Jul 1, 2011" for the date of July first in 2011.
      * 
      * This option is only supported for a continuous axis.
      *
@@ -249,9 +261,12 @@ class Axis extends configOptions
     }
 
     /**
-     * An array with members to configure the gridlines on the axis.
-     * To specify properties of this option, use an array, as shown here:
+     * Sets the color and count of the gridlines.
      *
+     * 'color' - The color of the gridlines, Specify a valid HTML color string.
+     * 'count' - The number of horizontal gridlines inside the chart area. 
+     * Minimum value is 2. Specify -1 to automatically compute the number 
+     * of gridlines.
      * array('color' => '#333', 'count' => 4);
      *
      * This option is only supported for a continuous axis.
@@ -293,11 +308,10 @@ class Axis extends configOptions
     }
 
     /**
-     * An array with members to configure the minor gridlines on the horizontal
-     * axis, similar to the gridlines option.
-     *
-     * 'color' - The color of the minor gridlines inside the chart area.
-     * Specify a valid HTML color string.
+     * Sets the color and count of the minorGridlines
+     * 
+     * 'color' - The color of the minor gridlines inside the chart area,
+     * specify a valid HTML color string.
      * 'count' - The number of minor gridlines between two regular gridlines.
      *
      * This option is only supported for a continuous axis.
@@ -334,7 +348,7 @@ class Axis extends configOptions
     }
 
     /**
-     * axis property that makes the axis a logarithmic scale
+     * Sets the axis property that makes the axis a logarithmic scale
      * (requires all values to be positive). Set to [ TRUE | FALSE ].
      *
      * This option is only supported for a continuous axis.
@@ -358,7 +372,7 @@ class Axis extends configOptions
      * Position of the axis text, relative to the chart area.
      * Supported values: 'out', 'in', 'none'.
      *
-     * @param string $position
+     * @param string Setting the position of the text.
      * @return \Axis
      */
     public function textPosition($position)
