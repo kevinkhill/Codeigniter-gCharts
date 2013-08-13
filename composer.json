@@ -1,0 +1,14 @@
+{
+    "name": "kevinkhill/gcharts",
+    "description": "Integrates Google Charts into Codeigniter",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kevin Hill",
+            "email": "kevinkhill@gmail.com"
+        }
+    ],
+    "require": {
+
+    }
+}

@@ -1,35 +1,35 @@
 #Codeigniter-gCharts
-###Google Chart API for CodeIgniter
+###Google Chart API for Codeigniter
 This is a library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5
 by [Kevin Hill](http://khilldesigns.site11.com)
 If you have any questions or comments, please email me or post issues here on Github
 
-> This has been designed as a "Spark" for Codeigniter, which is also hosted here on
-> [Getsparks](http://getsparks.org)  
+> This has been designed as a "library" for Codeigniter, which is also hosted here on
+> [Getlibrarys](http://getlibrarys.org)  
 
  - - -
 
 ##Installing
-1. Follow this guide on [getsparks](http://getsparks.org/install) to enable
-the spark manager for your codeigniter project
-2. Follow this next [guide](http://getsparks.org/get-sparks) to install the gcharts
-spark into codeigniter, replacing "example-spark" with "gcharts" (no quotes & ommiting
+1. Follow this guide on [getlibrarys](http://getlibrarys.org/install) to enable
+the library manager for your codeigniter project
+2. Follow this next [guide](http://getlibrarys.org/get-librarys) to install the gcharts
+library into codeigniter, replacing "example-library" with "gcharts" (no quotes & ommiting
 the version number)
 
 ##Usage
 Here is an example of how to create a line chart with two lines of data
 
 ###First, the Controller
-1. Load the spark in the controller you will use to define the chart, or add it to your autoload config file.
+1. Load the library in the controller you will use to define the chart, or add it to your autoload config file.
 
 ```
 //In controller
-   $this->load->spark('gcharts/0.0.1');  
+   $this->load->library('gcharts');  
 // - OR -
 //In autoload config
-   $autoload['sparks'] = array('gcharts/0.0.1');
+   $autoload['libraries'] = array('gcharts');
 ```
-2. Now we can use the gcharts spark to create a DataTable. Pass a string to the DataTable function to assign a label for the table.
+2. Now we can use the gcharts library to create a DataTable. Pass a string to the DataTable function to assign a label for the table.
 3. Then add your columns, defining what the chart's data will consist of. In this example, the first column is the horizontal axis, 
 then then next two columns are the two sets of data. The order of arguments are as follows: [data type, label, id]  
 

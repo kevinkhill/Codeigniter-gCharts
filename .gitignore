@@ -17,3 +17,5 @@ docs/
 ehthumbs.db
 Thumbs.db
 nbproject/
+
+/vendor/
