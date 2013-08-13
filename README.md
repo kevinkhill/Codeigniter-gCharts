@@ -1,6 +1,7 @@
 #Codeigniter-gCharts
 ###Google Chart API for Codeigniter
-This is a library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5  
+
+This is a library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5
 By: [Kevin Hill](kevinkhill@gmail.com)
 
 If you have any questions or comments... please email me, post issues here, or fork me and help me out ;)
@@ -16,7 +17,7 @@ If you have any questions or comments... please email me, post issues here, or f
 
 
 ##Examples
-Example charts have been included, just navigate to ```http://<YOUR_CI_SITE>/index.php/gcharts```
+Example charts have been included, just navigate to ```http://<YOUR_CI_SITE>/index.php/gchart_examples```
 
 
 
@@ -29,22 +30,22 @@ Here is an example of how to create a line chart with two lines of data
 	```
 	//Load in the controller
 	$this->load->library('gcharts');
-	
+
 	//Or in the autoload config file
 	$autoload['libraries'] = array('gcharts');
 	```
-	
+
 2. Now we can use the gcharts library to create a DataTable. Pass a string to the DataTable function to assign a label for the table.
 3. Then add your columns, defining what the chart's data will consist of. In this example, the first column is the horizontal axis, then then next two columns are the two sets of data. The order of arguments are as follows: [data type, label, id]
 
 	```
 	$dataTable = $this->gcharts->DataTable('Stocks');
-	
+
 	$dataTable->addColumn('number', 'Count', 'count');
 	$dataTable->addColumn('number', 'Projected', 'projected');
 	$dataTable->addColumn('number', 'Official', 'official');
 	```
-	
+
 4. Next add some data, for this example, it is filled with randomness. The addRow() function argument order follows the order in which the columns were added.
 So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is for 'official'
 
@@ -54,7 +55,7 @@ So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is fo
 	    $data[0] = $a //Count
 	    $data[1] = rand(800,1000); //Line 1's data
 	    $data[2] = rand(800,1000); //Line 2's data
-	    
+
 	    $dataTable->addRow($data);
 	}
 	```
@@ -66,7 +67,7 @@ So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is fo
 	    'title' => 'Stocks'
 	);
 	```
-	
+
 6. Finally, pass the configuration to the chart of choice, LineChart in this example, making sure that the Chart label matches the DataTable label.
 
 	```
@@ -76,7 +77,7 @@ So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is fo
 
 
 
- 
+
 ###The View
 1. Within your view, use these functions to get your chart onto the page.
 	* If you want everything generated automatically, use outputInto() with the div() function.
@@ -89,7 +90,7 @@ So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is fo
 	//Example #1, have the library create the div
 	echo $this->gcharts->LineChart('Stocks')->outputInto('stock_div');
 	echo $this->gcharts->div(600, 300);
-	
+
 	//Example #2, output into a div you already created
 	echo $this->gcharts->LineChart('Stocks')->outputInto('SOME-ID');
 	```
@@ -99,7 +100,7 @@ So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is fo
 	if($this->gcharts->hasErrors())
 	{
 	    echo $this->gcharts->getErrors();
-	} 
+	}
 	```
 
 
@@ -120,7 +121,7 @@ for($a = 1; $a < 25; $a++)
     $data[0] = $a //Count
     $data[1] = rand(800,1000); //Line 1's data
     $data[2] = rand(800,1000); //Line 2's data
-    
+
     $dataTable->addRow($data);
 }
 
@@ -140,8 +141,8 @@ echo $this->gcharts->div(600, 300);
 if($this->gcharts->hasErrors())
 {
     echo $this->gcharts->getErrors();
-} 
-```  
+}
+```
 
 ###Output
 ![Chart Output](http://i.imgur.com/Eojy0zu.png)
