@@ -208,6 +208,10 @@ class Gcharts
      */
     public function __construct()
     {
+        $CI = get_instance();
+        $CI->load->config('gcharts');
+        $CI->load->helper('gcharts');
+        
         self::$masterPath = realpath(dirname(__FILE__)).'/gcharts/';
         self::$configPath = self::$masterPath.'configs/';
         self::$chartPath = self::$masterPath.'charts/';
