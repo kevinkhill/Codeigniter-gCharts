@@ -338,7 +338,7 @@ class Gcharts
      */
     public function div($width = 0, $height = 0)
     {
-        if($width == 0 && $height == 0)
+        if($width == 0 || $height == 0)
         {
             if(isset(self::$elementID))
             {
@@ -357,7 +357,7 @@ class Gcharts
                     $this->_set_error(get_class($this), 'Error, output element ID is not set.');
                 }
             } else {
-                $this->_set_error(get_class($this), 'Invalid div width | height, must be type (int) > 0');
+                $this->_set_error(get_class($this), 'Invalid div width & height, must be type (int) > 0');
             }
         }
     }

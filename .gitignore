@@ -4,7 +4,8 @@
 */logs/!index.html
 */cache/*
 */cache/!index.html
-photos/*
+refs/
+docs/
 
 # OS generated files #
 ######################
@@ -15,4 +16,4 @@ photos/*
 .Trashes
 ehthumbs.db
 Thumbs.db
-/nbproject
+nbproject/
