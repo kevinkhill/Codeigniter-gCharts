@@ -1,0 +1,24 @@
+backgroundColor
+chartArea
+colors
+events
+fontSize
+fontName
+height
+legend
+title
+titlePosition
+titleTextStyle
+tooltip
+width
+
+
+([a-zA-Z]+)
+    public function $1()\n    {\n\treturn \$this;\n    }\n\n
+
+
+$('table:eq(1) tbody tr td:first-child').each(
+    function(){
+        window.console.log($(this).text());
+    }
+);
