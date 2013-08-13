@@ -1,79 +1,83 @@
 #Codeigniter-gCharts
 ###Google Chart API for Codeigniter
-This is a library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5
-by [Kevin Hill](http://khilldesigns.site11.com)
-If you have any questions or comments, please email me or post issues here on Github
+This is a library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5  
+By: [Kevin Hill](kevinkhill@gmail.com)
+
+If you have any questions or comments... please email me, post issues here, or fork me and help me out ;)
 
  - - -
 
-##Installing
-1. Clone the repo into a directory of your choice and copy all of the folders into your Codeigniter project.
 
-```
-git clone https://github.com/kevinkhill/Codeigniter-gCharts.git
-cd Codeigniter-gCharts/
-cp -r libraries/* <CODEIGNITER_PROJECT_ROOT>
-cp helpers/* <CODEIGNITER_PROJECT_ROOT>
-cp config/* <CODEIGNITER_PROJECT_ROOT>
-```
+##Installing
+1. Clone the repo into a directory of your choice and copy all of the files into their corresponding folders into your Codeigniter project.
+    * EX: Codeigniter-gCharts/config/gcharts.php into <CI_ROOT>/application/config/gcharts.php
 2. That's it! You now have the power of Google Charts in your project.
+
+
+
+##Examples
+Example charts have been included, just navigate to ```http://<YOUR_CI_SITE>/index.php/gcharts```
+
 
 
 ##Usage
 Here is an example of how to create a line chart with two lines of data
 
-###First, the Controller
+###The Controller
 1. Load the library in the controller you will use to define the chart, or add it to your autoload config file.
 
-```
-//Load in the controller
-$this->load->library('gcharts');
-
-//Or in the autoload config file
-$autoload['libraries'] = array('gcharts');
-```
+	```
+	//Load in the controller
+	$this->load->library('gcharts');
+	
+	//Or in the autoload config file
+	$autoload['libraries'] = array('gcharts');
+	```
+	
 2. Now we can use the gcharts library to create a DataTable. Pass a string to the DataTable function to assign a label for the table.
-3. Then add your columns, defining what the chart's data will consist of. In this example, the first column is the horizontal axis, then then next two columns are the two sets of data. The order of arguments are as follows: [data type, label, id]  
+3. Then add your columns, defining what the chart's data will consist of. In this example, the first column is the horizontal axis, then then next two columns are the two sets of data. The order of arguments are as follows: [data type, label, id]
 
-```
-$dataTable = $this->gcharts->DataTable('Stocks');
-
-$dataTable->addColumn('number', 'Count', 'count');
-$dataTable->addColumn('number', 'Projected', 'projected');
-$dataTable->addColumn('number', 'Official', 'official');
-```
+	```
+	$dataTable = $this->gcharts->DataTable('Stocks');
+	
+	$dataTable->addColumn('number', 'Count', 'count');
+	$dataTable->addColumn('number', 'Projected', 'projected');
+	$dataTable->addColumn('number', 'Official', 'official');
+	```
+	
 4. Next add some data, for this example, it is filled with randomness. The addRow() function argument order follows the order in which the columns were added.
 So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is for 'official'
 
-```
-for($a = 1; $a < 25; $a++)
-{
-    $data[0] = $a //Count
-    $data[1] = rand(800,1000); //Line 1's data
-    $data[2] = rand(800,1000); //Line 2's data
-    
-    $dataTable->addRow($data);
-}
-```
+	```
+	for($a = 1; $a < 25; $a++)
+	{
+	    $data[0] = $a //Count
+	    $data[1] = rand(800,1000); //Line 1's data
+	    $data[2] = rand(800,1000); //Line 2's data
+	    
+	    $dataTable->addRow($data);
+	}
+	```
 
 5. Now lets configure some options for the chart. There are many ways to customize the chart, but we'll keep it simple. (Refer to the documentation for the list of configuration options.)
 
-```
-$config = array(
-    'title' => 'Stocks'
-);
-```
+	```
+	$config = array(
+	    'title' => 'Stocks'
+	);
+	```
+	
 6. Finally, pass the configuration to the chart of choice, LineChart in this example, making sure that the Chart label matches the DataTable label.
 
-```
-//Since we named the dataTable "Stocks", call the LineChart function as "Stocks" to use that dataTable
-$this->gcharts->LineChart('Stocks')->setConfig($config);
-```
+	```
+	//Since we named the dataTable "Stocks", call the LineChart function as "Stocks" to use that dataTable
+	$this->gcharts->LineChart('Stocks')->setConfig($config);
+	```
 
 
- - - -
+
  
-###Second, the View
+###The View
 1. Within your view, use these functions to get your chart onto the page.
 	* If you want everything generated automatically, use outputInto() with the div() function.
 	* Pass a string as a label to the outputInto() function which will be used when creating the div.
@@ -81,22 +85,23 @@ $this->gcharts->LineChart('Stocks')->setConfig($config);
 	* NOTE: You can also pass [width, height] to the div() function and it will be applied to the div.
 2. If you already have a ```<div id="SOME-ID">``` on the page, then ommit the div() function and just pass the div's ID into the outputInto() function.
 
-```
-//Example #1, have the library create the div
-echo $this->gcharts->LineChart('Stocks')->outputInto('stock_div');
-echo $this->gcharts->div(600, 300);
-
-//Example #2, output into a div you already created
-echo $this->gcharts->LineChart('Stocks')->outputInto('SOME-ID');
-```
+	```
+	//Example #1, have the library create the div
+	echo $this->gcharts->LineChart('Stocks')->outputInto('stock_div');
+	echo $this->gcharts->div(600, 300);
+	
+	//Example #2, output into a div you already created
+	echo $this->gcharts->LineChart('Stocks')->outputInto('SOME-ID');
+	```
 3. You can also setup a way of viewing errors in the creation of the chart by using this method.
 
-```
-if($this->gcharts->hasErrors())
-{
-    echo $this->gcharts->getErrors();
-} 
-```  
+	```
+	if($this->gcharts->hasErrors())
+	{
+	    echo $this->gcharts->getErrors();
+	} 
+	```
+
 
 ##Putting it all together
 ```
