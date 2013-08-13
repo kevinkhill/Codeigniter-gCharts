@@ -4,7 +4,7 @@
 This is a library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5
 By: [Kevin Hill](kevinkhill@gmail.com)
 
-If you have any questions or comments... please email me, post issues here, or fork me and help me out ;)
+If you have any questions or comments... please email me, post issues here, or fork me and help out ;)
 
  - - -
 
@@ -145,7 +145,7 @@ if($this->gcharts->hasErrors())
 ```
 
 ###Output
-![Chart Output](http://i.imgur.com/Eojy0zu.png)
+![Chart Output](http://i.imgur.com/XVM8q7T.png)
 
 
 ##Todo
