@@ -1,4 +1,18 @@
+<h1><?php echo anchor('gchart_examples', 'Codeigniter gChart Examples'); ?> \ Advanced Area Chart</h1>
 <?php
+    echo $this->gcharts->LineChart('Growth')->outputInto('growth_div');
+    echo $this->gcharts->div(800, 250);
+
+    if($this->gcharts->hasErrors())
+    {
+        echo $this->gcharts->getErrors();
+    }
+?>
+
+<hr />
+
+<h2>Controller Code</h2>
+<pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#e0e0e0;padding:5px;">
 $dataTable = $this->gcharts->DataTable('Times');
 
 $dataTable->addColumn('date', 'Dates', 'dates');
@@ -108,4 +122,15 @@ $config = array(
 );
 
 $this->gcharts->LineChart('Times')->setConfig($config);
-?>
+</pre>
+
+<h2>View Code</h2>
+<pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#e0e0e0;padding:5px;">
+echo $this->gcharts->LineChart('Growth')->outputInto('growth_div');
+echo $this->gcharts->div(800, 250);
+
+if($this->gcharts->hasErrors())
+{
+    echo $this->gcharts->getErrors();
+}
+</pre>

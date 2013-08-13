@@ -52,7 +52,7 @@ So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is fo
 	```
 	for($a = 1; $a < 25; $a++)
 	{
-	    $data[0] = $a //Count
+	    $data[0] = $a; //Count
 	    $data[1] = rand(800,1000); //Line 1's data
 	    $data[2] = rand(800,1000); //Line 2's data
 
@@ -146,3 +146,32 @@ if($this->gcharts->hasErrors())
 
 ###Output
 ![Chart Output](http://i.imgur.com/Eojy0zu.png)
+
+
+##Todo
+ * Add event callbacks
+ * Support more charts
+ * Make available via composer and/or sparks and/or non-codeigniter projects
+
+##License
+
+                              MIT License
+             Copyright (c) 2013, Kevin Hill of KHill Designs
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

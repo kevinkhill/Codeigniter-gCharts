@@ -1,4 +1,18 @@
+<h1><?php echo anchor('gchart_examples', 'Codeigniter gChart Examples'); ?> \ Advanced Pie Chart</h1>
 <?php
+    echo $this->gcharts->PieChart('Activities')->outputInto('activites_div');
+    echo $this->gcharts->div(600, 400);
+
+    if($this->gcharts->hasErrors())
+    {
+        echo $this->gcharts->getErrors();
+    }
+?>
+
+<hr />
+
+<h2>Controller Code</h2>
+<pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#e0e0e0;padding:5px;">
 $dataTable = $this->gcharts->DataTable('Activities');
 $dataTable->addColumn('string', 'Foods', 'food');
 $dataTable->addColumn('string', 'Amount', 'amount');
@@ -24,7 +38,6 @@ $config = array(
         'fontName' => 'Impact',
         'fontSize' => 24
     )),
-    //'is3D' => TRUE,
     'pieSliceBorderColor' => 'orange',
     'pieSliceTextStyle' => new textStyle(array(
         'color' => 'yellow',
@@ -38,4 +51,15 @@ $config = array(
 );
 
 $this->gcharts->PieChart('Activities')->setConfig($config);
-?>
+</pre>
+
+<h2>View Code</h2>
+<pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#e0e0e0;padding:5px;">
+echo $this->gcharts->PieChart('Activities')->outputInto('activites_div');
+echo $this->gcharts->div(600, 400);
+
+if($this->gcharts->hasErrors())
+{
+    echo $this->gcharts->getErrors();
+}
+</pre>

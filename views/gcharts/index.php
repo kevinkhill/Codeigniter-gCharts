@@ -2,18 +2,18 @@
 
 <h2>LineCharts</h2>
 <ul>
-    <li><h3><?php echo anchor('gcharts/line_chart_basic', 'Basic'); ?></h3></li>
-    <li><h3>Advanced</h3></li>
+    <li><h3><?php echo anchor('gchart_examples/line_chart_basic', 'Basic'); ?></h3></li>
+    <li><h3><?php echo anchor('gchart_examples/line_chart_advanced', 'Advanced'); ?></h3></li>
 </ul>
 
 <h2>AreaCharts</h2>
 <ul>
-    <li><h3>Basic</h3></li>
-    <li><h3>Advanced</h3></li>
+    <li><h3><?php echo anchor('gchart_examples/area_chart_basic', 'Basic'); ?></h3></li>
+    <li><h3><?php echo anchor('gchart_examples/area_chart_advanced', 'Advanced'); ?></h3></li>
 </ul>
 
 <h2>PieCharts</h2>
 <ul>
-    <li><h3>Basic</h3></li>
-    <li><h3>Advanced</h3></li>
+    <li><h3><?php echo anchor('gchart_examples/pie_chart_basic', 'Basic'); ?></h3></li>
+    <li><h3><?php echo anchor('gchart_examples/pie_chart_advanced', 'Advanced'); ?></h3></li>
 </ul>
