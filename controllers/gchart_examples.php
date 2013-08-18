@@ -306,7 +306,8 @@ class Gchart_examples extends CI_Controller
 
     public function column_chart_basic()
     {
-        $this->gcharts->load('ColumnChart');
+        $this->gcharts->load('ColumnChart'); /* @TODO: add load calls to all examples */
+        
         $dataTable = $this->gcharts->DataTable('Inventory');
 
         $dataTable->addColumn('string', 'Products', 'products');

@@ -14,7 +14,7 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
-class ColumnChart extends Chart
+class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
 {
     public function __construct($chartLabel)
     {

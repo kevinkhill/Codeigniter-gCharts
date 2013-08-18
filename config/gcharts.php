@@ -19,7 +19,7 @@
 $config['autoloadCharts'] = array(
     'LineChart',
     'AreaChart',
-    'PieChart'
+    'PieChart' /* @TODO: Add note about autolaoding, instead, load as needed */
 );
 
 /*
