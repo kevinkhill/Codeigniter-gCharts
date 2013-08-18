@@ -17,3 +17,9 @@
     <li><h3><?php echo anchor('gchart_examples/pie_chart_basic', 'Basic'); ?></h3></li>
     <li><h3><?php echo anchor('gchart_examples/pie_chart_advanced', 'Advanced'); ?></h3></li>
 </ul>
+
+<h2>ColumnCharts</h2>
+<ul>
+    <li><h3><?php echo anchor('gchart_examples/column_chart_basic', 'Basic'); ?></h3></li>
+    <li><h3><?php echo anchor('gchart_examples/column_chart_advanced', 'Advanced'); ?></h3></li>
+</ul>

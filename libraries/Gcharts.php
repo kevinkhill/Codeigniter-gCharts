@@ -156,6 +156,13 @@ class Gcharts
     static $pieCharts = array();
 
     /**
+     * Holds all of the defined ColumnCharts.
+     *
+     * @var array
+     */
+    static $columnCharts = array();
+
+    /**
      * Property defining if the generation of charts occured any errors.
      *
      * @var boolean
@@ -179,7 +186,8 @@ class Gcharts
         'DataTable',
         'LineChart',
         'AreaChart',
-        'PieChart'
+        'PieChart',
+        'ColumnChart'
     );
 
     /**
@@ -211,7 +219,7 @@ class Gcharts
         $CI = get_instance();
         $CI->load->config('gcharts');
         $CI->load->helper('gcharts');
-        
+
         self::$masterPath = realpath(dirname(__FILE__)).'/gcharts/';
         self::$configPath = self::$masterPath.'configs/';
         self::$chartPath = self::$masterPath.'charts/';

@@ -306,6 +306,7 @@ class Gchart_examples extends CI_Controller
 
     public function column_chart_basic()
     {
+        $this->gcharts->load('ColumnChart');
         $dataTable = $this->gcharts->DataTable('Inventory');
 
         $dataTable->addColumn('string', 'Products', 'products');
@@ -314,10 +315,7 @@ class Gchart_examples extends CI_Controller
         $dataTable->addColumn('number', 'Erasers', 'erasers');
         $dataTable->addColumn('number', 'Binders', 'binders');
 
-        $dataTable->addRow(array('Pencils', 165));
-        $dataTable->addRow(array('Marker', 104));
-        $dataTable->addRow(array('Erasers', 122));
-        $dataTable->addRow(array('Binders', 56));
+        $dataTable->addRow(array('Count', 528, 428, 614, 591));
 
         $config = array(
             'title' => 'Inventory'

@@ -1,9 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * LineChart Class
+ * ColumnChart Class
  *
- * A line chart that is rendered within the browser using SVG or VML. Displays
- * tips when hovering over points.
+ * A vertical bar chart that is rendered within the browser using SVG or VML.
+ * Displays tips when hovering over bars. For a horizontal version of this
+ * chart, see the Bar Chart.
  *
  *
  * @author Kevin Hill <kevinkhill@gmail.com>
