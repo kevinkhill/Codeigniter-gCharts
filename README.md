@@ -20,6 +20,13 @@ If you have any questions or comments... please email me, post issues here, or f
 Example charts have been included, just navigate to ```http://<YOUR_CI_SITE>/index.php/gchart_examples```
 
 
+##Configuration
+Located at <CI_APPLICATION_FOLDER>/config/gcharts.php, there are some options you can set globally for the gCharts library
+ * autoloadCharts - Automatically load charts instead of calling the gcharts->load() function.
+ * errorPrepend - This will be prepended to error messages to stylize, EX: <p class="error">
+ * errorAppend - This will come after the error message, probably should match and close the prepend value, EX: </p>
+ * More options coming soon...
+
 
 ##Usage
 Here is an example of how to create a line chart with two lines of data
@@ -34,9 +41,18 @@ Here is an example of how to create a line chart with two lines of data
 	//Or in the autoload config file
 	$autoload['libraries'] = array('gcharts');
 	```
+2. Next load the chart that you are going to use, or autoload it in the gcharts config file.
 
-2. Now we can use the gcharts library to create a DataTable. Pass a string to the DataTable function to assign a label for the table.
-3. Then add your columns, defining what the chart's data will consist of. In this example, the first column is the horizontal axis, then then next two columns are the two sets of data. The order of arguments are as follows: [data type, label, id]
+        ```
+        //Load in th controller
+        #this->gcharts->load('LineChart');
+
+        //Or in the gcharts config file
+        $config['autoloadCharts'] = array('LineChart');
+        ```
+
+3. Now we can use the gcharts library to create a DataTable. Pass a string to the DataTable function to assign a label for the table.
+4. Then add your columns, defining what the chart's data will consist of. In this example, the first column is the horizontal axis, then then next two columns are the two sets of data. The order of arguments are as follows: [data type, label, id]
 
 	```
 	$dataTable = $this->gcharts->DataTable('Stocks');
@@ -46,7 +62,7 @@ Here is an example of how to create a line chart with two lines of data
 	$dataTable->addColumn('number', 'Official', 'official');
 	```
 
-4. Next add some data, for this example, it is filled with randomness. The addRow() function argument order follows the order in which the columns were added.
+5. Next add some data, for this example, it is filled with randomness. The addRow() function argument order follows the order in which the columns were added.
 So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is for 'official'
 
 	```
@@ -60,7 +76,7 @@ So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is fo
 	}
 	```
 
-5. Now lets configure some options for the chart. There are many ways to customize the chart, but we'll keep it simple. (Refer to the documentation for the list of configuration options.)
+6. Now lets configure some options for the chart. There are many ways to customize the chart, but we'll keep it simple. (Refer to the documentation for the list of configuration options.)
 
 	```
 	$config = array(
@@ -68,13 +84,12 @@ So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is fo
 	);
 	```
 
-6. Finally, pass the configuration to the chart of choice, LineChart in this example, making sure that the Chart label matches the DataTable label.
+7. Finally, pass the configuration to the chart of choice, LineChart in this example, making sure that the Chart label matches the DataTable label.
 
 	```
 	//Since we named the dataTable "Stocks", call the LineChart function as "Stocks" to use that dataTable
 	$this->gcharts->LineChart('Stocks')->setConfig($config);
 	```
-
 
 
 
@@ -109,6 +124,7 @@ So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is fo
 //Controller
 
 $this->load->library('gcharts');
+$this->gcharts->load('LineChart');
 
 $dataTable = $this->gcharts->DataTable('Stocks');
 
@@ -152,6 +168,7 @@ if($this->gcharts->hasErrors())
  * Add event callbacks
  * Support more charts
  * Make available via composer and/or sparks and/or non-codeigniter projects
+
 
 ##License
 
