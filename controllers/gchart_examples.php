@@ -303,6 +303,146 @@ class Gchart_examples extends CI_Controller
         $this->load->view('gcharts/pie_chart_advanced');
     }
 
+
+    public function column_chart_basic()
+    {
+        $dataTable = $this->gcharts->DataTable('Inventory');
+
+        $dataTable->addColumn('string', 'Products', 'products');
+        $dataTable->addColumn('number', 'Pencils', 'pencils');
+        $dataTable->addColumn('number', 'Markers', 'markers');
+        $dataTable->addColumn('number', 'Erasers', 'erasers');
+        $dataTable->addColumn('number', 'Binders', 'binders');
+
+        $dataTable->addRow(array('Pencils', 165));
+        $dataTable->addRow(array('Marker', 104));
+        $dataTable->addRow(array('Erasers', 122));
+        $dataTable->addRow(array('Binders', 56));
+
+        $config = array(
+            'title' => 'Inventory'
+        );
+
+        $this->gcharts->ColumnChart('Inventory')->setConfig($config);
+
+        $this->load->view('gcharts/column_chart_basic');
+    }
+
+    public function column_chart_advanced()
+    {
+        $dataTable = $this->gcharts->DataTable('Times');
+
+        $dataTable->addColumn('date', 'Dates', 'dates');
+        $dataTable->addColumn('number', 'Run Time', 'run_time');
+        $dataTable->addColumn('number', 'Schedule Time', 'schedule_time');
+
+        for($a = 1; $a < 30; $a++)
+        {
+            $line1 = rand(1,5);
+            $line2 = rand(1,5);
+            $dataTable->addRow(array(new jsDate(2013, 8, $a), $line1, $line2));
+        }
+
+        //Either Chain functions together to set configuration
+        $titleStyle = new textStyle();
+        $titleStyle->color('#FF0A04')->fontName('Georgia')->fontSize(18);
+
+        $legendStyle = new textStyle();
+        $legendStyle->color('#F3BB00')->fontName('Arial')->fontSize(20);
+
+        //Or pass and array with configuration options
+        $legend = new legend(array(
+            'position' => 'bottom',
+            'alignment' => 'start',
+            'textStyle' => $legendStyle
+        ));
+
+        $tooltipStyle = new textStyle(array(
+            'color' => '#C0C0B0',
+            'fontName' => 'Courier New',
+            'fontSize' => 10
+        ));
+
+        $tooltip = new tooltip(array(
+            'showColorCode' => TRUE,
+            'textStyle' => $tooltipStyle
+        ));
+
+
+        $config = array(
+            'backgroundColor' => new backgroundColor(array(
+                'stroke' => '#BBBBBB',
+                'strokeWidth' => 8,
+                'fill' => '#EFEFFF'
+            )),
+            'chartArea' => new chartArea(array(
+                'left' => 100,
+                'top' => 75,
+                'width' => '85%',
+                'height' => '55%'
+            )),
+            'titleTextStyle' => $titleStyle,
+            'legend' => $legend,
+            'tooltip' => $tooltip,
+            'title' => 'Times for Deliveries',
+            'titlePosition' => 'out',
+            'curveType' => 'function',
+            'width' => 1000,
+            'height' => 450,
+            'pointSize' => 3,
+            'lineWidth' => 1,
+            'colors' => array('#4F9CBB', 'green'),
+            'hAxis' => new hAxis(array(
+                'baselineColor' => '#fc32b0',
+                'gridlines' => array(
+                    'color' => '#43fc72',
+                    'count' => 6
+                ),
+                'minorGridlines' => array(
+                    'color' => '#b3c8d1',
+                    'count' => 3
+                ),
+                'textPosition' => 'out',
+                'textStyle' => new textStyle(array(
+                    'color' => '#C42B5F',
+                    'fontName' => 'Tahoma',
+                    'fontSize' => 10
+                )),
+                'slantedText' => TRUE,
+                'slantedTextAngle' => 30,
+                'title' => 'Delivery Dates',
+                'titleTextStyle' => new textStyle(array(
+                    'color' => '#BB33CC',
+                    'fontName' => 'Impact',
+                    'fontSize' => 14
+                )),
+                'maxAlternation' => 6,
+                'maxTextLines' => 2
+            )),
+            'vAxis' => new vAxis(array(
+                'baseline' => 1,
+                'baselineColor' => '#CF3BBB',
+                'format' => '## hrs',
+                'textPosition' => 'out',
+                'textStyle' => new textStyle(array(
+                    'color' => '#DDAA88',
+                    'fontName' => 'Arial Bold',
+                    'fontSize' => 10
+                )),
+                'title' => 'Delivery Time',
+                'titleTextStyle' => new textStyle(array(
+                    'color' => '#5C6DAB',
+                    'fontName' => 'Verdana',
+                    'fontSize' => 14
+                )),
+            ))
+        );
+
+        $this->gcharts->LineChart('Times')->setConfig($config);
+
+        $this->load->view('gcharts/line_chart_advanced');
+    }
+
 }
 
 /* End of file gchart_examples.php */
