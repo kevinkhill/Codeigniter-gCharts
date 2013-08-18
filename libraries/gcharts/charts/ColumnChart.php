@@ -22,7 +22,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
 
         $this->defaults = array_merge($this->defaults, array(
 //            'animation',
-            'curveType',
+//            'curveType',
 //            'enableInteractivity',
             'focusTarget',
             'hAxis',
@@ -112,32 +112,6 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
         return $this;
     }
 
-    /**
-     * Controls the curve of the lines when the line width is not zero. Can be one of the following:
-     *
-     * 'none' - Straight lines without curve.
-     * 'function' - The angles of the line will be smoothed.
-     *
-     * @param string $curveType
-     * @return \LineChart
-     */
-    public function curveType($curveType)
-    {
-        $values = array(
-            'none',
-            'function'
-        );
-
-        if(in_array($curveType, $values))
-        {
-            $this->addOption(array('curveType' => (string) $curveType));
-        } else {
-            $this->error('Invalid curveType, must be type (string) with a value of '.array_string($values));
-        }
-
-        return $this;
-    }
-
 //    public function enableInteractivity($param)
 //    {
 //
@@ -199,6 +173,24 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
             $this->addOption(array('isHTML' => $isHTML));
         } else {
             $this->error('Invalid isHTML value, must be type (boolean)');
+        }
+
+        return $this;
+    }
+
+    /**
+     * If set to true, series elements are stacked.
+     *
+     * @param boolean $isStacked
+     * @return \LineChart
+     */
+    public function isStacked($isStacked)
+    {
+        if(is_bool($isStacked))
+        {
+            $this->addOption(array('isStacked' => $isStacked));
+        } else {
+            $this->error('Invalid isStacked value, must be type (boolean)');
         }
 
         return $this;

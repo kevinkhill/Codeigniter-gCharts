@@ -5,7 +5,7 @@
  * An object containing all the values for the axis which can be
  * passed into the chart's options.
  *
- * 
+ *
  * @author Kevin Hill <kevinkhill@gmail.com>
  * @copyright (c) 2013, KHill Designs
  * @link https://github.com/kevinkhill/Codeigniter-gCharts GitHub Repository Page
@@ -13,7 +13,6 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
-//@TODO: Finish Documentation.
 class Axis extends configOptions
 {
     /**
@@ -29,106 +28,106 @@ class Axis extends configOptions
      * @var string Valid HTML color.
      */
     var $baselineColor = NULL;
-    
+
     /**
      * The direction in which the values along the axis grow.
-     * 
+     *
      * @var int 1 for natural, -1 for reverse.
      */
     var $direction = NULL;
-    
+
     /**
      * A format string for numeric axis labels.
-     * 
+     *
      * @var string A string representing how data should be formatted.
      */
     var $format = NULL;
-    
+
     /**
      * An array with key => value pairs to configure the gridlines.
-     * 
+     *
      * @var array Accepted array keys [ color | count ].
      */
     var $gridlines = NULL;
-    
+
     /**
      * An array with key => value pairs to configure the minorGridlines.
-     * 
+     *
      * @var array Accepted array keys [ color | count ].
      */
     var $minorGridlines = NULL;
-    
+
     /**
      * Linear or Logarithmic scaled axis.
-     * 
+     *
      * @var boolean If TRUE, axis will be scaled; If FALSE, linear.
      */
     var $logScale = NULL;
-    
+
     /**
      * Position of the vertical axis text, relative to the chart area.
-     * 
+     *
      * @var string Accepted values [ out | in | none ].
      */
     var $textPosition = NULL;
-    
+
     /**
      * An object that specifies the axis text style.
-     * 
+     *
      * @var textStyle
      */
     var $textStyle = NULL;
-    
+
     /**
      * Property that specifies a title for the axis.
-     * 
-     * @var string Axis title. 
+     *
+     * @var string Axis title.
      */
     var $title = NULL;
-    
+
     /**
      * An object that specifies the text style of the chart title.
-     * 
-     * @var textStyle 
+     *
+     * @var textStyle
      */
     var $titleTextStyle = NULL;
-    
+
     /**
      * Moves the max value of the axis to the specified value.
-     * 
-     * @var int 
+     *
+     * @var int
      */
     var $maxValue = NULL;
-    
+
     /**
      * Moves the min value of the axis to the specified value.
-     * 
-     * @var int 
+     *
+     * @var int
      */
     var $minValue = NULL;
-    
+
     /**
      * Specifies how to scale the axis to render the values within the chart area.
-     * 
-     * @var string Accepted values [ pretty | maximized | explicit ]. 
+     *
+     * @var string Accepted values [ pretty | maximized | explicit ].
      */
     var $viewWindowMode = NULL;
-    
+
     /**
      * Specifies the cropping range of the vertical axis.
-     * 
-     * @var array Accepted array keys [ min | max ]. 
+     *
+     * @var array Accepted array keys [ min | max ].
      */
     var $viewWindow = NULL;
 
     /**
      * Stores all the configuration for the axis.
-     * 
+     *
      * @var array
      */
     var $options = array();
 
-    
+
     /**
      * Builds the configuration when passed an array of options.
      *
@@ -136,7 +135,7 @@ class Axis extends configOptions
      * values for option => value, or by chaining together the functions once
      * an object has been created.
      *
-     * @param array Associative array containing key => value pairs for the 
+     * @param array Associative array containing key => value pairs for the
      * various configuration options.
      * @return \Axis
      */
@@ -196,7 +195,7 @@ class Axis extends configOptions
      * Sets the color of the baseline for the axis.
      *
      * Can be any HTML color string, for example: 'red' or '#00cc00'.
-     * 
+     *
      * This option is only supported for a continuous axis.
      *
      * @param string Valid HTML color.
@@ -218,7 +217,7 @@ class Axis extends configOptions
      * Sets the direction of the axis values.
      *
      * Specify -1 to reverse the order of the values.
-     * 
+     *
      * @param int $direction
      * @return \Axis
      */
@@ -235,14 +234,14 @@ class Axis extends configOptions
     }
 
     /**
-     * Sets the formatting applied to the axis label. This is a subset of the ICU 
-     * pattern set. For instance, '#,###%' will display values 
+     * Sets the formatting applied to the axis label. This is a subset of the ICU
+     * pattern set. For instance, '#,###%' will display values
      * "1,000%", "750%", and "50%" for values 10, 7.5, and 0.5.
-     * 
+     *
      * For date axis labels, this is a subset of the date formatting ICU pattern
      * set. For instance, "MMM d, y" will display the value
      * "Jul 1, 2011" for the date of July first in 2011.
-     * 
+     *
      * This option is only supported for a continuous axis.
      *
      * @param string $format format string for numeric or date axis labels.
@@ -264,8 +263,8 @@ class Axis extends configOptions
      * Sets the color and count of the gridlines.
      *
      * 'color' - The color of the gridlines, Specify a valid HTML color string.
-     * 'count' - The number of horizontal gridlines inside the chart area. 
-     * Minimum value is 2. Specify -1 to automatically compute the number 
+     * 'count' - The number of horizontal gridlines inside the chart area.
+     * Minimum value is 2. Specify -1 to automatically compute the number
      * of gridlines.
      * array('color' => '#333', 'count' => 4);
      *
@@ -309,7 +308,7 @@ class Axis extends configOptions
 
     /**
      * Sets the color and count of the minorGridlines
-     * 
+     *
      * 'color' - The color of the minor gridlines inside the chart area,
      * specify a valid HTML color string.
      * 'count' - The number of minor gridlines between two regular gridlines.

@@ -73,7 +73,7 @@ class backgroundColor extends configOptions
 
     /**
      * Sets the chart border color. Example: 'red' or '#A2A2A2'
-     * 
+     *
      * @param string Valid HTML color string.
      * @return \backgroundColor
      */
@@ -83,7 +83,7 @@ class backgroundColor extends configOptions
         {
             $this->stroke = $stroke;
         } else {
-            $this->type_error(__FUNCTION__, 'string'); //@TODO: Test this
+            $this->type_error(__FUNCTION__, 'string');
         }
 
         return $this;
@@ -109,7 +109,7 @@ class backgroundColor extends configOptions
 
     /**
      * Sets the chart color fill, Example: 'blue' or '#C5C5C5'
-     * 
+     *
      * @param string Valid HTML color string.
      * @return \backgroundColor
      */
