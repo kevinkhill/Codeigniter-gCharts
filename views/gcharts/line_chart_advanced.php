@@ -13,6 +13,8 @@
 
 <h2>Controller Code</h2>
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#f2f2f2;padding:5px;">
+$this->gcharts->load('LineChart');
+
 $dataTable = $this->gcharts->DataTable('Times');
 
 $dataTable->addColumn('date', 'Dates', 'dates');

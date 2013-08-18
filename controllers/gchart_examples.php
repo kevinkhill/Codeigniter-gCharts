@@ -14,8 +14,12 @@ class Gchart_examples extends CI_Controller
         $this->load->view('gcharts/index');
     }
 
+
+/* ---------- Line Charts ---------- */
     public function line_chart_basic()
     {
+        $this->gcharts->load('LineChart');
+
         $dataTable = $this->gcharts->DataTable('Stocks');
 
         $dataTable->addColumn('number', 'Count', 'count');
@@ -42,6 +46,8 @@ class Gchart_examples extends CI_Controller
 
     public function line_chart_advanced()
     {
+        $this->gcharts->load('LineChart');
+
         $dataTable = $this->gcharts->DataTable('Times');
 
         $dataTable->addColumn('date', 'Dates', 'dates');
@@ -155,8 +161,12 @@ class Gchart_examples extends CI_Controller
         $this->load->view('gcharts/line_chart_advanced');
     }
 
+
+/* ---------- Area Charts ---------- */
     public function area_chart_basic()
     {
+        $this->gcharts->load('AreaChart');
+
         $dataTable = $this->gcharts->DataTable('Rain');
 
         $dataTable->addColumn('number', 'Count', 'count');
@@ -181,6 +191,8 @@ class Gchart_examples extends CI_Controller
 
     public function area_chart_advanced()
     {
+        $this->gcharts->load('AreaChart');
+
         $dataTable = $this->gcharts->DataTable('Growth');
 
         $dataTable->addColumn('date', 'Dates', 'dates');
@@ -232,8 +244,12 @@ class Gchart_examples extends CI_Controller
         $this->load->view('gcharts/area_chart_advanced');
     }
 
+
+/* ---------- Pie Charts ---------- */
     public function pie_chart_basic()
     {
+        $this->gcharts->load('PieChart');
+
         $dataTable = $this->gcharts->DataTable('Foods');
 
         $dataTable->addColumn('string', 'Foods', 'food');
@@ -261,6 +277,8 @@ class Gchart_examples extends CI_Controller
 
     public function pie_chart_advanced()
     {
+        $this->gcharts->load('PieChart');
+
         $dataTable = $this->gcharts->DataTable('Activities');
         $dataTable->addColumn('string', 'Foods', 'food');
         $dataTable->addColumn('string', 'Amount', 'amount');
