@@ -156,6 +156,13 @@ class Gcharts
     static $pieCharts = array();
 
     /**
+     * Holds all of the defined ColumnCharts.
+     *
+     * @var array
+     */
+    static $columnCharts = array();
+
+    /**
      * Property defining if the generation of charts occured any errors.
      *
      * @var boolean
