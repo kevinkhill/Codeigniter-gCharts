@@ -10,8 +10,12 @@ If you have any questions or comments... please email me, post issues here, or f
 
 
 ##Installing
-1. Clone the repo into a directory of your choice and copy all of the files into their corresponding folders into your Codeigniter project.
-    * EX: Codeigniter-gCharts/config/gcharts.php into <CI_ROOT>/application/config/gcharts.php
+1. Clone the repo into a directory of your choice and copy ALL of the files into their corresponding folders in your Codeigniter project.
+    * ```Codeigniter-gCharts/config/gcharts.php``` -> ```<CI_ROOT>/application/config/gcharts.php```
+    * ```Codeigniter-gCharts/controllers/gchart_examples.php``` -> ```<CI_ROOT>/application/controllers/gchart_examples.php```
+    * ```Codeigniter-gCharts/helpers/gcharts_helper.php``` -> ```<CI_ROOT>/application/helpers/gcharts_helper.php```
+    * ```Codeigniter-gCharts/libraries/*``` -> ```<CI_ROOT>/application/libraries/```
+    * ```Codeigniter-gCharts/views/*``` -> ```<CI_ROOT>/application/views/```
 2. That's it! You now have the power of Google Charts in your project.
 
 
@@ -21,10 +25,10 @@ Example charts have been included, just navigate to ```http://<YOUR_CI_SITE>/ind
 
 
 ##Configuration
-Located at <CI_APPLICATION_FOLDER>/config/gcharts.php, there are some options you can set globally for the gCharts library
+Located at ```<CI_APPLICATION_FOLDER>/config/gcharts.php```, there are some options you can set globally for the gCharts library
  * autoloadCharts - Automatically load charts instead of calling the gcharts->load() function.
- * errorPrepend - This will be prepended to error messages to stylize, EX: <p class="error">
- * errorAppend - This will come after the error message, probably should match and close the prepend value, EX: </p>
+ * errorPrepend - This will be prepended to error messages to stylize, EX: ```<p class="error">```
+ * errorAppend - This will come after the error message, probably should match and close the prepend value, EX: ```</p>```
  * More options coming soon...
 
 
