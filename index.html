@@ -46,12 +46,7 @@ By: <a href="kevinkhill@gmail.com">Kevin Hill</a></p>
 <a name="installing" class="anchor" href="#installing"><span class="octicon octicon-link"></span></a>Installing</h2>
 
 <ol>
-<li>Clone the repo into a directory of your choice and copy all of the files into their corresponding folders into your Codeigniter project.
-
-<ul>
-<li>EX: Codeigniter-gCharts/config/gcharts.php into /application/config/gcharts.php</li>
-</ul>
-</li>
+<li>Clone the repo into a directory of your choice and copy ALL of the files into their corresponding folders in your Codeigniter project.</li>
 <li>That's it! You now have the power of Google Charts in your project.</li>
 </ol><h2>
 <a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h2>
@@ -59,6 +54,18 @@ By: <a href="kevinkhill@gmail.com">Kevin Hill</a></p>
 <p>Example charts have been included, just navigate to <code>http://&lt;YOUR_CI_SITE&gt;/index.php/gchart_examples</code></p>
 
 <h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>Located at <code>&lt;CI_APPLICATION_FOLDER&gt;/config/gcharts.php</code>, there are some options you can set globally for the gCharts library</p>
+
+<ul>
+<li>autoloadCharts - Automatically load charts instead of calling the gcharts-&gt;load() function.</li>
+<li>errorPrepend - This will be prepended to error messages to stylize, EX: <code>&lt;p class="error"&gt;</code>
+</li>
+<li>errorAppend - This will come after the error message, probably should match and close the prepend value, EX: <code>&lt;/p&gt;</code>
+</li>
+<li>More options coming soon...</li>
+</ul><h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>Here is an example of how to create a line chart with two lines of data</p>
@@ -70,52 +77,63 @@ By: <a href="kevinkhill@gmail.com">Kevin Hill</a></p>
 <li>
 <p>Load the library in the controller you will use to define the chart, or add it to your autoload config file.</p>
 
-<pre><code>//Load in the controller
-$this-&gt;load-&gt;library('gcharts');
+<div class="highlight"><pre><span class="c1">//Load in the controller</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">'gcharts'</span><span class="p">);</span>
 
-//Or in the autoload config file
-$autoload['libraries'] = array('gcharts');
-</code></pre>
+<span class="c1">//Or in the autoload config file</span>
+<span class="nv">$autoload</span><span class="p">[</span><span class="s1">'libraries'</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'gcharts'</span><span class="p">);</span>
+</pre></div>
+</li>
+<li>
+<p>Next load the chart that you are going to use, or autoload it in the gcharts config file.</p>
+
+<div class="highlight"><pre><span class="c1">//Load in th controller</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">'LineChart'</span><span class="p">);</span>
+
+<span class="c1">//Or in the gcharts config file</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">'autoloadCharts'</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'LineChart'</span><span class="p">);</span>
+</pre></div>
 </li>
 <li><p>Now we can use the gcharts library to create a DataTable. Pass a string to the DataTable function to assign a label for the table.</p></li>
 <li>
 <p>Then add your columns, defining what the chart's data will consist of. In this example, the first column is the horizontal axis, then then next two columns are the two sets of data. The order of arguments are as follows: [data type, label, id]</p>
 
-<pre><code>$dataTable = $this-&gt;gcharts-&gt;DataTable('Stocks');
+<div class="highlight"><pre><span class="nv">$dataTable</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">DataTable</span><span class="p">(</span><span class="s1">'Stocks'</span><span class="p">);</span>
 
-$dataTable-&gt;addColumn('number', 'Count', 'count');
-$dataTable-&gt;addColumn('number', 'Projected', 'projected');
-$dataTable-&gt;addColumn('number', 'Official', 'official');
-</code></pre>
+<span class="nv">$dataTable</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">'number'</span><span class="p">,</span> <span class="s1">'Count'</span><span class="p">,</span> <span class="s1">'count'</span><span class="p">);</span>
+<span class="nv">$dataTable</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">'number'</span><span class="p">,</span> <span class="s1">'Projected'</span><span class="p">,</span> <span class="s1">'projected'</span><span class="p">);</span>
+<span class="nv">$dataTable</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">'number'</span><span class="p">,</span> <span class="s1">'Official'</span><span class="p">,</span> <span class="s1">'official'</span><span class="p">);</span>
+</pre></div>
 </li>
 <li>
 <p>Next add some data, for this example, it is filled with randomness. The addRow() function argument order follows the order in which the columns were added.
 So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is for 'official'</p>
 
-<pre><code>for($a = 1; $a &lt; 25; $a++)
-{
-    $data[0] = $a; //Count
-    $data[1] = rand(800,1000); //Line 1's data
-    $data[2] = rand(800,1000); //Line 2's data
+<div class="highlight"><pre><span class="k">for</span><span class="p">(</span><span class="nv">$a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$a</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">;</span> <span class="nv">$a</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+ <span class="nv">$data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$a</span><span class="p">;</span> <span class="c1">//Count</span>
+ <span class="nv">$data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">rand</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span> <span class="c1">//Line 1's data</span>
+ <span class="nv">$data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nx">rand</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span> <span class="c1">//Line 2's data</span>
 
-    $dataTable-&gt;addRow($data);
-}
-</code></pre>
+ <span class="nv">$dataTable</span><span class="o">-&gt;</span><span class="na">addRow</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
 </li>
 <li>
 <p>Now lets configure some options for the chart. There are many ways to customize the chart, but we'll keep it simple. (Refer to the documentation for the list of configuration options.)</p>
 
-<pre><code>$config = array(
-    'title' =&gt; 'Stocks'
-);
-</code></pre>
+<div class="highlight"><pre><span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+ <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Stocks'</span>
+<span class="p">);</span>
+</pre></div>
 </li>
 <li>
 <p>Finally, pass the configuration to the chart of choice, LineChart in this example, making sure that the Chart label matches the DataTable label.</p>
 
-<pre><code>//Since we named the dataTable "Stocks", call the LineChart function as "Stocks" to use that dataTable
-$this-&gt;gcharts-&gt;LineChart('Stocks')-&gt;setConfig($config);
-</code></pre>
+<div class="highlight"><pre><span class="c1">// Since we named the dataTable "Stocks"...</span>
+<span class="c1">// Call the LineChart function with "Stocks" as the param to use that dataTable</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">LineChart</span><span class="p">(</span><span class="s1">'Stocks'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">setConfig</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+</pre></div>
 </li>
 </ol><h3>
 <a name="the-view" class="anchor" href="#the-view"><span class="octicon octicon-link"></span></a>The View</h3>
@@ -133,62 +151,63 @@ $this-&gt;gcharts-&gt;LineChart('Stocks')-&gt;setConfig($config);
 <li>
 <p>If you already have a <code>&lt;div id="SOME-ID"&gt;</code> on the page, then ommit the div() function and just pass the div's ID into the outputInto() function.</p>
 
-<pre><code>//Example #1, have the library create the div
-echo $this-&gt;gcharts-&gt;LineChart('Stocks')-&gt;outputInto('stock_div');
-echo $this-&gt;gcharts-&gt;div(600, 300);
+<div class="highlight"><pre><span class="c1">//Example #1, have the library create the div</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">LineChart</span><span class="p">(</span><span class="s1">'Stocks'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">outputInto</span><span class="p">(</span><span class="s1">'stock_div'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">div</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
 
-//Example #2, output into a div you already created
-echo $this-&gt;gcharts-&gt;LineChart('Stocks')-&gt;outputInto('SOME-ID');
-</code></pre>
+<span class="c1">//Example #2, output into a div you already created</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">LineChart</span><span class="p">(</span><span class="s1">'Stocks'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">outputInto</span><span class="p">(</span><span class="s1">'SOME-ID'</span><span class="p">);</span>
+</pre></div>
 </li>
 <li>
 <p>You can also setup a way of viewing errors in the creation of the chart by using this method.</p>
 
-<pre><code>if($this-&gt;gcharts-&gt;hasErrors())
-{
-    echo $this-&gt;gcharts-&gt;getErrors();
-}
-</code></pre>
+<div class="highlight"><pre><span class="k">if</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">hasErrors</span><span class="p">())</span>
+<span class="p">{</span>
+ <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">getErrors</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
 </li>
 </ol><h2>
 <a name="putting-it-all-together" class="anchor" href="#putting-it-all-together"><span class="octicon octicon-link"></span></a>Putting it all together</h2>
 
-<pre><code>//Controller
+<div class="highlight"><pre><span class="c1">//Controller</span>
 
-$this-&gt;load-&gt;library('gcharts');
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">'gcharts'</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">'LineChart'</span><span class="p">);</span>
 
-$dataTable = $this-&gt;gcharts-&gt;DataTable('Stocks');
+<span class="nv">$dataTable</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">DataTable</span><span class="p">(</span><span class="s1">'Stocks'</span><span class="p">);</span>
 
-$dataTable-&gt;addColumn('number', 'Count', 'count');
-$dataTable-&gt;addColumn('number', 'Projected', 'projected');
-$dataTable-&gt;addColumn('number', 'Official', 'official');
+<span class="nv">$dataTable</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">'number'</span><span class="p">,</span> <span class="s1">'Count'</span><span class="p">,</span> <span class="s1">'count'</span><span class="p">);</span>
+<span class="nv">$dataTable</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">'number'</span><span class="p">,</span> <span class="s1">'Projected'</span><span class="p">,</span> <span class="s1">'projected'</span><span class="p">);</span>
+<span class="nv">$dataTable</span><span class="o">-&gt;</span><span class="na">addColumn</span><span class="p">(</span><span class="s1">'number'</span><span class="p">,</span> <span class="s1">'Official'</span><span class="p">,</span> <span class="s1">'official'</span><span class="p">);</span>
 
-for($a = 1; $a &lt; 25; $a++)
-{
-    $data[0] = $a //Count
-    $data[1] = rand(800,1000); //Line 1's data
-    $data[2] = rand(800,1000); //Line 2's data
+<span class="k">for</span><span class="p">(</span><span class="nv">$a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$a</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">;</span> <span class="nv">$a</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$a</span> <span class="c1">//Count</span>
+    <span class="nv">$data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">rand</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span> <span class="c1">//Line 1's data</span>
+    <span class="nv">$data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nx">rand</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span> <span class="c1">//Line 2's data</span>
 
-    $dataTable-&gt;addRow($data);
-}
+    <span class="nv">$dataTable</span><span class="o">-&gt;</span><span class="na">addRow</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+<span class="p">}</span>
 
-$config = array(
-    'title' =&gt; 'Stocks'
-);
+<span class="nv">$config</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'title'</span> <span class="o">=&gt;</span> <span class="s1">'Stocks'</span>
+<span class="p">);</span>
 
-$this-&gt;gcharts-&gt;LineChart('Stocks')-&gt;setConfig($config);
-</code></pre>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">LineChart</span><span class="p">(</span><span class="s1">'Stocks'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">setConfig</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+</pre></div>
 
-<pre><code>//View
+<div class="highlight"><pre><span class="c1">//View</span>
 
-echo $this-&gt;gcharts-&gt;LineChart('Stocks')-&gt;outputInto('stock_div');
-echo $this-&gt;gcharts-&gt;div(600, 300);
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">LineChart</span><span class="p">(</span><span class="s1">'Stocks'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">outputInto</span><span class="p">(</span><span class="s1">'stock_div'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">div</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
 
-if($this-&gt;gcharts-&gt;hasErrors())
-{
-    echo $this-&gt;gcharts-&gt;getErrors();
-}
-</code></pre>
+<span class="k">if</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">hasErrors</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">gcharts</span><span class="o">-&gt;</span><span class="na">getErrors</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
 
 <h3>
 <a name="output" class="anchor" href="#output"><span class="octicon octicon-link"></span></a>Output</h3>
@@ -237,7 +256,17 @@ THE SOFTWARE.</p>
       </footer>
     </div>
 
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-43288838-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
 
   </body>
 </html>
