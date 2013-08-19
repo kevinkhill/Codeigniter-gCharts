@@ -70,9 +70,11 @@ class Chart
                         $this->addOption($value);
                     }
                 } else {
-                    $this->error('Invalid config value, must be type (array) containing any key '.array_string($this->defaults));
+                    $this->error('Invalid config value "'.$option.'", must be an option from this list '.array_string($this->defaults));
                 }
             }
+        } else {
+            $this->error('Invalid value for setConfig, must be type (array) containing a minimum of one key from '.array_string($this->defaults));
         }
 
         return $this;

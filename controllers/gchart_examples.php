@@ -324,17 +324,23 @@ class Gchart_examples extends CI_Controller
 
     public function column_chart_basic()
     {
-        $this->gcharts->load('ColumnChart'); /* @TODO: add load calls to all examples */
-        
+        $this->gcharts->load('ColumnChart');
+
         $dataTable = $this->gcharts->DataTable('Inventory');
 
-        $dataTable->addColumn('string', 'Products', 'products');
+        $dataTable->addColumn('string', 'Classroom', 'class');
         $dataTable->addColumn('number', 'Pencils', 'pencils');
         $dataTable->addColumn('number', 'Markers', 'markers');
         $dataTable->addColumn('number', 'Erasers', 'erasers');
         $dataTable->addColumn('number', 'Binders', 'binders');
 
-        $dataTable->addRow(array('Count', 528, 428, 614, 591));
+        $dataTable->addRow(array(
+            'Science Class',
+            rand(0, 100),
+            rand(0, 100),
+            rand(0, 100),
+            rand(0, 100)
+        ));
 
         $config = array(
             'title' => 'Inventory'
@@ -347,18 +353,27 @@ class Gchart_examples extends CI_Controller
 
     public function column_chart_advanced()
     {
-        $dataTable = $this->gcharts->DataTable('Times');
+        $this->gcharts->load('ColumnChart');
 
-        $dataTable->addColumn('date', 'Dates', 'dates');
-        $dataTable->addColumn('number', 'Run Time', 'run_time');
-        $dataTable->addColumn('number', 'Schedule Time', 'schedule_time');
+        $dataTable = $this->gcharts->DataTable('Finances');
 
-        for($a = 1; $a < 30; $a++)
-        {
-            $line1 = rand(1,5);
-            $line2 = rand(1,5);
-            $dataTable->addRow(array(new jsDate(2013, 8, $a), $line1, $line2));
-        }
+        $dataTable->addColumn('string', 'Year', 'month');
+        $dataTable->addColumn('number', 'Gross Income', 'gross');
+        $dataTable->addColumn('number', 'Bills Paid', 'bills');
+        $dataTable->addColumn('number', 'Net Income', 'income');
+
+        $gross = rand(80000, 90000); $bills = rand(15000, 20000);
+        $dataTable->addRow(array('2009', $gross, $bills, ($gross - $bills)));
+
+        $gross = rand(80000, 90000); $bills = rand(15000, 20000);
+        $dataTable->addRow(array('2010', $gross, $bills, ($gross - $bills)));
+
+        $gross = rand(80000, 90000); $bills = rand(15000, 20000);
+        $dataTable->addRow(array('2011', $gross, $bills, ($gross - $bills)));
+
+        $gross = rand(80000, 90000); $bills = rand(15000, 20000);
+        $dataTable->addRow(array('2012', $gross, $bills, ($gross - $bills)));
+
 
         //Either Chain functions together to set configuration
         $titleStyle = new textStyle();
@@ -388,27 +403,27 @@ class Gchart_examples extends CI_Controller
 
         $config = array(
             'backgroundColor' => new backgroundColor(array(
-                'stroke' => '#BBBBBB',
-                'strokeWidth' => 8,
-                'fill' => '#EFEFFF'
+                'stroke' => '#CDCDCD',
+                'strokeWidth' => 4,
+                'fill' => '#EFEFEF'
             )),
             'chartArea' => new chartArea(array(
-                'left' => 100,
-                'top' => 75,
-                'width' => '85%',
-                'height' => '55%'
+                'left' => 80,
+                'top' => 80,
+                'width' => '90%',
+                'height' => '60%'
             )),
             'titleTextStyle' => $titleStyle,
             'legend' => $legend,
             'tooltip' => $tooltip,
-            'title' => 'Times for Deliveries',
+            'title' => 'My Finances',
             'titlePosition' => 'out',
             'curveType' => 'function',
             'width' => 1000,
             'height' => 450,
             'pointSize' => 3,
             'lineWidth' => 1,
-            'colors' => array('#4F9CBB', 'green'),
+            'colors' => array('#00A100', '#FF0000', '#00FF00'),
             'hAxis' => new hAxis(array(
                 'baselineColor' => '#fc32b0',
                 'gridlines' => array(
@@ -438,26 +453,26 @@ class Gchart_examples extends CI_Controller
             )),
             'vAxis' => new vAxis(array(
                 'baseline' => 1,
-                'baselineColor' => '#CF3BBB',
-                'format' => '## hrs',
+                'baselineColor' => '#5F0BB1',
+                'format' => '$ ##,###',
                 'textPosition' => 'out',
                 'textStyle' => new textStyle(array(
                     'color' => '#DDAA88',
-                    'fontName' => 'Arial Bold',
+                    'fontName' => 'Verdana',
                     'fontSize' => 10
                 )),
-                'title' => 'Delivery Time',
+                'title' => 'Dollars',
                 'titleTextStyle' => new textStyle(array(
-                    'color' => '#5C6DAB',
+                    'color' => 'blue',
                     'fontName' => 'Verdana',
                     'fontSize' => 14
                 )),
             ))
         );
 
-        $this->gcharts->LineChart('Times')->setConfig($config);
+        $this->gcharts->ColumnChart('Finances')->setConfig($config);
 
-        $this->load->view('gcharts/line_chart_advanced');
+        $this->load->view('gcharts/column_chart_advanced');
     }
 
 }

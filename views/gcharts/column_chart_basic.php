@@ -15,21 +15,21 @@
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#f2f2f2;padding:5px;">
 $dataTable = $this->gcharts->DataTable('Inventory');
 
-$dataTable->addColumn('string', 'Products', 'products');
+$dataTable->addColumn('string', 'Classroom', 'class');
 $dataTable->addColumn('number', 'Pencils', 'pencils');
 $dataTable->addColumn('number', 'Markers', 'markers');
 $dataTable->addColumn('number', 'Erasers', 'erasers');
 $dataTable->addColumn('number', 'Binders', 'binders');
 
-$dataTable->addRow(array('Count', 528, 428, 614, 591));
-
-$config = array(
-    'title' => 'Inventory'
-);
+$dataTable->addRow(array(
+    'Science Class',
+    rand(0, 100),
+    rand(0, 100),
+    rand(0, 100),
+    rand(0, 100)
+));
 
 $this->gcharts->ColumnChart('Inventory')->setConfig($config);
-
-$this->load->view('gcharts/column_chart_basic');
 </pre>
 
 <h2>View Code</h2>
