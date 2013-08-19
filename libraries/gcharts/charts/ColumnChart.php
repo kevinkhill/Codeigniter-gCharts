@@ -28,9 +28,6 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
             'focusTarget',
             'hAxis',
             'isHtml',
-            'interpolateNulls',
-            'lineWidth',
-            'pointSize',
 //            'reverseCategories',
 //            'series',
 //            'theme',
@@ -113,6 +110,28 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
         return $this;
     }
 
+    /**
+     * The width of a group of bars, specified in either of these formats:
+     * - Pixels (e.g. 50).
+     * - Percentage of the available width for each group (e.g. '20%'),
+     *   where '100%' means that groups have no space between them.
+     *
+     * @param mixed $barGroupWidth
+     * @return \ColumnChart
+     */
+    public function barGroupWidth($barGroupWidth)
+    {
+        if(is_int_or_percent($barGroupWidth))
+        {
+            $bar = new bar($barGroupWidth);
+            $this->addOption($bar->toArray());
+        } else {
+            $this->type_error(__FUNCTION__, 'string | int', 'must be a valid int or percent [ 50 | 65% ]');
+        }
+
+        return $this;
+    }
+
 //    public function enableInteractivity($param)
 //    {
 //
@@ -150,6 +169,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
     /**
      * If set to true, use HTML-rendered (rather than SVG-rendered) tooltips.
      *
+     * @todo was this merged into tooltip object???
      * @param boolean $isHTML
      * @return \ColumnChart
      */
@@ -183,65 +203,6 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
         return $this;
     }
 
-    /**
-     * Whether to guess the value of missing points. If true, it will guess the
-     * value of any missing data based on neighboring points. If false, it will
-     * leave a break in the line at the unknown point.
-     *
-     * @param boolean $interpolateNulls
-     * @return \ColumnChart
-     */
-    public function interpolateNulls($interpolateNulls)
-    {
-        if(is_bool($interpolateNulls))
-        {
-            $this->addOption(array('interpolateNulls' => $interpolateNulls));
-        } else {
-           $this->error('Invalid interpolateNulls value, must be type (boolean)');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Data line width in pixels. Use zero to hide all lines and show only the
-     * points. You can override values for individual series using the series
-     * property.
-     *
-     * @param int $width
-     * @return \ColumnChart
-     */
-    public function lineWidth($width)
-    {
-        if(is_int($width))
-        {
-            $this->addOption(array('lineWidth' => $width));
-        } else {
-            $this->error('Invalid lineWidth, must be type (int).');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Diameter of displayed points in pixels. Use zero to hide all points. You
-     * can override values for individual series using the series property.
-     *
-     * @param int $size
-     * @return \ColumnChart
-     */
-    public function pointSize($size)
-    {
-        if(is_int($size))
-        {
-            $this->addOption(array('pointSize' => $size));
-        } else {
-            $this->error('Invalid pointSize, must be type (int).');
-        }
-
-        return $this;
-    }
-
 //    public function reverseCatagories($param)
 //    {
 //
@@ -264,6 +225,14 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
 //    }
 
 }
+
+//Ugly hack for getting bar.groupWidth property to work :/
+class bar extends configOptions {
+    public function __construct($groupWidth)
+    {
+        $this->groupWidth = $groupWidth;
+    }
+};
 
 /* End of file ColumnChart.php */
 /* Location: ./gcharts/charts/ColumnChart.php */

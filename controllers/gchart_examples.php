@@ -408,6 +408,7 @@ class Gchart_examples extends CI_Controller
                 'strokeWidth' => 4,
                 'fill' => '#EFEFEF'
             )),
+            'barGroupWidth' => '50%',
             'chartArea' => new chartArea(array(
                 'left' => 80,
                 'top' => 80,
