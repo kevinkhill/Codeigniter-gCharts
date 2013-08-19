@@ -23,6 +23,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
         $this->defaults = array_merge($this->defaults, array(
 //            'animation',
 //            'enableInteractivity',
+            'axisTitlesPosition',
             'barGroupWidth',
             'focusTarget',
             'hAxis',
