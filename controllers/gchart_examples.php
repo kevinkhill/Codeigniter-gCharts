@@ -380,11 +380,11 @@ class Gchart_examples extends CI_Controller
         $titleStyle->color('#FF0A04')->fontName('Georgia')->fontSize(18);
 
         $legendStyle = new textStyle();
-        $legendStyle->color('#F3BB00')->fontName('Arial')->fontSize(20);
+        $legendStyle->color('#F3BB00')->fontName('Arial')->fontSize(16);
 
         //Or pass and array with configuration options
         $legend = new legend(array(
-            'position' => 'bottom',
+            'position' => 'right',
             'alignment' => 'start',
             'textStyle' => $legendStyle
         ));
@@ -418,31 +418,30 @@ class Gchart_examples extends CI_Controller
             'tooltip' => $tooltip,
             'title' => 'My Finances',
             'titlePosition' => 'out',
-            'curveType' => 'function',
             'width' => 1000,
             'height' => 450,
             'pointSize' => 3,
             'lineWidth' => 1,
             'colors' => array('#00A100', '#FF0000', '#00FF00'),
             'hAxis' => new hAxis(array(
-                'baselineColor' => '#fc32b0',
+                'baselineColor' => '#BB99BB',
                 'gridlines' => array(
-                    'color' => '#43fc72',
-                    'count' => 6
+                    'color' => '#ABCDEF',
+                    'count' => 4
                 ),
                 'minorGridlines' => array(
-                    'color' => '#b3c8d1',
-                    'count' => 3
+                    'color' => '#FEBCDA',
+                    'count' => 2
                 ),
                 'textPosition' => 'out',
                 'textStyle' => new textStyle(array(
                     'color' => '#C42B5F',
                     'fontName' => 'Tahoma',
-                    'fontSize' => 10
+                    'fontSize' => 13
                 )),
                 'slantedText' => TRUE,
-                'slantedTextAngle' => 30,
-                'title' => 'Delivery Dates',
+                'slantedTextAngle' => 45,
+                'title' => 'Years',
                 'titleTextStyle' => new textStyle(array(
                     'color' => '#BB33CC',
                     'fontName' => 'Impact',
