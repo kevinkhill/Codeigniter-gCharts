@@ -1,7 +1,7 @@
 <h1><?php echo anchor('gchart_examples', 'Codeigniter gChart Examples'); ?> \ Basic Line Chart</h1>
 <?php
     echo $this->gcharts->PieChart('Foods')->outputInto('food_div');
-    echo $this->gcharts->div();
+    echo $this->gcharts->div(500,300);
 
     if($this->gcharts->hasErrors())
     {
@@ -41,7 +41,7 @@ $this->gcharts->PieChart('Foods')->setConfig($config);
 <h2>View Code</h2>
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#e0e0e0;padding:5px;">
 echo $this->gcharts->PieChart('Foods')->outputInto('food_div');
-echo $this->gcharts->div();
+echo $this->gcharts->div(500,300);
 
 if($this->gcharts->hasErrors())
 {
