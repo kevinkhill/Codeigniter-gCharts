@@ -6,8 +6,15 @@ By: [Kevin Hill](kevinkhill@gmail.com)
 
 If you have any questions or comments... please email me, post issues here, or fork me and help out ;)
 
- - - -
+##Currently Supported Charts
+ * Line Charts
+ * Area Charts
+ * Pie Charts
+ * Column Charts
+ * More coming soon!
 
+
+- - -
 
 ##Installing
 1. Clone the repo into a directory of your choice and copy ALL of the files into their corresponding folders in your Codeigniter project.
