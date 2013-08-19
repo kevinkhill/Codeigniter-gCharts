@@ -87,7 +87,7 @@ class Chart
      */
     public function error($msg)
     {
-        Gcharts::_set_error($this->chartType, $msg);
+        Gcharts::_set_error($this->chartType.'('.$this->chartLabel.')', $msg);
     }
 
     /**
