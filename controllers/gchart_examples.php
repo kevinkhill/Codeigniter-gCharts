@@ -362,22 +362,22 @@ class Gchart_examples extends CI_Controller
         $dataTable->addColumn('number', 'Bills Paid', 'bills');
         $dataTable->addColumn('number', 'Net Income', 'income');
 
-        $gross = rand(80000, 90000); $bills = rand(15000, 20000);
+        $gross = rand(80000, 90000); $bills = rand(15000, 25000);
         $dataTable->addRow(array('2009', $gross, $bills, ($gross - $bills)));
 
-        $gross = rand(80000, 90000); $bills = rand(15000, 20000);
+        $gross = rand(80000, 90000); $bills = rand(15000, 25000);
         $dataTable->addRow(array('2010', $gross, $bills, ($gross - $bills)));
 
-        $gross = rand(80000, 90000); $bills = rand(15000, 20000);
+        $gross = rand(80000, 90000); $bills = rand(15000, 25000);
         $dataTable->addRow(array('2011', $gross, $bills, ($gross - $bills)));
 
-        $gross = rand(80000, 90000); $bills = rand(15000, 20000);
+        $gross = rand(80000, 90000); $bills = rand(15000, 25000);
         $dataTable->addRow(array('2012', $gross, $bills, ($gross - $bills)));
 
 
         //Either Chain functions together to set configuration
         $titleStyle = new textStyle();
-        $titleStyle->color('#FF0A04')->fontName('Georgia')->fontSize(18);
+        $titleStyle->color('#55BB9A')->fontName('Georgia')->fontSize(22);
 
         $legendStyle = new textStyle();
         $legendStyle->color('#F3BB00')->fontName('Arial')->fontSize(16);
@@ -402,6 +402,7 @@ class Gchart_examples extends CI_Controller
 
 
         $config = array(
+            'axisTitlesPosition' => 'taco',
             'backgroundColor' => new backgroundColor(array(
                 'stroke' => '#CDCDCD',
                 'strokeWidth' => 4,

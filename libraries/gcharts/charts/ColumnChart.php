@@ -22,8 +22,8 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
 
         $this->defaults = array_merge($this->defaults, array(
 //            'animation',
-//            'curveType',
 //            'enableInteractivity',
+            'barGroupWidth',
             'focusTarget',
             'hAxis',
             'isHtml',
@@ -48,7 +48,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
      * 'inAndOut' - Ease in and out - Start slow, speed up, then slow down.
      *
      * @param string $easing
-     * @return \LineChart
+     * @return \ColumnChart
      */
 //    public function animationEasing($easing = 'linear')
 //    {
@@ -71,7 +71,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
      * The duration of the animation, in milliseconds.
      *
      * @param mixed $duration
-     * @return \LineChart
+     * @return \ColumnChart
      */
 //    public function animationDuration($duration)
 //    {
@@ -92,7 +92,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
      * none - Omit the axis titles.
      *
      * @param string $position
-     * @return \LineChart
+     * @return \ColumnChart
      */
     public function axisTitlesPosition($position)
     {
@@ -106,7 +106,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
         {
             $this->addOption(array('axisTitlesPosition' => $position));
         } else {
-            $this->error('Invalid axisTitlesPosition, must be type (string) with a value of '.array_string($values));
+            $this->type_error(__FUNCTION__, 'string', 'with a value of '.array_string($values));
         }
 
         return $this;
@@ -125,20 +125,6 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
 //
 //        return $this;
 //    }
-//
-//    public function fontSize($param)
-//    {
-//
-//
-//        return $this;
-//    }
-//
-//    public function fontName($param)
-//    {
-//
-//
-//        return $this;
-//    }
 
     /**
      * An object with members to configure various horizontal axis elements. To
@@ -146,7 +132,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
      * the values then pass it to this function or to the constructor.
      *
      * @param hAxis $hAxis
-     * @return \LineChart
+     * @return \ColumnChart
      */
     public function hAxis($hAxis)
     {
@@ -164,7 +150,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
      * If set to true, use HTML-rendered (rather than SVG-rendered) tooltips.
      *
      * @param boolean $isHTML
-     * @return \LineChart
+     * @return \ColumnChart
      */
     public function isHtml($isHTML)
     {
@@ -182,7 +168,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
      * If set to true, series elements are stacked.
      *
      * @param boolean $isStacked
-     * @return \LineChart
+     * @return \ColumnChart
      */
     public function isStacked($isStacked)
     {
@@ -202,7 +188,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
      * leave a break in the line at the unknown point.
      *
      * @param boolean $interpolateNulls
-     * @return \LineChart
+     * @return \ColumnChart
      */
     public function interpolateNulls($interpolateNulls)
     {
@@ -222,7 +208,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
      * property.
      *
      * @param int $width
-     * @return \LineChart
+     * @return \ColumnChart
      */
     public function lineWidth($width)
     {
@@ -241,7 +227,7 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
      * can override values for individual series using the series property.
      *
      * @param int $size
-     * @return \LineChart
+     * @return \ColumnChart
      */
     public function pointSize($size)
     {
@@ -278,5 +264,5 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
 
 }
 
-/* End of file LineChart.php */
-/* Location: ./gcharts/charts/LineChart.php */
+/* End of file ColumnChart.php */
+/* Location: ./gcharts/charts/ColumnChart.php */

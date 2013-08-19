@@ -85,9 +85,28 @@ class Chart
      *
      * @param string $msg
      */
-    private function error($msg)
+    public function error($msg)
     {
         Gcharts::_set_error($this->chartType, $msg);
+    }
+
+    /**
+     * Adds an function/type error message to the error log in the gcharts object.
+     *
+     * @param string Property in error
+     * @param string Variable type
+     * @param string Extra message to append to error
+     */
+    public function type_error($val, $type, $extra = FALSE)
+    {
+        $msg = sprintf(
+            'Invalid value for %s, must be type (%s)',
+            $val,
+            $type,
+            ($extra ? ' '.$extra.'.' : '.')
+        );
+
+        $this->error($msg);
     }
 
     /**
@@ -115,12 +134,12 @@ class Chart
     }
 
     /**
-     * Assigns wich DataTable will be used for this LineChart. If a label is provided
+     * Assigns wich DataTable will be used for this Chart. If a label is provided
      * then the defined DataTable will be used. If called with no argument, it will
-     * attempt to use a DataTable with the same label as the LineChart
+     * attempt to use a DataTable with the same label as the Chart.
      *
      * @param mixed dataTableLabel String label or DataTable object
-     * @return \configs\DataTable DataTable object
+     * @return \DataTable DataTable object
      */
     public function dataTable($data = NULL)
     {
@@ -159,7 +178,7 @@ class Chart
      * Two formats are supported: a number, or a number followed by %.
      * A simple number is a value in pixels; a number followed by % is a percentage.
      *
-     * @param \configs\chartArea $chartArea
+     * @param chartArea $chartArea
      * @return \Chart
      */
     public function chartArea(chartArea $chartArea)
@@ -260,7 +279,7 @@ class Chart
     {
         if(is_string($fontName))
         {
-            $this->addOption(array('fontSize' => $fontName));
+            $this->addOption(array('fontName' => $fontName));
         } else {
             $this->error('Invalid value for fontName, must be type (string).');
         }
@@ -345,7 +364,7 @@ class Chart
         {
             $this->addOption(array('titlePosition' => $position));
         } else {
-            $this->error('Invalid axisTitlesPosition, must be type (string) with a value of '.array_string($values));
+            $this->error('Invalid titlePosition, must be type (string) with a value of '.array_string($values));
         }
 
         return $this;
