@@ -13,6 +13,8 @@
 
 <h2>Controller Code</h2>
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#e0e0e0;padding:5px;">
+$this->gcharts->load('AreaChart');
+
 $dataTable = $this->gcharts->DataTable('Rain');
 
 $dataTable->addColumn('number', 'Count', 'count');

@@ -5,22 +5,29 @@
 | Auto Load Charts
 |--------------------------------------------------------------------------
 |
-| Use this array to autoload the use of specific charts. They can also be loaded
-| manually via the $this->gcharts->load() function.
+| Use this array to autoload the use of specific charts.
+|
+| If a chart is not listed in the array, then the chart must be loaded before use.
+| This is done by using the $this->gcharts->load() function.
 |
 | The currently supported charts are:
 | - LineChart
 | - AreaChart
 | - PieChart
+| - ColumnChart (beta)
 |
 | - More coming soon!
 |
+| Autoload Example:
+|  $config['autoloadCharts'] = array(
+|     'LineChart',
+|     'AreaChart',
+|     'PieChart',
+|     'ColumnChart'
+|  );
 */
-$config['autoloadCharts'] = array(
-    'LineChart',
-    'AreaChart',
-    'PieChart' /* @TODO: Add note about autolaoding, instead, load as needed */
-);
+$config['autoloadCharts'] = array();
+
 
 /*
 |--------------------------------------------------------------------------
