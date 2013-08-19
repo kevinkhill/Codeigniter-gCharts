@@ -161,7 +161,7 @@ class ColumnChart extends Chart
         {
             $this->addOption($hAxis->toArray());
         } else {
-            $this->error('Invalid hAxis, must be (object) type hAxis');
+            $this->type_error(__FUNCTION__, 'hAxis');
         }
 
         return $this;
@@ -180,7 +180,7 @@ class ColumnChart extends Chart
         {
             $this->addOption(array('isHTML' => $isHTML));
         } else {
-            $this->error('Invalid isHTML value, must be type (boolean)');
+            $this->error(__FUNCTION__, 'boolean');
         }
 
         return $this;
@@ -198,7 +198,7 @@ class ColumnChart extends Chart
         {
             $this->addOption(array('isStacked' => $isStacked));
         } else {
-            $this->error('Invalid isStacked value, must be type (boolean)');
+            $this->type_error(__FUNCTION__, 'boolean');
         }
 
         return $this;

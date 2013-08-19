@@ -390,7 +390,7 @@ class Gchart_examples extends CI_Controller
         ));
 
         $tooltipStyle = new textStyle(array(
-            'color' => '#C0C0B0',
+            'color' => '#000000',
             'fontName' => 'Courier New',
             'fontSize' => 10
         ));
@@ -400,19 +400,18 @@ class Gchart_examples extends CI_Controller
             'textStyle' => $tooltipStyle
         ));
 
-
         $config = array(
             'axisTitlesPosition' => 'out',
             'backgroundColor' => new backgroundColor(array(
                 'stroke' => '#CDCDCD',
                 'strokeWidth' => 4,
-                'fill' => '#EFEFEF'
+                'fill' => '#EEFFCC'
             )),
-            'barGroupWidth' => '10%',
+            'barGroupWidth' => '90%',
             'chartArea' => new chartArea(array(
                 'left' => 80,
                 'top' => 80,
-                'width' => '90%',
+                'width' => '70%',
                 'height' => '60%'
             )),
             'titleTextStyle' => $titleStyle,
@@ -437,7 +436,7 @@ class Gchart_examples extends CI_Controller
                 'textStyle' => new textStyle(array(
                     'color' => '#C42B5F',
                     'fontName' => 'Tahoma',
-                    'fontSize' => 13
+                    'fontSize' => 14
                 )),
                 'slantedText' => TRUE,
                 'slantedTextAngle' => 45,
@@ -445,10 +444,8 @@ class Gchart_examples extends CI_Controller
                 'titleTextStyle' => new textStyle(array(
                     'color' => '#BB33CC',
                     'fontName' => 'Impact',
-                    'fontSize' => 14
-                )),
-                'maxAlternation' => 6,
-                'maxTextLines' => 2
+                    'fontSize' => 18
+                ))
             )),
             'vAxis' => new vAxis(array(
                 'baseline' => 1,
