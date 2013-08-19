@@ -102,9 +102,10 @@ class Chart
         $msg = sprintf(
             'Invalid value for %s, must be type (%s)',
             $val,
-            $type,
-            ($extra ? ' '.$extra.'.' : '.')
+            $type
         );
+
+        $msg .= $extra ? ' '.$extra.'.' : '.';
 
         $this->error($msg);
     }
