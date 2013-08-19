@@ -402,13 +402,13 @@ class Gchart_examples extends CI_Controller
 
 
         $config = array(
-            'axisTitlesPosition' => 'taco',
+            'axisTitlesPosition' => 'out',
             'backgroundColor' => new backgroundColor(array(
                 'stroke' => '#CDCDCD',
                 'strokeWidth' => 4,
                 'fill' => '#EFEFEF'
             )),
-            'barGroupWidth' => '50%',
+            'barGroupWidth' => '10%',
             'chartArea' => new chartArea(array(
                 'left' => 80,
                 'top' => 80,
@@ -422,8 +422,6 @@ class Gchart_examples extends CI_Controller
             'titlePosition' => 'out',
             'width' => 1000,
             'height' => 450,
-            'pointSize' => 3,
-            'lineWidth' => 1,
             'colors' => array('#00A100', '#FF0000', '#00FF00'),
             'hAxis' => new hAxis(array(
                 'baselineColor' => '#BB99BB',

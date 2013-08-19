@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * ColumnChart Class
+ * Column Chart Class
  *
  * A vertical bar chart that is rendered within the browser using SVG or VML.
  * Displays tips when hovering over bars. For a horizontal version of this
@@ -14,7 +14,7 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
-class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
+class ColumnChart extends Chart
 {
     public function __construct($chartLabel)
     {
@@ -123,8 +123,9 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
     {
         if(is_int_or_percent($barGroupWidth))
         {
-            $bar = new bar($barGroupWidth);
-            $this->addOption($bar->toArray());
+//            $bar = new bar($barGroupWidth);
+//            $this->addOption($bar->toArray());
+            $this->addOption(array('bar' => array('groupWidth' => $barGroupWidth)));
         } else {
             $this->type_error(__FUNCTION__, 'string | int', 'must be a valid int or percent [ 50 | 65% ]');
         }
@@ -225,14 +226,6 @@ class ColumnChart extends Chart /* @TODO: IM A CLOOOOOOONE! */
 //    }
 
 }
-
-//Ugly hack for getting bar.groupWidth property to work :/
-class bar extends configOptions {
-    public function __construct($groupWidth)
-    {
-        $this->groupWidth = $groupWidth;
-    }
-};
 
 /* End of file ColumnChart.php */
 /* Location: ./gcharts/charts/ColumnChart.php */
