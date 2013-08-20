@@ -47,7 +47,7 @@ class backgroundColor extends configOptions
      * @param array Configuration options
      * @return \backgroundColor
      */
-    public function __construct($options = array()) {
+    public function __construct($config = array()) {
 
         $this->options = array(
             'stroke',
@@ -55,20 +55,7 @@ class backgroundColor extends configOptions
             'fill'
         );
 
-        if(is_array($options) && count($options) > 0)
-        {
-            foreach($options as $option => $value)
-            {
-                if(in_array($option, $this->options))
-                {
-                    $this->$option($value);
-                } else {
-                    $this->error(sprintf('Ignoring "%s", not a valid configuration option.', $option));
-                }
-            }
-        }
-
-        return $this;
+        parent::__construct($config);
     }
 
     /**
