@@ -500,6 +500,30 @@ class Gchart_examples extends CI_Controller
         $this->load->view('gcharts/column_chart_advanced');
     }
 
+
+/* ---------- Line Charts ---------- */
+    public function geo_chart_basic()
+    {
+        $this->gcharts->load('GeoChart');
+
+        $dataTable = $this->gcharts->DataTable('Stocks');
+
+        $dataTable->addColumn('string', 'Country', 'country');
+        $dataTable->addColumn('number', 'Population', 'population');
+
+        $dataTable->addRow(array('United States', 312000000));
+        $dataTable->addRow(array('Mexico', 115000000));
+        $dataTable->addRow(array('France', 63300000));
+
+//        $config = array(
+//            'title' => 'Stocks'
+//        );
+
+        $this->gcharts->GeoChart('Population')->setConfig($config);
+
+        $this->load->view('gcharts/geo_chart_basic');
+    }
+
 }
 
 /* End of file gchart_examples.php */

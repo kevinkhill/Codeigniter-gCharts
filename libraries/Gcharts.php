@@ -163,6 +163,13 @@ class Gcharts
     static $columnCharts = array();
 
     /**
+     * Holds all of the defined GeoCharts.
+     *
+     * @var array
+     */
+    static $geoCharts = array();
+
+    /**
      * Property defining if the generation of charts occured any errors.
      *
      * @var boolean
@@ -187,7 +194,8 @@ class Gcharts
         'LineChart',
         'AreaChart',
         'PieChart',
-        'ColumnChart'
+        'ColumnChart',
+        'GeoChart'
     );
 
     /**
@@ -227,6 +235,7 @@ class Gcharts
 
 // @TODO: build this functionality
 //        self::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
+//        <LOGIC FOR IF CI LIBRARY OR NOT>
 
         self::$config['autoloadCharts'] = config_item('autoloadCharts');
         self::$config['errorPrepend'] = config_item('errorPrepend');
@@ -450,10 +459,10 @@ class Gcharts
 
         $out = self::$googleAPI.PHP_EOL;
 
-        if(isset($chart->events) && is_array($chart->events) && count($chart->events) > 0)
-        {
-            $out .= self::_build_event_callbacks($chart->chartType, $chart->events);
-        }
+//        if(isset($chart->events) && is_array($chart->events) && count($chart->events) > 0)
+//        {
+//            $out .= self::_build_event_callbacks($chart->chartType, $chart->events);
+//        }
 
         $out .= self::$jsOpen.PHP_EOL;
 
@@ -491,14 +500,14 @@ class Gcharts
             $out .= sprintf("(document.getElementById('%s'));", $chart->elementID).PHP_EOL;
         $out .= "chart.draw(data, options);".PHP_EOL;
 
-        if(isset($chart->events) && count($chart->events) > 0)
-        {
-            foreach($chart->events as $event)
-            {
-                $out .= sprintf('google.visualization.events.addListener(chart, "%s", ', $event);
-                $out .= sprintf('function(event) { %s.%s(event); });', $chart->chartType, $event).PHP_EOL;
-            }
-        }
+//        if(isset($chart->events) && count($chart->events) > 0)
+//        {
+//            foreach($chart->events as $event)
+//            {
+//                $out .= sprintf('google.visualization.events.addListener(chart, "%s", ', $event);
+//                $out .= sprintf('function(event) { %s.%s(event); });', $chart->chartType, $event).PHP_EOL;
+//            }
+//        }
 
         $out .= "}".PHP_EOL;
 
