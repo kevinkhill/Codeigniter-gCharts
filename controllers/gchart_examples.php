@@ -531,23 +531,23 @@ class Gchart_examples extends CI_Controller
     {
         $this->gcharts->load('GeoChart');
 
-        $dataTable = $this->gcharts->DataTable('Wealth');
+        $dataTable = $this->gcharts
+                          ->DataTable('Wealth')
+                          ->addColumn('string', 'Country', 'country')
+                          ->addColumn('number', 'Population', 'population')
+                          ->addRow(array('United States', 312000000))
+                          ->addRow(array('Mexico', 115000000))
+                          ->addRow(array('France', 63300000))
+                          ->addRow(array('China', 1347000000))
+                          ->addRow(array('India', 1241000000))
+                          ->addRow(array('Russia', 143000000));
 
-        $dataTable->addColumn('string', 'Country', 'country');
-        $dataTable->addColumn('number', 'Population', 'population');
-
-        $dataTable->addRow(array('United States', 312000000));
-        $dataTable->addRow(array('Mexico', 115000000));
-        $dataTable->addRow(array('France', 63300000));
-        $dataTable->addRow(array('China', 1347000000));
-        $dataTable->addRow(array('India', 1241000000));
-        $dataTable->addRow(array('Russia', 143000000));
-
-        $colorAxis = new colorAxis();
+        $colorAxis = $this->gcharts
+                          ->configObject('colorrAxis')
+                          ->colors(array('green', 'blue'));
 //        $colorAxis->minValue()
 //                  ->maxValue()
 //                  ->values()
-                  $colorAxis->colors(array('green', 'blue'));
 
         $config = array(
             'colorAxis' => $colorAxis

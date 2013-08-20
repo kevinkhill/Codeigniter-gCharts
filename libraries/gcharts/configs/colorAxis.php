@@ -50,7 +50,7 @@ class colorAxis extends configOptions
      * @param array config
      * @return \colorAxis
      */
-    public function __construct($config) {
+    public function __construct($config = array()) {
 
         $this->options = array(
             'minValue',

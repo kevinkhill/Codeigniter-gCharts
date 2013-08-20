@@ -393,6 +393,24 @@ class Gcharts
     }
 
     /**
+     * Creates configuration objects to save a step instansiating and allow for
+     * chaining directly from creation.
+     *
+     * @param string $configObject
+     * @return object configuration object
+     */
+    public function configObject($configObject)
+    {
+        if(in_array($configObject, $this->configClasses))
+        {
+            return new $configObject();
+        } else {
+            self::_set_error(__METHOD__, $configObject.' is not a valid configObject');
+            die(self::getErrors());
+        }
+    }
+
+    /**
      * Checks if any errors have occured.
      *
      * @return boolean TRUE if any errors we created while building charts,
