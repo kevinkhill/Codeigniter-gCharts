@@ -43,7 +43,7 @@ class legend extends configOptions
      * @param array Options for the legend
      * @return \tooltip
      */
-    public function __construct($config)
+    public function __construct($config = array())
     {
         $this->options = array(
             'position',
