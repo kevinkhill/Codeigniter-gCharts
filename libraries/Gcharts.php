@@ -156,6 +156,13 @@ class Gcharts
     static $pieCharts = array();
 
     /**
+     * Holds all of the defined ColumnCharts.
+     *
+     * @var array
+     */
+    static $columnCharts = array();
+
+    /**
      * Property defining if the generation of charts occured any errors.
      *
      * @var boolean
@@ -179,7 +186,8 @@ class Gcharts
         'DataTable',
         'LineChart',
         'AreaChart',
-        'PieChart'
+        'PieChart',
+        'ColumnChart'
     );
 
     /**
@@ -208,6 +216,10 @@ class Gcharts
      */
     public function __construct()
     {
+        $CI = get_instance();
+        $CI->load->config('gcharts');
+        $CI->load->helper('gcharts');
+
         self::$masterPath = realpath(dirname(__FILE__)).'/gcharts/';
         self::$configPath = self::$masterPath.'configs/';
         self::$chartPath = self::$masterPath.'charts/';
@@ -224,15 +236,23 @@ class Gcharts
 //        self::$config['useGlobalTextStyle'] = config_item('useGlobalTextStyle');
 //        self::$config['globalTextStyle'] = config_item('globalTextStyle');
 
+        //Load Chart Base Class
+        require_once(self::$chartPath.'Chart.php');
 
         //Autoload Chart Classes
-        if(is_array(self::$config['autoloadCharts']) && count(self::$config['autoloadCharts']) > 0)
+        if(is_array(self::$config['autoloadCharts']))
         {
-            require_once(self::$chartPath.'Chart.php');
             foreach(self::$config['autoloadCharts'] as $chart)
             {
-                require_once(self::$chartPath.$chart.'.php');
+                if(in_array($chart, $this->supportedClasses))
+                {
+                    require_once(self::$chartPath.$chart.'.php');
+                } else {
+                    self::_set_error(__METHOD__, $chart.' is not a valid chart and was not loaded.');
+                }
             }
+        } else {
+            self::_set_error(__METHOD__, 'Config value autoloadCharts must be type (array)');
         }
 
         //Load Config Classes

@@ -5,24 +5,45 @@
 | Auto Load Charts
 |--------------------------------------------------------------------------
 |
-| Use this array to enable the use of specific charts. The currently supported
-| charts include:
+| Use this array to autoload the use of specific charts.
+|
+| If a chart is not listed in the array, then the chart must be loaded before use.
+| This is done by using the $this->gcharts->load() function.
+|
+| The currently supported charts are:
 | - LineChart
 | - AreaChart
+| - PieChart
+| - ColumnChart (beta)
 |
 | - More coming soon!
 |
+| Autoload Example:
+|  $config['autoloadCharts'] = array(
+|     'LineChart',
+|     'AreaChart',
+|     'PieChart',
+|     'ColumnChart'
+|  );
 */
-$config['autoloadCharts'] = array(
-    'LineChart',
-    'AreaChart',
-    'PieChart'
-);
+$config['autoloadCharts'] = array();
 
 
 /*
 |--------------------------------------------------------------------------
-| Global Auto Load Charts - Coming Soon!
+| Error Delimiters
+|--------------------------------------------------------------------------
+|
+| When retrieving the errors from the error log, these will be use to wrap
+| each error. Feel free to change to div's or span's, or apply a css class.
+|
+*/
+$config['errorPrepend'] = '<p style="color:red;">';
+$config['errorAppend'] = '</p>';
+
+/*
+|--------------------------------------------------------------------------
+| Global Text Styles - Coming Soon!
 |--------------------------------------------------------------------------
 |
 | Enable the use of Global Text Styles for the charts.
@@ -43,16 +64,3 @@ $config['autoloadCharts'] = array(
 //    'fontName' => 'Arial',
 //    'fontSize' => 12
 //);
-
-
-/*
-|--------------------------------------------------------------------------
-| Error Delimiters
-|--------------------------------------------------------------------------
-|
-| When retrieving the errors from the error log, these will be use to wrap
-| each error. Feel free to change to div's or span's, or apply a css class.
-|
-*/
-$config['errorPrepend'] = '<p style="color:red;">';
-$config['errorAppend'] = '</p>';

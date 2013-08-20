@@ -11,6 +11,8 @@ function array_string($defaultValues)
 {
     $tmp = '[ ';
 
+    natcasesort($defaultValues);
+    
     foreach($defaultValues as $k => $v)
     {
         $tmp .= $v . ' | ';

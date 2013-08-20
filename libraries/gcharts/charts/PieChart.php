@@ -22,6 +22,7 @@ class PieChart extends Chart
         $this->defaults = array_merge($this->defaults, array(
             'is3D',
 //            'slices',
+            'pieHole',
             'pieSliceBorderColor',
             'pieSliceText',
             'pieSliceTextStyle',
@@ -44,7 +45,7 @@ class PieChart extends Chart
         {
             $this->addOption(array('is3D' => $is3D));
         } else {
-            $this->error('Invalid value for is3D, must be type (boolean).');
+            $this->type_error(__FUNCTION__, 'boolean');
         }
 
         return $this;
@@ -67,7 +68,7 @@ class PieChart extends Chart
         {
             $this->addOption(array('pieSliceBorderColor' => $pieSliceBorderColor));
         } else {
-            $this->error('Invalid value for pieSliceBorderColor, must be type (string).');
+            $this->type_error(__FUNCTION__, 'string');
         }
 
         return $this;
@@ -97,7 +98,7 @@ class PieChart extends Chart
         {
             $this->addOption(array('pieSliceText' => $pieSliceText));
         } else {
-            $this->error('Invalid value for pieSliceText, must be type (string) '.$this->_array_string($values));
+            $this->type_error(__FUNCTION__, 'string', 'with a value of '.$this->_array_string($values));
         }
 
         return $this;
@@ -116,7 +117,26 @@ class PieChart extends Chart
         {
             $this->addOption(array('pieSliceTextStyle' => $textStyle));
         } else {
-            $this->error('Invalid value for textStyle, must be an object type (textStyle).');
+            $this->type_error(__FUNCTION__, 'textStyle');
+        }
+
+        return $this;
+    }
+
+    /**
+     * If between 0 and 1, displays a donut chart. The hole with have a radius
+     * equal to number times the radius of the chart.
+     *
+     * @param numeric $pieHole
+     * @return \PieChart
+     */
+    public function pieHole($pieHole)
+    {
+        if(is_numeric($pieHole) && $pieHole > 0 && $pieHole < 1)
+        {
+            $this->addOption(array('pieHole' => $pieHole));
+        } else {
+            $this->type_error(__FUNCTION__, 'numeric', 'while, 0 < $pieHole < 1 ');
         }
 
         return $this;
@@ -135,7 +155,7 @@ class PieChart extends Chart
         {
             $this->addOption(array('reverseCategories' => $reverseCategories));
         } else {
-            $this->error('Invalid value for reverseCategories, must be type (boolean).');
+            $this->type_error(__FUNCTION__, 'boolean');
         }
     }
 
@@ -154,7 +174,7 @@ class PieChart extends Chart
         {
             $this->addOption(array('sliceVisibilityThreshold' => $sliceVisibilityThreshold));
         } else {
-            $this->error('Invalid value for sliceVisibilityThreshold, must be (numeric).');
+            $this->type_error(__FUNCTION__, 'numeric');
         }
     }
 
@@ -171,7 +191,7 @@ class PieChart extends Chart
         {
             $this->addOption(array('pieResidueSliceColor' => $pieResidueSliceColor));
         } else {
-            $this->error('Invalid value for pieResidueSliceColor, must be a valid HTML color type (string).');
+            $this->type_error(__FUNCTION__, 'string', 'representing a valide HTML color');
         }
     }
 
@@ -188,7 +208,7 @@ class PieChart extends Chart
         {
             $this->addOption(array('pieResidueSliceLabel' => $pieResidueSliceLabel));
         } else {
-            $this->error('Invalid value for pieResidueSliceLabel, must be type (string).');
+            $this->type_error(__FUNCTION__, 'string');
         }
     }
 

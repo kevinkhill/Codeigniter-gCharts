@@ -75,14 +75,15 @@ class configOptions
      * @param string Variable type
      * @param string Extra message to append to error
      */
-    public function type_error($val, $type, $extra = '')
+    public function type_error($val, $type, $extra = FALSE)
     {
         $msg = sprintf(
-            'Invalid value for %s, must be type (%s) ',
+            'Invalid value for %s, must be type (%s)',
             $val,
-            $type,
-            ($extra != '' ? $extra.'.' : '.')
+            $type
         );
+
+        $msg .= $extra ? ' '.$extra.'.' : '.';
 
         $this->error($msg);
     }
