@@ -23,6 +23,7 @@ class GeoChart extends Chart
         parent::__construct($chartLabel);
 
         $this->defaults = array_merge($this->defaults, array(
+            'colorAxis',
             'datalessRegionColor',
             'displayMode',
             'enableRegionInteractivity',
@@ -33,6 +34,25 @@ class GeoChart extends Chart
             'resolution',
             'sizeAxis'
         ));
+    }
+
+    /**
+     * An object that specifies a mapping between color column values and colors
+     * or a gradient scale.
+     *
+     * @param colorAxis $colorAxis
+     * @return \GeoChart
+     */
+    public function colorAxis($colorAxis)
+    {
+        if(is_a($colorAxis, 'colorAxis'))
+        {
+            $this->addOption($colorAxis->toArray());
+        } else {
+            $this->type_error(__FUNCTION__, 'colorAxis');
+        }
+
+        return $this;
     }
 
     public function datalessRegionColor()

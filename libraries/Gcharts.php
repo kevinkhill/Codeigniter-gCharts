@@ -210,6 +210,7 @@ class Gcharts
         'DataCell',
         'backgroundColor',
         'chartArea',
+        'colorAxis',
         'hAxis',
         'jsDate',
         'legend',
@@ -490,7 +491,7 @@ class Gcharts
                 $vizType = 'corechart';
             break;
         }
-        
+
         $out .= sprintf("google.load('visualization', '1', {'packages':['%s']});", $vizType).PHP_EOL;
         $out .= 'google.setOnLoadCallback(drawChart);'.PHP_EOL;
         $out .= 'function drawChart() {'.PHP_EOL;

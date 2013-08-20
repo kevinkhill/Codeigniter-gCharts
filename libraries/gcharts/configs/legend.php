@@ -17,26 +17,26 @@ class legend extends configOptions
 {
     /**
      * Position of the legend.
-     * 
+     *
      * @var string
      */
     var $position;
-    
+
     /**
      * Alignment of the legend.
-     * 
-     * @var type 
+     *
+     * @var string
      */
     var $alignment;
-    
+
     /**
      * Text style of the legend.
-     * 
+     *
      * @var textStyle
      */
     var $textStyle;
 
-    
+
     /**
      * Builds the legend object when passed an array of configuration options.
      *
@@ -56,7 +56,7 @@ class legend extends configOptions
 
     /**
      * Sets the position of the legend.
-     * 
+     *
      * Can be one of the following:
      * 'right' - To the right of the chart. Incompatible with the vAxes option.
      * 'top' - Above the chart.
@@ -89,8 +89,8 @@ class legend extends configOptions
     }
 
     /**
-     * Sets the alignment of the legend. 
-     * 
+     * Sets the alignment of the legend.
+     *
      * Can be one of the following:
      * 'start' - Aligned to the start of the area allocated for the legend.
      * 'center' - Centered in the area allocated for the legend.

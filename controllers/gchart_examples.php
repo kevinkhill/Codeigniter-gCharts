@@ -527,6 +527,37 @@ class Gchart_examples extends CI_Controller
         $this->load->view('gcharts/geo_chart_basic');
     }
 
+    public function geo_chart_advanced()
+    {
+        $this->gcharts->load('GeoChart');
+
+        $dataTable = $this->gcharts->DataTable('Wealth');
+
+        $dataTable->addColumn('string', 'Country', 'country');
+        $dataTable->addColumn('number', 'Population', 'population');
+
+        $dataTable->addRow(array('United States', 312000000));
+        $dataTable->addRow(array('Mexico', 115000000));
+        $dataTable->addRow(array('France', 63300000));
+        $dataTable->addRow(array('China', 1347000000));
+        $dataTable->addRow(array('India', 1241000000));
+        $dataTable->addRow(array('Russia', 143000000));
+
+        $colorAxis = new colorAxis();
+//        $colorAxis->minValue()
+//                  ->maxValue()
+//                  ->values()
+                  $colorAxis->colors(array('green', 'blue'));
+
+        $config = array(
+            'colorAxis' => $colorAxis
+        );
+
+        $this->gcharts->GeoChart('Wealth')->setConfig($config);
+
+        $this->load->view('gcharts/geo_chart_advanced');
+    }
+
 }
 
 /* End of file gchart_examples.php */

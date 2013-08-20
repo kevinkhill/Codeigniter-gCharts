@@ -43,6 +43,7 @@ class backgroundColor extends configOptions
      * Pass an associative array with values for the keys
      * [ stroke | strokeWidth | fill ]
      *
+     * @todo Double check this
      * @example array('stroke' => 'red', 'stokeWidth' => 3, 'fill' => 'blue');
      * @param array Configuration options
      * @return \backgroundColor
