@@ -1,7 +1,7 @@
-<h1><?php echo anchor('gchart_examples', 'Codeigniter gChart Examples'); ?> \ Basic Line Chart</h1>
+<h1><?php echo anchor('gchart_examples', 'Codeigniter gChart Examples'); ?> \ Basic Geo Chart</h1>
 <?php
     echo $this->gcharts->GeoChart('Population')->outputInto('pop_div');
-    echo $this->gcharts->div();
+    echo $this->gcharts->div(1024, 768);
 
     if($this->gcharts->hasErrors())
     {

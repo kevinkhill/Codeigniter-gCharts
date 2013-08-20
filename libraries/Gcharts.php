@@ -476,8 +476,21 @@ class Gcharts
             $out .= 'alert("No DataTable has been defined for '.$chart->chartType.'(\''.$chart->chartLabel.'\').");'.PHP_EOL;
         }
 
-        $vizType = ($chart->chartType == 'AnnotatedTimeLine' ? 'annotatedtimeline' : 'corechart');
+        switch($chart->chartType)
+        {
+            case 'AnnotatedTimeLine':
+                $vizType = 'annotatedtimeline';
+            break;
 
+            case 'GeoChart':
+                $vizType = 'geochart';
+            break;
+
+            default:
+                $vizType = 'corechart';
+            break;
+        }
+        
         $out .= sprintf("google.load('visualization', '1', {'packages':['%s']});", $vizType).PHP_EOL;
         $out .= 'google.setOnLoadCallback(drawChart);'.PHP_EOL;
         $out .= 'function drawChart() {'.PHP_EOL;

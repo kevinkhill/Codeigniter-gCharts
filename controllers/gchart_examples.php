@@ -506,7 +506,7 @@ class Gchart_examples extends CI_Controller
     {
         $this->gcharts->load('GeoChart');
 
-        $dataTable = $this->gcharts->DataTable('Stocks');
+        $dataTable = $this->gcharts->DataTable('Population');
 
         $dataTable->addColumn('string', 'Country', 'country');
         $dataTable->addColumn('number', 'Population', 'population');
@@ -514,12 +514,15 @@ class Gchart_examples extends CI_Controller
         $dataTable->addRow(array('United States', 312000000));
         $dataTable->addRow(array('Mexico', 115000000));
         $dataTable->addRow(array('France', 63300000));
+        $dataTable->addRow(array('China', 1347000000));
+        $dataTable->addRow(array('India', 1241000000));
+        $dataTable->addRow(array('Russia', 143000000));
 
 //        $config = array(
 //            'title' => 'Stocks'
 //        );
 
-        $this->gcharts->GeoChart('Population')->setConfig($config);
+        $this->gcharts->GeoChart('Population');//->setConfig($config);
 
         $this->load->view('gcharts/geo_chart_basic');
     }
