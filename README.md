@@ -17,14 +17,19 @@ If you have any questions or comments... please email me, post issues here, or f
 - - -
 
 ##Installing
-1. Clone the repo into a directory of your choice and copy ALL of the files into their corresponding folders in your Codeigniter project.
-    * ```Codeigniter-gCharts/config/gcharts.php``` -> ```<CI_ROOT>/application/config/gcharts.php```
-    * ```Codeigniter-gCharts/controllers/gchart_examples.php``` -> ```<CI_ROOT>/application/controllers/gchart_examples.php```
-    * ```Codeigniter-gCharts/helpers/gcharts_helper.php``` -> ```<CI_ROOT>/application/helpers/gcharts_helper.php```
-    * ```Codeigniter-gCharts/libraries/*``` -> ```<CI_ROOT>/application/libraries/```
-    * ```Codeigniter-gCharts/views/*``` -> ```<CI_ROOT>/application/views/```
-2. That's it! You now have the power of Google Charts in your project.
-
+1. ```git clone``` the repo into a directory of your choice.
+2. ```cd``` into the freshly cloned repo directory.
+3. Use the included script ```cp.sh``` to copy the files into their respective folders in your Codeigniter project.
+    * ```cd Codeigniter-gCharts```
+    * ```chmod +x ./cp.sh```
+    * ```./cp.sh <PATH_TO_YOUR_CI_PROJECT>```
+4. **OR** you can copy them manually to their corresponding folders in your Codeigniter project.
+    * ```./config/gcharts.php``` -> ```<CI_ROOT>/application/config/gcharts.php```
+    * ```./controllers/gchart_examples.php``` -> ```<CI_ROOT>/application/controllers/gchart_examples.php```
+    * ```./helpers/gcharts_helper.php``` -> ```<CI_ROOT>/application/helpers/gcharts_helper.php```
+    * ```./libraries/*``` -> ```<CI_ROOT>/application/libraries/```
+    * ```./views/*``` -> ```<CI_ROOT>/application/views/```
+5. That's it! You now have the power of Google Charts in your project.
 
 
 ##Examples
