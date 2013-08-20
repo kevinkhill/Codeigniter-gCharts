@@ -9,7 +9,7 @@ If you have any questions or comments... please email me, post issues here, or f
 ##Currently Supported Charts
  * Line Charts
  * Area Charts
- * Pie Charts
+ * Pie Charts (and Donut)
  * Column Charts
  * More coming soon!
 
