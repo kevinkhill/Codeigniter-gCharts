@@ -17,26 +17,26 @@ class textStyle extends configOptions
 {
     /**
      * Color of the text.
-     * 
+     *
      * @var string
      */
     var $color;
-    
+
     /**
      * Font name.
-     * 
+     *
      * @var string
      */
     var $fontName;
-    
+
     /**
      * Size of font, in pixels.
-     * 
+     *
      * @var int
      */
     var $fontSize;
 
-    
+
     /**
      * Builds the textStyle object when passed an array of configuration options.
      *
@@ -55,8 +55,8 @@ class textStyle extends configOptions
     }
 
     /**
-     * Set the color for the text element. 
-     * 
+     * Set the color for the text element.
+     *
      * valid HTML color string, for example: 'red' OR '#004411'
      *
      * @param string Valid HTML color
@@ -67,6 +67,8 @@ class textStyle extends configOptions
         if(is_string($color))
         {
             $this->color = $color;
+        } else {
+            $this->type_error(__FUNCTION__, 'string', ' of a valid HTML color');
         }
 
         return $this;
@@ -74,7 +76,7 @@ class textStyle extends configOptions
 
     /**
      * Sets the font to the textStyle object.
-     * 
+     *
      * Must be a valid font name.
      *
      * @param string Valid font name
@@ -85,6 +87,8 @@ class textStyle extends configOptions
         if(is_string($fontName))
         {
             $this->fontName = $fontName;
+        } else {
+            $this->type_error(__FUNCTION__, 'string');
         }
 
         return $this;
@@ -92,7 +96,7 @@ class textStyle extends configOptions
 
     /**
      * Sets the font size to the textStyle.
-     * 
+     *
      * Must be a valid int for size in pixels.
      *
      * @param int Font size in pixels
@@ -104,7 +108,7 @@ class textStyle extends configOptions
         {
             $this->fontSize = $fontSize;
         } else {
-            $this->type_error('fontSize', 'int');
+            $this->type_error(__FUNCTION__, 'int');
         }
 
         return $this;

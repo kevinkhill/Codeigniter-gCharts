@@ -285,7 +285,7 @@ class Gcharts
     {
         if(in_array($member, $this->configClasses))
         {
-            return $this->_config_object_factory($member, empty($arguments[0]) ? array() : $arguments[0]);
+            return $this->_config_object_factory($member, empty($arguments[0]) ? array() : $arguments);
         } else {
             if(in_array($member, $this->supportedClasses))
             {
@@ -339,7 +339,18 @@ class Gcharts
     {
         if(in_array($configObject, $this->configClasses))
         {
-            return new $configObject($options);
+            if($configObject == 'jsDate')
+            {
+                $jsDate = new jsDate();
+                return $jsDate->parseArray($options);
+            } else {
+                if(empty($options[0]))
+                {
+                    return new $configObject();
+                } else {
+                    return new $configObject($options[0]);
+                }
+            }
         } else {
             exit('['.__METHOD__.'()] -> '.$configObject.' is not a valid configObject');
         }
