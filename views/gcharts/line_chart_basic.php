@@ -15,19 +15,20 @@
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#f2f2f2;padding:5px;">
 $this->gcharts->load('LineChart');
 
-$dataTable = $this->gcharts->DataTable('Stocks');
-
-$dataTable->addColumn('number', 'Count', 'count');
-$dataTable->addColumn('number', 'Projected', 'projected');
-$dataTable->addColumn('number', 'Official', 'official');
+$this->gcharts->DataTable('Stocks')
+              ->addColumn('number', 'Count', 'count')
+              ->addColumn('number', 'Projected', 'projected')
+              ->addColumn('number', 'Official', 'official');
 
 for($a = 1; $a < 25; $a++)
 {
-    $data[0] = $a; //Count
-    $data[1] = rand(800,1000); //Line 1's data
-    $data[2] = rand(800,1000); //Line 2's data
+    $data = array(
+        $a,             //Count
+        rand(800,1000), //Line 1's data
+        rand(800,1000)  //Line 2's data
+    );
 
-    $dataTable->addRow($data);
+    $this->gcharts->DataTable('Stocks')->addRow($data);
 }
 
 $config = array(
