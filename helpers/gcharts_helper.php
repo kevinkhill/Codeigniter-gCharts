@@ -54,7 +54,12 @@ function array_values_check(&$arr, $type)
     {
         foreach($arr as $item)
         {
-            $status = gettype($item) != $type ? FALSE : TRUE;
+            $function = 'is_'.$type;
+            if($function($item) == FALSE)
+            {
+                $status = FALSE;
+                break;
+            }
         }
     } else {
         $status = FALSE;

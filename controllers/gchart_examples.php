@@ -542,12 +542,10 @@ class Gchart_examples extends CI_Controller
              ->addRow(array('India', 1241000000))
              ->addRow(array('Russia', 143000000));
 
-        $colorAxis = $this->gcharts
-                          ->colorAxis()
-                          ->colors(array('green', 'blue'));
-//        $colorAxis->minValue()
-//                  ->maxValue()
-//                  ->values()
+        $colorAxis = $this->gcharts->colorAxis()
+                                   ->minValue(60000000)
+                                   ->maxValue(1500000000)
+                                   ->colors(array('green', 'blue'));
 
         $config = array(
             'colorAxis' => $colorAxis

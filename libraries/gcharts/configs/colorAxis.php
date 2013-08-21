@@ -116,7 +116,12 @@ class colorAxis extends configOptions
      */
     public function values($values)
     {
-
+        if(is_array($values) && array_values_check($values, 'numeric'))
+        {
+            $this->values = $values;
+        } else {
+            $this->type_error(__FUNCTION__, 'array', 'with values as [ int | float ]');
+        }
         return $this;
     }
 
