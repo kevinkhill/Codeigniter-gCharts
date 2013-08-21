@@ -1,6 +1,6 @@
 <h1><?php echo anchor('gchart_examples', 'Codeigniter gChart Examples'); ?> \ Advanced Geo Chart</h1>
 <?php
-    echo $this->gcharts->GeoChart('Wealth')->outputInto('pop_div');
+    echo $this->gcharts->GeoChart('Debt')->outputInto('debt_div');
     echo $this->gcharts->div(1024, 768);
 
     if($this->gcharts->hasErrors())

@@ -531,27 +531,33 @@ class Gchart_examples extends CI_Controller
     {
         $this->gcharts->load('GeoChart');
 
-        $this->gcharts
-             ->DataTable('Wealth')
+        $this->gcharts->DataTable('Debt')
              ->addColumn('string', 'Country', 'country')
-             ->addColumn('number', 'Population', 'population')
-             ->addRow(array('United States', 312000000))
-             ->addRow(array('Mexico', 115000000))
-             ->addRow(array('France', 63300000))
-             ->addRow(array('China', 1347000000))
-             ->addRow(array('India', 1241000000))
-             ->addRow(array('Russia', 143000000));
+             ->addColumn('number', 'National Debt', 'debt')
+             ->addRow(array('United States', 16737246099998))
+             ->addRow(array('United Kingdom', 9836000000000))
+             ->addRow(array('France', 5633000000000))
+             ->addRow(array('Japan', 2719000000000))
+             ->addRow(array('Australia', 1466000000000))
+             ->addRow(array('China', 771700000000))
+             ->addRow(array('Finland', 577700000000))
+             ->addRow(array('Mexico', 217700000000))
+             ->addRow(array('Iceland', 116053000000))
+             ->addRow(array('Iraq', 50268000000))
+             ->addRow(array('Bangladesh', 36210000000))
+             ->addRow(array('Iran', 9452000000));
 
         $colorAxis = $this->gcharts->colorAxis()
-                                   ->minValue(60000000)
-                                   ->maxValue(1500000000)
-                                   ->colors(array('green', 'blue'));
+                          ->minValue(50000000)
+                          ->maxValue(20000000000000)
+                          ->values(array(50000000, 1000000000000, 20000000000000))
+                          ->colors(array('green', 'yellow', 'red'));
 
         $config = array(
             'colorAxis' => $colorAxis
         );
 
-        $this->gcharts->GeoChart('Wealth')->setConfig($config);
+        $this->gcharts->GeoChart('Debt')->setConfig($config);
 
         $this->load->view('gcharts/geo_chart_advanced');
     }
