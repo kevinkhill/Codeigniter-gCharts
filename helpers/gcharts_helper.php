@@ -12,7 +12,7 @@ function array_string($defaultValues)
     $tmp = '[ ';
 
     natcasesort($defaultValues);
-    
+
     foreach($defaultValues as $k => $v)
     {
         $tmp .= $v . ' | ';
@@ -39,6 +39,30 @@ function array_is_multi($arr)
         return FALSE;
     }
 }
+
+/**
+ * Simple test to see if array values are of specified type.
+ *
+ * @param array Array of values.
+ * @return boolean Returns TRUE is all values match type, otherwise FALSE.
+ */
+function array_values_check(&$arr, $type)
+{
+    $status = TRUE;
+
+    if(is_array($arr))
+    {
+        foreach($arr as $item)
+        {
+            $status = gettype($item) != $type ? FALSE : TRUE;
+        }
+    } else {
+        $status = FALSE;
+    }
+
+    return $status;
+}
+
 /**
  * Tests input for valid int or percent
  *

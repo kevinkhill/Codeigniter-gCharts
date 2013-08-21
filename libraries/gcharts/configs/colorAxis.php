@@ -67,11 +67,17 @@ class colorAxis extends configOptions
      * values of this value and lower will be rendered as the first color in
      * the $this->colors range.
      *
-     * @param int minValue
+     * @param numeric minValue
      * @return \colorAxis
      */
     public function minValue($minValue)
     {
+        if(is_numeric($minValue))
+        {
+            $this->minValue = $minValue;
+        } else {
+            $this->type_error(__FUNCTION__, 'numeric');
+        }
 
         return $this;
     }
@@ -81,11 +87,17 @@ class colorAxis extends configOptions
      * values of this value and higher will be rendered as the last color in
      * the $this->colors range.
      *
-     * @param int maxValue
+     * @param numeric maxValue
      * @return \colorAxis
      */
     public function maxValue($maxValue)
     {
+        if(is_numeric($maxValue))
+        {
+            $this->maxValue = $maxValue;
+        } else {
+            $this->type_error(__FUNCTION__, 'numeric');
+        }
 
         return $this;
     }
@@ -122,11 +134,11 @@ class colorAxis extends configOptions
      */
     public function colors($colors)
     {
-        if(is_array($colors))
+        if(is_array($colors) && array_values_check($colors, 'string'))
         {
             $this->colors = $colors;
         } else {
-            $this->type_error(__FUNCTION__, 'array');
+            $this->type_error(__FUNCTION__, 'array', 'with values as strings');
         }
         return $this;
     }
