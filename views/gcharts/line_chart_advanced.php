@@ -15,27 +15,34 @@
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#f2f2f2;padding:5px;">
 $this->gcharts->load('LineChart');
 
-$dataTable = $this->gcharts->DataTable('Times');
-
-$dataTable->addColumn('date', 'Dates', 'dates');
-$dataTable->addColumn('number', 'Run Time', 'run_time');
-$dataTable->addColumn('number', 'Schedule Time', 'schedule_time');
+$this->gcharts->DataTable('Times')
+     ->addColumn('date', 'Dates', 'dates')
+     ->addColumn('number', 'Run Time', 'run_time')
+     ->addColumn('number', 'Schedule Time', 'schedule_time');
 
 for($a = 1; $a < 30; $a++)
 {
-    $line1 = rand(1,5);
-    $line2 = rand(1,5);
-    $dataTable->addRow(array(new jsDate(2013, 8, $a), $line1, $line2));
+    $data = array(
+        new jsDate(2013, 8, $a),
+        $line1,
+        $line2
+    );
+
+    $this->gcharts->DataTable('Times')->addRow();
 }
 
-//Either Chain functions together to set configuration
-$titleStyle = new textStyle();
-$titleStyle->color('#FF0A04')->fontName('Georgia')->fontSize(18);
+//Either Chain functions together to set configuration options
+$titleStyle = $this->gcharts->textStyle()
+                            ->color('#FF0A04')
+                            ->fontName('Georgia')
+                            ->fontSize(18);
 
-$legendStyle = new textStyle();
-$legendStyle->color('#F3BB00')->fontName('Arial')->fontSize(20);
+$legendStyle = $this->gcharts->textStyle()
+                             ->color('#F3BB00')
+                             ->fontName('Arial')
+                             ->fontSize(20);
 
-//Or pass and array with configuration options
+//Or pass an array with configuration options
 $legend = new legend(array(
     'position' => 'bottom',
     'alignment' => 'start',
