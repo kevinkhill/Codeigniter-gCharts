@@ -206,8 +206,7 @@ class Gcharts
     private $configClasses = array(
         'configOptions',
         'Axis',
-        'DataTable',
-        'DataCell',
+//        'DataCell',
         'backgroundColor',
         'chartArea',
         'colorAxis',
@@ -246,8 +245,9 @@ class Gcharts
 //        self::$config['useGlobalTextStyle'] = config_item('useGlobalTextStyle');
 //        self::$config['globalTextStyle'] = config_item('globalTextStyle');
 
-        //Load Chart Base Class
+        //Load Chart Base and DataTable Class
         require_once(self::$chartPath.'Chart.php');
+        require_once(self::$configPath.'DataTable.php');
 
         //Autoload Chart Classes
         if(is_array(self::$config['autoloadCharts']))
@@ -273,21 +273,26 @@ class Gcharts
     }
 
     /**
-     * Magic function to reduce repetitive coding.
+     * Magic function to reduce repetitive coding and create aliases.
      *
      * This is never called directly.
      *
-     * @param string Name of method.
+     * @param string Name of method
      * @param array Passed arguments
-     * @return object Returns Charts and DataTtables.
+     * @return object Returns Charts, DataTables, and Config Objects
      */
     public function __call($member, $arguments)
     {
-        if(in_array($member, $this->supportedClasses))
+        if(in_array($member, $this->configClasses))
         {
-            return $this->_generator($member, $arguments[0]);
+            return $this->_config_object_factory($member, empty($arguments[0]) ? array() : $arguments[0]);
         } else {
-            exit($member.'() IS UNDEFINED');
+            if(in_array($member, $this->supportedClasses))
+            {
+                return $this->_chart_and_table_factory($member, empty($arguments[0]) ? '' : $arguments[0]);
+            } else {
+                exit(get_class($this).'::'.$member.'() IS UNDEFINED');
+            }
         }
     }
 
@@ -299,11 +304,12 @@ class Gcharts
      * objects in an array, accessable via a call to the type of object, with
      * the label as the paramater.
      *
+     * @access private
      * @param string Which type of object to generate.
      * @param string Label applied to generated object.
      * @return mixed Returns Charts or DataTables
      */
-    private function _generator($objType, $objLabel)
+    private function _chart_and_table_factory($objType, $objLabel)
     {
         if(is_string($objLabel) && $objLabel != '')
         {
@@ -318,6 +324,24 @@ class Gcharts
             }
         } else {
             return new $objType();
+        }
+    }
+
+    /**
+     * Creates configuration objects to save a step instansiating and allow for
+     * chaining directly from creation.
+     *
+     * @access private
+     * @param string $configObject
+     * @return object configuration object
+     */
+    private function _config_object_factory($configObject, $options)
+    {
+        if(in_array($configObject, $this->configClasses))
+        {
+            return new $configObject($options);
+        } else {
+            exit('['.__METHOD__.'()] -> '.$configObject.' is not a valid configObject');
         }
     }
 
@@ -389,24 +413,6 @@ class Gcharts
             } else {
                 $this->_set_error(get_class($this), 'Invalid div width & height, must be type (int) > 0');
             }
-        }
-    }
-
-    /**
-     * Creates configuration objects to save a step instansiating and allow for
-     * chaining directly from creation.
-     *
-     * @param string $configObject
-     * @return object configuration object
-     */
-    public function configObject($configObject)
-    {
-        if(in_array($configObject, $this->configClasses))
-        {
-            return new $configObject();
-        } else {
-            self::_set_error(__METHOD__, $configObject.' is not a valid configObject');
-            die(self::getErrors());
         }
     }
 
