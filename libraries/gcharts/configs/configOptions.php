@@ -42,7 +42,7 @@ class configOptions
      */
     public function __construct($config)
     {
-        if(is_array($config) && count($config) > 0)
+        if(is_array($config))
         {
             foreach($config as $option => $value)
             {
@@ -53,6 +53,8 @@ class configOptions
                     $this->error('Ignoring "'.$option.'", not a valid configuration option.');
                 }
             }
+        } else {
+            $this->type_error(get_class($this).'()', 'array', 'with valid keys as '.array_string($this->options));
         }
 
         return $this;
