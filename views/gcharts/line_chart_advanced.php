@@ -42,10 +42,26 @@ $legendStyle = $this->gcharts->textStyle()
                              ->fontName('Arial')
                              ->fontSize(20);
 
+<<<<<<< HEAD
 $legend = $this->gcharts->legend()
                         ->position('bottom')
                         ->alignment('start')
                         ->textStyle($legendStyle);
+||||||| merged common ancestors
+//Or pass and array with configuration options
+$legend = new legend(array(
+    'position' => 'bottom',
+    'alignment' => 'start',
+    'textStyle' => $legendStyle
+));
+=======
+//Or pass an array with configuration options
+$legend = new legend(array(
+    'position' => 'bottom',
+    'alignment' => 'start',
+    'textStyle' => $legendStyle
+));
+>>>>>>> master
 
 //Or pass an array with the configuration options into the function
 $tooltipStyle = new textStyle(array(
