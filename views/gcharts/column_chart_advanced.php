@@ -15,33 +15,39 @@
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#f2f2f2;padding:5px;">
 $this->gcharts->load('ColumnChart');
 
-$dataTable = $this->gcharts->DataTable('Finances');
+$this->gcharts->DataTable('Finances')
+              ->addColumn('date', 'Year', 'month')
+              ->addColumn('number', 'Gross Income', 'gross')
+              ->addColumn('number', 'Bills Paid', 'bills')
+              ->addColumn('number', 'Net Income', 'income');
 
-$dataTable->addColumn('string', 'Year', 'month');
-$dataTable->addColumn('number', 'Gross Income', 'gross');
-$dataTable->addColumn('number', 'Bills Paid', 'bills');
-$dataTable->addColumn('number', 'Net Income', 'income');
+for($year = 2005; $year <= 2010; $year++)
+{
+    $gross = rand(80000, 90000);
+    $bills = rand(15000, 25000);
 
-$gross = rand(80000, 90000); $bills = rand(15000, 25000);
-$dataTable->addRow(array('2009', $gross, $bills, ($gross - $bills)));
+    $data = array(
+        new jsDate($year, 11, 30), //Year
+        $gross,                  //Gross Income
+        $bills,                  //Bills
+        ($gross - $bills)        //Net Income
+    );
 
-$gross = rand(80000, 90000); $bills = rand(15000, 25000);
-$dataTable->addRow(array('2010', $gross, $bills, ($gross - $bills)));
+    $this->gcharts->DataTable('Finances')->addRow($data);
+}
 
-$gross = rand(80000, 90000); $bills = rand(15000, 25000);
-$dataTable->addRow(array('2011', $gross, $bills, ($gross - $bills)));
+//Either Chain functions together to setup configuration objects
+$titleStyle = $this->gcharts->textStyle()
+                            ->color('#55BB9A')
+                            ->fontName('Georgia')
+                            ->fontSize(22);
 
-$gross = rand(80000, 90000); $bills = rand(15000, 25000);
-$dataTable->addRow(array('2012', $gross, $bills, ($gross - $bills)));
+$legendStyle = $this->gcharts->textStyle()
+                             ->color('#F3BB00')
+                             ->fontName('Arial')
+                             ->fontSize(16);
 
-//Either Chain functions together to set configuration
-$titleStyle = new textStyle();
-$titleStyle->color('#55BB9A')->fontName('Georgia')->fontSize(22);
-
-$legendStyle = new textStyle();
-$legendStyle->color('#F3BB00')->fontName('Arial')->fontSize(16);
-
-//Or pass and array with configuration options
+//Or pass an array with configuration options
 $legend = new legend(array(
     'position' => 'right',
     'alignment' => 'start',
@@ -49,7 +55,7 @@ $legend = new legend(array(
 ));
 
 $tooltipStyle = new textStyle(array(
-    'color' => '#C0C0B0',
+    'color' => '#000000',
     'fontName' => 'Courier New',
     'fontSize' => 10
 ));
@@ -66,11 +72,11 @@ $config = array(
         'strokeWidth' => 4,
         'fill' => '#EEFFCC'
     )),
-    'barGroupWidth' => '90%',
+    'barGroupWidth' => '20%',
     'chartArea' => new chartArea(array(
         'left' => 80,
         'top' => 80,
-        'width' => '90%',
+        'width' => '80%',
         'height' => '60%'
     )),
     'titleTextStyle' => $titleStyle,
@@ -85,11 +91,11 @@ $config = array(
         'baselineColor' => '#BB99BB',
         'gridlines' => array(
             'color' => '#ABCDEF',
-            'count' => 4
+            'count' => 1
         ),
         'minorGridlines' => array(
             'color' => '#FEBCDA',
-            'count' => 2
+            'count' => 12
         ),
         'textPosition' => 'out',
         'textStyle' => new textStyle(array(
@@ -98,13 +104,16 @@ $config = array(
             'fontSize' => 14
         )),
         'slantedText' => TRUE,
-        'slantedTextAngle' => 45,
+        'slantedTextAngle' => 70,
         'title' => 'Years',
         'titleTextStyle' => new textStyle(array(
             'color' => '#BB33CC',
             'fontName' => 'Impact',
             'fontSize' => 18
-        ))
+        )),
+        'maxAlternation' => 2,
+        'maxTextLines' => 10,
+        'showTextEvery' => 1
     )),
     'vAxis' => new vAxis(array(
         'baseline' => 1,

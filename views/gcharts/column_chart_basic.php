@@ -13,21 +13,25 @@
 
 <h2>Controller Code</h2>
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#f2f2f2;padding:5px;">
-$dataTable = $this->gcharts->DataTable('Inventory');
+$this->gcharts->load('ColumnChart');
 
-$dataTable->addColumn('string', 'Classroom', 'class');
-$dataTable->addColumn('number', 'Pencils', 'pencils');
-$dataTable->addColumn('number', 'Markers', 'markers');
-$dataTable->addColumn('number', 'Erasers', 'erasers');
-$dataTable->addColumn('number', 'Binders', 'binders');
+$this->gcharts->DataTable('Inventory')
+              ->addColumn('string', 'Classroom', 'class')
+              ->addColumn('number', 'Pencils', 'pencils')
+              ->addColumn('number', 'Markers', 'markers')
+              ->addColumn('number', 'Erasers', 'erasers')
+              ->addColumn('number', 'Binders', 'binders')
+              ->addRow(array(
+                  'Science Class',
+                  rand(50, 100),
+                  rand(50, 100),
+                  rand(50, 100),
+                  rand(50, 100)
+              ));
 
-$dataTable->addRow(array(
-    'Science Class',
-    rand(0, 100),
-    rand(0, 100),
-    rand(0, 100),
-    rand(0, 100)
-));
+$config = array(
+    'title' => 'Inventory'
+);
 
 $this->gcharts->ColumnChart('Inventory')->setConfig($config);
 </pre>
