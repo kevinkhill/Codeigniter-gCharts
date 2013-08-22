@@ -15,22 +15,18 @@
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#e0e0e0;padding:5px;">
 $this->gcharts->load('PieChart');
 
-$slice1 = rand(0,50);
-$slice2 = rand(0,50);
-$slice3 = rand(0,50);
-$slice4 = rand(0,50);
-
 $this->gcharts->DataTable('Activities')
               ->addColumn('string', 'Foods', 'food')
               ->addColumn('string', 'Amount', 'amount')
-              ->addRow(array('TV', $slice1))
-              ->addRow(array('Running', $slice2))
-              ->addRow(array('Video Games', $slice3))
-              ->addRow(array('Sleeping', $slice4))
-              ->addRow(array('Working', 1))
-              ->addRow(array('Sprinting', 1))
-              ->addRow(array('Driving', 1))
-              ->addRow(array('Golfing', 1));
+              ->addRow(array('Driving', 5))
+              ->addRow(array('Video Games', 5))
+              ->addRow(array('Eating', 10))
+              ->addRow(array('TV', 25))
+              ->addRow(array('Working', 30))
+              ->addRow(array('Sleeping', 20))
+              ->addRow(array('Gym', 2))
+              ->addRow(array('Running', 1))
+              ->addRow(array('Walking Dog', 1));
 
 $config = array(
     'title' => 'Activities',
@@ -39,16 +35,70 @@ $config = array(
         'fontName' => 'Impact',
         'fontSize' => 24
     )),
-    'pieSliceBorderColor' => '#D0D0D0',
+    'width' => 800,
+    'height' => 600,
+    'backgroundColor' => new backgroundColor(array(
+        'stroke' => '#C2A86F',
+        'strokeWidth' => 5,
+        'fill' => '#C8F9FC'
+    )),
+    'legend' => new legend(array(
+        'position' => 'bottom',
+        'alignment' => 'start',
+        'textStyle' => new textStyle(array(
+            'color' => '#7F4818',
+            'fontName' => 'Arial Bold',
+            'fontSize' => 14
+        ))
+    )),
+    'tooltip' => new tooltip(array(
+        'showColorCode' => TRUE,
+        'textStyle' => new textStyle(array(
+            'color' => '#00C0B0',
+            'fontName' => 'Courier New',
+            'fontSize' => 18
+        ))
+    )),
+    'pieSliceBorderColor' => '#F050F0',
     'pieSliceTextStyle' => new textStyle(array(
         'color' => 'yellow',
         'fontName' => 'Arial',
-        'fontSize' => 18
+        'fontSize' => 16
     )),
+    'pieStartAngle' => 100,
     'reverseCategories' => TRUE,
-    'sliceVisibilityThreshold' => .04,
+    'sliceVisibilityThreshold' => .03,
     'pieResidueSliceColor' => '#0C04A0',
     'pieResidueSliceLabel' => 'Stuff I Do',
+    'slices' => array(
+        4 => new slice(array(
+            'color' => 'red',
+            'offset' => .2,
+            'textStyle' => new textStyle(array(
+                'color' => '#7CA8FA',
+                'fontName' => 'Helvetica',
+                'fontSize' => 13
+            ))
+        )),
+        5 => new slice(array(
+            'color' => 'yellow',
+            'offset' => .2,
+            'textStyle' => new textStyle(array(
+                'color' => '#2CF80A',
+                'fontName' => 'Times New Roman',
+                'fontSize' => 11
+            ))
+        )),
+        6 => new slice(array(
+            'color' => '#000000',
+            'offset' => .2,
+            'textStyle' => new textStyle(array(
+                'color' => '#3B20FE',
+                'fontName' => 'Impact',
+                'fontSize' => 15
+            ))
+        ))
+    )
 );
 
 $this->gcharts->PieChart('Activities')->setConfig($config);

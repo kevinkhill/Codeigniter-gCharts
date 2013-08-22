@@ -251,10 +251,10 @@ class Gchart_examples extends CI_Controller
     {
         $this->gcharts->load('PieChart');
 
-        $slice1 = rand(0,50);
-        $slice2 = rand(0,50);
-        $slice3 = rand(0,50);
-        $slice4 = rand(0,50);
+        $slice1 = rand(0,40);
+        $slice2 = rand(0,40);
+        $slice3 = rand(0,40);
+        $slice4 = rand(0,40);
 
         $this->gcharts->DataTable('Foods')
                       ->addColumn('string', 'Foods', 'food')
@@ -277,11 +277,6 @@ class Gchart_examples extends CI_Controller
     public function pie_chart_advanced()
     {
         $this->gcharts->load('PieChart');
-
-        $slice1 = rand(0,50);
-        $slice2 = rand(0,50);
-        $slice3 = rand(0,50);
-        $slice4 = rand(0,50);
 
         $this->gcharts->DataTable('Activities')
                       ->addColumn('string', 'Foods', 'food')
