@@ -15,21 +15,24 @@
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#e0e0e0;padding:5px;">
 $this->gcharts->load('AreaChart');
 
-$dataTable = $this->gcharts->DataTable('Rain');
-
-$dataTable->addColumn('number', 'Count', 'count');
-$dataTable->addColumn('number', 'Last Year', 'past');
-$dataTable->addColumn('number', 'This Year', 'current');
+$this->gcharts->DataTable('Rain')
+              ->addColumn('number', 'Count', 'count')
+              ->addColumn('number', 'Last Year', 'past')
+              ->addColumn('number', 'This Year', 'current');
 
 for($a = 1; $a < 30; $a++)
 {
-    $line1 = rand(-10,10);
-    $line2 = rand(-10,10);
-    $dataTable->addRow(array($a, $line1, $line2));
+    $data = array(
+        $a,           //Count
+        rand(-10,10), //Line 1
+        rand(-10,10), //Line 2
+    );
+
+    $this->gcharts->DataTable('Rain')->addRow($data);
 }
 
 $config = array(
-    'title' => 'Rain'
+    'title' => 'Rainfall'
 );
 
 $this->gcharts->AreaChart('Rain')->setConfig($config);

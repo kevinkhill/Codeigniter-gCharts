@@ -174,21 +174,24 @@ class Gchart_examples extends CI_Controller
     {
         $this->gcharts->load('AreaChart');
 
-        $dataTable = $this->gcharts->DataTable('Rain');
-
-        $dataTable->addColumn('number', 'Count', 'count');
-        $dataTable->addColumn('number', 'Last Year', 'past');
-        $dataTable->addColumn('number', 'This Year', 'current');
+        $this->gcharts->DataTable('Rain')
+                      ->addColumn('number', 'Count', 'count')
+                      ->addColumn('number', 'Last Year', 'past')
+                      ->addColumn('number', 'This Year', 'current');
 
         for($a = 1; $a < 30; $a++)
         {
-            $line1 = rand(-10,10);
-            $line2 = rand(-10,10);
-            $dataTable->addRow(array($a, $line1, $line2));
+            $data = array(
+                $a,           //Count
+                rand(-10,10), //Line 1
+                rand(-10,10), //Line 2
+            );
+
+            $this->gcharts->DataTable('Rain')->addRow($data);
         }
 
         $config = array(
-            'title' => 'Rain'
+            'title' => 'Rainfall'
         );
 
         $this->gcharts->AreaChart('Rain')->setConfig($config);
@@ -200,29 +203,36 @@ class Gchart_examples extends CI_Controller
     {
         $this->gcharts->load('AreaChart');
 
-        $dataTable = $this->gcharts->DataTable('Growth');
+        $this->gcharts->DataTable('Depths')
+                      ->addColumn('date', 'Dates', 'dates')
+                      ->addColumn('number', 'Beaver Lake', 'beaver')
+                      ->addColumn('number', 'Tree Lake', 'tree')
+                      ->addColumn('number', 'Sunny Lake', 'sunny');
 
-        $dataTable->addColumn('date', 'Dates', 'dates');
-        $dataTable->addColumn('number', 'Corn', 'corn');
-        $dataTable->addColumn('number', 'Tomatoes', 'tomatoes');
-        $dataTable->addColumn('number', 'Onions', 'onions');
-
-        for($a = 1; $a < 30; $a++)
+        for($a = 1; $a < 12; $a++)
         {
-            $line1 = rand(1,50);
-            $line2 = rand(1,50);
-            $line3 = rand(1,50);
-            $dataTable->addRow(array(new jsDate(2013, 2, $a), $line1, $line2, $line3));
+            $data = array(
+                new jsDate(2013, $a, 1), //Dates
+                rand(1,50),              //Line 1
+                rand(1,50),              //Line 2
+                rand(1,50)               //Line 3
+            );
+
+            $this->gcharts->DataTable('Depths')->addRow($data);
         }
 
-        //Either Chain functions together to set configuration
-        $titleStyle = new textStyle();
-        $titleStyle->color('#FF0A04')->fontName('Georgia')->fontSize(18);
+        //Either Chain functions together to setup configuration objects
+        $titleStyle = $this->gcharts->textStyle()
+                                    ->color('#FF0A04')
+                                    ->fontName('Georgia')
+                                    ->fontSize(24);
 
-        $legendStyle = new textStyle();
-        $legendStyle->color('#F3BB00')->fontName('Arial')->fontSize(20);
+        $legendStyle = $this->gcharts->textStyle()
+                                     ->color('#F3BB00')
+                                     ->fontName('Arial Bold')
+                                     ->fontSize(16);
 
-        //Or pass and array with configuration options
+        //Or pass an array with configuration options
         $legend = new legend(array(
             'position' => 'bottom',
             'alignment' => 'start',
@@ -242,11 +252,74 @@ class Gchart_examples extends CI_Controller
 
 
         $config = array(
-            'title' => 'Crop Growth',
-            'titlePosition' => 'out'
+                'backgroundColor' => new backgroundColor(array(
+                'stroke' => '#3B52C1',
+                'strokeWidth' => 12,
+                'fill' => '#DFFFDA'
+            )),
+            'chartArea' => new chartArea(array(
+                'left' => 89,
+                'top' => 63,
+                'width' => '80%',
+                'height' => '60%'
+            )),
+            'titleTextStyle' => $titleStyle,
+            'legend' => $legend,
+            'tooltip' => $tooltip,
+            'title' => 'Lake Depths',
+            'titlePosition' => 'in',
+            'width' => 1000,
+            'height' => 450,
+            'pointSize' => 5,
+            'lineWidth' => 3,
+            'colors' => array('#26BB93', 'yellow', '#BCDEFA'),
+            'hAxis' => new hAxis(array(
+                'baselineColor' => 'orange',
+                'gridlines' => array(
+                    'color' => '#000000',
+                    'count' => 12
+                ),
+                'minorGridlines' => array(
+                    'color' => '#A4F2BC',
+                    'count' => 30
+                ),
+                'textPosition' => 'out',
+                'textStyle' => new textStyle(array(
+                    'color' => '#C42B5F',
+                    'fontName' => 'Tahoma',
+                    'fontSize' => 10
+                )),
+                'slantedText' => TRUE,
+                'slantedTextAngle' => 45,
+                'title' => 'Dates',
+                'titleTextStyle' => new textStyle(array(
+                    'color' => '#BB33CC',
+                    'fontName' => 'Impact',
+                    'fontSize' => 14
+                )),
+                'maxAlternation' => 1,
+                'maxTextLines' => 12
+            )),
+            'vAxis' => new vAxis(array(
+                'baseline' => 1,
+                'baselineColor' => '#623BBB',
+                'format' => '## feet',
+                'textPosition' => 'out',
+                'textStyle' => new textStyle(array(
+                    'color' => '#DDAA88',
+                    'fontName' => 'Arial Bold',
+                    'fontSize' => 10
+                )),
+                'title' => 'Depth',
+                'titleTextStyle' => new textStyle(array(
+                    'color' => '#5C6DAB',
+                    'fontName' => 'Verdana',
+                    'fontSize' => 14
+                )),
+            ))
         );
 
-        $this->gcharts->AreaChart('Growth')->setConfig($config);
+        $this->gcharts->AreaChart('Depths')->setConfig($config);
 
         $this->load->view('gcharts/area_chart_advanced');
     }
