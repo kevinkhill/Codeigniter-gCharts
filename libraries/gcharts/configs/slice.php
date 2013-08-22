@@ -1,0 +1,115 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Tooltip Properties Object
+ *
+ * An object containing all the values for the tooltip which can be passed
+ * into the chart's options.
+ *
+ *
+ * @author Kevin Hill <kevinkhill@gmail.com>
+ * @copyright (c) 2013, KHill Designs
+ * @link https://github.com/kevinkhill/Codeigniter-gCharts GitHub Repository Page
+ * @link http://kevinkhill.github.io/Codeigniter-gCharts/ GitHub Project Page
+ * @license http://opensource.org/licenses/MIT MIT
+ */
+
+class slice extends configOptions
+{
+    /**
+     * The slice fill color.
+     *
+     * @var string Valid HTML color.
+     */
+    var $color = NULL;
+
+    /**
+     * Offset amount.
+     *
+     * @var string
+     */
+    var $offset = NULL;
+
+    /**
+     * Slice text style.
+     *
+     * @var textStyle
+     */
+    var $textStyle = NULL;
+
+
+    /**
+     * Builds the slice object with specified options.
+     *
+     * @param array Configuration options for the tooltip
+     * @return \tooltip
+     */
+    public function __construct($config = array())
+    {
+        $this->options = array(
+            'color',
+            'offset',
+            'textStyle',
+        );
+
+        parent::__construct($config);
+    }
+
+    /**
+     * The color to use for this slice. Specify a valid HTML color string.
+     *
+     * @param string
+     * @return \slice
+     */
+    public function color($color)
+    {
+        if(is_string($color))
+        {
+            $this->color = $color;
+        } else {
+            $this->type_error(__FUNCTION__, 'string', 'as a valid HTML color code');
+        }
+
+        return $this;
+    }
+
+    /**
+     * How far to separate the slice from the rest of the pie.
+     * from 0.0 (not at all) to 1.0 (the pie's radius).
+     *
+     * @param float offset
+     * @return \slice
+     */
+    public function offset($offset)
+    {
+        if(is_float($offset))
+        {
+            $this->offset = $offset;
+        } else {
+            $this->type_error(__FUNCTION__, 'string', 'with a value of'.$this->_array_string($values));
+        }
+
+        return $this;
+    }
+
+    /**
+     * Overrides the global pieSliceTextSlice for this slice.
+     *
+     * @param textStyle Valid textStyle object.
+     * @return \slice
+     */
+    public function textStyle($textStyle)
+    {
+        if(is_a($textStyle, 'textStyle'))
+        {
+            $this->textStyle = $textStyle->values();
+        } else {
+            $this->type_error(__FUNCTION__, 'textStyle');
+        }
+
+        return $this;
+    }
+
+}
+
+/* End of file slice.php */
+/* Location: ./gcharts/configs/slice.php */
