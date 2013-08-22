@@ -128,48 +128,6 @@ class Gcharts
     static $googleAPI = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>';
 
     /**
-     * Holds all of the defined DataTables.
-     *
-     * @var array
-     */
-    static $dataTables = array();
-
-    /**
-     * Holds all of the defined LineCharts.
-     *
-     * @var array
-     */
-    static $lineCharts = array();
-
-    /**
-     * Holds all of the defined AreaCharts.
-     *
-     * @var array
-     */
-    static $areaCharts = array();
-
-    /**
-     * Holds all of the defined PieCharts.
-     *
-     * @var array
-     */
-    static $pieCharts = array();
-
-    /**
-     * Holds all of the defined ColumnCharts.
-     *
-     * @var array
-     */
-    static $columnCharts = array();
-
-    /**
-     * Holds all of the defined GeoCharts.
-     *
-     * @var array
-     */
-    static $geoCharts = array();
-
-    /**
      * Property defining if the generation of charts occured any errors.
      *
      * @var boolean
@@ -184,8 +142,27 @@ class Gcharts
     static $errorLog = array();
 
     /**
-     * Currently supported types of charts that can be created. Used by the magic
-     * __call function to prevent errors.
+     * Holds all of the defined DataTables.
+     *
+     * @var array
+     */
+    static $dataTables = array();
+
+    /**
+     * Holds all of the defined Charts.
+     *
+     * @var array
+     */
+    static $lineCharts   = array();
+    static $areaCharts   = array();
+    static $pieCharts    = array();
+    static $donutCharts  = array();
+    static $columnCharts = array();
+    static $geoCharts    = array();
+
+    /**
+     * Currently supported types of charts that can be created.
+     * Used by the magic __call function to prevent errors.
      *
      * @var array
      */
@@ -194,6 +171,7 @@ class Gcharts
         'LineChart',
         'AreaChart',
         'PieChart',
+        'DonutChart',
         'ColumnChart',
         'GeoChart'
     );
@@ -256,6 +234,11 @@ class Gcharts
             {
                 if(in_array($chart, $this->supportedClasses))
                 {
+                    if($chart == 'DonutChart')
+                    {
+                        require_once(self::$chartPath.'PieChart.php');
+                    }
+
                     require_once(self::$chartPath.$chart.'.php');
                 } else {
                     self::_set_error(__METHOD__, $chart.' is not a valid chart and was not loaded.');
@@ -354,9 +337,13 @@ class Gcharts
     {
         if(file_exists(self::$chartPath.$chartName.'.php'))
         {
+            if($chartName == 'DonutChart')
+            {
+                require_once(self::$chartPath.'PieChart.php');
+            }
             require_once(self::$chartPath.$chartName.'.php');
         } else {
-            $this->_set_error(get_class($this), 'Invalid Chart, could not load "'.self::$chartPath.$chartName.'.php"');
+            $this->_set_error(__METHOD__, 'Invalid Chart, could not load "'.self::$chartPath.$chartName.'.php"');
         }
     }
 
@@ -398,7 +385,7 @@ class Gcharts
             {
                 return sprintf('<div id="%s"></div>', self::$elementID);
             } else {
-                $this->_set_error(get_class($this), 'Error, output element ID is not set.');
+                $this->_set_error(__METHOD__, 'Error, output element ID is not set.');
             }
         } else {
             if((is_int($width) && $width > 0) && (is_int($height) && $height > 0))
@@ -408,10 +395,10 @@ class Gcharts
                     $format = '<div id="%s" style="width:%spx;height:%spx;"></div>';
                     return sprintf($format, self::$elementID, $width, $height);
                 } else {
-                    $this->_set_error(get_class($this), 'Error, output element ID is not set.');
+                    $this->_set_error(__METHOD__, 'Error, output element ID is not set.');
                 }
             } else {
-                $this->_set_error(get_class($this), 'Invalid div width & height, must be type (int) > 0');
+                $this->_set_error(__METHOD__, 'Invalid div width & height, must be type (int) > 0');
             }
         }
     }
@@ -578,7 +565,7 @@ class Gcharts
              {
                 $script .= $callbackScript.PHP_EOL;
              } else {
-                 self::_set_error(get_class($this), 'Error loading javascript file, in '.$callback.'.js');
+                 self::_set_error(__METHOD__, 'Error loading javascript file, in '.$callback.'.js');
              }
 
              $script .= "};".PHP_EOL;

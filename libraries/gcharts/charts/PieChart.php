@@ -22,7 +22,6 @@ class PieChart extends Chart
         $this->defaults = array_merge($this->defaults, array(
             'is3D',
 //            'slices',
-            'pieHole',
             'pieSliceBorderColor',
             'pieSliceText',
             'pieSliceTextStyle',
@@ -51,10 +50,10 @@ class PieChart extends Chart
         return $this;
     }
 
-    public function slices()
-    {
-
-    }
+//    public function slices()
+//    {
+//
+//    }
 
     /**
      * The color of the slice borders. Only applicable when the chart is two-dimensional.
@@ -118,25 +117,6 @@ class PieChart extends Chart
             $this->addOption(array('pieSliceTextStyle' => $textStyle));
         } else {
             $this->type_error(__FUNCTION__, 'textStyle');
-        }
-
-        return $this;
-    }
-
-    /**
-     * If between 0 and 1, displays a donut chart. The hole with have a radius
-     * equal to number times the radius of the chart.
-     *
-     * @param numeric $pieHole
-     * @return \PieChart
-     */
-    public function pieHole($pieHole)
-    {
-        if(is_numeric($pieHole) && $pieHole > 0 && $pieHole < 1)
-        {
-            $this->addOption(array('pieHole' => $pieHole));
-        } else {
-            $this->type_error(__FUNCTION__, 'numeric', 'while, 0 < $pieHole < 1 ');
         }
 
         return $this;

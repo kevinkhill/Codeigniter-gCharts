@@ -251,20 +251,18 @@ class Gchart_examples extends CI_Controller
     {
         $this->gcharts->load('PieChart');
 
-        $dataTable = $this->gcharts->DataTable('Foods');
+        $slice1 = rand(0,50);
+        $slice2 = rand(0,50);
+        $slice3 = rand(0,50);
+        $slice4 = rand(0,50);
 
-        $dataTable->addColumn('string', 'Foods', 'food');
-        $dataTable->addColumn('string', 'Amount', 'amount');
-
-        $p1 = rand(0,50);
-        $p2 = rand(0,50);
-        $p3 = rand(0,50);
-        $p4 = rand(0,50);
-
-        $dataTable->addRow(array('Pizza', $p1));
-        $dataTable->addRow(array('Beer', $p2));
-        $dataTable->addRow(array('Steak', $p3));
-        $dataTable->addRow(array('Bacon', $p4));
+        $this->gcharts->DataTable('Foods')
+                      ->addColumn('string', 'Foods', 'food')
+                      ->addColumn('string', 'Amount', 'amount')
+                      ->addRow(array('Pizza', $slice1))
+                      ->addRow(array('Beer', $slice2))
+                      ->addRow(array('Steak', $slice3))
+                      ->addRow(array('Bacon', $slice4));
 
         $config = array(
             'title' => 'My Foods',
@@ -278,29 +276,27 @@ class Gchart_examples extends CI_Controller
 
     public function donut_chart_basic()
     {
-        $this->gcharts->load('PieChart');
+        $this->gcharts->load('DonutChart');
 
-        $dataTable = $this->gcharts->DataTable('Foods');
+        $slice1 = rand(0,50);
+        $slice2 = rand(0,50);
+        $slice3 = rand(0,50);
+        $slice4 = rand(0,50);
 
-        $dataTable->addColumn('string', 'Foods', 'food');
-        $dataTable->addColumn('string', 'Amount', 'amount');
-
-        $p1 = rand(0,50);
-        $p2 = rand(0,50);
-        $p3 = rand(0,50);
-        $p4 = rand(0,50);
-
-        $dataTable->addRow(array('Pizza', $p1));
-        $dataTable->addRow(array('Beer', $p2));
-        $dataTable->addRow(array('Steak', $p3));
-        $dataTable->addRow(array('Bacon', $p4));
+        $this->gcharts->DataTable('Foods')
+                      ->addColumn('string', 'Foods', 'food')
+                      ->addColumn('string', 'Amount', 'amount')
+                      ->addRow(array('Pizza', $slice1))
+                      ->addRow(array('Beer', $slice2))
+                      ->addRow(array('Steak', $slice3))
+                      ->addRow(array('Bacon', $slice4));
 
         $config = array(
             'title' => 'My Foods',
             'pieHole' => .4
         );
 
-        $this->gcharts->PieChart('Foods')->setConfig($config);
+        $this->gcharts->DonutChart('Foods')->setConfig($config);
 
         $this->load->view('gcharts/donut_chart_basic');
     }

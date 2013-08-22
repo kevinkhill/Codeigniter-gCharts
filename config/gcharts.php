@@ -13,7 +13,8 @@
 | The currently supported charts are:
 | - LineChart
 | - AreaChart
-| - PieChart (also enables donut chart)
+| - PieChart
+| - DonutChart
 | - ColumnChart (beta)
 | - GeoChart (beta)
 |
