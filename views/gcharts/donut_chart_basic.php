@@ -10,6 +10,8 @@
 ?>
 
 <hr />
+<p><em>NOTE:</em> DonutChart has all the same properties as PieChart.<br>DonutChart is an alias class extending PieChart allowing the 'pieHole' config property to be set.</p>
+<hr />
 
 <h2>Controller Code</h2>
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#e0e0e0;padding:5px;">

@@ -274,6 +274,96 @@ class Gchart_examples extends CI_Controller
         $this->load->view('gcharts/pie_chart_basic');
     }
 
+    public function pie_chart_advanced()
+    {
+        $this->gcharts->load('PieChart');
+
+        $slice1 = rand(0,50);
+        $slice2 = rand(0,50);
+        $slice3 = rand(0,50);
+        $slice4 = rand(0,50);
+
+        $this->gcharts->DataTable('Activities')
+                      ->addColumn('string', 'Foods', 'food')
+                      ->addColumn('string', 'Amount', 'amount')
+                      ->addRow(array('TV', $slice1))
+                      ->addRow(array('Running', $slice2))
+                      ->addRow(array('Video Games', $slice3))
+                      ->addRow(array('Sleeping', $slice4))
+                      ->addRow(array('Working', 1))
+                      ->addRow(array('Sprinting', 1))
+                      ->addRow(array('Driving', 1))
+                      ->addRow(array('Golfing', 1));
+
+        $config = array(
+            'title' => 'Activities',
+            'titleTextStyle' => new textStyle(array(
+                'color' => 'blue',
+                'fontName' => 'Impact',
+                'fontSize' => 24
+            )),
+            'width' => 800,
+            'height' => 600,
+            'backgroundColor' => new backgroundColor(array(
+                'stroke' => '#C2A86F',
+                'strokeWidth' => 5,
+                'fill' => '#C8F9FC'
+            )),
+            'legend' => new legend(array(
+                'position' => 'bottom',
+                'alignment' => 'start',
+                'textStyle' => new textStyle(array(
+                    'color' => '#7F4818',
+                    'fontName' => 'Arial Bold',
+                    'fontSize' => 14
+                ))
+            )),
+            'tooltip' => new tooltip(array(
+                'showColorCode' => TRUE,
+                'textStyle' => new textStyle(array(
+                    'color' => '#00C0B0',
+                    'fontName' => 'Courier New',
+                    'fontSize' => 18
+                ))
+            )),
+            'pieSliceBorderColor' => '#F050F0',
+            'pieSliceTextStyle' => new textStyle(array(
+                'color' => 'yellow',
+                'fontName' => 'Arial',
+                'fontSize' => 16
+            )),
+            'pieStartAngle' => 125,
+            'reverseCategories' => TRUE,
+            'sliceVisibilityThreshold' => .04,
+            'pieResidueSliceColor' => '#0C04A0',
+            'pieResidueSliceLabel' => 'Stuff I Do',
+            'slices' => array(
+                0 => new slice(array(
+                    'color' => 'red',
+                    'offset' => .3,
+                    'textStyle' => new textStyle(array(
+                        'color' => '#7CA8FA',
+                        'fontName' => 'Helvetica',
+                        'fontSize' => 13
+                    ))
+                )),
+                3 => new slice(array(
+                    'color' => 'orange',
+                    'offset' => .5,
+                    'textStyle' => new textStyle(array(
+                        'color' => '#2CF80A',
+                        'fontName' => 'Times New Roman',
+                        'fontSize' => 11
+                    ))
+                )),
+            )
+        );
+var_dump($config);
+        $this->gcharts->PieChart('Activities')->setConfig($config);
+
+        $this->load->view('gcharts/pie_chart_advanced');
+    }
+
     public function donut_chart_basic()
     {
         $this->gcharts->load('DonutChart');
@@ -300,53 +390,6 @@ class Gchart_examples extends CI_Controller
 
         $this->load->view('gcharts/donut_chart_basic');
     }
-
-    public function pie_chart_advanced()
-    {
-        $this->gcharts->load('PieChart');
-
-        $dataTable = $this->gcharts->DataTable('Activities');
-        $dataTable->addColumn('string', 'Foods', 'food');
-        $dataTable->addColumn('string', 'Amount', 'amount');
-
-        $p1 = rand(0,50);
-        $p2 = rand(0,50);
-        $p3 = rand(0,50);
-        $p4 = rand(0,50);
-
-        $dataTable->addRow(array('TV', $p1));
-        $dataTable->addRow(array('Running', $p2));
-        $dataTable->addRow(array('Video Games', $p3));
-        $dataTable->addRow(array('Sleeping', $p4));
-        $dataTable->addRow(array('Working', 1));
-        $dataTable->addRow(array('Sprinting', 1));
-        $dataTable->addRow(array('Driving', 1));
-        $dataTable->addRow(array('Golfing', 1));
-
-        $config = array(
-            'title' => 'Activities',
-            'titleTextStyle' => new textStyle(array(
-                'color' => 'blue',
-                'fontName' => 'Impact',
-                'fontSize' => 24
-            )),
-            'pieSliceBorderColor' => 'orange',
-            'pieSliceTextStyle' => new textStyle(array(
-                'color' => 'yellow',
-                'fontName' => 'Arial',
-                'fontSize' => 18
-            )),
-            'reverseCategories' => TRUE,
-            'sliceVisibilityThreshold' => .04,
-            'pieResidueSliceColor' => '#0C04A0',
-            'pieResidueSliceLabel' => 'Stuff I Do',
-        );
-
-        $this->gcharts->PieChart('Activities')->setConfig($config);
-
-        $this->load->view('gcharts/pie_chart_advanced');
-    }
-
 
     public function column_chart_basic()
     {

@@ -115,7 +115,7 @@ class configOptions
      *
      * @return array Multi-Dimensional array as CLASS_NAME => array(CONFIGURATION).
      */
-    public function toArray()
+    public function toArray($keyName = NULL)
     {
         $this->output = array();
 
@@ -127,7 +127,12 @@ class configOptions
             }
         }
 
-        return array(get_class($this) => $this->output);
+        if(is_null($keyName))
+        {
+            return array(get_class($this) => $this->output);
+        } else {
+            return array($keyName => $this->output);
+        }
     }
 
     /**

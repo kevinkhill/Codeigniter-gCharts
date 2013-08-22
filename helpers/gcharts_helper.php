@@ -46,19 +46,31 @@ function array_is_multi($arr)
  * @param array Array of values.
  * @return boolean Returns TRUE is all values match type, otherwise FALSE.
  */
-function array_values_check(&$arr, $type)
+function array_values_check(&$arr, $type, $extra = NULL)
 {
     $status = TRUE;
 
-    if(is_array($arr))
+    if(is_array($arr) && is_string($type))
     {
-        foreach($arr as $item)
+        if($type == 'class' && is_string($extra) && !empty($extra))
         {
-            $function = 'is_'.$type;
-            if($function($item) == FALSE)
+            foreach($arr as $item)
             {
-                $status = FALSE;
-                break;
+                if(is_a($item, $extra) == FALSE)
+                {
+                    $status = FALSE;
+                    break;
+                }
+            }
+        } else {
+            foreach($arr as $item)
+            {
+                $function = 'is_'.$type;
+                if($function($item) == FALSE)
+                {
+                    $status = FALSE;
+                    break;
+                }
             }
         }
     } else {

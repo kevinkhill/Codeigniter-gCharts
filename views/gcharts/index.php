@@ -15,8 +15,12 @@
 <h2>PieCharts</h2>
 <ul>
     <li><h3><?php echo anchor('gchart_examples/pie_chart_basic', 'Basic'); ?></h3></li>
-    <li><h3><?php echo anchor('gchart_examples/donut_chart_basic', 'Donut'); ?></h3></li>
     <li><h3><?php echo anchor('gchart_examples/pie_chart_advanced', 'Advanced'); ?></h3></li>
+</ul>
+
+<h2>DonutCharts</h2>
+<ul>
+    <li><h3><?php echo anchor('gchart_examples/donut_chart_basic', 'Basic'); ?></h3></li>
 </ul>
 
 <h2>ColumnCharts</h2>

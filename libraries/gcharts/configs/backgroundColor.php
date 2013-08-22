@@ -32,7 +32,7 @@ class backgroundColor extends configOptions
     /**
      * The chart fill color, as an HTML color string.
      *
-     * @var type Valid HTML color.
+     * @var string Valid HTML color.
      */
     var $fill = NULL;
 
@@ -43,8 +43,6 @@ class backgroundColor extends configOptions
      * Pass an associative array with values for the keys
      * [ stroke | strokeWidth | fill ]
      *
-     * @todo Double check this
-     * @example array('stroke' => 'red', 'stokeWidth' => 3, 'fill' => 'blue');
      * @param array Configuration options
      * @return \backgroundColor
      */

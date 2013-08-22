@@ -193,6 +193,7 @@ class Gcharts
         'legend',
         'textStyle',
         'tooltip',
+        'slice',
         'vAxis'
     );
 
