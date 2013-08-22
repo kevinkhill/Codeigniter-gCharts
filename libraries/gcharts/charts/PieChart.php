@@ -57,20 +57,11 @@ class PieChart extends Chart
      * specify a NULL. If a slice or a value is not specified, the global
      * value will be used.
      *
-     * The values of the slice array will correspond to each numbered piece of
-     * the pie, starting from 0. You can skip slices with NULLs or assign the
-     * keys of the array as INTs manually.
+     * The values of the array keys will correspond to each numbered piece
+     * of the pie, starting from 0. You can skip slices by assigning the
+     * keys of the array as (int)s.
      *
      * This would apply slice values to the first and fourth slice of the pie
-     * Example: array(
-     *              new slice(),
-     *              NULL,
-     *              NULL,
-     *              new slice()
-     *          );
-     *  --OR--
-     *
-     * This would achieve the same result
      * Example: array(
      *              0 => new slice(),
      *              3 => new slice()
@@ -84,9 +75,16 @@ class PieChart extends Chart
     {
         if(is_array($slices) && array_values_check($slices, 'class', 'slice'))
         {
-            $this->addOption(array('slices' => $slices));
+            $pizzaBox = array();
+
+            foreach($slices as $key => $slice)
+            {
+                $pizzaBox[$key] = $slice->values();
+            }
+
+            $this->addOption(array('slices' => $pizzaBox));
         } else {
-            $this->type_error(__FUNCTION__, 'array', 'with values of type (slice)');
+            $this->type_error(__FUNCTION__, 'array', 'with keys as (int) and values as (slice)');
         }
 
         return $this;

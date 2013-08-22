@@ -94,26 +94,32 @@ class configOptions
      * Returns a string representation of the object.
      *
      * @return string JSON string.
+     * @deprecated
      */
-    public function toJSON()
-    {
-        $this->output = array();
-
-        foreach($this->options as $option)
-        {
-            if(isset($this->$option))
-            {
-                $this->output[$option] = $this->$option;
-            }
-        }
-
-        return '"'.get_class($this).'":'.json_encode($this->output);
-    }
+//    public function toJSON()
+//    {
+//        $this->output = array();
+//
+//        foreach($this->options as $option)
+//        {
+//            if(isset($this->$option))
+//            {
+//                $this->output[$option] = $this->$option;
+//            }
+//        }
+//
+//        return '"'.get_class($this).'":'.json_encode($this->output);
+//    }
 
     /**
      * Returns an array representation of the object.
      *
-     * @return array Multi-Dimensional array as CLASS_NAME => array(CONFIGURATION).
+     * If passed a label, then the array will be returned with the label as the
+     * key.
+     *
+     * Called with no label returns an array with the classname as the key.
+     *
+     * @return array
      */
     public function toArray($keyName = NULL)
     {

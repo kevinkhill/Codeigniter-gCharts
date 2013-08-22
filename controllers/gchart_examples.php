@@ -286,14 +286,15 @@ class Gchart_examples extends CI_Controller
         $this->gcharts->DataTable('Activities')
                       ->addColumn('string', 'Foods', 'food')
                       ->addColumn('string', 'Amount', 'amount')
-                      ->addRow(array('TV', $slice1))
-                      ->addRow(array('Running', $slice2))
-                      ->addRow(array('Video Games', $slice3))
-                      ->addRow(array('Sleeping', $slice4))
-                      ->addRow(array('Working', 1))
-                      ->addRow(array('Sprinting', 1))
-                      ->addRow(array('Driving', 1))
-                      ->addRow(array('Golfing', 1));
+                      ->addRow(array('Driving', 5))
+                      ->addRow(array('Video Games', 5))
+                      ->addRow(array('Eating', 10))
+                      ->addRow(array('TV', 25))
+                      ->addRow(array('Working', 30))
+                      ->addRow(array('Sleeping', 20))
+                      ->addRow(array('Gym', 2))
+                      ->addRow(array('Running', 1))
+                      ->addRow(array('Walking Dog', 1));
 
         $config = array(
             'title' => 'Activities',
@@ -332,33 +333,42 @@ class Gchart_examples extends CI_Controller
                 'fontName' => 'Arial',
                 'fontSize' => 16
             )),
-            'pieStartAngle' => 125,
+            'pieStartAngle' => 100,
             'reverseCategories' => TRUE,
-            'sliceVisibilityThreshold' => .04,
+            'sliceVisibilityThreshold' => .03,
             'pieResidueSliceColor' => '#0C04A0',
             'pieResidueSliceLabel' => 'Stuff I Do',
             'slices' => array(
-                0 => new slice(array(
+                4 => new slice(array(
                     'color' => 'red',
-                    'offset' => .3,
+                    'offset' => .2,
                     'textStyle' => new textStyle(array(
                         'color' => '#7CA8FA',
                         'fontName' => 'Helvetica',
                         'fontSize' => 13
                     ))
                 )),
-                3 => new slice(array(
-                    'color' => 'orange',
-                    'offset' => .5,
+                5 => new slice(array(
+                    'color' => 'yellow',
+                    'offset' => .2,
                     'textStyle' => new textStyle(array(
                         'color' => '#2CF80A',
                         'fontName' => 'Times New Roman',
                         'fontSize' => 11
                     ))
                 )),
+                6 => new slice(array(
+                    'color' => '#000000',
+                    'offset' => .2,
+                    'textStyle' => new textStyle(array(
+                        'color' => '#3B20FE',
+                        'fontName' => 'Impact',
+                        'fontSize' => 15
+                    ))
+                ))
             )
         );
-var_dump($config);
+
         $this->gcharts->PieChart('Activities')->setConfig($config);
 
         $this->load->view('gcharts/pie_chart_advanced');
