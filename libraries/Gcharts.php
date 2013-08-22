@@ -532,7 +532,7 @@ class Gcharts
             $out .= sprintf($format, $data->toJSON(), self::$dataTableVersion).PHP_EOL;
         }
 
-        $out .= "var options = ".json_encode($chart->options).";".PHP_EOL;
+        $out .= "var options = ".$chart->optionsToJSON().";".PHP_EOL;
         $out .= "var chart = new google.visualization.".$chart->chartType;
             $out .= sprintf("(document.getElementById('%s'));", $chart->elementID).PHP_EOL;
         $out .= "chart.draw(data, options);".PHP_EOL;

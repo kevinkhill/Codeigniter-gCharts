@@ -455,6 +455,16 @@ class Chart
         return Gcharts::_build_script_block($this);
     }
 
+    /**
+     * Returns a JSON string representation of the object's properties.
+     *
+     * @return string
+     */
+    public function optionsToJSON()
+    {
+        return json_encode($this->options);
+    }
+
 }
 
 /* End of file Chart.php */
