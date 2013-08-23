@@ -73,42 +73,65 @@ class GeoChart extends Chart
         return $this;
     }
 
-    public function displayMode()
+    /**
+     * Which type of map this is. The DataTable format must match the value specified. The following values are supported:
+     *
+     * 'auto' - Choose based on the format of the DataTable.
+     * 'regions' - This is a region map
+     * 'markers' - This is a marker map
+     *
+     * @param string $displayMode
+     * @return \GeoChart
+     */
+    public function displayMode($displayMode)
+    {
+        $values = array(
+            'auto',
+            'regions',
+            'markers',
+        );
+
+        if(in_array($displayMode, $values))
+        {
+            $this->addOption(array('displayMode' => $displayMode));
+        } else {
+            $this->type_error(__FUNCTION__, 'string', 'with a value of '.array_string($values));
+        }
+
+        return $this;
+    }
+
+    public function enableRegionInteractivity($enableRegionInteractivity)
     {
 
     }
 
-    public function enableRegionInteractivity()
+    public function keepAspectRatio($keepAspectRatio)
     {
 
     }
 
-    public function keepAspectRatio()
+    public function region($region)
     {
 
     }
 
-    public function region()
+    public function magnifyingGlass($magnifyingGlass)
     {
 
     }
 
-    public function magnifyingGlass()
+    public function markerOpacity($markerOpacity)
     {
 
     }
 
-    public function markerOpacity()
+    public function resolution($resolution)
     {
 
     }
 
-    public function resolution()
-    {
-
-    }
-
-    public function sizeAxis()
+    public function sizeAxis($sizeAxis)
     {
 
     }
