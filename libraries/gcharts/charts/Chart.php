@@ -83,7 +83,7 @@ class Chart
     /**
      * Sets a configuration option
      *
-     * Takes either an array with option => value, or an object created by
+     * Takes an array with option => value, or an object created by
      * one of the configOptions child objects.
      *
      * @param mixed $option
@@ -91,14 +91,19 @@ class Chart
      */
     public function addOption($option)
     {
-        if(is_object($option))
+        switch(gettype($option))
         {
-            $this->options = array_merge($this->options, $option->toArray());
-        }
+            case 'object':
+                $this->options = array_merge($this->options, $option->toArray());
+            break;
 
-        if(is_array($option))
-        {
-            $this->options = array_merge($this->options, $option);
+            case 'array':
+                $this->options = array_merge($this->options, $option);
+            break;
+
+            default:
+                $this->type_error(__FUNCTION__, 'object | array', ', option != '.print_r($option));
+            break;
         }
 
         return $this;

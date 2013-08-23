@@ -47,7 +47,7 @@ class GeoChart extends Chart
     {
         if(is_a($colorAxis, 'colorAxis'))
         {
-            $this->addOption($colorAxis->toArray());
+            $this->addOption($colorAxis);
         } else {
             $this->type_error(__FUNCTION__, 'colorAxis');
         }
@@ -55,9 +55,22 @@ class GeoChart extends Chart
         return $this;
     }
 
-    public function datalessRegionColor()
+    /**
+     * Color to assign to regions with no associated data.
+     *
+     * @param string $datalessRegionColor
+     * @return \GeoChart
+     */
+    public function datalessRegionColor($datalessRegionColor)
     {
+        if(is_string($datalessRegionColor) && ! empty($datalessRegionColor))
+        {
+            $this->addOption(array('datalessRegionColor' => $datalessRegionColor));
+        } else {
+            $this->type_error(__FUNCTION__, 'string');
+        }
 
+        return $this;
     }
 
     public function displayMode()

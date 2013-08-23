@@ -684,7 +684,8 @@ class Gchart_examples extends CI_Controller
                           ->colors(array('green', 'yellow', 'red'));
 
         $config = array(
-            'colorAxis' => $colorAxis
+            'colorAxis' => $colorAxis,
+            'datalessRegionColor' => '#DDFFF6'
         );
 
         $this->gcharts->GeoChart('Debt')->setConfig($config);
