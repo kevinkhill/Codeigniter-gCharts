@@ -685,7 +685,10 @@ class Gchart_examples extends CI_Controller
 
         $config = array(
             'colorAxis' => $colorAxis,
-            'datalessRegionColor' => '#DDFFF6'
+            'datalessRegionColor' => '#DDFFF6',
+            'displayMode' => 'markers',
+            'enableRegionInteractivity' => TRUE,
+            'keepAspectRatio' => FALSE,
         );
 
         $this->gcharts->GeoChart('Debt')->setConfig($config);

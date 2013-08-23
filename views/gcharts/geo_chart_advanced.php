@@ -20,3 +20,9 @@
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#f2f2f2;padding:5px;">
 
 </pre>
+
+<?php
+
+var_dump($this->gcharts->GeoChart('Debt')->options);
+
+?>
