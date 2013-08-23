@@ -184,7 +184,7 @@ class Axis extends configOptions
             {
                 $this->baseline = $baseline;
             } else {
-                $this->type_error('baseline', 'int | jsDate', '; int if column is "number", jsDate if column is "date"');
+                $this->type_error(__FUNCTION__, 'int | jsDate', '; int if column is "number", jsDate if column is "date"');
             }
         }
 
@@ -207,7 +207,7 @@ class Axis extends configOptions
         {
             $this->baselineColor = $color;
         } else {
-            $this->type_error('baselineColor', 'string', 'representing a valid HTML color');
+            $this->type_error(__FUNCTION__, 'string', 'representing a valid HTML color');
         }
 
         return $this;
@@ -227,7 +227,7 @@ class Axis extends configOptions
         {
             $this->direction = $direction;
         } else {
-            $this->type_error('direction', 'int', '1 || -1');
+            $this->type_error(__FUNCTION__, 'int', '1 || -1');
         }
 
         return $this;
@@ -253,7 +253,7 @@ class Axis extends configOptions
         {
             $this->format = $format;
         } else {
-            $this->type_error('format', 'string');
+            $this->type_error(__FUNCTION__, 'string');
         }
 
         return $this;
@@ -300,7 +300,7 @@ class Axis extends configOptions
 
             $this->gridlines = $tmp;
         } else {
-            $this->type_error('gridlines', 'array', 'with keys for count & color');
+            $this->type_error(__FUNCTION__, 'array', 'with keys for count & color');
         }
 
         return $this;
@@ -330,7 +330,7 @@ class Axis extends configOptions
             ) {
                 $tmp['count'] = $minorGridlines['count'];
             } else {
-                $this->type_error('minorGridlines[count]',  'int', '>= 2 or -1 for auto');
+                $this->type_error(__FUNCTION__.'[count]',  'int', '>= 2 or -1 for auto');
             }
 
             if(array_key_exists('color', $minorGridlines))
@@ -340,7 +340,7 @@ class Axis extends configOptions
 
             $this->minorGridlines = $tmp;
         } else {
-            $this->type_error('minorGridlines', 'array', 'with keys count & color');
+            $this->type_error(__FUNCTION__, 'array', 'with keys count & color');
         }
 
         return $this;
@@ -361,7 +361,7 @@ class Axis extends configOptions
         {
             $this->logScale = $log;
         } else {
-            $this->type_error('logScale', 'boolean');
+            $this->type_error(__FUNCTION__, 'boolean');
         }
 
         return $this;
@@ -386,7 +386,7 @@ class Axis extends configOptions
         {
             $this->textPosition = $position;
         } else {
-            $this->type_error('textPosition', 'string', 'with a value of '.array_string($values));
+            $this->type_error(__FUNCTION__, 'string', 'with a value of '.array_string($values));
         }
 
         return $this;
@@ -404,7 +404,7 @@ class Axis extends configOptions
         {
             $this->textStyle = $textStyle->values();
         } else {
-            $this->type_error('textStyle', 'object', 'class textStyle');
+            $this->type_error(__FUNCTION__, 'object', 'class textStyle');
         }
 
         return $this;
@@ -422,7 +422,7 @@ class Axis extends configOptions
         {
             $this->title = $title;
         } else {
-            $this->type_error('title', 'string');
+            $this->type_error(__FUNCTION__, 'string');
         }
 
         return $this;
@@ -440,7 +440,7 @@ class Axis extends configOptions
         {
             $this->titleTextStyle = $titleTextStyle->values();
         } else {
-            $this->type_error('titleTextStyle', 'object', 'class textStyle');
+            $this->type_error(__FUNCTION__, 'object', 'class textStyle');
         }
 
         return $this;
@@ -464,7 +464,7 @@ class Axis extends configOptions
         {
             $this->maxAlternation = $alternation;
         } else {
-            $this->type_error('maxAlternation', 'int');
+            $this->type_error(__FUNCTION__, 'int');
         }
 
         return $this;
@@ -486,7 +486,7 @@ class Axis extends configOptions
         {
             $this->maxTextLines = $maxTextLines;
         } else {
-            $this->type_error('maxTextLines', 'int');
+            $this->type_error(__FUNCTION__, 'int');
         }
 
         return $this;
@@ -514,7 +514,7 @@ class Axis extends configOptions
             {
                 $this->minTextSpacing = $this->textStyle['fontSize'];
             } else {
-                $this->type_error('minTextSpacing', 'int');
+                $this->type_error(__FUNCTION__, 'int');
             }
         }
 
@@ -537,7 +537,7 @@ class Axis extends configOptions
         {
             $this->showTextEvery = $showTextEvery;
         } else {
-            $this->type_error('showTextEvery', 'int');
+            $this->type_error(__FUNCTION__, 'int');
         }
 
         return $this;
@@ -559,7 +559,7 @@ class Axis extends configOptions
         {
             $this->maxValue = $max;
         } else {
-            $this->type_error('maxValue', 'int');
+            $this->type_error(__FUNCTION__, 'int');
         }
 
         return $this;
@@ -581,7 +581,7 @@ class Axis extends configOptions
         {
             $this->minValue = $min;
         } else {
-           $this->type_error('minValue', 'int');
+           $this->type_error(__FUNCTION__, 'int');
         }
 
         return $this;
@@ -668,6 +668,8 @@ class Axis extends configOptions
             }
 
             $this->viewWindow = $tmp;
+        } else {
+            $this->type_error(__FUNCTION__, 'array', 'with keys min && max');
         }
 
         return $this;

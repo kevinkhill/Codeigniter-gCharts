@@ -85,7 +85,7 @@ class slice extends configOptions
         {
             $this->offset = $offset;
         } else {
-            $this->type_error(__FUNCTION__, 'string', 'with a value of'.$this->_array_string($values));
+            $this->type_error(__FUNCTION__, 'string', 'with a value of '.$this->_array_string($values));
         }
 
         return $this;

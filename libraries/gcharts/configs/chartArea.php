@@ -74,7 +74,7 @@ class chartArea extends configOptions
         {
             $this->left = $left;
         } else {
-            $this->type_error(__FUNCTION__, 'int | string', 'representing a percent.');
+            $this->type_error(__FUNCTION__, 'int | string', 'representing pixels or a percent.');
         }
 
         return $this;
@@ -92,7 +92,7 @@ class chartArea extends configOptions
         {
             $this->top = $top;
         } else {
-            $this->type_error(__FUNCTION__, 'int | string', 'representing a percent.');
+            $this->type_error(__FUNCTION__, 'int | string', 'representing pixels or a percent.');
         }
 
         return $this;
@@ -110,7 +110,7 @@ class chartArea extends configOptions
         {
             $this->width = $width;
         } else {
-            $this->type_error(__FUNCTION__, 'int | string', 'representing a percent.');
+            $this->type_error(__FUNCTION__, 'int | string', 'representing pixels or a percent.');
         }
 
         return $this;
@@ -128,7 +128,7 @@ class chartArea extends configOptions
         {
             $this->height = $height;
         } else {
-            $this->type_error(__FUNCTION__, 'int | string', 'representing a percent.');
+            $this->type_error(__FUNCTION__, 'int | string', 'representing pixels or a percent.');
         }
 
         return $this;
