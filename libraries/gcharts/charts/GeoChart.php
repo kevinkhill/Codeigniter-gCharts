@@ -178,12 +178,26 @@ class GeoChart extends Chart
 
     public function magnifyingGlass($magnifyingGlass)
     {
-
+        $this->addOption(array('magnifyingGlass'=>array('enable'=>TRUE, 'zoomFactor'=>3)));
     }
 
+    /**
+     * The opacity of the markers, where 0.0 is fully transparent and 1.0
+     * is fully opaque.
+     *
+     * @param type $markerOpacity
+     * @return \GeoChart
+     */
     public function markerOpacity($markerOpacity)
     {
+        if(is_float($markerOpacity) && between($markerOpacity, 0, 1))
+        {
+            $this->addOption(array('markerOpacity' => $markerOpacity));
+        } else {
+            $this->type_error(__FUNCTION__, 'float', 'between 0.0 - 1.0');
+        }
 
+        return $this;
     }
 
     /**

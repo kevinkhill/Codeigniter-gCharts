@@ -684,7 +684,7 @@ class Gchart_examples extends CI_Controller
                           ->colors(array('green', 'yellow', 'red'));
 
         $sizeAxis = new sizeAxis();
-        $sizeAxis->minSize(20)->minValue(50000000)->maxSize(50)->maxValue(20000000000000);
+        $sizeAxis->minSize(10)->minValue(50000000)->maxSize(36)->maxValue(20000000000000);
 
         $config = array(
             'colorAxis' => $colorAxis,
@@ -692,7 +692,9 @@ class Gchart_examples extends CI_Controller
             'displayMode' => 'markers',
             'enableRegionInteractivity' => TRUE,
             'keepAspectRatio' => FALSE,
-            'sizeAxis' => $sizeAxis
+            'sizeAxis' => $sizeAxis,
+            'markerOpacity' => 0.6,
+            'magnifyingGlass' => 1
         );
 
         $this->gcharts->GeoChart('Debt')->setConfig($config);
