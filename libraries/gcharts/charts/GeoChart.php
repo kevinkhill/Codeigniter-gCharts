@@ -186,9 +186,34 @@ class GeoChart extends Chart
 
     }
 
+    /**
+     * The resolution of the map borders. Choose one of the following values:
+     *
+     * 'countries' - Supported for all regions, except for US state regions.
+     * 'provinces' - Supported only for country regions and US state regions.
+     *               Not supported for all countries; please test a country to
+     *               see whether this option is supported.
+     * 'metros' - Supported for the US country region and US state regions only.
+     *
+     * @param string $resolution
+     * @return \GeoChart
+     */
     public function resolution($resolution)
     {
+        $values = array(
+            'countries',
+            'provinces',
+            'metros',
+        );
 
+        if(in_array($resolution, $values))
+        {
+            $this->addOption(array('resolution' => $$resolution));
+        } else {
+            $this->type_error(__FUNCTION__, 'string', 'with a value of '.array_string($values));
+        }
+
+        return $this;
     }
 
     public function sizeAxis($sizeAxis)
