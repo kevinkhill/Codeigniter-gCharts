@@ -161,17 +161,19 @@ class GeoChart extends Chart
      */
     public function region($region)
     {
-        if(is_string($region))
-        {
-            if($this->_regionCodeSearch($region) !== FALSE)
-            {
-                $this->addOption(array('region' => $this->_regionCodeSearch($region)));
-            } else {
-                $this->type_error(__FUNCTION__, 'region code', '"'.$region.'" was not found');
-            }
-        } else {
-            $this->type_error(__FUNCTION__, 'string');
-        }
+        $this->addOption(array('region' => $region));
+//
+//        if(is_string($region))
+//        {
+//            if($this->_regionCodeSearch($region) !== FALSE)
+//            {
+//                $this->addOption(array('region' => $this->_regionCodeSearch($region)));
+//            } else {
+//                $this->type_error(__FUNCTION__, 'string', '"'.$region.'" was not found');
+//            }
+//        } else {
+//            $this->type_error(__FUNCTION__, 'string');
+//        }
 
         return $this;
     }
@@ -587,10 +589,10 @@ class GeoChart extends Chart
             'US-VI'
         );
 
-        if(array_key_exists($regionCodes, strtolower($region)))
+        if(isset($regionCodes[strtolower($region)]))
         {
-            return $regionCodes[$region];
-        } else if(array_search($region, $unitedStates)) {
+            return $regionCodes[strtolower($region)];
+        } else if(array_search(strtolower($region), $unitedStates)) {
             return $region;
         } else {
             return FALSE;

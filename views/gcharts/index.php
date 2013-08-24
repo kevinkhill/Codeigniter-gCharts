@@ -32,5 +32,6 @@
 <h2>GeoCharts</h2>
 <ul>
     <li><h3><?php echo anchor('gchart_examples/geo_chart_basic', 'Basic'); ?></h3></li>
-    <li><h3><?php echo anchor('gchart_examples/geo_chart_advanced', 'Advanced'); ?></h3></li>
+    <li><h3><?php echo anchor('gchart_examples/geo_chart_advanced', 'Advanced (World)'); ?></h3></li>
+    <li><h3><?php echo anchor('gchart_examples/geo_chart_advanced2', 'Basic (Regions)'); ?></h3></li>
 </ul>
