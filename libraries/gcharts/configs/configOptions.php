@@ -20,7 +20,7 @@ class configOptions
      *
      * @var string
      */
-    var $output = NULL;
+    public $output = NULL;
 
     /**
      * Holds the array of allowed key values for the configOptions child
@@ -28,7 +28,7 @@ class configOptions
      *
      * @var array
      */
-    var $options = NULL;
+    public $options = NULL;
 
 
     /**

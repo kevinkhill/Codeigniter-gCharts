@@ -20,49 +20,49 @@ class hAxis extends Axis
      *
      * @var boolean
      */
-    var $allowContainerBoundaryTextCutoff;
+    public $allowContainerBoundaryTextCutoff;
 
     /**
      * Slanted or normal labels.
      *
      * @var boolean
      */
-    var $slantedText;
+    public $slantedText;
 
     /**
      * Angle of labels.
      *
      * @var int
      */
-    var $slantedTextAngle;
+    public $slantedTextAngle;
 
     /**
      * Number of levels of alternation.
      *
      * @var int
      */
-    var $maxAlternation;
+    public $maxAlternation;
 
     /**
      * Maximum number of labels.
      *
      * @var int
      */
-    var $maxTextLines;
+    public $maxTextLines;
 
     /**
      * Minimum amount in pixels of space between labels.
      *
      * @var int
      */
-    var $minTextSpacing;
+    public $minTextSpacing;
 
     /**
      * Amount of labels to show.
      *
      * @var int
      */
-    var $showTextEvery;
+    public $showTextEvery;
 
 
     /**

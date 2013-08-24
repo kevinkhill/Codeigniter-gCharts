@@ -20,21 +20,21 @@ class legend extends configOptions
      *
      * @var string
      */
-    var $position;
+    public $position;
 
     /**
      * Alignment of the legend.
      *
      * @var string
      */
-    var $alignment;
+    public $alignment;
 
     /**
      * Text style of the legend.
      *
      * @var textStyle
      */
-    var $textStyle;
+    public $textStyle;
 
 
     /**

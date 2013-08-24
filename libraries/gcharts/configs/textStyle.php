@@ -20,21 +20,21 @@ class textStyle extends configOptions
      *
      * @var string
      */
-    var $color;
+    public $color;
 
     /**
      * Font name.
      *
      * @var string
      */
-    var $fontName;
+    public $fontName;
 
     /**
      * Size of font, in pixels.
      *
      * @var int
      */
-    var $fontSize;
+    public $fontSize;
 
 
     /**

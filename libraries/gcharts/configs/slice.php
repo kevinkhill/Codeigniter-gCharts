@@ -20,21 +20,21 @@ class slice extends configOptions
      *
      * @var string Valid HTML color.
      */
-    var $color = NULL;
+    public $color = NULL;
 
     /**
      * Offset amount.
      *
      * @var string
      */
-    var $offset = NULL;
+    public $offset = NULL;
 
     /**
      * Slice text style.
      *
      * @var textStyle
      */
-    var $textStyle = NULL;
+    public $textStyle = NULL;
 
 
     /**

@@ -20,7 +20,7 @@ class jsDate
      *
      * @var string
      */
-    var $output;
+    public $output;
 
     /**
      * Builds the jsDate object.

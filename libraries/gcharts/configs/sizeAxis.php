@@ -20,28 +20,28 @@ class sizeAxis extends configOptions
      *
      * @var int
      */
-    var $maxSize;
+    public $maxSize;
 
     /**
      * The size value to be mapped to $this->maxSize
      *
      * @var int
      */
-    var $maxValue;
+    public $maxValue;
 
     /**
      * Mininum radius of the smallest possible bubble, in pixels
      *
      * @var int
      */
-    var $minSize;
+    public $minSize;
 
     /**
      * The size value to be mapped to $this->minSize
      *
      * @var int
      */
-    var $minValue;
+    public $minValue;
 
     /**
      * Builds the configuration when passed an array of options.

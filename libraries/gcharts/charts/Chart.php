@@ -14,15 +14,15 @@
 
 class Chart
 {
-    var $chartType = NULL;
-    var $chartLabel = NULL;
-    var $dataTable = NULL;
+    public $chartType = NULL;
+    public $chartLabel = NULL;
+    public $dataTable = NULL;
 
-    var $data = NULL;
-    var $options = NULL;
-    var $defaults = NULL;
-    var $events = NULL;
-    var $elementID = NULL;
+    public $data = NULL;
+    public $options = NULL;
+    public $defaults = NULL;
+    public $events = NULL;
+    public $elementID = NULL;
 
     public function __construct($chartLabel)
     {
