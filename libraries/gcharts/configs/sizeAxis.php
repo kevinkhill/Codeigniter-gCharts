@@ -56,12 +56,12 @@ class sizeAxis extends configOptions
      */
     public function __construct($config = array())
     {
-        array_push($this->options, array(
+        $this->options = array(
             'maxSize',
             'maxValue',
             'minSize',
             'minValue'
-        ));
+        );
 
         parent::__construct($config);
     }
@@ -74,11 +74,11 @@ class sizeAxis extends configOptions
      */
     function maxSize($maxSize)
     {
-        if(is_int($maxSize))
+        if(is_numeric($maxSize))
         {
             $this->maxSize = $maxSize;
         } else {
-            $this->type_error(__FUNCTION__, 'int');
+            $this->type_error(__FUNCTION__, 'int | float');
         }
 
         return $this;
@@ -93,11 +93,11 @@ class sizeAxis extends configOptions
      */
     function maxValue($maxValue)
     {
-        if(is_int($maxValue))
+        if(is_numeric($maxValue))
         {
             $this->maxValue = $maxValue;
         } else {
-            $this->type_error(__FUNCTION__, 'int');
+            $this->type_error(__FUNCTION__, 'int | float');
         }
 
         return $this;
@@ -111,11 +111,11 @@ class sizeAxis extends configOptions
      */
     function minSize($minSize)
     {
-        if(is_int($minSize))
+        if(is_numeric($minSize))
         {
             $this->minSize = $minSize;
         } else {
-            $this->type_error(__FUNCTION__, 'int');
+            $this->type_error(__FUNCTION__, 'int | float');
         }
 
         return $this;
@@ -130,11 +130,11 @@ class sizeAxis extends configOptions
      */
     function minValue($minValue)
     {
-        if(is_int($minValue))
+        if(is_numeric($minValue))
         {
             $this->minValue = $minValue;
         } else {
-            $this->type_error(__FUNCTION__, 'int');
+            $this->type_error(__FUNCTION__, 'int | float');
         }
 
         return $this;

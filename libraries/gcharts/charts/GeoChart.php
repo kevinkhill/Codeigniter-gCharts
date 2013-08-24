@@ -156,7 +156,7 @@ class GeoChart extends Chart
      * A country, specified by its ISO 3166-1 alpha-2 code, e.g., 'AU' for Australia.
      * A state in the United States, specified by its ISO 3166-2:US code, e.g., 'US-AL' for Alabama. Note that the resolution option must be set to either 'provinces' or 'metros'.
      *
-     * @param type $region
+     * @param string $region
      * @return \GeoChart
      */
     public function region($region)
@@ -208,7 +208,7 @@ class GeoChart extends Chart
 
         if(in_array($resolution, $values))
         {
-            $this->addOption(array('resolution' => $$resolution));
+            $this->addOption(array('resolution' => $resolution));
         } else {
             $this->type_error(__FUNCTION__, 'string', 'with a value of '.array_string($values));
         }
