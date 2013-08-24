@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * sizeAxis Properties Parent Object
+ * sizeAxis Object
  *
  * An object containing all the values for the sizeAxis which can be
  * passed into the chart's options.

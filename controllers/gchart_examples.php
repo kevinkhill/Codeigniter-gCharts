@@ -675,7 +675,9 @@ class Gchart_examples extends CI_Controller
              ->addRow(array('Iceland', 116053000000))
              ->addRow(array('Iraq', 50268000000))
              ->addRow(array('Bangladesh', 36210000000))
-             ->addRow(array('Iran', 9452000000));
+             ->addRow(array('Iran', 9452000000))
+             ->addRow(array('Kuwait', 14000000000))
+             ->addRow(array('Qatar', 467600000));
 
         $colorAxis = $this->gcharts->colorAxis()
                           ->minValue(50000000)
@@ -684,7 +686,7 @@ class Gchart_examples extends CI_Controller
                           ->colors(array('green', 'yellow', 'red'));
 
         $sizeAxis = new sizeAxis();
-        $sizeAxis->minSize(10)->minValue(50000000)->maxSize(36)->maxValue(20000000000000);
+        $sizeAxis->minSize(15)->minValue(50000000)->maxSize(40)->maxValue(20000000000000);
 
         $config = array(
             'colorAxis' => $colorAxis,
@@ -694,7 +696,7 @@ class Gchart_examples extends CI_Controller
             'keepAspectRatio' => FALSE,
             'sizeAxis' => $sizeAxis,
             'markerOpacity' => 0.6,
-            'magnifyingGlass' => 1
+            'magnifyingGlass' => new magnifyingGlass(3)
         );
 
         $this->gcharts->GeoChart('Debt')->setConfig($config);

@@ -191,6 +191,7 @@ class Gcharts
         'hAxis',
         'jsDate',
         'legend',
+        'magnifyingGlass',
         'textStyle',
         'tooltip',
         'sizeAxis',

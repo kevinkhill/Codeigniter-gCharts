@@ -176,9 +176,23 @@ class GeoChart extends Chart
         return $this;
     }
 
+    /**
+     * Sets up the magnifying glass, so when the user lingers over a cluttered
+     * marker, a magnifiying glass will be opened.
+     *
+     * @param magnifyingGlass $magnifyingGlass
+     * @return \GeoChart
+     */
     public function magnifyingGlass($magnifyingGlass)
     {
-        $this->addOption(array('magnifyingGlass'=>array('enable'=>TRUE, 'zoomFactor'=>3)));
+        if(is_a($magnifyingGlass, 'magnifyingGlass'))
+        {
+            $this->addOption($magnifyingGlass);
+        } else {
+            $this->type_error(__FUNCTION__, 'object', 'of class magnifyingGlass');
+        }
+
+        return $this;
     }
 
     /**
