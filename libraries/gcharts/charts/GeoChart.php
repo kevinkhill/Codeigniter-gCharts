@@ -216,9 +216,23 @@ class GeoChart extends Chart
         return $this;
     }
 
+    /**
+     * An object with members to configure how values are associated with
+     * bubble sizes.
+     *
+     * @param sizeAxis $sizeAxis
+     * @return \GeoChart
+     */
     public function sizeAxis($sizeAxis)
     {
+        if(is_a($sizeAxis, 'sizeAxis'))
+        {
+            $this->addOption($sizeAxis);
+        } else {
+            $this->type_error(__FUNCTION__, 'object', 'of class sizeAxis');
+        }
 
+        return $this;
     }
 
     private function _regionCodeSearch($region)
