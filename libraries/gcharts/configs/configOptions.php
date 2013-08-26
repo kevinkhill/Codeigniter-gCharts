@@ -20,7 +20,7 @@ class configOptions
      *
      * @var string
      */
-    var $output = NULL;
+    public $output = NULL;
 
     /**
      * Holds the array of allowed key values for the configOptions child
@@ -28,7 +28,7 @@ class configOptions
      *
      * @var array
      */
-    var $options = NULL;
+    public $options = NULL;
 
 
     /**
@@ -42,7 +42,7 @@ class configOptions
      */
     public function __construct($config)
     {
-        if(is_array($config) && count($config) > 0)
+        if(is_array($config))
         {
             foreach($config as $option => $value)
             {
@@ -53,6 +53,8 @@ class configOptions
                     $this->error('Ignoring "'.$option.'", not a valid configuration option.');
                 }
             }
+        } else {
+            $this->type_error(get_class($this).'()', 'array', 'with valid keys as '.array_string($this->options));
         }
 
         return $this;
@@ -75,44 +77,30 @@ class configOptions
      * @param string Variable type
      * @param string Extra message to append to error
      */
-    public function type_error($val, $type, $extra = '')
+    public function type_error($val, $type, $extra = FALSE)
     {
         $msg = sprintf(
-            'Invalid value for %s, must be type (%s) ',
+            'Invalid value for %s, must be type (%s)',
             $val,
-            $type,
-            ($extra != '' ? $extra.'.' : '.')
+            $type
         );
+
+        $msg .= $extra ? ' '.$extra.'.' : '.';
 
         $this->error($msg);
     }
 
     /**
-     * Returns a string representation of the object.
-     *
-     * @return string JSON string.
-     */
-    public function toJSON()
-    {
-        $this->output = array();
-
-        foreach($this->options as $option)
-        {
-            if(isset($this->$option))
-            {
-                $this->output[$option] = $this->$option;
-            }
-        }
-
-        return '"'.get_class($this).'":'.json_encode($this->output);
-    }
-
-    /**
      * Returns an array representation of the object.
      *
-     * @return array Multi-Dimensional array as CLASS_NAME => array(CONFIGURATION).
+     * If passed a label, then the array will be returned with the label as the
+     * key.
+     *
+     * Called with no label returns an array with the classname as the key.
+     *
+     * @return array
      */
-    public function toArray()
+    public function toArray($keyName = NULL)
     {
         $this->output = array();
 
@@ -124,7 +112,12 @@ class configOptions
             }
         }
 
-        return array(get_class($this) => $this->output);
+        if(is_null($keyName))
+        {
+            return array(get_class($this) => $this->output);
+        } else {
+            return array($keyName => $this->output);
+        }
     }
 
     /**

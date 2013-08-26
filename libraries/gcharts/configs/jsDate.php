@@ -2,7 +2,7 @@
 /**
  * jsDate Object
  *
- * PHP wrapper class used to create a date object the same way the javascript 
+ * PHP wrapper class used to create a date object the same way the javascript
  * creates date objects.
  *
  *
@@ -17,16 +17,16 @@ class jsDate
 {
     /**
      * Holds the output of the jsDate object.
-     * 
+     *
      * @var string
      */
-    var $output;
+    public $output;
 
     /**
      * Builds the jsDate object.
-     * 
+     *
      * Designed to work the same way the javascript date object works.
-     * 
+     *
      * @param int Year
      * @param int Month (starting with 0 = Jan, 1 = Feb, etc.)
      * @param int Day
@@ -37,9 +37,9 @@ class jsDate
      * @return \jsDate
      */
     public function __construct(
-        $year,
-        $month,
-        $day,
+        $year = NULL,
+        $month = NULL,
+        $day = NULL,
         $hour = NULL,
         $minute = NULL,
         $second = NULL,
@@ -58,9 +58,28 @@ class jsDate
     }
 
     /**
+     * Parses array of values corresponding to if called as args to constructor
+     *
+     * @param array
+     * @return \jsDate
+     */
+    public function parseArray($array)
+    {
+        $this->year        = isset($array[0]) ? $array[0] : NULL;
+        $this->month       = isset($array[1]) ? $array[1] : NULL;
+        $this->day         = isset($array[2]) ? $array[2] : NULL;
+        $this->hour        = isset($array[3]) ? $array[3] : NULL;
+        $this->minute      = isset($array[4]) ? $array[4] : NULL;
+        $this->second      = isset($array[5]) ? $array[5] : NULL;
+        $this->millisecond = isset($array[6]) ? $array[6] : NULL;
+
+        return $this;
+    }
+
+    /**
      * Outputs the object as a valide javascript string.
-     * 
-     * @return sting Javscript date declaration
+     *
+     * @return string Javscript date declaration
      */
     public function toString()
     {

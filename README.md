@@ -6,18 +6,31 @@ By: [Kevin Hill](kevinkhill@gmail.com)
 
 If you have any questions or comments... please email me, post issues here, or fork me and help out ;)
 
- - - -
+##Currently Supported Charts
+ * Line Charts
+ * Area Charts
+ * Pie Charts (also enables donut charts)
+ * Column Charts (beta)
+ * Geo Charts (beta)
+ * More coming soon!
 
+
+- - -
 
 ##Installing
-1. Clone the repo into a directory of your choice and copy ALL of the files into their corresponding folders in your Codeigniter project.
-    * ```Codeigniter-gCharts/config/gcharts.php``` -> ```<CI_ROOT>/application/config/gcharts.php```
-    * ```Codeigniter-gCharts/controllers/gchart_examples.php``` -> ```<CI_ROOT>/application/controllers/gchart_examples.php```
-    * ```Codeigniter-gCharts/helpers/gcharts_helper.php``` -> ```<CI_ROOT>/application/helpers/gcharts_helper.php```
-    * ```Codeigniter-gCharts/libraries/*``` -> ```<CI_ROOT>/application/libraries/```
-    * ```Codeigniter-gCharts/views/*``` -> ```<CI_ROOT>/application/views/```
-2. That's it! You now have the power of Google Charts in your project.
-
+1. ```git clone``` the repo into a directory of your choice.
+2. ```cd``` into the freshly cloned repo directory.
+3. Use the included script ```cp.sh``` to copy the files into their respective folders in your Codeigniter project.
+    * ```cd Codeigniter-gCharts```
+    * ```chmod +x ./cp.sh```
+    * ```./cp.sh <PATH_TO_YOUR_CI_PROJECT>```
+4. **OR** you can copy them manually to their corresponding folders in your Codeigniter project.
+    * ```./config/gcharts.php``` -> ```<CI_ROOT>/application/config/gcharts.php```
+    * ```./controllers/gchart_examples.php``` -> ```<CI_ROOT>/application/controllers/gchart_examples.php```
+    * ```./helpers/gcharts_helper.php``` -> ```<CI_ROOT>/application/helpers/gcharts_helper.php```
+    * ```./libraries/*``` -> ```<CI_ROOT>/application/libraries/```
+    * ```./views/*``` -> ```<CI_ROOT>/application/views/```
+5. That's it! You now have the power of Google Charts in your project.
 
 
 ##Examples
@@ -41,7 +54,7 @@ Here is an example of how to create a line chart with two lines of data
  ```php
  //Load in the controller
  $this->load->library('gcharts');
- 
+
  //Or in the autoload config file
  $autoload['libraries'] = array('gcharts');
  ```
@@ -51,7 +64,7 @@ Here is an example of how to create a line chart with two lines of data
  ```php
  //Load in th controller
  $this->gcharts->load('LineChart');
- 
+
  //Or in the gcharts config file
  $config['autoloadCharts'] = array('LineChart');
  ```
@@ -76,7 +89,7 @@ So here, array[0] is for 'count', array[1] is for 'projected' and array[2] is fo
      $data[0] = $a; //Count
      $data[1] = rand(800,1000); //Line 1's data
      $data[2] = rand(800,1000); //Line 2's data
- 
+
      $dataTable->addRow($data);
  }
  ```

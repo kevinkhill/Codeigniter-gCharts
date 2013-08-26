@@ -28,14 +28,14 @@ class DataTable
      * 
      * @var array
      */
-    var $cols = array();
+    public $cols = array();
     
     /**
      * Holds the information defining each row.
      * 
      * @var array
      */
-    var $rows = array();
+    public $rows = array();
 
     //@TODO: private $_row_count;
 

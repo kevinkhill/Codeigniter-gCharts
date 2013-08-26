@@ -21,10 +21,11 @@ class PieChart extends Chart
 
         $this->defaults = array_merge($this->defaults, array(
             'is3D',
-//            'slices',
+            'slices',
             'pieSliceBorderColor',
             'pieSliceText',
             'pieSliceTextStyle',
+            'pieStartAngle',
             'reverseCategories',
             'sliceVisibilityThreshold',
             'pieResidueSliceColor',
@@ -36,7 +37,7 @@ class PieChart extends Chart
      * If set to true, displays a three-dimensional chart.
      *
      * @param boolean $is3D
-     * @return \charts\PieChart
+     * @return \PieChart
      */
     public function is3D($is3D)
     {
@@ -44,22 +45,57 @@ class PieChart extends Chart
         {
             $this->addOption(array('is3D' => $is3D));
         } else {
-            $this->error('Invalid value for is3D, must be type (boolean).');
+            $this->type_error(__FUNCTION__, 'boolean');
         }
 
         return $this;
     }
 
-    public function slices()
+    /**
+     * An array of slice objects, each describing the format of the
+     * corresponding slice in the pie. To use default values for a slice,
+     * specify a NULL. If a slice or a value is not specified, the global
+     * value will be used.
+     *
+     * The values of the array keys will correspond to each numbered piece
+     * of the pie, starting from 0. You can skip slices by assigning the
+     * keys of the array as (int)s.
+     *
+     * This would apply slice values to the first and fourth slice of the pie
+     * Example: array(
+     *              0 => new slice(),
+     *              3 => new slice()
+     *          );
+     *
+     *
+     * @param array Array of slice objects
+     * @return \PieChart
+     */
+    public function slices($slices)
     {
+        if(is_array($slices) && array_values_check($slices, 'class', 'slice'))
+        {
+            $pizzaBox = array();
 
+            foreach($slices as $key => $slice)
+            {
+                $pizzaBox[$key] = $slice->values();
+            }
+
+            $this->addOption(array('slices' => $pizzaBox));
+        } else {
+            $this->type_error(__FUNCTION__, 'array', 'with keys as (int) and values as (slice)');
+        }
+
+        return $this;
     }
 
     /**
-     * The color of the slice borders. Only applicable when the chart is two-dimensional.
+     * The color of the slice borders. Only applicable when the chart is
+     * two-dimensional; is3D == FALSE || NULL
      *
-     * @param string $pieSliceBorderColor
-     * @return \charts\PieChart
+     * @param string HTML color
+     * @return \PieChart
      */
     public function pieSliceBorderColor($pieSliceBorderColor)
     {
@@ -67,7 +103,7 @@ class PieChart extends Chart
         {
             $this->addOption(array('pieSliceBorderColor' => $pieSliceBorderColor));
         } else {
-            $this->error('Invalid value for pieSliceBorderColor, must be type (string).');
+            $this->type_error(__FUNCTION__, 'string');
         }
 
         return $this;
@@ -82,7 +118,7 @@ class PieChart extends Chart
      * 'none' - No text is displayed.
      *
      * @param string $pieSliceText
-     * @return \charts\PieChart
+     * @return \PieChart
      */
     public function pieSliceText($pieSliceText)
     {
@@ -97,7 +133,7 @@ class PieChart extends Chart
         {
             $this->addOption(array('pieSliceText' => $pieSliceText));
         } else {
-            $this->error('Invalid value for pieSliceText, must be type (string) '.$this->_array_string($values));
+            $this->type_error(__FUNCTION__, 'string', 'with a value of '.$this->_array_string($values));
         }
 
         return $this;
@@ -108,15 +144,35 @@ class PieChart extends Chart
      * object, set the values then pass it to this function or to the constructor.
      *
      * @param textStyle $textStyle
-     * @return \charts\PieChart
+     * @return \PieChart
      */
     public function pieSliceTextStyle($textStyle)
     {
         if(is_a($textStyle, 'textStyle'))
         {
-            $this->addOption(array('pieSliceTextStyle' => $textStyle));
+            //$this->addOption($textStyle->toArray(__FUNCTION__));
+            $this->addOption(array('pieSliceTextStyle' => $textStyle->values()));
         } else {
-            $this->error('Invalid value for textStyle, must be an object type (textStyle).');
+            $this->type_error(__FUNCTION__, 'textStyle');
+        }
+
+        return $this;
+    }
+
+    /**
+     * The angle, in degrees, to rotate the chart by. The default of 0 will
+     * orient the leftmost edge of the first slice directly up.
+     *
+     * @param int start angle
+     * @return \PieChart
+     */
+    public function pieStartAngle($pieStartAngle)
+    {
+        if(is_int($pieStartAngle))
+        {
+            $this->addOption(array('pieStartAngle' => $pieStartAngle));
+        } else {
+            $this->type_error(__FUNCTION__, 'int');
         }
 
         return $this;
@@ -127,7 +183,7 @@ class PieChart extends Chart
      * draw clockwise.
      *
      * @param boolean $reverseCategories
-     * @return \charts\PieChart
+     * @return \PieChart
      */
     public function reverseCategories($reverseCategories)
     {
@@ -135,8 +191,10 @@ class PieChart extends Chart
         {
             $this->addOption(array('reverseCategories' => $reverseCategories));
         } else {
-            $this->error('Invalid value for reverseCategories, must be type (boolean).');
+            $this->type_error(__FUNCTION__, 'boolean');
         }
+
+        return $this;
     }
 
     /**
@@ -146,7 +204,7 @@ class PieChart extends Chart
      * to show individually any slice which is smaller than half a degree.
      *
      * @param numeric $sliceVisibilityThreshold
-     * @return \charts\PieChart
+     * @return \PieChart
      */
     public function sliceVisibilityThreshold($sliceVisibilityThreshold)
     {
@@ -154,8 +212,10 @@ class PieChart extends Chart
         {
             $this->addOption(array('sliceVisibilityThreshold' => $sliceVisibilityThreshold));
         } else {
-            $this->error('Invalid value for sliceVisibilityThreshold, must be (numeric).');
+            $this->type_error(__FUNCTION__, 'numeric');
         }
+
+        return $this;
     }
 
     /**
@@ -163,7 +223,7 @@ class PieChart extends Chart
      * sliceVisibilityThreshold.
      *
      * @param type $pieResidueSliceColor
-     * @return \charts\PieChart
+     * @return \PieChart
      */
     public function pieResidueSliceColor($pieResidueSliceColor)
     {
@@ -171,8 +231,10 @@ class PieChart extends Chart
         {
             $this->addOption(array('pieResidueSliceColor' => $pieResidueSliceColor));
         } else {
-            $this->error('Invalid value for pieResidueSliceColor, must be a valid HTML color type (string).');
+            $this->type_error(__FUNCTION__, 'string', 'representing a valide HTML color');
         }
+
+        return $this;
     }
 
     /**
@@ -180,7 +242,7 @@ class PieChart extends Chart
      * sliceVisibilityThreshold.
      *
      * @param string $pieResidueSliceLabel
-     * @return \charts\PieChart
+     * @return \PieChart
      */
     public function pieResidueSliceLabel($pieResidueSliceLabel)
     {
@@ -188,8 +250,10 @@ class PieChart extends Chart
         {
             $this->addOption(array('pieResidueSliceLabel' => $pieResidueSliceLabel));
         } else {
-            $this->error('Invalid value for pieResidueSliceLabel, must be type (string).');
+            $this->type_error(__FUNCTION__, 'string');
         }
+
+        return $this;
     }
 
 }

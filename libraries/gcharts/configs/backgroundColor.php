@@ -20,21 +20,21 @@ class backgroundColor extends configOptions
      *
      * @var string Valid HTML color.
      */
-    var $stroke = NULL;
+    public $stroke = NULL;
 
     /**
      * The border width, in pixels.
      *
      * @var int Width in number of pixels.
      */
-    var $strokeWidth = NULL;
+    public $strokeWidth = NULL;
 
     /**
      * The chart fill color, as an HTML color string.
      *
-     * @var type Valid HTML color.
+     * @var string Valid HTML color.
      */
-    var $fill = NULL;
+    public $fill = NULL;
 
 
     /**
@@ -43,11 +43,10 @@ class backgroundColor extends configOptions
      * Pass an associative array with values for the keys
      * [ stroke | strokeWidth | fill ]
      *
-     * @example array('stroke' => 'red', 'stokeWidth' => 3, 'fill' => 'blue');
      * @param array Configuration options
      * @return \backgroundColor
      */
-    public function __construct($options = array()) {
+    public function __construct($config = array()) {
 
         $this->options = array(
             'stroke',
@@ -55,25 +54,12 @@ class backgroundColor extends configOptions
             'fill'
         );
 
-        if(is_array($options) && count($options) > 0)
-        {
-            foreach($options as $option => $value)
-            {
-                if(in_array($option, $this->options))
-                {
-                    $this->$option($value);
-                } else {
-                    $this->error(sprintf('Ignoring "%s", not a valid configuration option.', $option));
-                }
-            }
-        }
-
-        return $this;
+        parent::__construct($config);
     }
 
     /**
      * Sets the chart border color. Example: 'red' or '#A2A2A2'
-     * 
+     *
      * @param string Valid HTML color string.
      * @return \backgroundColor
      */
@@ -83,7 +69,7 @@ class backgroundColor extends configOptions
         {
             $this->stroke = $stroke;
         } else {
-            $this->type_error(__FUNCTION__, 'string'); //@TODO: Test this
+            $this->type_error(__FUNCTION__, 'string');
         }
 
         return $this;
@@ -109,7 +95,7 @@ class backgroundColor extends configOptions
 
     /**
      * Sets the chart color fill, Example: 'blue' or '#C5C5C5'
-     * 
+     *
      * @param string Valid HTML color string.
      * @return \backgroundColor
      */

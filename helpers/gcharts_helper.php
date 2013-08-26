@@ -11,6 +11,8 @@ function array_string($defaultValues)
 {
     $tmp = '[ ';
 
+    natcasesort($defaultValues);
+
     foreach($defaultValues as $k => $v)
     {
         $tmp .= $v . ' | ';
@@ -37,6 +39,47 @@ function array_is_multi($arr)
         return FALSE;
     }
 }
+
+/**
+ * Simple test to see if array values are of specified type.
+ *
+ * @param array Array of values.
+ * @return boolean Returns TRUE is all values match type, otherwise FALSE.
+ */
+function array_values_check(&$arr, $type, $extra = NULL)
+{
+    $status = TRUE;
+
+    if(is_array($arr) && is_string($type))
+    {
+        if($type == 'class' && is_string($extra) && !empty($extra))
+        {
+            foreach($arr as $item)
+            {
+                if(is_a($item, $extra) == FALSE)
+                {
+                    $status = FALSE;
+                    break;
+                }
+            }
+        } else {
+            foreach($arr as $item)
+            {
+                $function = 'is_'.$type;
+                if($function($item) == FALSE)
+                {
+                    $status = FALSE;
+                    break;
+                }
+            }
+        }
+    } else {
+        $status = FALSE;
+    }
+
+    return $status;
+}
+
 /**
  * Tests input for valid int or percent
  *
@@ -73,5 +116,27 @@ function is_int_or_percent($val)
         }
     } else {
         return FALSE;
+    }
+}
+
+/**
+ * Simple function to test if a number is between two other numbers.
+ * Pass in the number to test, the lower limit and upper limit.
+ * Defaults to including the limits with <= & >=, set to FALSE to exclude
+ * the limits with < & >
+ *
+ * @param mixed number to test
+ * @param mixed lower limit
+ * @param mixed upper limit
+ * @param boolean whether to include limits
+ * @return boolean
+ */
+function between($test, $lower, $upper, $inclusive = TRUE)
+{
+    if($inclusive === TRUE)
+    {
+        return ($test >= $lower && $test <= $upper) ? TRUE : FALSE;
+    } else {
+        return ($test > $lower && $test < $upper) ? TRUE : FALSE;
     }
 }

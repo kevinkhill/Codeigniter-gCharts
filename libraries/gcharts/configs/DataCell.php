@@ -19,21 +19,21 @@ class DataCell
      * 
      * @var string
      */
-    var $v;
+    public $v;
     
     /**
      * A string version of the v value. (Optional)
      * 
      * @var string
      */
-    var $f;
+    public $f;
     
     /**
      * An object that is a map of custom values applied to the cell. (Optional)
      * 
      * @var string
      */
-    var $p;
+    public $p;
 
     
     /**

@@ -128,34 +128,6 @@ class Gcharts
     static $googleAPI = '<script type="text/javascript" src="https://www.google.com/jsapi"></script>';
 
     /**
-     * Holds all of the defined DataTables.
-     *
-     * @var array
-     */
-    static $dataTables = array();
-
-    /**
-     * Holds all of the defined LineCharts.
-     *
-     * @var array
-     */
-    static $lineCharts = array();
-
-    /**
-     * Holds all of the defined AreaCharts.
-     *
-     * @var array
-     */
-    static $areaCharts = array();
-
-    /**
-     * Holds all of the defined PieCharts.
-     *
-     * @var array
-     */
-    static $pieCharts = array();
-
-    /**
      * Property defining if the generation of charts occured any errors.
      *
      * @var boolean
@@ -170,8 +142,27 @@ class Gcharts
     static $errorLog = array();
 
     /**
-     * Currently supported types of charts that can be created. Used by the magic
-     * __call function to prevent errors.
+     * Holds all of the defined DataTables.
+     *
+     * @var array
+     */
+    static $dataTables = array();
+
+    /**
+     * Holds all of the defined Charts.
+     *
+     * @var array
+     */
+    static $lineCharts   = array();
+    static $areaCharts   = array();
+    static $pieCharts    = array();
+    static $donutCharts  = array();
+    static $columnCharts = array();
+    static $geoCharts    = array();
+
+    /**
+     * Currently supported types of charts that can be created.
+     * Used by the magic __call function to prevent errors.
      *
      * @var array
      */
@@ -180,7 +171,9 @@ class Gcharts
         'LineChart',
         'AreaChart',
         'PieChart',
-        'ColumnChart'
+        'DonutChart',
+        'ColumnChart',
+        'GeoChart'
     );
 
     /**
@@ -191,15 +184,18 @@ class Gcharts
     private $configClasses = array(
         'configOptions',
         'Axis',
-        'DataTable',
-        'DataCell',
+//        'DataCell',
         'backgroundColor',
         'chartArea',
+        'colorAxis',
         'hAxis',
         'jsDate',
         'legend',
+        'magnifyingGlass',
         'textStyle',
         'tooltip',
+        'sizeAxis',
+        'slice',
         'vAxis'
     );
 
@@ -220,6 +216,7 @@ class Gcharts
 
 // @TODO: build this functionality
 //        self::$ignited = (defined('CI_VERSION') ? TRUE : FALSE);
+//        <LOGIC FOR IF CI LIBRARY OR NOT>
 
         self::$config['autoloadCharts'] = config_item('autoloadCharts');
         self::$config['errorPrepend'] = config_item('errorPrepend');
@@ -229,8 +226,9 @@ class Gcharts
 //        self::$config['useGlobalTextStyle'] = config_item('useGlobalTextStyle');
 //        self::$config['globalTextStyle'] = config_item('globalTextStyle');
 
-        //Load Chart Base Class
+        //Load Chart Base and DataTable Class
         require_once(self::$chartPath.'Chart.php');
+        require_once(self::$configPath.'DataTable.php');
 
         //Autoload Chart Classes
         if(is_array(self::$config['autoloadCharts']))
@@ -239,6 +237,11 @@ class Gcharts
             {
                 if(in_array($chart, $this->supportedClasses))
                 {
+                    if($chart == 'DonutChart')
+                    {
+                        require_once(self::$chartPath.'PieChart.php');
+                    }
+
                     require_once(self::$chartPath.$chart.'.php');
                 } else {
                     self::_set_error(__METHOD__, $chart.' is not a valid chart and was not loaded.');
@@ -256,21 +259,26 @@ class Gcharts
     }
 
     /**
-     * Magic function to reduce repetitive coding.
+     * Magic function to reduce repetitive coding and create aliases.
      *
      * This is never called directly.
      *
-     * @param string Name of method.
+     * @param string Name of method
      * @param array Passed arguments
-     * @return object Returns Charts and DataTtables.
+     * @return object Returns Charts, DataTables, and Config Objects
      */
     public function __call($member, $arguments)
     {
-        if(in_array($member, $this->supportedClasses))
+        if(in_array($member, $this->configClasses))
         {
-            return $this->_generator($member, $arguments[0]);
+            return $this->_config_object_factory($member, empty($arguments[0]) ? array() : $arguments);
         } else {
-            exit($member.'() IS UNDEFINED');
+            if(in_array($member, $this->supportedClasses))
+            {
+                return $this->_chart_and_table_factory($member, empty($arguments[0]) ? '' : $arguments[0]);
+            } else {
+                exit(get_class($this).'::'.$member.'() IS UNDEFINED');
+            }
         }
     }
 
@@ -282,11 +290,12 @@ class Gcharts
      * objects in an array, accessable via a call to the type of object, with
      * the label as the paramater.
      *
+     * @access private
      * @param string Which type of object to generate.
      * @param string Label applied to generated object.
      * @return mixed Returns Charts or DataTables
      */
-    private function _generator($objType, $objLabel)
+    private function _chart_and_table_factory($objType, $objLabel)
     {
         if(is_string($objLabel) && $objLabel != '')
         {
@@ -305,6 +314,35 @@ class Gcharts
     }
 
     /**
+     * Creates configuration objects to save a step instansiating and allow for
+     * chaining directly from creation.
+     *
+     * @access private
+     * @param string $configObject
+     * @return object configuration object
+     */
+    private function _config_object_factory($configObject, $options)
+    {
+        if(in_array($configObject, $this->configClasses))
+        {
+            if($configObject == 'jsDate')
+            {
+                $jsDate = new jsDate();
+                return $jsDate->parseArray($options);
+            } else {
+                if(empty($options[0]))
+                {
+                    return new $configObject();
+                } else {
+                    return new $configObject($options[0]);
+                }
+            }
+        } else {
+            exit('['.__METHOD__.'()] -> '.$configObject.' is not a valid configObject');
+        }
+    }
+
+    /**
      * Loads a specified chart manually.
      *
      * @param string Name of chart to load.
@@ -313,9 +351,13 @@ class Gcharts
     {
         if(file_exists(self::$chartPath.$chartName.'.php'))
         {
+            if($chartName == 'DonutChart')
+            {
+                require_once(self::$chartPath.'PieChart.php');
+            }
             require_once(self::$chartPath.$chartName.'.php');
         } else {
-            $this->_set_error(get_class($this), 'Invalid Chart, could not load "'.self::$chartPath.$chartName.'.php"');
+            $this->_set_error(__METHOD__, 'Invalid Chart, could not load "'.self::$chartPath.$chartName.'.php"');
         }
     }
 
@@ -357,7 +399,7 @@ class Gcharts
             {
                 return sprintf('<div id="%s"></div>', self::$elementID);
             } else {
-                $this->_set_error(get_class($this), 'Error, output element ID is not set.');
+                $this->_set_error(__METHOD__, 'Error, output element ID is not set.');
             }
         } else {
             if((is_int($width) && $width > 0) && (is_int($height) && $height > 0))
@@ -367,10 +409,10 @@ class Gcharts
                     $format = '<div id="%s" style="width:%spx;height:%spx;"></div>';
                     return sprintf($format, self::$elementID, $width, $height);
                 } else {
-                    $this->_set_error(get_class($this), 'Error, output element ID is not set.');
+                    $this->_set_error(__METHOD__, 'Error, output element ID is not set.');
                 }
             } else {
-                $this->_set_error(get_class($this), 'Invalid div width & height, must be type (int) > 0');
+                $this->_set_error(__METHOD__, 'Invalid div width & height, must be type (int) > 0');
             }
         }
     }
@@ -443,10 +485,10 @@ class Gcharts
 
         $out = self::$googleAPI.PHP_EOL;
 
-        if(isset($chart->events) && is_array($chart->events) && count($chart->events) > 0)
-        {
-            $out .= self::_build_event_callbacks($chart->chartType, $chart->events);
-        }
+//        if(isset($chart->events) && is_array($chart->events) && count($chart->events) > 0)
+//        {
+//            $out .= self::_build_event_callbacks($chart->chartType, $chart->events);
+//        }
 
         $out .= self::$jsOpen.PHP_EOL;
 
@@ -460,7 +502,20 @@ class Gcharts
             $out .= 'alert("No DataTable has been defined for '.$chart->chartType.'(\''.$chart->chartLabel.'\').");'.PHP_EOL;
         }
 
-        $vizType = ($chart->chartType == 'AnnotatedTimeLine' ? 'annotatedtimeline' : 'corechart');
+        switch($chart->chartType)
+        {
+            case 'AnnotatedTimeLine':
+                $vizType = 'annotatedtimeline';
+            break;
+
+            case 'GeoChart':
+                $vizType = 'geochart';
+            break;
+
+            default:
+                $vizType = 'corechart';
+            break;
+        }
 
         $out .= sprintf("google.load('visualization', '1', {'packages':['%s']});", $vizType).PHP_EOL;
         $out .= 'google.setOnLoadCallback(drawChart);'.PHP_EOL;
@@ -479,19 +534,19 @@ class Gcharts
             $out .= sprintf($format, $data->toJSON(), self::$dataTableVersion).PHP_EOL;
         }
 
-        $out .= "var options = ".json_encode($chart->options).";".PHP_EOL;
+        $out .= "var options = ".$chart->optionsToJSON().";".PHP_EOL;
         $out .= "var chart = new google.visualization.".$chart->chartType;
             $out .= sprintf("(document.getElementById('%s'));", $chart->elementID).PHP_EOL;
         $out .= "chart.draw(data, options);".PHP_EOL;
 
-        if(isset($chart->events) && count($chart->events) > 0)
-        {
-            foreach($chart->events as $event)
-            {
-                $out .= sprintf('google.visualization.events.addListener(chart, "%s", ', $event);
-                $out .= sprintf('function(event) { %s.%s(event); });', $chart->chartType, $event).PHP_EOL;
-            }
-        }
+//        if(isset($chart->events) && count($chart->events) > 0)
+//        {
+//            foreach($chart->events as $event)
+//            {
+//                $out .= sprintf('google.visualization.events.addListener(chart, "%s", ', $event);
+//                $out .= sprintf('function(event) { %s.%s(event); });', $chart->chartType, $event).PHP_EOL;
+//            }
+//        }
 
         $out .= "}".PHP_EOL;
 
@@ -524,7 +579,7 @@ class Gcharts
              {
                 $script .= $callbackScript.PHP_EOL;
              } else {
-                 self::_set_error(get_class($this), 'Error loading javascript file, in '.$callback.'.js');
+                 self::_set_error(__METHOD__, 'Error loading javascript file, in '.$callback.'.js');
              }
 
              $script .= "};".PHP_EOL;

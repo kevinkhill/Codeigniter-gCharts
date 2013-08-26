@@ -1,7 +1,7 @@
 <h1><?php echo anchor('gchart_examples', 'Codeigniter gChart Examples'); ?> \ Advanced Area Chart</h1>
 <?php
-    echo $this->gcharts->LineChart('Growth')->outputInto('growth_div');
-    echo $this->gcharts->div(800, 250);
+    echo $this->gcharts->AreaChart('Depths')->outputInto('lake_div');
+    echo $this->gcharts->div();
 
     if($this->gcharts->hasErrors())
     {
@@ -15,27 +15,36 @@
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#e0e0e0;padding:5px;">
 $this->gcharts->load('AreaChart');
 
-$dataTable = $this->gcharts->DataTable('Times');
+$this->gcharts->DataTable('Depths')
+              ->addColumn('date', 'Dates', 'dates')
+              ->addColumn('number', 'Beaver Lake', 'beaver')
+              ->addColumn('number', 'Tree Lake', 'tree')
+              ->addColumn('number', 'Sunny Lake', 'sunny');
 
-$dataTable->addColumn('date', 'Dates', 'dates');
-$dataTable->addColumn('number', 'Run Time', 'run_time');
-$dataTable->addColumn('number', 'Schedule Time', 'schedule_time');
-
-for($a = 1; $a < 30; $a++)
+for($a = 1; $a < 12; $a++)
 {
-    $line1 = rand(1,5);
-    $line2 = rand(1,5);
-    $dataTable->addRow(array(new jsDate(2013, 8, $a), $line1, $line2));
+    $data = array(
+        new jsDate(2013, $a, 1), //Dates
+        rand(1,50),              //Line 1
+        rand(1,50),              //Line 2
+        rand(1,50)               //Line 3
+    );
+
+    $this->gcharts->DataTable('Depths')->addRow($data);
 }
 
-//Either Chain functions together to set configuration
-$titleStyle = new textStyle();
-$titleStyle->color('#FF0A04')->fontName('Georgia')->fontSize(18);
+//Either Chain functions together to setup configuration objects
+$titleStyle = $this->gcharts->textStyle()
+                            ->color('#FF0A04')
+                            ->fontName('Georgia')
+                            ->fontSize(24);
 
-$legendStyle = new textStyle();
-$legendStyle->color('#F3BB00')->fontName('Arial')->fontSize(20);
+$legendStyle = $this->gcharts->textStyle()
+                             ->color('#F3BB00')
+                             ->fontName('Arial Bold')
+                             ->fontSize(16);
 
-//Or pass and array with configuration options
+//Or pass an array with configuration options
 $legend = new legend(array(
     'position' => 'bottom',
     'alignment' => 'start',
@@ -55,37 +64,36 @@ $tooltip = new tooltip(array(
 
 
 $config = array(
-    'backgroundColor' => new backgroundColor(array(
-        'stroke' => '#BBBBBB',
-        'strokeWidth' => 8,
-        'fill' => '#EFEFFF'
+        'backgroundColor' => new backgroundColor(array(
+        'stroke' => '#3B52C1',
+        'strokeWidth' => 12,
+        'fill' => '#DFFFDA'
     )),
     'chartArea' => new chartArea(array(
-        'left' => 100,
-        'top' => 75,
-        'width' => '85%',
-        'height' => '55%'
+        'left' => 89,
+        'top' => 63,
+        'width' => '80%',
+        'height' => '60%'
     )),
     'titleTextStyle' => $titleStyle,
     'legend' => $legend,
     'tooltip' => $tooltip,
-    'title' => 'Times for Deliveries',
-    'titlePosition' => 'out',
-    'curveType' => 'function',
+    'title' => 'Lake Depths',
+    'titlePosition' => 'in',
     'width' => 1000,
     'height' => 450,
-    'pointSize' => 3,
-    'lineWidth' => 1,
-    'colors' => array('#4F9CBB', 'green'),
+    'pointSize' => 5,
+    'lineWidth' => 3,
+    'colors' => array('#26BB93', 'yellow', '#BCDEFA'),
     'hAxis' => new hAxis(array(
-        'baselineColor' => '#fc32b0',
+        'baselineColor' => 'orange',
         'gridlines' => array(
-            'color' => '#43fc72',
-            'count' => 6
+            'color' => '#000000',
+            'count' => 12
         ),
         'minorGridlines' => array(
-            'color' => '#b3c8d1',
-            'count' => 3
+            'color' => '#A4F2BC',
+            'count' => 30
         ),
         'textPosition' => 'out',
         'textStyle' => new textStyle(array(
@@ -94,27 +102,27 @@ $config = array(
             'fontSize' => 10
         )),
         'slantedText' => TRUE,
-        'slantedTextAngle' => 30,
-        'title' => 'Delivery Dates',
+        'slantedTextAngle' => 45,
+        'title' => 'Dates',
         'titleTextStyle' => new textStyle(array(
             'color' => '#BB33CC',
             'fontName' => 'Impact',
             'fontSize' => 14
         )),
-        'maxAlternation' => 6,
-        'maxTextLines' => 2
+        'maxAlternation' => 1,
+        'maxTextLines' => 12
     )),
     'vAxis' => new vAxis(array(
         'baseline' => 1,
-        'baselineColor' => '#CF3BBB',
-        'format' => '## hrs',
+        'baselineColor' => '#623BBB',
+        'format' => '## feet',
         'textPosition' => 'out',
         'textStyle' => new textStyle(array(
             'color' => '#DDAA88',
             'fontName' => 'Arial Bold',
             'fontSize' => 10
         )),
-        'title' => 'Delivery Time',
+        'title' => 'Depth',
         'titleTextStyle' => new textStyle(array(
             'color' => '#5C6DAB',
             'fontName' => 'Verdana',
@@ -123,13 +131,13 @@ $config = array(
     ))
 );
 
-$this->gcharts->LineChart('Times')->setConfig($config);
+$this->gcharts->AreaChart('Depths')->setConfig($config);
 </pre>
 
 <h2>View Code</h2>
 <pre style="font-family:Courier New, monospaced; font-size:10pt;border:1px solid #000;background-color:#e0e0e0;padding:5px;">
-echo $this->gcharts->LineChart('Growth')->outputInto('growth_div');
-echo $this->gcharts->div(800, 250);
+echo $this->gcharts->AreaChart('Depths')->outputInto('lake_div');
+echo $this->gcharts->div();
 
 if($this->gcharts->hasErrors())
 {

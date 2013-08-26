@@ -17,26 +17,26 @@ class tooltip extends configOptions
 {
     /**
      * Show color code for the tooltip
-     * 
+     *
      * @var boolean
      */
-    var $showColorCode = NULL;
-    
+    public $showColorCode = NULL;
+
     /**
      * Tooltip text style
-     * 
+     *
      * @var textStyle
      */
-    var $textStyle = NULL;
-    
+    public $textStyle = NULL;
+
     /**
      * Trigger Action of the tooltip.
-     * 
+     *
      * @var string
      */
-    var $trigger = NULL;
+    public $trigger = NULL;
 
-    
+
     /**
      * Builds the tooltip object with specified options.
      *
@@ -66,7 +66,7 @@ class tooltip extends configOptions
         {
             $this->showColorCode = $showColorCode;
         } else {
-            $this->type_error('showColorCode', 'boolean');
+            $this->type_error(__FUNCTION__, 'boolean');
         }
 
         return $this;
@@ -84,7 +84,7 @@ class tooltip extends configOptions
         {
             $this->textStyle = $textStyle->values();
         } else {
-            $this->type_error('textStyle', 'object', 'type (textStyle)');
+            $this->type_error(__FUNCTION__, 'object', 'class (textStyle)');
         }
 
         return $this;
@@ -92,8 +92,8 @@ class tooltip extends configOptions
 
     /**
      * Sets The user interaction that causes the tooltip to be displayed.
-     * 
-     * 'focus' - The tooltip will be displayed when the user hovers over an element.  
+     *
+     * 'focus' - The tooltip will be displayed when the user hovers over an element.
      * 'none' - The tooltip will not be displayed.
      *
      * @param string Type of trigger, [ focus | none ].
@@ -110,7 +110,7 @@ class tooltip extends configOptions
         {
             $this->trigger = $trigger;
         } else {
-            $this->type_error('trigger', 'string', 'with a value of'.$this->_array_string($values));
+            $this->type_error(__FUNCTION__, 'string', 'with a value of '.$this->_array_string($values));
         }
 
         return $this;

@@ -17,33 +17,33 @@ class legend extends configOptions
 {
     /**
      * Position of the legend.
-     * 
+     *
      * @var string
      */
-    var $position;
-    
+    public $position;
+
     /**
      * Alignment of the legend.
-     * 
-     * @var type 
+     *
+     * @var string
      */
-    var $alignment;
-    
+    public $alignment;
+
     /**
      * Text style of the legend.
-     * 
+     *
      * @var textStyle
      */
-    var $textStyle;
+    public $textStyle;
 
-    
+
     /**
      * Builds the legend object when passed an array of configuration options.
      *
      * @param array Options for the legend
      * @return \tooltip
      */
-    public function __construct($config)
+    public function __construct($config = array())
     {
         $this->options = array(
             'position',
@@ -56,13 +56,13 @@ class legend extends configOptions
 
     /**
      * Sets the position of the legend.
-     * 
+     *
      * Can be one of the following:
-     * 'right' - To the right of the chart. Incompatible with the vAxes option.
-     * 'top' - Above the chart.
+     * 'right'  - To the right of the chart. Incompatible with the vAxes option.
+     * 'top'    - Above the chart.
      * 'bottom' - Below the chart.
-     * 'in' - Inside the chart, by the top left corner.
-     * 'none' - No legend is displayed.
+     * 'in'     - Inside the chart, by the top left corner.
+     * 'none'   - No legend is displayed.
      *
      * @param string Location of legend
      * @return \legend
@@ -80,21 +80,20 @@ class legend extends configOptions
         if(in_array($position, $values))
         {
             $this->position = $position;
-            return $this;
         } else {
-            $this->type_error('position', 'string', 'with a value of '.array_string($values));
+            $this->type_error(__FUNCTION__, 'string', 'with a value of '.array_string($values));
         }
 
         return $this;
     }
 
     /**
-     * Sets the alignment of the legend. 
-     * 
+     * Sets the alignment of the legend.
+     *
      * Can be one of the following:
-     * 'start' - Aligned to the start of the area allocated for the legend.
+     * 'start'  - Aligned to the start of the area allocated for the legend.
      * 'center' - Centered in the area allocated for the legend.
-     * 'end' - Aligned to the end of the area allocated for the legend.
+     * 'end'    - Aligned to the end of the area allocated for the legend.
      *
      * Start, center, and end are relative to the style -- vertical or horizontal -- of the legend.
      * For example, in a 'right' legend, 'start' and 'end' are at the top and bottom, respectively;
@@ -117,9 +116,8 @@ class legend extends configOptions
         if(in_array($alignment, $values))
         {
             $this->alignment = $alignment;
-            return $this;
         } else {
-            $this->type_error('alignment', 'string', 'with a value of '.array_string($values));
+            $this->type_error(__FUNCTION__, 'string', 'with a value of '.array_string($values));
         }
 
         return $this;
@@ -137,7 +135,7 @@ class legend extends configOptions
         {
             $this->textStyle = $textStyle->values();
         } else {
-            $this->type_error('textStyle', 'object', 'type textStyle');
+            $this->type_error(__FUNCTION__, 'textStyle');
         }
 
         return $this;

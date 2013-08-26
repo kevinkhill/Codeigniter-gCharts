@@ -14,17 +14,19 @@
 | - LineChart
 | - AreaChart
 | - PieChart
+| - DonutChart
 | - ColumnChart (beta)
+| - GeoChart (beta)
 |
 | - More coming soon!
 |
-| Example of autoloading:
-$config['autoloadCharts'] = array(
-    'LineChart',
-    'AreaChart',
-    'PieChart',
-    'ColumnChart'
-);
+| Autoload Example:
+|  $config['autoloadCharts'] = array(
+|     'LineChart',
+|     'AreaChart',
+|     'PieChart',
+|     'ColumnChart'
+|  );
 */
 $config['autoloadCharts'] = array();
 

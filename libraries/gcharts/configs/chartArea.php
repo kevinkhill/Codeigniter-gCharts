@@ -13,38 +13,37 @@
  * @license http://opensource.org/licenses/MIT MIT
  */
 
-//@TODO: Add in documentation for vars and functions.
 class chartArea extends configOptions
 {
     /**
      * How far to draw the chart from the left border.
-     * 
+     *
      * @var int Amount in pixels
      */
-    var $left = NULL;
-    
+    public $left = NULL;
+
     /**
      * How far to draw the chart from the top border.
-     * 
+     *
      * @var int Amount in pixels
      */
-    var $top = NULL;
-    
+    public $top = NULL;
+
     /**
      * Width of the chart.
-     * 
+     *
      * @var int Amount in pixels
      */
-    var $width = NULL;
-    
+    public $width = NULL;
+
     /**
      * Height of the chart.
-     * 
+     *
      * @var int Amount in pixels
      */
-    var $height = NULL;
+    public $height = NULL;
 
-    
+
     /**
      * Builds the chartArea object when passed an array of configuration options.
      *
@@ -65,7 +64,7 @@ class chartArea extends configOptions
 
     /**
      * Sets the left padding of the chart in the container.
-     * 
+     *
      * @param int Amount in pixels
      * @return \chartArea
      */
@@ -75,7 +74,7 @@ class chartArea extends configOptions
         {
             $this->left = $left;
         } else {
-            $this->type_error(__FUNCTION__, 'int | string', 'representing a percent.');
+            $this->type_error(__FUNCTION__, 'int | string', 'representing pixels or a percent.');
         }
 
         return $this;
@@ -83,7 +82,7 @@ class chartArea extends configOptions
 
     /**
      * Sets the top padding of the chart in the container.
-     * 
+     *
      * @param int Amount in pixels
      * @return \chartArea
      */
@@ -93,15 +92,15 @@ class chartArea extends configOptions
         {
             $this->top = $top;
         } else {
-            $this->type_error(__FUNCTION__, 'int | string', 'representing a percent.');
+            $this->type_error(__FUNCTION__, 'int | string', 'representing pixels or a percent.');
         }
 
         return $this;
     }
-    
+
     /**
      * Sets the width of the chart in the container.
-     * 
+     *
      * @param int Amount in pixels
      * @return \chartArea
      */
@@ -111,7 +110,7 @@ class chartArea extends configOptions
         {
             $this->width = $width;
         } else {
-            $this->type_error(__FUNCTION__, 'int | string', 'representing a percent.');
+            $this->type_error(__FUNCTION__, 'int | string', 'representing pixels or a percent.');
         }
 
         return $this;
@@ -119,7 +118,7 @@ class chartArea extends configOptions
 
     /**
      * Sets the height of the chart in the container.
-     * 
+     *
      * @param int Amount in pixels
      * @return \chartArea
      */
@@ -129,7 +128,7 @@ class chartArea extends configOptions
         {
             $this->height = $height;
         } else {
-            $this->type_error(__FUNCTION__, 'int | string', 'representing a percent.');
+            $this->type_error(__FUNCTION__, 'int | string', 'representing pixels or a percent.');
         }
 
         return $this;

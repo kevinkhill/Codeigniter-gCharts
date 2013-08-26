@@ -14,15 +14,15 @@
 
 class Chart
 {
-    var $chartType = NULL;
-    var $chartLabel = NULL;
-    var $dataTable = NULL;
+    public $chartType = NULL;
+    public $chartLabel = NULL;
+    public $dataTable = NULL;
 
-    var $data = NULL;
-    var $options = NULL;
-    var $defaults = NULL;
-    var $events = NULL;
-    var $elementID = NULL;
+    public $data = NULL;
+    public $options = NULL;
+    public $defaults = NULL;
+    public $events = NULL;
+    public $elementID = NULL;
 
     public function __construct($chartLabel)
     {
@@ -70,28 +70,20 @@ class Chart
                         $this->addOption($value);
                     }
                 } else {
-                    $this->error('Invalid config value, must be type (array) containing any key '.array_string($this->defaults));
+                    $this->error('Invalid config value "'.$option.'", must be an option from this list '.array_string($this->defaults));
                 }
             }
+        } else {
+            $this->error('Invalid value for setConfig, must be type (array) containing a minimum of one key from '.array_string($this->defaults));
         }
 
         return $this;
     }
 
     /**
-     * Adds the error message to the error log in the gcharts master object.
-     *
-     * @param string $msg
-     */
-    private function error($msg)
-    {
-        Gcharts::_set_error($this->chartType, $msg);
-    }
-
-    /**
      * Sets a configuration option
      *
-     * Takes either an array with option => value, or an object created by
+     * Takes an array with option => value, or an object created by
      * one of the configOptions child objects.
      *
      * @param mixed $option
@@ -99,26 +91,31 @@ class Chart
      */
     public function addOption($option)
     {
-        if(is_object($option))
+        switch(gettype($option))
         {
-            $this->options = array_merge($this->options, $option->toArray());
-        }
+            case 'object':
+                $this->options = array_merge($this->options, $option->toArray());
+            break;
 
-        if(is_array($option))
-        {
-            $this->options = array_merge($this->options, $option);
+            case 'array':
+                $this->options = array_merge($this->options, $option);
+            break;
+
+            default:
+                $this->type_error(__FUNCTION__, 'object | array', ', option != '.print_r($option));
+            break;
         }
 
         return $this;
     }
 
     /**
-     * Assigns wich DataTable will be used for this LineChart. If a label is provided
+     * Assigns wich DataTable will be used for this Chart. If a label is provided
      * then the defined DataTable will be used. If called with no argument, it will
-     * attempt to use a DataTable with the same label as the LineChart
+     * attempt to use a DataTable with the same label as the Chart.
      *
      * @param mixed dataTableLabel String label or DataTable object
-     * @return \configs\DataTable DataTable object
+     * @return \DataTable DataTable object
      */
     public function dataTable($data = NULL)
     {
@@ -157,7 +154,7 @@ class Chart
      * Two formats are supported: a number, or a number followed by %.
      * A simple number is a value in pixels; a number followed by % is a percentage.
      *
-     * @param \configs\chartArea $chartArea
+     * @param chartArea $chartArea
      * @return \Chart
      */
     public function chartArea(chartArea $chartArea)
@@ -166,7 +163,7 @@ class Chart
         {
             $this->addOption($chartArea->toArray());
         } else {
-            $this->error('Invalid chartArea, must be an object type (chartArea).');
+            $this->type_error(__FUNCTION__, 'chartArea');
         }
 
         return $this;
@@ -185,7 +182,7 @@ class Chart
         {
             $this->addOption(array('colors' => $colorArray));
         } else {
-            $this->error('Invalid colors, must be (array) with valid HTML colors');
+            $this->type_error(__FUNCTION__, 'array', 'with valid HTML colors');
         }
 
         return $this;
@@ -222,7 +219,7 @@ class Chart
                 }
             }
         } else {
-            $this->error('Invalid events type, must be (array) containing any key '.array_string($values));
+            $this->type_error(__FUNCTION__, 'array', 'containing any key '.array_string($values));
         }
 
         return $this;
@@ -241,7 +238,7 @@ class Chart
         {
             $this->addOption(array('fontSize' => $fontSize));
         } else {
-            $this->error('Invalid value for fontSize, must be type (int).');
+            $this->type_error(__FUNCTION__, 'int');
         }
 
         return $this;
@@ -258,9 +255,9 @@ class Chart
     {
         if(is_string($fontName))
         {
-            $this->addOption(array('fontSize' => $fontName));
+            $this->addOption(array('fontName' => $fontName));
         } else {
-            $this->error('Invalid value for fontName, must be type (string).');
+            $this->error(__FUNCTION__, 'string');
         }
 
         return $this;
@@ -278,7 +275,7 @@ class Chart
         {
             $this->addOption(array('height' => $height));
         } else {
-            $this->error('Invalid height, must be (int)');
+            $this->type_error(__FUNCTION__, 'int');
         }
 
         return $this;
@@ -298,7 +295,7 @@ class Chart
         {
             $this->addOption($legendObj->toArray());
         } else {
-            $this->error('Invalid value for legend, must be an object type (legend).');
+            $this->type_error(__FUNCTION__, 'legend');
         }
 
         return $this;
@@ -316,7 +313,7 @@ class Chart
         {
             $this->addOption(array('title' => (string) $title));
         } else {
-            $this->error('Invalid title, must be type (string).');
+            $this->type_error(__FUNCTION__, 'string');
         }
 
         return $this;
@@ -343,7 +340,7 @@ class Chart
         {
             $this->addOption(array('titlePosition' => $position));
         } else {
-            $this->error('Invalid axisTitlesPosition, must be type (string) with a value of '.array_string($values));
+            $this->type_error(__FUNCTION__, 'string', 'with a value of '.array_string($values));
         }
 
         return $this;
@@ -353,7 +350,7 @@ class Chart
      * An object that specifies the title text style. create a new textStyle()
      * object, set the values then pass it to this function or to the constructor.
      *
-     * @param \configs\textStyle $textStyleObj
+     * @param textStyle $textStyleObj
      * @return \Chart
      */
     public function titleTextStyle(textStyle $textStyleObj)
@@ -362,7 +359,7 @@ class Chart
         {
             $this->addOption(array('titleTextStyle' => $textStyleObj->values()));
         } else {
-            $this->error('Invalid titleTextStyle, must be an object type (textStyle).');
+            $this->type_error(__FUNCTION__, 'textStyle');
         }
 
         return $this;
@@ -374,7 +371,7 @@ class Chart
      * properties of this object, create a new tooltip() object, set the values
      * then pass it to this function or to the constructor.
      *
-     * @param \configs\tooltip $tooltipObj
+     * @param tooltip $tooltipObj
      * @return \Chart
      */
     public function tooltip($tooltipObj)
@@ -383,7 +380,7 @@ class Chart
         {
             $this->addOption($tooltipObj->toArray());
         } else {
-            $this->error('Invalid tooltip, must be an object type (tooltip).');
+            $this->error(__FUNCTION__, 'tooltip');
         }
 
         return $this;
@@ -401,10 +398,40 @@ class Chart
         {
             $this->addOption(array('width' => $width));
         } else {
-            $this->error('Invalid width, must be type (int).');
+            $this->type_error(__FUNCTION__, 'int');
         }
 
         return $this;
+    }
+
+    /**
+     * Adds the error message to the error log in the gcharts master object.
+     *
+     * @param string $msg
+     */
+    public function error($msg)
+    {
+        Gcharts::_set_error($this->chartType.'('.$this->chartLabel.')', $msg);
+    }
+
+    /**
+     * Adds an function/type error message to the error log in the gcharts object.
+     *
+     * @param string Property in error
+     * @param string Variable type
+     * @param string Extra message to append to error
+     */
+    public function type_error($val, $type, $extra = FALSE)
+    {
+        $msg = sprintf(
+            'Invalid value for %s, must be type (%s)',
+            $val,
+            $type
+        );
+
+        $msg .= $extra ? ' '.$extra.'.' : '.';
+
+        $this->error($msg);
     }
 
     /**
@@ -433,7 +460,17 @@ class Chart
         return Gcharts::_build_script_block($this);
     }
 
+    /**
+     * Returns a JSON string representation of the object's properties.
+     *
+     * @return string
+     */
+    public function optionsToJSON()
+    {
+        return json_encode($this->options);
+    }
+
 }
 
-/* End of file LineChart.php */
-/* Location: ./gcharts/charts/LineChart.php */
+/* End of file Chart.php */
+/* Location: ./gcharts/charts/Chart.php */
