@@ -110,7 +110,7 @@ class tooltip extends configOptions
         {
             $this->trigger = $trigger;
         } else {
-            $this->type_error(__FUNCTION__, 'string', 'with a value of '.$this->_array_string($values));
+            $this->type_error(__FUNCTION__, 'string', 'with a value of '.array_string($values));
         }
 
         return $this;

@@ -81,11 +81,11 @@ class slice extends configOptions
      */
     public function offset($offset)
     {
-        if(is_float($offset))
+        if(is_float($offset) && between($offset, 0.0, 1.0))
         {
             $this->offset = $offset;
         } else {
-            $this->type_error(__FUNCTION__, 'string', 'with a value of '.$this->_array_string($values));
+            $this->type_error(__FUNCTION__, 'float', 'where 0.0 < $offset < 0.1');
         }
 
         return $this;

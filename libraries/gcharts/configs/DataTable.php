@@ -106,7 +106,7 @@ class DataTable
                                 $this->error('Invalid description array key value, must be type (string) with any key value '.$this->_array_string($descriptions));
                             }
                         } else {
-                            $this->error('Invalid type, must be type (string) with the value '.$this->_array_string($types));
+                            $this->error('Invalid type, must be type (string) with the value '.array_string($types));
                         }
                     } else {
                         $this->error('Invalid description array, must contain (array) with at least one key type (string) value [ type ]');
@@ -135,7 +135,7 @@ class DataTable
                         $this->error('Invalid opt_id, must be type (string).');
                     }
                 } else {
-                    $this->error('Invalid type, must be type (string) with the value '.$this->_array_string($types));
+                    $this->error('Invalid type, must be type (string) with the value '.array_string($types));
                 }
 
                 $this->cols[] = $descArray;
