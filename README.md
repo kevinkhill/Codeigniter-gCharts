@@ -4,7 +4,13 @@
 This is a library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5
 By: [Kevin Hill](kevinkhill@gmail.com)
 
-If you have any questions or comments... please email me, post issues here, or fork me and help out ;)
+
+
+##This library is no longer in active development, please check out the fork of this
+[LavaCharts for Laravel](http://kevinkhill.github.io/LavaCharts/)
+[LavaCharts on Packagist](https://packagist.org/packages/khill/lavacharts)
+
+
 
 ##Currently Supported Charts
  * Line Charts
