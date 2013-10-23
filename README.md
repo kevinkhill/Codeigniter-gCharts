@@ -5,11 +5,13 @@ This is a library that extends the flexibility and power of Google Charts into C
 By: [Kevin Hill](kevinkhill@gmail.com)
 
 
+- - -
 
-##This library is no longer in active development, please check out the fork of this
-[LavaCharts for Laravel](http://kevinkhill.github.io/LavaCharts/)
-[LavaCharts on Packagist](https://packagist.org/packages/khill/lavacharts)
-
+###This library is no longer in active development, please check out the fork of this library
+###[LavaCharts for Laravel](http://kevinkhill.github.io/LavaCharts/)
+###[LavaCharts on Packagist](https://packagist.org/packages/khill/lavacharts)
+ 
+- - -
 
 
 ##Currently Supported Charts
