@@ -8,7 +8,7 @@ By: [Kevin Hill](kevinkhill@gmail.com)
 - - -
 
 ###This library is no longer in active development, please check out the fork of this library
-###[LavaCharts for Laravel](http://kevinkhill.github.io/LavaCharts/)
+###[LavaCharts for Laravel](http://kevinkhill.github.io/Lavacharts/)
 ###[LavaCharts on Packagist](https://packagist.org/packages/khill/lavacharts)
  
 - - -
