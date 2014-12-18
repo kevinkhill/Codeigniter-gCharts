@@ -1,15 +1,6 @@
-#Codeigniter-gCharts
-###Google Chart API for Codeigniter
-
-This is a library that extends the flexibility and power of Google Charts into CodeIgniter using the magic of PHP5
-By: [Kevin Hill](kevinkhill@gmail.com)
-
-
 - - -
 
-###This library is no longer in active development, please check out the fork of this library
-###[Lavacharts for Laravel](http://kevinkhill.github.io/Lavacharts)
-###[Lavacharts on Packagist](https://packagist.org/packages/khill/lavacharts)
+###This library is no longer in active development, please check out my fork at [Lavacharts.com](http://lavacharts.com)
  
 - - -
 
